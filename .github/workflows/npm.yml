@@ -10,8 +10,7 @@ jobs:
       - name: actions/checkout@v3 🛎️
         uses: actions/checkout@v3
       - run: npm install
-      - run: cd packages/core/ && npm install && npm run build
-      - run: cd sites/gh-pages && npm install && npm run build
+      - run: npm run build
       - name: JamesIves/github-pages-deploy-action@v4 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
