@@ -1,4 +1,3 @@
-import context from "variables/carbonphp";
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
@@ -53,7 +52,7 @@ let privateRoutes = [
         component: TableList
     },
     {
-        path: "/typography",
+        path: "/typography/*",
         sidebarName: "Typography",
         navbarName: "Typography",
         name: "Typography",
@@ -61,7 +60,7 @@ let privateRoutes = [
         component: Typography
     },
     {
-        path: "/icons",
+        path: "/icons/*",
         sidebarName: "Icons",
         navbarName: "Icons",
         name: "Icons",
@@ -69,7 +68,7 @@ let privateRoutes = [
         component: Icons
     },
     {
-        path: "/maps",
+        path: "/maps/*",
         sidebarName: "Maps",
         navbarName: "Map",
         name: "Map",
@@ -77,7 +76,7 @@ let privateRoutes = [
         component: Maps
     },
     {
-        path: "/notifications",
+        path: "/notifications/*",
         sidebarName: "Notifications",
         navbarName: "Notifications",
         name: "Notifications",
@@ -85,7 +84,7 @@ let privateRoutes = [
         component: NotificationsPage
     },
     {
-        path: "/upgrade-to-pro",
+        path: "/upgrade-to-pro/*",
         sidebarName: "Upgrade To PRO",
         navbarName: "Upgrade To PRO",
         name: "Upgrade To PRO",
@@ -94,14 +93,11 @@ let privateRoutes = [
     },
     {
         redirect: true,
-        path: "/",
+        path: "/*",
         pathTo: "/dashboard",
         navbarName: "Redirect",
         name: "Redirect"
     }
 ];
-
-
-privateRoutes = privateRoutes.map(context.contextRoot);
 
 export default privateRoutes;

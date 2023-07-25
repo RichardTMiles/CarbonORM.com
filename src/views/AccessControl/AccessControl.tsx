@@ -15,25 +15,24 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+import CarbonORM from "CarbonORM";
 import React, {ChangeEvent} from "react";
 // nodejs library to set properties for components
 // nodejs library that concatenates classes
-// @material-ui/core components
-// core components
 import GridContainer from "../../components/Grid/GridContainer";
 import GridItem from "../../components/Grid/GridItem";
 import Button from "../../components/CustomButtons/Button";
 
 import landingPageStyle from "../../assets/jss/material-kit-react/views/landingPage";
 // Sections for this page
-import {WithStyles} from "@material-ui/styles";
+import axiosInstance from "variables/axiosInstance";
 
 
-import Card from "../../components/Card/Card";
-import CardHeader from "../../components/Card/CardHeader";
-import CardBody from "../../components/Card/CardBody";
-import Table from "../../components/Table/Table";
-import {AxiosInstance} from "axios";
+import Card from "components/Card/Card";
+import CardHeader from "components/Card/CardHeader";
+import CardBody from "components/Card/CardBody";
+import Table from "components/Table/Table";
+import axios from "axios";
 import {
   C6,
   convertForRequestBody,
@@ -48,13 +47,6 @@ import swal from '@sweetalert/with-react';
 import withStyles from "@material-ui/core/styles/withStyles";
 
 
-
-interface iAccessControl extends WithStyles<typeof landingPageStyle> {
-  id: string,
-  axios: AxiosInstance;
-  testRestfulPostPutDeleteResponse: Function;
-}
-
 interface UserAccessControl extends iUsers {
   group_name?: string,
   feature_code?: string
@@ -65,7 +57,9 @@ interface iGroupFeatures extends iGroups, iFeatures {
 }
 
 
-class AccessControl extends React.Component<iAccessControl, {
+class AccessControl extends React.Component<{
+  classes: any,
+}, {
   currency: 'USD' | 'GBP' | 'EUR' | 'PLN',
   grantRolesModalOpen: boolean,
   createRolesAndAssignModalOpen: boolean,
@@ -118,9 +112,8 @@ class AccessControl extends React.Component<iAccessControl, {
   };
 
   componentDidMount() {
-    const { axios } = this.props;
 
-    axios.get('/rest/' + C6.users.TABLE_NAME, {
+    axiosInstance.get('/rest/' + C6.users.TABLE_NAME, {
       params: {
         [C6.SELECT]: [
           C6.users.USER_USERNAME,
@@ -196,34 +189,34 @@ class AccessControl extends React.Component<iAccessControl, {
     }).then(response => this.setState({ groups: response.data.rest }))
   }
 
-  deleteFeatureFromGroup(groupId: string, featureId: string) {
-    this.props.axios.delete('/rest/' + C6.feature_group_references.TABLE_NAME, {
+  deleteFeatureFromGroup(groupId: string|undefined, featureId: string|undefined) {
+    axiosInstance.delete('/rest/' + C6.feature_group_references.TABLE_NAME, {
       data: {
         [C6.WHERE]: {
           [C6.feature_group_references.FEATURE_ENTITY_ID]: featureId,
           [C6.feature_group_references.GROUP_ENTITY_ID]: groupId,
         }
       }
-    }).then(response => this.props.testRestfulPostPutDeleteResponse(response, 'Successfully deleted the feature from the group.',
+    }).then(response => CarbonORM.instance.testRestfulPostPutDeleteResponse(response, 'Successfully deleted the feature from the group.',
       'Failed to remove the feature from the group. Please try again later.') && this.setState({
-        groups: this.state.groups.map(obj => {
+        groups: this.state.groups?.map(obj => {
 
           if (obj.entity_id !== groupId) {
             return obj;
           }
-          const fullFeature: iFeatures = this.state.features.find((feature: iFeatures) => feature.feature_entity_id === featureId);
+          const fullFeature: iFeatures|undefined = this.state.features?.find((feature: iFeatures) => feature.feature_entity_id === featureId);
 
-          let regex = new RegExp('(^|,)' + fullFeature.feature_code + ',?', 'g');
+          let regex = new RegExp('(^|,)' + fullFeature?.feature_code + ',?', 'g');
 
-          obj.feature_code = obj.feature_code.replace(regex, ',');
+          obj.feature_code = obj.feature_code?.replace(regex, ',');
 
           return obj;
         })
       }))
   }
 
-  deleteGroupFromUser(userId: string, groupId: string) {
-    this.props.axios.delete('/rest/' + C6.user_groups.TABLE_NAME, {
+  deleteGroupFromUser(userId: string|undefined, groupId: string|undefined) {
+    axiosInstance.delete('/rest/' + C6.user_groups.TABLE_NAME, {
       data: {
         [C6.WHERE]: {
           [C6.user_groups.GROUP_ID]: userId,
@@ -232,32 +225,32 @@ class AccessControl extends React.Component<iAccessControl, {
       }
     })
       .then(() => this.setState({
-        users: this.state.users.map(obj => {
+        users: this.state.users?.map(obj => {
           if (obj.user_id !== userId) {
             return obj;
           }
-          const fullGroup: iGroupFeatures =
-            this.state.groups.find((group: iGroupFeatures) => group.entity_id === groupId);
+          const fullGroup: undefined|iGroupFeatures =
+            this.state.groups?.find((group: iGroupFeatures) => group.entity_id === groupId);
 
-          let regex = new RegExp('(^|,)' + fullGroup.group_name + ',?', 'g');
+          let regex = new RegExp('(^|,)' + fullGroup?.group_name + ',?', 'g');
 
-          obj.group_name = obj.group_name.replace(regex, ',');
+          obj.group_name = obj.group_name?.replace(regex, ',');
 
           return obj;
         })
       }))
   }
 
-  newGroupGrantabillity(modifyGroupId: string, allowGroupGrantRightsId: string) {
+  newGroupGrantabillity(modifyGroupId: string|undefined, allowGroupGrantRightsId: string|undefined) {
     this.setState({ alert: null }, () =>
-      this.props.axios.post('/rest/' + C6.group_references.TABLE_NAME, {
+      axiosInstance.post('/rest/' + C6.group_references.TABLE_NAME, {
         [C6.group_references.GROUP_ID]: modifyGroupId,
         [C6.group_references.ALLOWED_TO_GRANT_GROUP_ID]: allowGroupGrantRightsId,
       })
-        .then(response => (this.props.testRestfulPostPutDeleteResponse(response, 'Successfully Created Feature Code',
+        .then(response => (CarbonORM.instance.testRestfulPostPutDeleteResponse(response, 'Successfully Created Feature Code',
           'An unknown issue occurred. We will be looking into this shortly.'))
           && this.setState({
-            groups: this.state.groups.map(obj => {
+            groups: this.state.groups?.map(obj => {
               if (obj.entity_id !== modifyGroupId) {
                 return obj;
               }
@@ -268,8 +261,8 @@ class AccessControl extends React.Component<iAccessControl, {
     )
   }
 
-  deleteGroupGrantabillity(modifyGroupId: string, allowGroupGrantRightsId: string) {
-    this.props.axios.delete('/rest/' + C6.group_references.TABLE_NAME, {
+  deleteGroupGrantabillity(modifyGroupId: string|undefined, allowGroupGrantRightsId: string|undefined) {
+    axiosInstance.delete('/rest/' + C6.group_references.TABLE_NAME, {
       data: {
         [C6.WHERE]: {
           [C6.group_references.GROUP_ID]: modifyGroupId,
@@ -277,9 +270,9 @@ class AccessControl extends React.Component<iAccessControl, {
         }
       }
     })
-      .then(response => this.props.testRestfulPostPutDeleteResponse(response, 'Removed the ability to grant group.',
+      .then(response => CarbonORM.instance.testRestfulPostPutDeleteResponse(response, 'Removed the ability to grant group.',
         'Failed to remove status') && this.setState({
-        groups: this.state.groups.map(obj => {
+        groups: this.state.groups?.map(obj => {
 
           if (obj.entity_id !== modifyGroupId) {
             return obj;
@@ -287,7 +280,7 @@ class AccessControl extends React.Component<iAccessControl, {
 
           let regex = new RegExp('(^|,)' + allowGroupGrantRightsId + ',?', 'g');
 
-          obj.allowed_to_grant_group_id = obj.allowed_to_grant_group_id.replace(regex, ',');
+          obj.allowed_to_grant_group_id = obj.allowed_to_grant_group_id?.replace(regex, ',');
 
           return obj;
         })
@@ -297,9 +290,9 @@ class AccessControl extends React.Component<iAccessControl, {
   newFeature() {
     let id = '';
     this.setState({ alert: null }, () =>
-      this.props.axios.post('/rest/' + C6.features.TABLE_NAME,
+      axiosInstance.post('/rest/' + C6.features.TABLE_NAME,
         convertForRequestBody(this.state.feature, C6.features.TABLE_NAME))
-        .then(response => (id = this.props.testRestfulPostPutDeleteResponse(
+        .then(response => (id = CarbonORM.instance.testRestfulPostPutDeleteResponse(
           response,
           'Successfully Created Feature Code',
           'An unknown issue occurred. We will be looking into this shortly.'))
@@ -310,29 +303,28 @@ class AccessControl extends React.Component<iAccessControl, {
           }
         }, () => this.setState({
           features: [
-            ...this.state.features,
+            ...(this.state.features ?? []),
             this.state.feature
           ]
         }))))
   }
 
-  deleteFeature(id: string) {
+  deleteFeature(id: string|undefined) {
     this.setState({ alert: null }, () =>
-      this.props.axios.delete('/rest/' + C6.features.TABLE_NAME + '/' + id)
-        .then(response => (id = this.props.testRestfulPostPutDeleteResponse(response, 'Successfully Deleted Feature Code',
+      axiosInstance.delete('/rest/' + C6.features.TABLE_NAME + '/' + id)
+        .then(response => (id = CarbonORM.instance.testRestfulPostPutDeleteResponse(response, 'Successfully Deleted Feature Code',
           'An unknown issue occurred. We will be looking into this shortly.')) && this.setState({
-          features: this.state.features.filter(value => value.feature_entity_id !== id)
+          features: this.state.features?.filter(value => value.feature_entity_id !== id)
         })))
   }
 
   newUser() {
-    const { axios } = this.props;
     let id = '';
     this.setState({ alert: null }, () =>
-      axios.post('/rest/' + C6.users.TABLE_NAME,
+      axiosInstance.post('/rest/' + C6.users.TABLE_NAME,
         convertForRequestBody(this.state.user, C6.users.TABLE_NAME))
         .then(response => (id =
-          this.props.testRestfulPostPutDeleteResponse(response,
+          CarbonORM.instance.testRestfulPostPutDeleteResponse(response,
             'New User Successfully Created',
             'An unknown issue occurred. We will be looking into this shortly.'
           )) && this.setState({
@@ -342,20 +334,19 @@ class AccessControl extends React.Component<iAccessControl, {
           }
         }, () => this.setState({
           users: [
-            ...this.state.users,
+            ...(this.state.users ?? []),
             this.state.user
           ]
         }))))
   }
 
   newGroup() {
-    const { axios } = this.props;
     let id = '';
     this.setState({ alert: null }, () =>
-      axios.post('/rest/' + C6.groups.TABLE_NAME,
+        axiosInstance.post('/rest/' + C6.groups.TABLE_NAME,
         convertForRequestBody(this.state.group, C6.groups.TABLE_NAME))
         .then(response =>
-          (id = this.props.testRestfulPostPutDeleteResponse(response, 'Successfully Created The Group',
+          (id = CarbonORM.instance.testRestfulPostPutDeleteResponse(response, 'Successfully Created The Group',
             'An unknown issue occurred. We will be looking into this shortly.')) && this.setState({
             group: {
               group_name: this.state.group.group_name,
@@ -363,28 +354,27 @@ class AccessControl extends React.Component<iAccessControl, {
             }
           }, () => this.setState({
             groups: [
-              ...this.state.groups,
+              ...(this.state.groups ?? []),
               this.state.group,
             ]
           }))));
   }
 
 
-  renameGroup(newName: string) {
-    const { axios } = this.props;
+  renameGroup(newName: string|undefined) {
     let id = '';
     this.setState({ alert: null }, () =>
-      axios.put('/rest/' + C6.groups.TABLE_NAME,
+        axiosInstance.put('/rest/' + C6.groups.TABLE_NAME,
         convertForRequestBody(this.state.group, C6.groups.TABLE_NAME))
         .then(response =>
-          (id = this.props.testRestfulPostPutDeleteResponse(response, 'Successfully Created The Group',
+          (id = CarbonORM.instance.testRestfulPostPutDeleteResponse(response, 'Successfully Created The Group',
             'An unknown issue occurred. We will be looking into this shortly.')) && this.setState({
             group: {
               group_name: newName,
               entity_id: id
             }
           }, () => this.setState({
-            groups: this.state.groups.map((value: iGroupFeatures) => {
+            groups: this.state.groups?.map((value: iGroupFeatures) => {
                 return value.entity_id === id ? (value.group_name = newName, value) : value;
               }
             )
@@ -393,61 +383,72 @@ class AccessControl extends React.Component<iAccessControl, {
 
 
   deleteGroup(id: string) {
-    const { axios } = this.props;
     this.setState({ alert: null }, () =>
-      axios.delete('/rest/' + C6.groups.TABLE_NAME + '/' + id)
+        axiosInstance.delete('/rest/' + C6.groups.TABLE_NAME + '/' + id)
         .then(response =>
-          (id = this.props.testRestfulPostPutDeleteResponse(response, 'Successfully Deleted The Group',
+          (id = CarbonORM.instance.testRestfulPostPutDeleteResponse(response, 'Successfully Deleted The Group',
             'An unknown issue occurred. We will be looking into this shortly.')) && this.setState({
-            groups: this.state.groups.filter(value => value.entity_id !== id)
+            groups: (this.state.groups?.filter(value => value.entity_id !== id) ?? [])
           })));
   }
 
-  addFeatureToGroup(featureId: string, groupId: string) {
-    const { axios } = this.props;
+  addFeatureToGroup(featureId: string|undefined, groupId: string|undefined) {
+
     const payload: iFeature_Group_References = {
       feature_entity_id: featureId,
       group_entity_id: groupId
     };
 
     this.setState({ alert: null }, () =>
-      axios.post('/rest/' + C6.feature_group_references.TABLE_NAME,
+        axiosInstance.post('/rest/' + C6.feature_group_references.TABLE_NAME,
         convertForRequestBody(payload, C6.feature_group_references.TABLE_NAME))
         .then(response =>
-          (this.props.testRestfulPostPutDeleteResponse(response, null,
+          (CarbonORM.instance.testRestfulPostPutDeleteResponse(response, null,
             'An unknown issue occurred. We will be looking into this shortly.')) && this.setState({
-            groups: this.state.groups.map(obj => {
+            groups: this.state.groups?.map(obj => {
+
               if (obj.entity_id !== groupId) {
+
                 return obj;
+
               }
-              const fullFeature: iFeatures = this.state.features.find((feature: iFeatures) => feature.feature_entity_id === featureId);
-              obj.feature_code += ',' + fullFeature.feature_code;
+
+              const fullFeature: undefined|iFeatures = this.state.features?.find((feature: iFeatures) => feature.feature_entity_id === featureId);
+
+              obj.feature_code += ',' + fullFeature?.feature_code;
+
               return obj
+
             })
+
           })));
   }
 
-  addUserToGroup(userId: string, groupId: string) {
-    const { axios } = this.props;
+  addUserToGroup(userId: string|undefined, groupId: string|undefined) {
+
     const payload: iUser_Groups = {
       group_id: groupId,
       user_id: userId
     };
     this.setState({ alert: null }, () =>
-      axios.post('/rest/' + C6.user_groups.TABLE_NAME,
+        axiosInstance.post('/rest/' + C6.user_groups.TABLE_NAME,
         convertForRequestBody(payload, C6.user_groups.TABLE_NAME))
         .then(response =>
-          (this.props.testRestfulPostPutDeleteResponse(response, null,
+          (CarbonORM.instance.testRestfulPostPutDeleteResponse(response, null,
             'An unknown issue occurred. We will be looking into this shortly.')) &&
           this.setState({
-            users: this.state.users.map(obj => {
-              if (obj.user_id !== userId) {
-                return obj;
-              }
-              const fullGroup: iGroupFeatures =
-                this.state.groups.find((group: iGroupFeatures) => group.entity_id === groupId);
+            users: this.state.users?.map(obj => {
 
-              obj.group_name += ',' + fullGroup.group_name;
+              if (obj.user_id !== userId) {
+
+                return obj;
+
+              }
+
+              const fullGroup: undefined|iGroupFeatures =
+                this.state.groups?.find((group: iGroupFeatures) => group.entity_id === groupId);
+
+              obj.group_name += ',' + fullGroup?.group_name;
 
               return obj;
             })
@@ -501,7 +502,7 @@ class AccessControl extends React.Component<iAccessControl, {
                             onChange: (e: ChangeEvent<HTMLInputElement>) => this.setState({
                               feature: {
                                 feature_code: e.target.value,
-                                feature_entity_id: null,
+                                feature_entity_id: undefined,
                               }
                             })
                           }}
@@ -533,7 +534,7 @@ class AccessControl extends React.Component<iAccessControl, {
                                         group: {
                                           ...this.state.group,
                                           group_name: e.target.value,
-                                          created_by: this.props.id
+                                          created_by: CarbonORM.instance.state.id
                                         }
                                       })
                                     }}
@@ -547,7 +548,7 @@ class AccessControl extends React.Component<iAccessControl, {
                 <CardBody>
                   <Table
                     tableHeaderColor="info"
-                    tableHead={["Group Name", ...features.map((feature: iFeatures, index: number) => <p
+                    tableHead={["Group Name", ...(features?.map((feature: iFeatures, index: number) => <p
                       onClick={() => swal({
                         dangerMode: true,
                         buttons: {
@@ -610,13 +611,13 @@ class AccessControl extends React.Component<iAccessControl, {
                             break;
                         }
                       })}
-                      key={index}>{humanize(feature.feature_code)}</p>), "Admin"]}
+                      key={index}>{humanize(feature.feature_code)}</p>) ?? []), "Admin"]}
                     tableData={
-                      this.state.groups.map((group, key) => {
+                      this.state.groups?.map((group, key) => {
                         const name = humanize(group.group_name);
                         return [
                           <p key={key} onClick={this.handleNatModalChange}>{name}</p>,
-                          ...this.state.features.map((feature) => {
+                          ...(this.state.features?.map((feature) => {
 
                             const enabled = group.feature_code?.includes(',' + feature.feature_code + ',')
                               || group.feature_code?.startsWith(feature.feature_code + ',')
@@ -624,13 +625,12 @@ class AccessControl extends React.Component<iAccessControl, {
                               || group.feature_code === feature.feature_code;
 
                             return <Button key={key} color={enabled ? "success" : "default"}
-                                           onClick={() => enabled ?
-                                             this.deleteFeatureFromGroup(group.entity_id, feature.feature_entity_id) :
-                                             this.addFeatureToGroup(feature.feature_entity_id, group.entity_id)}
-                            >
+                                           onClick={() => enabled
+                                               ? this.deleteFeatureFromGroup(group.entity_id, feature.feature_entity_id)
+                                               : this.addFeatureToGroup(feature.feature_entity_id, group.entity_id)}>
                               {enabled ? " Enabled " : "Disabled"}
                             </Button>
-                          }),
+                          }) ?? []),
                           <Button key={key} onClick={() => swal({
                               dangerMode: true,
                               buttons: {
@@ -650,10 +650,11 @@ class AccessControl extends React.Component<iAccessControl, {
                                       tableHeaderColor="info"
                                       tableHead={["Group #", "Group Name", "Grantability Status"]}
                                       tableData={
-                                        this.state.groups.map((SubGroup, key) => {
+                                        this.state.groups?.map((SubGroup, key) => {
 
                                           let regex = new RegExp('(^|,)' + SubGroup.entity_id + ',?', 'g');
-                                          let enabled = regex.test(group.allowed_to_grant_group_id);
+
+                                          let enabled = regex.test(group.allowed_to_grant_group_id ?? '');
 
                                           return [
                                             key,
@@ -812,14 +813,20 @@ class AccessControl extends React.Component<iAccessControl, {
                 <CardBody>
                   <Table
                     tableHeaderColor="info"
-                    tableHead={["User ID", "First Name", "Last Name", "Username/Session", ...this.state.groups.map(group => group.group_name)]}
+                    tableHead={[
+                        "User ID",
+                      "First Name",
+                      "Last Name",
+                      "Username/Session",
+                      ...(this.state.groups?.map(group => group.group_name) ?? [])
+                    ]}
                     tableData={
-                      this.state.users.map((user, key) => [
+                      this.state.users?.map((user, key) => [
                         user.user_id,
                         user.user_first_name,
                         user.user_last_name,
                         user.user_username,
-                        ...this.state.groups.map(group => {
+                        ...(this.state.groups?.map(group => {
 
                           const enabled = user.group_name?.includes(',' + group.group_name + ',')
                             || user.group_name?.startsWith(group.group_name + ',')
@@ -833,7 +840,7 @@ class AccessControl extends React.Component<iAccessControl, {
                           >
                             {enabled ? " Enabled " : "Disabled"}
                           </Button>
-                        })
+                        }) ?? [])
                       ])
                     }
                   />

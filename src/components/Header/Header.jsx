@@ -12,15 +12,14 @@ import Menu from "@material-ui/icons/Menu";
 // core components
 import HeaderLinks from "./HeaderLinks";
 import Button from "components/CustomButtons/Button.jsx";
-import documentationVersion from "variables/carbonphp"
 
 import headerStyle from "assets/jss/material-dashboard-react/components/headerStyle.jsx";
+import CarbonORM from "CarbonORM";
 
 function Header({...props}) {
+
     function makeBrand() {
-
         console.log(props)
-
         let name = '';
         props.routes.map((prop) => {
             if (prop.path === props.location.pathname) {
@@ -31,17 +30,20 @@ function Header({...props}) {
         return name;
     }
 
+    const {documentationVersionURI} = CarbonORM.instance.state;
 
     const {classes, color} = props;
+
     const appBarClasses = classNames({
         [" " + classes[color]]: color
     });
+
     return (
         <AppBar className={classes.appBar + appBarClasses}>
             <Toolbar className={classes.container}>
                 <div className={classes.flex}>
                     {/* Here we create navbar brand, based on route name */}
-                    <Button color="transparent" href={"/" + documentationVersion + "/#"} className={classes.title}>
+                    <Button color="transparent" href={"/" + documentationVersionURI + "/#"} className={classes.title}>
                         {makeBrand()}
                     </Button>
                 </div>

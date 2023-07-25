@@ -1,4 +1,3 @@
-import context from "variables/carbonphp";
 // @material-ui/icons
 import Dashboard from "@material-ui/icons/Dashboard";
 import Person from "@material-ui/icons/Person";
@@ -92,8 +91,5 @@ let dashboardRoutes = [
         name: "Redirect"
     }
 ];
-
-
-dashboardRoutes = dashboardRoutes.map(context.contextRoot);
 
 export default dashboardRoutes;

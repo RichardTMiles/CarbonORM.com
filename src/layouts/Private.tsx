@@ -1,3 +1,4 @@
+import CarbonORM from "CarbonORM";
 import React from "react";
 import cx from "classnames";
 // creates a beautiful scrollbar
@@ -43,7 +44,8 @@ class Private extends React.Component<any, any> {
   }
 
   render() {
-    const { classes, subRoutingSwitch, ...rest } = this.props;
+    const { classes } = this.props;
+    const { subRoutingSwitch, switchDarkAndLightTheme, ...rest } = CarbonORM.instance;
     const mainPanel =
       classes.mainPanel +
       " " +
@@ -73,7 +75,7 @@ class Private extends React.Component<any, any> {
             routes={privateRoutes}
             handleDrawerToggle={this.handleDrawerToggle}
             darkMode={this.props.darkMode}
-            switchDarkAndLightTheme={this.props.switchDarkAndLightTheme}
+            switchDarkAndLightTheme={switchDarkAndLightTheme}
             {...rest}
           />
           {/* On the /maps/full-screen-maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}

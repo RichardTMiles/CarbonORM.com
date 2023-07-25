@@ -19,7 +19,17 @@ module.exports = {
     "plugin:react/recommended",
   ],
   rules: {
-    "no-unused-vars": 1,
-    "@typescript-eslint/no-unused-vars": 0,
+    // I want *tslint* handling this not eslint
+    "react/prop-types": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    // suppress errors for missing 'import React' in files
+    "react/react-in-jsx-scope": "off",
+    "no-undef": "off",
+    "no-useless-escape": "off",
+    "no-empty": "off",
+    "no-func-assign": "off",
+    "no-cond-assign": "off",
+    "no-redeclare" :"off"
   }
 };

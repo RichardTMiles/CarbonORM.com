@@ -1,32 +1,32 @@
-import raw from "raw.macro";
 
 export const CODE_EXAMPLES = {
 
-  // quick examples
-  HelloWorld:           raw("./assets/examples/HelloWorld.php"),
-  RoutingEx1:           raw("./assets/examples/RoutingEx1.php"),
-  minimalRestExample:   raw("./assets/examples/minimalRestEx.php"),
-  iConfig:              raw("./assets/examples/iConfig.php"),
-  iConfigPHPDOC:        raw("./assets/examples/iConfigPHPDOC.php"),
-  InstantChat:          raw("./assets/examples/InstantChat.php"),
-  RegexMatch:           raw("./assets/examples/RegexMatch.php"),
-  StatsCoach:           raw("./assets/examples/StatsCoach.php"),
-  CacheControl:         raw("./assets/examples/CacheControl.php"),
-  Minification:         raw("./assets/examples/Minification.php"),
+    // quick examples
 
-  // React ref
-  restTypeScriptEx1:    raw("./variables/C6.tsx"),
+    HelloWorld: require("!!raw-loader!./assets/examples/HelloWorld.php"),
+    RoutingEx1: require("!!raw-loader!./assets/examples/RoutingEx1.php"),
+    minimalRestExample: require("!!raw-loader!./assets/examples/minimalRestEx.php"),
+    iConfig: require("!!raw-loader!./assets/examples/iConfig.php"),
+    iConfigPHPDOC: require("!!raw-loader!./assets/examples/iConfigPHPDOC.php"),
+    InstantChat: require("!!raw-loader!./assets/examples/InstantChat.php"),
+    RegexMatch: require("!!raw-loader!./assets/examples/RegexMatch.php"),
+    StatsCoach: require("!!raw-loader!./assets/examples/StatsCoach.php"),
+    CacheControl: require("!!raw-loader!./assets/examples/CacheControl.php"),
+    Minification: require("!!raw-loader!./assets/examples/Minification.php"),
 
-  composerCode:         raw("../../../../hi.txt"),
-  CarbonPHPConfig:      raw("../../../../src/Documentation.php"),
-  iRest:                raw( "../../../../src/interfaces/iRestMultiplePrimaryKeys.php"),
-  iRestfulReferences:   raw("../../../../src/interfaces/iRestMultiplePrimaryKeys.php"),
-  forksCode:            raw("../../../../src/helpers/Fork.php"),
-  CarbonUsersTable:     raw("../../../../src/tables/Users.php"),
-  websocketCode:        raw("../../../../src/programs/WebSocket.php"),
-  restTest:             raw("../../../../tests/feature/FullRestTest.php"),
-  restUserTest:         raw("../../../../tests/feature/UserTest.php"),
-  gcpDeployment:        raw("../../../../src/programs/gcpDeployment.sh")
+    // React ref
+    restTypeScriptEx1: require("!!raw-loader!./variables/C6.tsx"),
+
+    composerCode: '', // require("../../../../hi.txt"),
+    CarbonPHPConfig: '', //require("../../../../src/Documentation.php"),
+    iRest: '', //require( "../../../../src/interfaces/iRestMultiplePrimaryKeys.php"),
+    iRestfulReferences: '', //require("../../../../src/interfaces/iRestMultiplePrimaryKeys.php"),
+    forksCode: '', // require("../../../../src/helpers/Fork.php"),
+    CarbonUsersTable: '', // require("../../../../src/tables/Users.php"),
+    websocketCode: '', // require("../../../../src/programs/WebSocket.php"),
+    restTest: '', //require("../../../../tests/feature/FullRestTest.php"),
+    restUserTest: '', // require("../../../../tests/feature/UserTest.php"),
+    gcpDeployment: '', // require("../../../../src/programs/gcpDeployment.sh")
 
 
 };

@@ -1,35 +1,46 @@
+import {AxiosResponse} from "axios";
 import React from 'react';
-import {Redirect, Route, Switch} from 'react-router-dom';
+import {Routes, Route, Navigate} from 'react-router-dom';
 
 import swal from '@sweetalert/with-react';
-
-import context from 'variables/carbonphp';
-
+import {ppr} from "api/hoc/passPropertiesAndRender";
 import Public from 'layouts/Public';
 import Private from 'layouts/Private';
-import PageNotFound from 'views/Errors/PageNotFound';
 // This is our ajax class
 import {CodeBlock, dracula, googlecode} from 'react-code-blocks';
+import axiosInstance from "variables/axiosInstance";
 
-class bootstrap extends React.Component<any, {
-    axios: import("axios").AxiosInstance,
+export default class CarbonORM extends React.Component<any, {
     authenticate: string,
     authenticated?: boolean,
+    maintenanceMode?: boolean,
+    backendThrowable: { [key: string]: any }[],
     pureWordpressPluginConfigured?: boolean,
+    documentationVersionURI: string,
     alert?: boolean,
     operationActive: boolean,
     isLoaded: boolean,
     darkMode: boolean,
     alertsWaiting: Array<any>,
     versions: Array<any>,
-    id: string
+    users?: Array<any>,
+    websocketEvents?: Array<any>,
+    websocketData?: Array<any>,
+    id?: string
 }> {
+
+    static instance: CarbonORM;
+
     constructor(props) {
         super(props);
+        CarbonORM.instance = this;
         this.state = {
-            axios: context.axios,
+            users: undefined,
+            backendThrowable: [],
+            maintenanceMode: false,
             authenticate: '/carbon/authenticated',
-            authenticated: null,
+            documentationVersionURI: '0.0.0',
+            authenticated: undefined,
             pureWordpressPluginConfigured: false,
             alert: false,
             operationActive: false,
@@ -49,11 +60,12 @@ class bootstrap extends React.Component<any, {
         this.codeBlock = this.codeBlock.bind(this);
     }
 
-    codeBlock = (markdown: String, highlight: String = "", language: String = "php", dark: boolean = true) => {
+    codeBlock = (markdown: string, highlight: string = "", language: string = "php", dark: boolean = true) => {
         return <CodeBlock
             text={markdown}
             language={language}
             showLineNumbers={true}
+            // @ts-ignore
             theme={dark ? dracula : googlecode}
             highlight={highlight}
         />
@@ -120,117 +132,94 @@ class bootstrap extends React.Component<any, {
         this.setState({authenticated: !this.state.authenticated});
     };
 
-    subRoutingSwitch = (route, rest) => {
-        if (rest === undefined) {
-            rest = [];
+    subRoutingSwitch = (routes) => <Routes>{routes.map((prop, key) => {
+
+        console.log('prop', prop);
+
+        if (prop.redirect) {
+            if (!prop.pathTo) {
+                console.log('bad route redirect,', prop);
+                return "";
+            }
+            return  <Route
+                key={key}
+                path={prop.path}
+                element={<><Navigate
+                to={prop.pathTo}
+                key={key}/></>}/>;
         }
-        return <Switch>
-            {route.map((prop, key) => {
-                if (prop.redirect) {
-                    if (!prop.pathTo) {
-                        console.log('bad route redirect,', prop);
-                        return "";
-                    }
-                    return <Redirect
-                        exact
-                        from={prop.path}
-                        to={prop.pathTo}
-                        key={key}/>;
-                }
-                if (prop.views) {
-                    return prop.views.map((x, key) => {
-                        return (
-                            <Route
-                                exact
-                                path={x.path}
-                                render={y => (
-                                    <x.component
-                                        id={this.state.id}
-                                        axios={this.state.axios}
-                                        subRoutingSwitch={this.subRoutingSwitch}
-                                        authenticated={this.state.authenticated}
-                                        authenticate={this.authenticate}
-                                        changeLoggedInStatus={this.changeLoggedInStatus}
-                                        testRestfulPostPutDeleteResponse={this.testRestfulPostPutDeleteResponse}
-                                        path={prop.path}
-                                        {...x}
-                                        {...y}
-                                        {...rest} />
-                                )}
-                                key={key}/>
-                        );
-                    });
-                }
-                return <Route
-                    path={prop.path}
-                    render={props => (
-                        <prop.component
-                            id={this.state.id}
-                            axios={this.state.axios}
-                            subRoutingSwitch={this.subRoutingSwitch}
-                            authenticated={this.state.authenticated}
-                            authenticate={this.authenticate}
-                            changeLoggedInStatus={this.changeLoggedInStatus}
-                            path={prop.path}
-                            {...prop}
-                            {...props}
-                            {...rest} />
-                    )}
-                    key={key}/>;
-            })}
-            <Route component={PageNotFound}/>
-        </Switch>
-    };
+        if (prop.views) {
+            return prop.views.map((x, key) => {
+                return (
+                    <Route
+                        path={x.path}
+                        element={ppr(x.component, {})}
+                        key={key}/>
+                );
+            });
+        }
+        return <Route
+            path={prop.path}
+            element={ppr(prop.component, {})}
+            key={key}/>;
+    })}</Routes>;
+
 
     authenticate = () => {
 
-        this.state.axios.get(this.state.authenticate).then(res => {
+        axiosInstance.get<any, AxiosResponse<{
+            versions: string[],
+            success: boolean,
+            pureWordpressPluginConfigured: boolean,
+            authenticated: boolean,
+            id: string,
+        }, any>>(this.state.authenticate).then(res => {
             console.log("authenticate data: ", res);
             this.setState({
                 id: res?.data?.id || '',
                 pureWordpressPluginConfigured: res?.data?.pureWordpressPluginConfigured || false,
                 authenticated: res?.data?.success || false,
-                versions: Object.values(res?.data?.versions || {}).sort((v1: string, v2: string) => {
-                    let lexicographical = false,
-                        zeroExtend = false,
-                        v1parts = v1.split('.'),
-                        v2parts = v2.split('.');
+                versions: res?.data?.versions?.sort((v1: string, v2: string) => {
+                        let lexicographical = false,
+                            zeroExtend = false,
+                            v1parts = v1.split('.'),
+                            v2parts = v2.split('.');
 
-                    function isValidPart(x) {
-                        return (lexicographical ? /^\d+[A-Za-z]*$/ : /^\d+$/).test(x);
-                    }
-
-                    if (!v1parts.every(isValidPart) || !v2parts.every(isValidPart)) {
-                        return NaN;
-                    }
-
-                    if (zeroExtend) {
-                        while (v1parts.length < v2parts.length) v1parts.push("0");
-                        while (v2parts.length < v1parts.length) v2parts.push("0");
-                    }
-
-                    for (let i = 0; i < v1parts.length; ++i) {
-                        if (v2parts.length === i) {
-                            return 1;
+                        function isValidPart(x) {
+                            return (lexicographical ? /^\d+[A-Za-z]*$/ : /^\d+$/).test(x);
                         }
 
-                        if (v1parts[i] === v2parts[i]) {
-                            // noinspection UnnecessaryContinueJS - clarity call
-                            continue;
-                        } else if (v1parts[i] > v2parts[i]) {
-                            return 1;
-                        } else {
+                        if (!v1parts.every(isValidPart) || !v2parts.every(isValidPart)) {
+                            return NaN;
+                        }
+
+                        if (zeroExtend) {
+                            while (v1parts.length < v2parts.length) v1parts.push("0");
+                            while (v2parts.length < v1parts.length) v2parts.push("0");
+                        }
+
+                        for (let i = 0; i < v1parts.length; ++i) {
+                            if (v2parts.length === i) {
+                                return 1;
+                            }
+
+                            if (v1parts[i] === v2parts[i]) {
+                                // noinspection UnnecessaryContinueJS - clarity call
+                                continue;
+                            } else if (v1parts[i] > v2parts[i]) {
+                                return 1;
+                            } else {
+                                return -1;
+                            }
+                        }
+
+                        if (v1parts.length !== v2parts.length) {
                             return -1;
                         }
-                    }
 
-                    if (v1parts.length !== v2parts.length) {
-                        return -1;
-                    }
+                        return 0;
 
-                    return 0;
-
-                }).reverse(),
+                    }).reverse() ?? [],
                 isLoaded: true
             });
         });
@@ -278,7 +267,7 @@ class bootstrap extends React.Component<any, {
             console.log("alert", Object.assign({}, alert));
 
             if (alert.intercept === false) {
-                return null; // recursive ending condition
+                return; // recursive ending condition
             }
 
             swal({
@@ -335,6 +324,10 @@ class bootstrap extends React.Component<any, {
 
             let alert = stack.pop();
 
+            if (undefined === alert) {
+                return;
+            }
+
             console.log("alert", Object.assign({}, alert));
 
             this.setState({
@@ -347,8 +340,8 @@ class bootstrap extends React.Component<any, {
     };
 
     componentDidMount() {
-        this.state.axios.interceptors.request.use(req => {
-                if (req.method === 'get' && req.url.match(/^\/rest\/.*$/)) {
+        axiosInstance.interceptors.request.use(req => {
+                if (req.method === 'get' && req.url?.match(/^\/rest\/.*$/)) {
                     req.params = JSON.stringify(req.params)
                 }
                 return req;
@@ -356,7 +349,7 @@ class bootstrap extends React.Component<any, {
                 return Promise.reject(error);
             }
         );
-        this.state.axios.interceptors.response.use(
+        axiosInstance.interceptors.response.use(
             response => {
                 // Do something with response data
                 console.log(
@@ -373,15 +366,9 @@ class bootstrap extends React.Component<any, {
                 return response;
             },
             error => {
-                /* Do something with response error
-                   this changes from project to project depending on how your server uses response codes.
-                   when you can control all errors universally from a single api, return Promise.reject(error);
-                   is the way to go.
-                */
                 this.handleResponseCodes(error.response);
                 console.log("Carbon Axios Caught A Response Error response :: ", error.response);
                 return Promise.reject(error);
-                // return error.response;
             }
         );
 
@@ -394,67 +381,20 @@ class bootstrap extends React.Component<any, {
         const {isLoaded, authenticated, alert} = this.state;
 
         if (!isLoaded) {
+
             return <h2>Loading...</h2>;
-        } else {
-            //DO NOT DELETE; WILL USE LATER;
-            // get the first element in the uri /{first}/
-            let path = this.props.location.pathname;
 
-            // // Remove the context root from the uri
-            path = path.substr(context.contextHost.length, path.length).split("/")[1];
-
-            // Routes that belong to the public and private sector
-            let Routes = [];
-
-            // const Route
-            // @ts-ignore
-            Routes = Routes.concat([
-                key => (
-                    <Route
-                        key={key}
-                        path="/"
-                        render={props => (authenticated ?
-                                <Private
-                                    darkMode={this.state.darkMode}
-                                    versions={this.state.versions}
-                                    switchDarkAndLightTheme={this.switchDarkAndLightTheme}
-                                    codeBlock={this.codeBlock}
-                                    axios={this.state.axios}
-                                    subRoutingSwitch={this.subRoutingSwitch}
-                                    authenticated={authenticated}
-                                    authenticate={this.authenticate}
-                                    changeLoggedInStatus={this.changeLoggedInStatus}
-                                    testRestfulPostPutDeleteResponse={this.testRestfulPostPutDeleteResponse}
-                                    path={path}
-                                    {...props}
-                                /> :
-                                <Public
-                                    darkMode={this.state.darkMode}
-                                    versions={this.state.versions}
-                                    switchDarkAndLightTheme={this.switchDarkAndLightTheme}
-                                    codeBlock={this.codeBlock}
-                                    axios={this.state.axios}
-                                    subRoutingSwitch={this.subRoutingSwitch}
-                                    authenticated={authenticated}
-                                    authenticate={this.authenticate}
-                                    changeLoggedInStatus={this.changeLoggedInStatus}
-                                    testRestfulPostPutDeleteResponse={this.testRestfulPostPutDeleteResponse}
-                                    path={path}
-                                    {...props}
-                                />
-                        )}
-                    />
-                )
-            ]);
-
-            return (
-                <div>
-                    {alert}
-                    {Routes.map((closure, key) => closure(key))}
-                </div>
-            );
         }
+
+        return (
+            <div>
+                {alert}
+                {authenticated
+                    ? ppr(Private, {})
+                    : ppr(Public, {})}
+            </div>
+        );
+
     }
 }
 
-export default bootstrap;

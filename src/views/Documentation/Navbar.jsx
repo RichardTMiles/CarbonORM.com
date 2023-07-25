@@ -20,47 +20,50 @@ class Navbar extends React.Component {
 
         routes.forEach((o, key) => {
                 // 'pathTo' aka not a redirect
-                if (!('pathTo' in o)) {
-                    // doesn't need a sub menu
-                    if (!('views' in o)) {
-                        tabs.push(<ListItem className={classes.listItem} key={key}>
-                            <NavLink
-                                to={o.path}
-                                className={classes.navLink + " " + classes.navLinkActive}
-                                key={key}
-                            >
-                                {o.name}
-                            </NavLink>
-                        </ListItem>)
-                    } else {
-                        tabs.push(
-                            <ListItem className={classes.listItem} key={key}>
-                                <CustomDropdown
-                                    left
-                                    key={key}
-                                    caret={true}
-                                    hoverColor="info"
-                                    dropdownHeader={o.name}
-                                    buttonText={o.name}
-                                    buttonProps={{
-                                        className: classes.navLink + " " + classes.navLinkActive,
-                                    }}
-                                    dropdownList={o.views.map((m, key2) => {
-                                        return <ListItem className={classes.listItem}>
-                                            <NavLink
-                                                to={m.path}
-                                                className={classes.navLink + " " + classes.navLinkActive}
-                                                key={key2}
-                                            >
-                                                {m.name}
-                                            </NavLink>
-                                        </ListItem>
-                                    })}
-                                />
-                            </ListItem>
-                        );
-                    }
+                if (('pathTo' in o)) {
+                    return;
                 }
+                // doesn't need a sub menu
+                if (!('views' in o)) {
+                    tabs.push(<ListItem className={classes.listItem} key={key}>
+                        <NavLink
+                            to={o.path.replace(/\*$/, '')}
+                            className={classes.navLink + " " + classes.navLinkActive}
+                            key={key}
+                        >
+                            {o.name}
+                        </NavLink>
+                    </ListItem>)
+                    return;
+                }
+
+                tabs.push(
+                    <ListItem className={classes.listItem} key={key}>
+                        <CustomDropdown
+                            left
+                            key={key}
+                            caret={true}
+                            hoverColor="info"
+                            dropdownHeader={o.name}
+                            buttonText={o.name}
+                            buttonProps={{
+                                className: classes.navLink + " " + classes.navLinkActive,
+                            }}
+                            dropdownList={o.views.map((m, key2) => {
+                                return <ListItem className={classes.listItem}>
+                                    <NavLink
+                                        to={m.path}
+                                        className={classes.navLink + " " + classes.navLinkActive}
+                                        key={key2}
+                                    >
+                                        {m.name}
+                                    </NavLink>
+                                </ListItem>
+                            })}
+                        />
+                    </ListItem>
+                );
+
             }
         );
 

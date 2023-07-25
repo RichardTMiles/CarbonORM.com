@@ -3,14 +3,16 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "target": "esnext",
-    "baseUrl": "src",
+    "rootDir": "./src/",
+    "baseUrl": "./src/",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
     "types": [
-      "node"
+      "node",
+      "webpack-env"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -23,11 +25,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
-    "strict": false,
+    "jsx": "react-jsx",
+    "strict": true,
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "src"
-  ]
+    "src",
+    "src/custom.d.ts"
+  ],
+  "compileOnSave": false
 }

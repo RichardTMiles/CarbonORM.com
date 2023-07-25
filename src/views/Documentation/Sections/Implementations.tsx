@@ -111,7 +111,7 @@ class Implementations extends React.Component<iCarbonPHP, {
           <p>Linux users may find this script useful for deploying to
             <a href="https://cloud.google.com/sdk/docs/quickstart" target="_blank" rel="noopener noreferrer" >Google Compute Engine</a>. The script is a bash shell
             script which uses <b>#!/usr/bin/env bash</b> as the shebang.</p>
-          {this.props.codeBlock('./src/programs/gcpDeployment.sh')}
+          {this.props.codeBlock('./programs/gcpDeployment.sh')}
           It has the following three
           command line options.
           <ul>

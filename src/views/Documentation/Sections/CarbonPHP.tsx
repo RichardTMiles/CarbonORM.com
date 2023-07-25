@@ -1,3 +1,4 @@
+import CarbonORM from "CarbonORM";
 import React from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -27,16 +28,16 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import GridItem from "components/Grid/GridItem.jsx";
 import NavPills from "components/NavPills/NavPills";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle";
-// wip
-import {WithStyles} from "@material-ui/core/styles";
-import {AxiosInstance} from "axios";
+
+
 // pages
 import SequenceDiagram from "assets/img/invertSD.png";
+import axiosInstance from "variables/axiosInstance";
 import FileStructure from "./FileStructure";
 import AccessControl from "../../AccessControl/AccessControl";
 import swal from '@sweetalert/with-react';
 import Button from "../../../components/CustomButtons/Button";
-import {C6, iFeatures, iGroups, iUsers} from "../../../variables/C6";
+import {C6, iFeatures, iGroups, iUsers} from "variables/C6";
 import {CODE_EXAMPLES} from "Code";
 
 
@@ -69,13 +70,6 @@ const JS_ORM_EXAMPLE_2 = ``;
 const JS_ORM_EXAMPLE_3 = ``;
 
 
-interface iCarbonPHP extends WithStyles<typeof dashboardStyle> {
-  id: string,
-  axios: AxiosInstance;
-  testRestfulPostPutDeleteResponse: Function;
-  codeBlock: (markdown: String, highlight ?: String, language ?: String, dark ?: boolean) => any;
-}
-
 interface UserAccessControl extends iUsers {
   group_name?: string,
   feature_code?: string
@@ -85,7 +79,7 @@ interface iGroupFeatures extends iGroups, iFeatures {
   allowed_to_grant_group_id?: string;
 }
 
-class CarbonPHP extends React.Component<iCarbonPHP, {
+class CarbonPHP extends React.Component<{classes: any}, {
   users?: Array<UserAccessControl>,
   features?: Array<iFeatures>,
   groups?: Array<iGroupFeatures>,
@@ -129,7 +123,10 @@ class CarbonPHP extends React.Component<iCarbonPHP, {
   }
 
   render() {
-    const { axios, classes, codeBlock } = this.props;
+    console.log('CarbonPHP.tsx Render()');
+    const { codeBlock } = CarbonORM.instance;
+    const { classes } = this.props;
+    const axios = axiosInstance;
 
     const orientation = {
       tabsGrid: { xs: 12, sm: 3, md: 2 },
@@ -859,11 +856,7 @@ class CarbonPHP extends React.Component<iCarbonPHP, {
                   <GridItem xs={false} sm={false} md={1}> </GridItem>
                   <GridItem xs={12} sm={12} md={10}>
                     {codeBlock("php index.php rest", "", "bash", true)}
-                    <AccessControl
-                      id={this.props.id}
-                      testRestfulPostPutDeleteResponse={this.props.testRestfulPostPutDeleteResponse}
-                      axios={this.props.axios}
-                    />
+                    <AccessControl />
                   </GridItem>
                 </GridContainer>
               },

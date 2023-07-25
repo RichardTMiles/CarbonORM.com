@@ -14,24 +14,9 @@ import Error from "@material-ui/icons/Error";
 
 import errorPageStyle from "assets/jss/material-dashboard-react/views/errorPageStyles.jsx";
 
-class PageNotFound extends React.Component {
-  constructor(props) {
-    super(props);
+function PageNotFound() {
+
     // we use this to make the card to appear after the page has been rendered
-    this.state = {
-      cardAnimaton: "cardHidden"
-    };
-  }
-  componentDidMount() {
-    // we add a hidden class to the card and after 700 ms we delete it and the transition appears
-    setTimeout(
-      function() {
-        this.setState({ cardAnimaton: "" });
-      }.bind(this),
-      700
-    );
-  }
-  render() {
     const { classes } = this.props;
     return (
       <div className={classes.content}>
@@ -39,7 +24,7 @@ class PageNotFound extends React.Component {
           <Card
             profile
             className={
-              classes.customCardClass + " " + classes[this.state.cardAnimaton]
+              classes.customCardClass
             }
           >
             <CardHeader color="info" icon>
@@ -56,7 +41,7 @@ class PageNotFound extends React.Component {
         </form>
       </div>
     );
-  }
+
 }
 
 PageNotFound.propTypes = {
