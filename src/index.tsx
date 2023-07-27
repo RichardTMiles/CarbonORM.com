@@ -1,6 +1,6 @@
 import React from "react";
 // noinspection NpmUsedModulesInstalled
-import {BrowserRouter, MemoryRouter} from "react-router-dom";
+import {HashRouter, MemoryRouter} from "react-router-dom";
 import {createRoot} from 'react-dom/client';
 // Custom CarbonPHP Context Switch
 import CarbonORM from "CarbonORM";
@@ -20,7 +20,7 @@ const reactRouterContext = (children: any) => {
 
     }
 
-    return <BrowserRouter>{children}</BrowserRouter>
+    return <HashRouter>{children}</HashRouter>
 
 }
 
