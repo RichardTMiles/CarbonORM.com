@@ -130,7 +130,7 @@ class Documentation extends React.Component<{
                 }}
             />
             <Parallax
-                image={CarbonORM.instance.state.darkMode ? "/view/assets/img/Carbon-teal-180.png" : "/view/assets/img/Full-Carbon-Teal-White-1920x1080.png"}>
+                image={CarbonORM.instance.state.darkMode ? "https://carbonphp.com/view/assets/img/Carbon-teal-180.png" : "https://carbonphp.com/view/assets/img/Full-Carbon-Teal-White-1920x1080.png"}>
                 <div className={classes.container}>
                     <GridContainer>
                         <GridItem>

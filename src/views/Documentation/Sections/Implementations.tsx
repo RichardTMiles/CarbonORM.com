@@ -1,3 +1,4 @@
+import CarbonORM from "CarbonORM";
 import React from "react";
 // react components for routing our app without refresh
 // @material-ui/core components
@@ -56,6 +57,7 @@ class Implementations extends React.Component<iCarbonPHP, {
   }
 
   render() {
+    const {codeBlock} = CarbonORM.instance;
     const { classes } = this.props;
     return <GridContainer style={{ paddingTop: '20px' }} justify="center">
       <GridItem xs={12} sm={12} md={6}>
@@ -101,17 +103,17 @@ class Implementations extends React.Component<iCarbonPHP, {
       <GridItem xs={12} sm={12} md={8}>
         <h2>Quick Start</h2>
         <p>Clone this repository and run this website locally.</p><br/>
-        {this.props.codeBlock(gitCloneBlock)}
+        {codeBlock(gitCloneBlock)}
         <br/>
         <p>Add CarbonPHP to an existing composer enabled project.</p><br/>
-        {this.props.codeBlock('composer require “richardtmiles/carbonphp:6.3.3"')}
+        {codeBlock('composer require “richardtmiles/carbonphp:6.3.3"')}
 
         <h3>Deploy to the Cloud</h3>
         <p className="lead">
           <p>Linux users may find this script useful for deploying to
             <a href="https://cloud.google.com/sdk/docs/quickstart" target="_blank" rel="noopener noreferrer" >Google Compute Engine</a>. The script is a bash shell
             script which uses <b>#!/usr/bin/env bash</b> as the shebang.</p>
-          {this.props.codeBlock('./programs/gcpDeployment.sh')}
+          {codeBlock('./programs/gcpDeployment.sh')}
           It has the following three
           command line options.
           <ul>
@@ -143,7 +145,7 @@ class Implementations extends React.Component<iCarbonPHP, {
         <br/>
         <br/>
         <p>The following configuration must be available to successfully deploy to gcp.</p>
-        {this.props.codeBlock(CONFIG)}
+        {codeBlock(CONFIG)}
         <br/><br/>
         <br/><br/>
         <Button round color={this.state.showCode ? 'success' : 'info'} onClick={() => this.setState({
@@ -152,7 +154,7 @@ class Implementations extends React.Component<iCarbonPHP, {
           {!this.state.showCode ? 'Show Google Compute Engine Deployment Script' : 'Hide Code'}
         </Button>
         <br/><br/>
-        {this.state.showCode ? this.props.codeBlock(CODE_EXAMPLES.gcpDeployment) : ''}
+        {this.state.showCode ? codeBlock(CODE_EXAMPLES.gcpDeployment) : ''}
       </GridItem>
     </GridContainer>
 

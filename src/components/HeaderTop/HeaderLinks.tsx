@@ -1,4 +1,5 @@
 /*eslint-disable*/
+import CarbonORM from "CarbonORM";
 import React from "react";
 // react components for routing our app without refresh
 import {Link} from "react-router-dom";
@@ -15,7 +16,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
 
 
-class HeaderLinks extends React.Component<any, any> {
+class HeaderLinks extends React.Component<{ classes: any }, { zoom: number }> {
     constructor(props) {
         super(props);
         this.state = {
@@ -52,9 +53,10 @@ class HeaderLinks extends React.Component<any, any> {
 
 
     render() {
-        const {classes, versions} = this.props;
+        const {classes} = this.props;
 
-        console.info(versions);
+        const { switchDarkAndLightTheme} = CarbonORM.instance;
+        const { darkMode, versions} = CarbonORM.instance.state;
 
         return (
             <List className={classes.list}>
@@ -64,7 +66,7 @@ class HeaderLinks extends React.Component<any, any> {
                         color="transparent"
                         target="_blank"
                         className={classes.navLink}
-                        style={{color: (this.props.darkMode ? "white" : "black")}}
+                        style={{color: (darkMode ? "white" : "black")}}
                     >
                         <Add className={classes.icons}/>
                     </Button>
@@ -75,20 +77,20 @@ class HeaderLinks extends React.Component<any, any> {
                         color="transparent"
                         target="_blank"
                         className={classes.navLink}
-                        style={{color: (this.props.darkMode ? "white" : "black")}}
+                        style={{color: (darkMode ? "white" : "black")}}
                     >
                         <Remove className={classes.icons}/>
                     </Button>
                 </ListItem>
                 <ListItem className={classes.listItem}>
                     <Button
-                        onClick={() => this.props.switchDarkAndLightTheme()}
+                        onClick={() => switchDarkAndLightTheme()}
                         color="transparent"
                         target="_blank"
                         className={classes.navLink}
-                        style={{color: (this.props.darkMode ? "white" : "black")}}
+                        style={{color: (darkMode ? "white" : "black")}}
                     >
-                        {this.props.darkMode
+                        {darkMode
                             ? <><WbSunny className={classes.icons}/></>
                             : <><NightsStay className={classes.icons}/></>
                         }
@@ -102,7 +104,7 @@ class HeaderLinks extends React.Component<any, any> {
                             className: classes.navLink,
                             color: "transparent"
                         }}
-                        darkMode={this.props.darkMode}
+                        darkMode={darkMode}
                         buttonIcon={Apps}
                         dropdownList={versions && versions.map(version =>
                             <a href={'/view/releases/' + version} target="_blank" className={classes.dropdownLink}>
@@ -119,7 +121,7 @@ class HeaderLinks extends React.Component<any, any> {
                             className: classes.navLink,
                             color: "transparent"
                         }}
-                        darkMode={this.props.darkMode}
+                        darkMode={darkMode}
                         buttonIcon={Apps}
                         dropdownList={[
                             <Link to="/UI/Material-Kit"
@@ -147,7 +149,7 @@ class HeaderLinks extends React.Component<any, any> {
                         color="transparent"
                         target="_blank"
                         className={classes.navLink}
-                        style={{color: (this.props.darkMode ? "white" : "black")}}
+                        style={{color: (darkMode ? "white" : "black")}}
                     >
                         <CloudDownload className={classes.icons}/> GitHub
                     </Button>
