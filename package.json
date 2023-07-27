@@ -1,5 +1,5 @@
 {
-  "name": "carbonphp-documentation-react",
+  "name": "carbonorm",
   "version": "10",
   "description": "CarbonPHP Documentation. Material Dashboard React. Coded by Creative Tim and Richard Miles.",
   "private": false,
@@ -103,7 +103,6 @@
     "http-proxy-middleware": "^2.0.6",
     "prettier-eslint": "^15.0.1",
     "raw-loader": "^4.0.2",
-    "raw.macro": "^0.7.0",
     "react-swipeable-views-utils": "^0.14.0",
     "typescript": "^5.1.6"
   }
