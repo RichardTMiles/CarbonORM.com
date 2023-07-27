@@ -141,12 +141,12 @@ export default class CarbonORM extends React.Component<any, {
                 console.log('bad route redirect,', prop);
                 return "";
             }
-            return  <Route
+            return <Route
                 key={key}
                 path={prop.path}
                 element={<><Navigate
-                to={prop.pathTo}
-                key={key}/></>}/>;
+                    to={prop.pathTo}
+                    key={key}/></>}/>;
         }
         if (prop.views) {
             return prop.views.map((x, key) => {
@@ -173,13 +173,14 @@ export default class CarbonORM extends React.Component<any, {
             pureWordpressPluginConfigured: boolean,
             authenticated: boolean,
             id: string,
-        }, any>>(this.state.authenticate).then(res => {
-            console.log("authenticate data: ", res);
-            this.setState({
-                id: res?.data?.id || '',
-                pureWordpressPluginConfigured: res?.data?.pureWordpressPluginConfigured || false,
-                authenticated: res?.data?.success || false,
-                versions: res?.data?.versions?.sort((v1: string, v2: string) => {
+        }, any>>(this.state.authenticate)
+            .then(res => {
+                console.log("authenticate data: ", res);
+                this.setState({
+                    id: res?.data?.id || '',
+                    pureWordpressPluginConfigured: res?.data?.pureWordpressPluginConfigured || false,
+                    authenticated: res?.data?.success || false,
+                    versions: res?.data?.versions?.sort((v1: string, v2: string) => {
                         let lexicographical = false,
                             zeroExtend = false,
                             v1parts = v1.split('.'),
@@ -220,9 +221,18 @@ export default class CarbonORM extends React.Component<any, {
                         return 0;
 
                     }).reverse() ?? [],
-                isLoaded: true
-            });
-        });
+                    isLoaded: true
+                });
+            })
+            .catch(err => {
+              console.log("authenticate error: ", err);
+                this.setState({
+                    isLoaded: true,
+                    authenticated: false,
+                    versions: ['loading error'],
+                })
+
+            })
     };
 
     testRestfulPostPutDeleteResponse = (response, success, error) => {
