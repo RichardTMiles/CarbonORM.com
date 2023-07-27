@@ -54,7 +54,7 @@
     "env": "npm run c6",
     "getTag": "git describe --tags `git rev-list --tags --max-count=1`",
     "start": "npm run-script env && react-scripts start",
-    "build": "npm run-script env && PUBLIC_URL=https://carbonorm.github.io/CarbonORM.dev/ react-scripts build",
+    "build": "npm run-script env && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
