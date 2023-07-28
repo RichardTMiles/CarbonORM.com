@@ -5,8 +5,7 @@
   "private": false,
   "main": "src/index.tsx",
   "dependencies": {
-    "@carbonorm/carbonnode": "^1.0.0",
-    "@carbonorm/carbonreact": "^1.2.5",
+    "@carbonorm/carbonreact": "^1.3.1",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@material-ui/core": "4.12.4",

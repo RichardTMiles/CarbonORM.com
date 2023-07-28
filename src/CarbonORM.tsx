@@ -1,4 +1,5 @@
 import {CarbonReact} from "@carbonorm/carbonreact";
+import getCarbons from "api/rest/getCarbons";
 import {AxiosResponse} from "axios";
 import {iUsers} from "variables/C6";
 import React from 'react';
@@ -386,6 +387,8 @@ export default class CarbonORM extends CarbonReact<{}, {
                 return Promise.reject(error);
             }
         );
+
+        getCarbons()
 
         this.authenticate();
     }

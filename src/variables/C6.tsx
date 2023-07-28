@@ -2807,7 +2807,7 @@ export const TABLES = {
   wp_users: wp_users,
 };
 
-export const C6 = {
+export const C6 : { TABLES: { [key: string]: any; }; } & { [key: string]: any; } = {
         // try to 1=1 match the Rest abstract class
     ADDDATE: 'ADDDATE',
     ADDTIME: 'ADDTIME',
