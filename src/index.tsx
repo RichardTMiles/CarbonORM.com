@@ -26,6 +26,6 @@ const reactRouterContext = (children: any) => {
 
 root.render(<React.StrictMode>{reactRouterContext(
 
-        <CarbonORM/>
+        <CarbonORM />
 
 )}</React.StrictMode>);

@@ -1,4 +1,6 @@
+import {CarbonReact} from "@carbonorm/carbonreact";
 import {AxiosResponse} from "axios";
+import {iUsers} from "variables/C6";
 import React from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom';
 
@@ -10,7 +12,7 @@ import Private from 'layouts/Private';
 import {CodeBlock, dracula, googlecode} from 'react-code-blocks';
 import axiosInstance from "variables/axiosInstance";
 
-export default class CarbonORM extends React.Component<any, {
+export default class CarbonORM extends CarbonReact<{}, {
     authenticate: string,
     authenticated?: boolean,
     maintenanceMode?: boolean,
@@ -23,7 +25,7 @@ export default class CarbonORM extends React.Component<any, {
     darkMode: boolean,
     alertsWaiting: Array<any>,
     versions: Array<any>,
-    users?: Array<any>,
+    users?: Array<iUsers>,
     websocketEvents?: Array<any>,
     websocketData?: Array<any>,
     id?: string
@@ -31,25 +33,28 @@ export default class CarbonORM extends React.Component<any, {
 
     static instance: CarbonORM;
 
+    state = {
+        carbons: undefined, websocketData: [], websocketEvents: [], websocketMounted: false,
+        users: undefined,
+        backendThrowable: [],
+        maintenanceMode: false,
+        authenticate: '/carbon/authenticated',
+        documentationVersionURI: '0.0.0',
+        authenticated: undefined,
+        pureWordpressPluginConfigured: false,
+        alert: false,
+        operationActive: false,
+        isLoaded: false,
+        alertsWaiting: [],
+        darkMode: true,
+        versions: [],
+        id: ''
+    };
+
     constructor(props) {
         super(props);
         CarbonORM.instance = this;
-        this.state = {
-            users: undefined,
-            backendThrowable: [],
-            maintenanceMode: false,
-            authenticate: '/carbon/authenticated',
-            documentationVersionURI: '0.0.0',
-            authenticated: undefined,
-            pureWordpressPluginConfigured: false,
-            alert: false,
-            operationActive: false,
-            isLoaded: false,
-            alertsWaiting: [],
-            darkMode: true,
-            versions: [],
-            id: ''
-        };
+
 
         this.switchDarkAndLightTheme = this.switchDarkAndLightTheme.bind(this);
         this.handleResponseCodes = this.handleResponseCodes.bind(this);
@@ -324,7 +329,7 @@ export default class CarbonORM extends React.Component<any, {
             }
 
             if (this.state.alert === true) {
-                let alertsWaiting = this.state.alertsWaiting;
+                let alertsWaiting: any = this.state.alertsWaiting;
                 alertsWaiting.push(stack);
                 this.setState({
                     alertsWaiting: alertsWaiting

@@ -32,6 +32,7 @@ import HeaderLinks from "components/HeaderTop/HeaderLinks";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import LandingPage from "../LandingPage/LandingPage";
 import PropTypes from "prop-types";
+import CarbonORM from "CarbonORM";
 
 // react components for routing our app without refresh
 
@@ -185,7 +186,7 @@ class Documentation extends React.Component {
             <div>
               <Navbar brand="Material Kit UI" color="danger" routes={publicDocumentationRoutes}/>
               <div className={classNames(classes.main, classes.mainRaised)}>
-                {this.props.subRoutingSwitch(publicDocumentationRoutes, rest)}
+                {CarbonORM.instance.subRoutingSwitch(publicDocumentationRoutes, rest)}
               </div>
             </div>
           </div>

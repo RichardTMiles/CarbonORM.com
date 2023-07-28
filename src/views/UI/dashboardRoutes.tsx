@@ -18,17 +18,13 @@ import NotificationsPage from "views/Notifications/Notifications.jsx";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 
 
-let privateRoutes = [
+let dashboardRoutes = [
     {
+
+        // path: "/AccessManagement",
+        //             name: "Access Management",
+        //             component: AccessControl
         path: "/dashboard",
-        sidebarName: "Dashboard",
-        navbarName: "Material Dashboard",
-        name: "Material Dashboard",
-        icon: Dashboard,
-        component: DashboardPage
-    },
-    {
-        path: "/wp-admin/admin.php?page=CarbonPHP",
         sidebarName: "Dashboard",
         navbarName: "Material Dashboard",
         name: "Material Dashboard",
@@ -52,7 +48,7 @@ let privateRoutes = [
         component: TableList
     },
     {
-        path: "/typography/*",
+        path: "/typography",
         sidebarName: "Typography",
         navbarName: "Typography",
         name: "Typography",
@@ -60,7 +56,7 @@ let privateRoutes = [
         component: Typography
     },
     {
-        path: "/icons/*",
+        path: "/icons",
         sidebarName: "Icons",
         navbarName: "Icons",
         name: "Icons",
@@ -68,7 +64,7 @@ let privateRoutes = [
         component: Icons
     },
     {
-        path: "/maps/*",
+        path: "/maps",
         sidebarName: "Maps",
         navbarName: "Map",
         name: "Map",
@@ -76,7 +72,7 @@ let privateRoutes = [
         component: Maps
     },
     {
-        path: "/notifications/*",
+        path: "/notifications",
         sidebarName: "Notifications",
         navbarName: "Notifications",
         name: "Notifications",
@@ -84,7 +80,7 @@ let privateRoutes = [
         component: NotificationsPage
     },
     {
-        path: "/upgrade-to-pro/*",
+        path: "/upgrade-to-pro",
         sidebarName: "Upgrade To PRO",
         navbarName: "Upgrade To PRO",
         name: "Upgrade To PRO",
@@ -93,11 +89,9 @@ let privateRoutes = [
     },
     {
         redirect: true,
-        path: "/*",
+        path: "*",
         pathTo: "/dashboard",
-        navbarName: "Redirect",
-        name: "Redirect"
     }
 ];
 
-export default privateRoutes;
+export default dashboardRoutes;

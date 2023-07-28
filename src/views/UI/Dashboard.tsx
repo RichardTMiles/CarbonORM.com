@@ -1,8 +1,7 @@
+import CarbonORM from "CarbonORM";
 import React from "react";
 import cx from "classnames";
-import PropTypes from "prop-types";
 // creates a beautiful scrollbar
-import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 
 // @material-ui/core components
@@ -13,7 +12,7 @@ import Header from "components/Header/Header.jsx";
 import Footer from "components/Footer/Footer.jsx";
 import Sidebar from "components/Sidebar/Sidebar.jsx";
 
-import dashboardRoutes from "./dashboardRoutes";
+import dashboardRoutes from "views/UI/dashboardRoutes";
 
 import appStyle from "assets/jss/material-dashboard-react/layouts/dashboardStyle";
 
@@ -22,19 +21,12 @@ import logo from "assets/img/reactlogo.png";
 
 var ps;
 
-let root = '/UI/Material-Dashboard';
-
-dashboardRoutes.map(o => {
-    if ('path' in o) {
-        o.path = root + o.path;
-    }
-    if ('pathTo' in o) {
-        o.pathTo = root + o.pathTo;
-    }
-    return o;
-});
-
-class Dashboard extends React.Component {
+class Dashboard extends React.Component<{
+    classes: any
+} , {
+    mobileOpen: boolean,
+    miniActive: boolean
+}> {
   state = {
     mobileOpen: false,
     miniActive: false
@@ -43,7 +35,7 @@ class Dashboard extends React.Component {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
   getRoute() {
-    return this.props.location.pathname !== "/maps/full-screen-maps";
+    return false//this.props.location.pathname !== "/maps/full-screen-maps";
   }
   /*
   componentDidMount() {
@@ -61,19 +53,12 @@ class Dashboard extends React.Component {
       ps.destroy();
     }
   }
-  componentDidUpdate(e) {
-    if (e.history.location.pathname !== e.location.pathname) {
-      // this.refs.mainPanel.scrollTop = 0;
-      if(this.state.mobileOpen){
-        this.setState({mobileOpen: false})
-      }
-    }
-  }
+
   sidebarMinimize() {
     this.setState({ miniActive: !this.state.miniActive });
   }
   render() {
-    const { classes, subRoutingSwitch, ...rest } = this.props;
+    const { classes, ...rest } = this.props;
     const mainPanel =
       classes.mainPanel +
       " " +
@@ -111,10 +96,10 @@ class Dashboard extends React.Component {
           {/* On the /maps/full-screen-maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
           {this.getRoute() ? (
             <div className={classes.content}>
-              <div className={classes.container}>{subRoutingSwitch(dashboardRoutes)}</div>
+              <div className={classes.container}>{CarbonORM.instance.subRoutingSwitch(dashboardRoutes)}</div>
             </div>
           ) : (
-            <div className={classes.map}>{subRoutingSwitch(dashboardRoutes)}</div>
+            <div className={classes.map}>{CarbonORM.instance.subRoutingSwitch(dashboardRoutes)}</div>
           )}
           {this.getRoute() ? <Footer fluid /> : null}
         </div>
@@ -123,11 +108,5 @@ class Dashboard extends React.Component {
   }
 }
 
-Dashboard.propTypes = {
-  classes: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  subRoutingSwitch: PropTypes.func,
-
-};
 
 export default withStyles(appStyle)(Dashboard);

@@ -129,7 +129,7 @@ class HeaderLinks extends React.Component<{ classes: any }, { zoom: number }> {
                                   className={classes.dropdownLink}>
                                 Material Kit
                             </Link>,
-                            <Link to="/UI/Material-Dashboard"
+                            <Link to="/UI/Material-Dashboard/"
                                   target="_blank"
                                   className={classes.dropdownLink}>
                                 Material Dashboard
