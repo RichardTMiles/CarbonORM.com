@@ -66,9 +66,24 @@ class Documentation extends React.Component<{
 
         let publicDocumentationRoutes = [
             {
+                path: "/Documentation/Support/*",
+                name: "ORM Introduction",
+                component: Support
+            },
+            {
                 path: "/Documentation/CarbonPHP/*",     // I'm leaving this here for the time being as an example
-                name: "Documentation",          // This should be loaded under a different wrapper
+                name: "PHP",          // This should be loaded under a different wrapper
                 component: CarbonPHP
+            },
+            {
+                path: "/Documentation/Support/*",
+                name: "Node",
+                component: Support
+            },
+            {
+                path: "/Documentation/Support/*",
+                name: "React",
+                component: Support
             },
             {
                 path: "/Documentation/Dependencies/*",
@@ -86,24 +101,24 @@ class Documentation extends React.Component<{
                 component: Implementations
             },
             {
-                path: "/Documentation/Support",
+                path: "/Documentation/Support/*",
                 name: "Support",
                 component: Support
             },
             {
-                path: "/Documentation/License",
+                path: "/Documentation/License/*",
                 name: "License",
                 component: License
             },
             {
                 redirect: true,
                 path: "*",
-                pathTo: "/Documentation/Support",
+                pathTo: "/Documentation/Support/",
                 name: "Examples"
             }
         ];
 
-        if (!pureWordpressPluginConfigured) {
+        if (pureWordpressPluginConfigured) {
 
             publicDocumentationRoutes.unshift({
                 path: "/Documentation/Wordpress",     // I'm leaving this here for the time being as an example
@@ -137,11 +152,11 @@ class Documentation extends React.Component<{
                             <div className={classes.brand}>
                                 <h1 className={classes.title}
                                     style={{color: (darkMode ? "white" : "black")}}>
-                                    CarbonPHP [C6]
+                                    CarbonORM [C6]
                                 </h1>
                                 <h3 className={classes.subtitle}
                                     style={{color: (darkMode ? "white" : "black")}}>
-                                    A PHP 7.4.* Library
+                                    Automatically generate a RESTful API from your database. Write SECURE sql queries in front end!
                                 </h3>
                             </div>
                         </GridItem>

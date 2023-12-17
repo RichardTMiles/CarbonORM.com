@@ -1,7 +1,7 @@
 import {CarbonReact} from "@carbonorm/carbonreact";
-import getCarbons from "api/rest/getCarbons";
+import Carbons from "api/rest/Carbons";
 import {AxiosResponse} from "axios";
-import {iUsers} from "variables/C6";
+import {iUsers} from "api/rest/C6";
 import React from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom';
 
@@ -388,7 +388,7 @@ export default class CarbonORM extends CarbonReact<{}, {
             }
         );
 
-        getCarbons()
+        Carbons.Get()
 
         this.authenticate();
     }
