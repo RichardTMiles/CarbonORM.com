@@ -37,7 +37,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iLocations, GetRequestTableOverrides, iGetC6RestResponse<iLocations>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iLocations, GetRequestTableOverrides, iGetC6RestResponse<iLocations>, RestTableNames>({
     C6: C6,
     tableName: locations.TABLE_NAME,
     requestMethod: GET,
@@ -65,7 +65,7 @@ export function putStateLocations(response : AxiosResponse<iPutC6RestResponse<iL
     ], "locations", locations.PRIMARY_SHORT as (keyof iLocations)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iLocations, PutRequestTableOverrides, iPutC6RestResponse<iLocations>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iLocations, PutRequestTableOverrides, iPutC6RestResponse<iLocations>, RestTableNames>({
     C6: C6,
     tableName: locations.TABLE_NAME,
     requestMethod: PUT,
@@ -108,7 +108,7 @@ export function postStateLocations(response : AxiosResponse<iPostC6RestResponse<
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iLocations, PostRequestTableOverrides, iPostC6RestResponse<iLocations>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iLocations, PostRequestTableOverrides, iPostC6RestResponse<iLocations>, RestTableNames>({
     C6: C6,
     tableName: locations.TABLE_NAME,
     requestMethod: POST,
@@ -130,7 +130,7 @@ export function deleteStateLocations(_response : AxiosResponse<iDeleteC6RestResp
     ], "locations", locations.PRIMARY_SHORT as (keyof iLocations)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iLocations, DeleteRequestTableOverrides, iDeleteC6RestResponse<iLocations>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iLocations, DeleteRequestTableOverrides, iDeleteC6RestResponse<iLocations>, RestTableNames>({
     C6: C6,
     tableName: locations.TABLE_NAME,
     requestMethod: DELETE,

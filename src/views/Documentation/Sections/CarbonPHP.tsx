@@ -37,7 +37,7 @@ import FileStructure from "./FileStructure";
 import AccessControl from "../../AccessControl/AccessControl";
 import swal from '@sweetalert/with-react';
 import Button from "../../../components/CustomButtons/Button";
-import {C6, iFeatures, iGroups, iUsers} from "variables/C6";
+import {C6, iFeatures, iGroups, iUsers} from "api/rest/C6";
 import {CODE_EXAMPLES} from "Code";
 
 

@@ -33,7 +33,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iCarbons, GetRequestTableOverrides, iGetC6RestResponse<iCarbons>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iCarbons, GetRequestTableOverrides, iGetC6RestResponse<iCarbons>, RestTableNames>({
     C6: C6,
     tableName: carbons.TABLE_NAME,
     requestMethod: GET,
@@ -61,7 +61,7 @@ export function putStateCarbons(response : AxiosResponse<iPutC6RestResponse<iCar
     ], "carbons", carbons.PRIMARY_SHORT as (keyof iCarbons)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iCarbons, PutRequestTableOverrides, iPutC6RestResponse<iCarbons>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iCarbons, PutRequestTableOverrides, iPutC6RestResponse<iCarbons>, RestTableNames>({
     C6: C6,
     tableName: carbons.TABLE_NAME,
     requestMethod: PUT,
@@ -104,7 +104,7 @@ export function postStateCarbons(response : AxiosResponse<iPostC6RestResponse<iC
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iCarbons, PostRequestTableOverrides, iPostC6RestResponse<iCarbons>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iCarbons, PostRequestTableOverrides, iPostC6RestResponse<iCarbons>, RestTableNames>({
     C6: C6,
     tableName: carbons.TABLE_NAME,
     requestMethod: POST,
@@ -126,7 +126,7 @@ export function deleteStateCarbons(_response : AxiosResponse<iDeleteC6RestRespon
     ], "carbons", carbons.PRIMARY_SHORT as (keyof iCarbons)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iCarbons, DeleteRequestTableOverrides, iDeleteC6RestResponse<iCarbons>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iCarbons, DeleteRequestTableOverrides, iDeleteC6RestResponse<iCarbons>, RestTableNames>({
     C6: C6,
     tableName: carbons.TABLE_NAME,
     requestMethod: DELETE,

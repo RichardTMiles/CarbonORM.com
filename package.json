@@ -4,7 +4,9 @@
   "description": "CarbonORM Documentation by Richard Miles.",
   "private": false,
   "main": "src/index.tsx",
+  "homepage": "https://www.carbonorm.dev/",
   "dependencies": {
+    "@carbonorm/carbonnode": "^1.3.0",
     "@carbonorm/carbonreact": "^3.4.7",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -57,6 +59,7 @@
     "getTag": "git describe --tags `git rev-list --tags --max-count=1`",
     "start": "npm run-script env && react-scripts start",
     "build": "npm run-script env && react-scripts build",
+    "build:actions": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
@@ -102,10 +105,11 @@
     "env-var": "^7.3.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^5.0.0",
-    "http-proxy-middleware": "^2.0.6",
     "prettier-eslint": "^15.0.1",
     "raw-loader": "^4.0.2",
     "react-swipeable-views-utils": "^0.14.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "webpack-log": "^3.0.2",
+    "http-proxy-middleware": "^3.0.0-beta.0"
   }
 }

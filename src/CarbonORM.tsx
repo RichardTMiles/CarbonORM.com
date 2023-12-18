@@ -55,8 +55,7 @@ export default class CarbonORM extends CarbonReact<{}, {
     constructor(props) {
         super(props);
         CarbonORM.instance = this;
-
-
+        CarbonReact.instance = this;
         this.switchDarkAndLightTheme = this.switchDarkAndLightTheme.bind(this);
         this.handleResponseCodes = this.handleResponseCodes.bind(this);
         this.authenticate = this.authenticate.bind(this);

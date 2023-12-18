@@ -31,7 +31,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iWp_Term_Relationships, GetRequestTableOverrides, iGetC6RestResponse<iWp_Term_Relationships>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iWp_Term_Relationships, GetRequestTableOverrides, iGetC6RestResponse<iWp_Term_Relationships>, RestTableNames>({
     C6: C6,
     tableName: wp_term_relationships.TABLE_NAME,
     requestMethod: GET,
@@ -59,7 +59,7 @@ export function putStateWp_Term_Relationships(response : AxiosResponse<iPutC6Res
     ], "wp_term_relationships", wp_term_relationships.PRIMARY_SHORT as (keyof iWp_Term_Relationships)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iWp_Term_Relationships, PutRequestTableOverrides, iPutC6RestResponse<iWp_Term_Relationships>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iWp_Term_Relationships, PutRequestTableOverrides, iPutC6RestResponse<iWp_Term_Relationships>, RestTableNames>({
     C6: C6,
     tableName: wp_term_relationships.TABLE_NAME,
     requestMethod: PUT,
@@ -102,7 +102,7 @@ export function postStateWp_Term_Relationships(response : AxiosResponse<iPostC6R
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iWp_Term_Relationships, PostRequestTableOverrides, iPostC6RestResponse<iWp_Term_Relationships>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iWp_Term_Relationships, PostRequestTableOverrides, iPostC6RestResponse<iWp_Term_Relationships>, RestTableNames>({
     C6: C6,
     tableName: wp_term_relationships.TABLE_NAME,
     requestMethod: POST,
@@ -124,7 +124,7 @@ export function deleteStateWp_Term_Relationships(_response : AxiosResponse<iDele
     ], "wp_term_relationships", wp_term_relationships.PRIMARY_SHORT as (keyof iWp_Term_Relationships)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Term_Relationships, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Term_Relationships>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Term_Relationships, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Term_Relationships>, RestTableNames>({
     C6: C6,
     tableName: wp_term_relationships.TABLE_NAME,
     requestMethod: DELETE,

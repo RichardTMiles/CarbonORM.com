@@ -9,6 +9,8 @@ const randomString = Math.random().toString(36).substring(7);
 const randomInt = Math.floor(Math.random() * 1000000);
 const fillString = 'string' + randomString + randomInt;
 
+console.log('fillString', fillString);
+
 /**
 CREATE TABLE `carbon_wp_options` (
   `option_id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -18,7 +20,7 @@ CREATE TABLE `carbon_wp_options` (
   PRIMARY KEY (`option_id`),
   UNIQUE KEY `option_name` (`option_name`),
   KEY `autoload` (`autoload`)
-) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 **/
 
 const Test_Data: iWp_Options = {

@@ -32,7 +32,7 @@ CREATE TABLE `carbon_wp_users` (
   KEY `user_login_key` (`user_login`),
   KEY `user_nicename` (`user_nicename`),
   KEY `user_email` (`user_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=1404 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 **/
 
 type GetCustomAndRequiredFields = {}
@@ -40,7 +40,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iWp_Users, GetRequestTableOverrides, iGetC6RestResponse<iWp_Users>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iWp_Users, GetRequestTableOverrides, iGetC6RestResponse<iWp_Users>, RestTableNames>({
     C6: C6,
     tableName: wp_users.TABLE_NAME,
     requestMethod: GET,
@@ -68,7 +68,7 @@ export function putStateWp_Users(response : AxiosResponse<iPutC6RestResponse<iWp
     ], "wp_users", wp_users.PRIMARY_SHORT as (keyof iWp_Users)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iWp_Users, PutRequestTableOverrides, iPutC6RestResponse<iWp_Users>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iWp_Users, PutRequestTableOverrides, iPutC6RestResponse<iWp_Users>, RestTableNames>({
     C6: C6,
     tableName: wp_users.TABLE_NAME,
     requestMethod: PUT,
@@ -111,7 +111,7 @@ export function postStateWp_Users(response : AxiosResponse<iPostC6RestResponse<i
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iWp_Users, PostRequestTableOverrides, iPostC6RestResponse<iWp_Users>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iWp_Users, PostRequestTableOverrides, iPostC6RestResponse<iWp_Users>, RestTableNames>({
     C6: C6,
     tableName: wp_users.TABLE_NAME,
     requestMethod: POST,
@@ -133,7 +133,7 @@ export function deleteStateWp_Users(_response : AxiosResponse<iDeleteC6RestRespo
     ], "wp_users", wp_users.PRIMARY_SHORT as (keyof iWp_Users)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Users, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Users>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Users, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Users>, RestTableNames>({
     C6: C6,
     tableName: wp_users.TABLE_NAME,
     requestMethod: DELETE,

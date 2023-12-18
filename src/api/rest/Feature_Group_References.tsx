@@ -32,7 +32,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iFeature_Group_References, GetRequestTableOverrides, iGetC6RestResponse<iFeature_Group_References>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iFeature_Group_References, GetRequestTableOverrides, iGetC6RestResponse<iFeature_Group_References>, RestTableNames>({
     C6: C6,
     tableName: feature_group_references.TABLE_NAME,
     requestMethod: GET,
@@ -60,7 +60,7 @@ export function putStateFeature_Group_References(response : AxiosResponse<iPutC6
     ], "feature_group_references", feature_group_references.PRIMARY_SHORT as (keyof iFeature_Group_References)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iFeature_Group_References, PutRequestTableOverrides, iPutC6RestResponse<iFeature_Group_References>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iFeature_Group_References, PutRequestTableOverrides, iPutC6RestResponse<iFeature_Group_References>, RestTableNames>({
     C6: C6,
     tableName: feature_group_references.TABLE_NAME,
     requestMethod: PUT,
@@ -103,7 +103,7 @@ export function postStateFeature_Group_References(response : AxiosResponse<iPost
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iFeature_Group_References, PostRequestTableOverrides, iPostC6RestResponse<iFeature_Group_References>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iFeature_Group_References, PostRequestTableOverrides, iPostC6RestResponse<iFeature_Group_References>, RestTableNames>({
     C6: C6,
     tableName: feature_group_references.TABLE_NAME,
     requestMethod: POST,
@@ -125,7 +125,7 @@ export function deleteStateFeature_Group_References(_response : AxiosResponse<iD
     ], "feature_group_references", feature_group_references.PRIMARY_SHORT as (keyof iFeature_Group_References)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iFeature_Group_References, DeleteRequestTableOverrides, iDeleteC6RestResponse<iFeature_Group_References>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iFeature_Group_References, DeleteRequestTableOverrides, iDeleteC6RestResponse<iFeature_Group_References>, RestTableNames>({
     C6: C6,
     tableName: feature_group_references.TABLE_NAME,
     requestMethod: DELETE,

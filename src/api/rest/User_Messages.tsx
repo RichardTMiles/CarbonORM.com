@@ -39,7 +39,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iUser_Messages, GetRequestTableOverrides, iGetC6RestResponse<iUser_Messages>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iUser_Messages, GetRequestTableOverrides, iGetC6RestResponse<iUser_Messages>, RestTableNames>({
     C6: C6,
     tableName: user_messages.TABLE_NAME,
     requestMethod: GET,
@@ -67,7 +67,7 @@ export function putStateUser_Messages(response : AxiosResponse<iPutC6RestRespons
     ], "user_messages", user_messages.PRIMARY_SHORT as (keyof iUser_Messages)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iUser_Messages, PutRequestTableOverrides, iPutC6RestResponse<iUser_Messages>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iUser_Messages, PutRequestTableOverrides, iPutC6RestResponse<iUser_Messages>, RestTableNames>({
     C6: C6,
     tableName: user_messages.TABLE_NAME,
     requestMethod: PUT,
@@ -110,7 +110,7 @@ export function postStateUser_Messages(response : AxiosResponse<iPostC6RestRespo
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iUser_Messages, PostRequestTableOverrides, iPostC6RestResponse<iUser_Messages>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iUser_Messages, PostRequestTableOverrides, iPostC6RestResponse<iUser_Messages>, RestTableNames>({
     C6: C6,
     tableName: user_messages.TABLE_NAME,
     requestMethod: POST,
@@ -132,7 +132,7 @@ export function deleteStateUser_Messages(_response : AxiosResponse<iDeleteC6Rest
     ], "user_messages", user_messages.PRIMARY_SHORT as (keyof iUser_Messages)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Messages, DeleteRequestTableOverrides, iDeleteC6RestResponse<iUser_Messages>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Messages, DeleteRequestTableOverrides, iDeleteC6RestResponse<iUser_Messages>, RestTableNames>({
     C6: C6,
     tableName: user_messages.TABLE_NAME,
     requestMethod: DELETE,

@@ -30,7 +30,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iReports, GetRequestTableOverrides, iGetC6RestResponse<iReports>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iReports, GetRequestTableOverrides, iGetC6RestResponse<iReports>, RestTableNames>({
     C6: C6,
     tableName: reports.TABLE_NAME,
     requestMethod: GET,
@@ -58,7 +58,7 @@ export function putStateReports(response : AxiosResponse<iPutC6RestResponse<iRep
     ], "reports", reports.PRIMARY_SHORT as (keyof iReports)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iReports, PutRequestTableOverrides, iPutC6RestResponse<iReports>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iReports, PutRequestTableOverrides, iPutC6RestResponse<iReports>, RestTableNames>({
     C6: C6,
     tableName: reports.TABLE_NAME,
     requestMethod: PUT,
@@ -101,7 +101,7 @@ export function postStateReports(response : AxiosResponse<iPostC6RestResponse<iR
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iReports, PostRequestTableOverrides, iPostC6RestResponse<iReports>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iReports, PostRequestTableOverrides, iPostC6RestResponse<iReports>, RestTableNames>({
     C6: C6,
     tableName: reports.TABLE_NAME,
     requestMethod: POST,
@@ -123,7 +123,7 @@ export function deleteStateReports(_response : AxiosResponse<iDeleteC6RestRespon
     ], "reports", reports.PRIMARY_SHORT as (keyof iReports)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iReports, DeleteRequestTableOverrides, iDeleteC6RestResponse<iReports>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iReports, DeleteRequestTableOverrides, iDeleteC6RestResponse<iReports>, RestTableNames>({
     C6: C6,
     tableName: reports.TABLE_NAME,
     requestMethod: DELETE,

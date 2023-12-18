@@ -35,7 +35,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iUser_Followers, GetRequestTableOverrides, iGetC6RestResponse<iUser_Followers>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iUser_Followers, GetRequestTableOverrides, iGetC6RestResponse<iUser_Followers>, RestTableNames>({
     C6: C6,
     tableName: user_followers.TABLE_NAME,
     requestMethod: GET,
@@ -63,7 +63,7 @@ export function putStateUser_Followers(response : AxiosResponse<iPutC6RestRespon
     ], "user_followers", user_followers.PRIMARY_SHORT as (keyof iUser_Followers)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iUser_Followers, PutRequestTableOverrides, iPutC6RestResponse<iUser_Followers>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iUser_Followers, PutRequestTableOverrides, iPutC6RestResponse<iUser_Followers>, RestTableNames>({
     C6: C6,
     tableName: user_followers.TABLE_NAME,
     requestMethod: PUT,
@@ -106,7 +106,7 @@ export function postStateUser_Followers(response : AxiosResponse<iPostC6RestResp
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iUser_Followers, PostRequestTableOverrides, iPostC6RestResponse<iUser_Followers>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iUser_Followers, PostRequestTableOverrides, iPostC6RestResponse<iUser_Followers>, RestTableNames>({
     C6: C6,
     tableName: user_followers.TABLE_NAME,
     requestMethod: POST,
@@ -128,7 +128,7 @@ export function deleteStateUser_Followers(_response : AxiosResponse<iDeleteC6Res
     ], "user_followers", user_followers.PRIMARY_SHORT as (keyof iUser_Followers)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Followers, DeleteRequestTableOverrides, iDeleteC6RestResponse<iUser_Followers>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Followers, DeleteRequestTableOverrides, iDeleteC6RestResponse<iUser_Followers>, RestTableNames>({
     C6: C6,
     tableName: user_followers.TABLE_NAME,
     requestMethod: DELETE,

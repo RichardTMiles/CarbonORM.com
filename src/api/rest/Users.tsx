@@ -58,7 +58,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iUsers, GetRequestTableOverrides, iGetC6RestResponse<iUsers>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iUsers, GetRequestTableOverrides, iGetC6RestResponse<iUsers>, RestTableNames>({
     C6: C6,
     tableName: users.TABLE_NAME,
     requestMethod: GET,
@@ -86,7 +86,7 @@ export function putStateUsers(response : AxiosResponse<iPutC6RestResponse<iUsers
     ], "users", users.PRIMARY_SHORT as (keyof iUsers)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iUsers, PutRequestTableOverrides, iPutC6RestResponse<iUsers>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iUsers, PutRequestTableOverrides, iPutC6RestResponse<iUsers>, RestTableNames>({
     C6: C6,
     tableName: users.TABLE_NAME,
     requestMethod: PUT,
@@ -129,7 +129,7 @@ export function postStateUsers(response : AxiosResponse<iPostC6RestResponse<iUse
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iUsers, PostRequestTableOverrides, iPostC6RestResponse<iUsers>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iUsers, PostRequestTableOverrides, iPostC6RestResponse<iUsers>, RestTableNames>({
     C6: C6,
     tableName: users.TABLE_NAME,
     requestMethod: POST,
@@ -151,7 +151,7 @@ export function deleteStateUsers(_response : AxiosResponse<iDeleteC6RestResponse
     ], "users", users.PRIMARY_SHORT as (keyof iUsers)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iUsers, DeleteRequestTableOverrides, iDeleteC6RestResponse<iUsers>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iUsers, DeleteRequestTableOverrides, iDeleteC6RestResponse<iUsers>, RestTableNames>({
     C6: C6,
     tableName: users.TABLE_NAME,
     requestMethod: DELETE,

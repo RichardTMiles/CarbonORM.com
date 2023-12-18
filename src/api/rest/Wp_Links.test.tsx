@@ -9,6 +9,8 @@ const randomString = Math.random().toString(36).substring(7);
 const randomInt = Math.floor(Math.random() * 1000000);
 const fillString = 'string' + randomString + randomInt;
 
+console.log('fillString', fillString);
+
 /**
 CREATE TABLE `carbon_wp_links` (
   `link_id` bigint unsigned NOT NULL AUTO_INCREMENT,

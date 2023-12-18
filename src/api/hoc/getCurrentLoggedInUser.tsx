@@ -1,5 +1,5 @@
 import CarbonORM from "CarbonORM";
-import {iUsers} from "variables/C6";
+import {iUsers} from "api/rest/C6";
 
 export default function () : iUsers | undefined {
 

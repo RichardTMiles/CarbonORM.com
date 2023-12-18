@@ -47,7 +47,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iWp_Comments, GetRequestTableOverrides, iGetC6RestResponse<iWp_Comments>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iWp_Comments, GetRequestTableOverrides, iGetC6RestResponse<iWp_Comments>, RestTableNames>({
     C6: C6,
     tableName: wp_comments.TABLE_NAME,
     requestMethod: GET,
@@ -75,7 +75,7 @@ export function putStateWp_Comments(response : AxiosResponse<iPutC6RestResponse<
     ], "wp_comments", wp_comments.PRIMARY_SHORT as (keyof iWp_Comments)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iWp_Comments, PutRequestTableOverrides, iPutC6RestResponse<iWp_Comments>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iWp_Comments, PutRequestTableOverrides, iPutC6RestResponse<iWp_Comments>, RestTableNames>({
     C6: C6,
     tableName: wp_comments.TABLE_NAME,
     requestMethod: PUT,
@@ -118,7 +118,7 @@ export function postStateWp_Comments(response : AxiosResponse<iPostC6RestRespons
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iWp_Comments, PostRequestTableOverrides, iPostC6RestResponse<iWp_Comments>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iWp_Comments, PostRequestTableOverrides, iPostC6RestResponse<iWp_Comments>, RestTableNames>({
     C6: C6,
     tableName: wp_comments.TABLE_NAME,
     requestMethod: POST,
@@ -140,7 +140,7 @@ export function deleteStateWp_Comments(_response : AxiosResponse<iDeleteC6RestRe
     ], "wp_comments", wp_comments.PRIMARY_SHORT as (keyof iWp_Comments)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Comments, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Comments>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Comments, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Comments>, RestTableNames>({
     C6: C6,
     tableName: wp_comments.TABLE_NAME,
     requestMethod: DELETE,

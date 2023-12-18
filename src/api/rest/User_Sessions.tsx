@@ -33,7 +33,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iUser_Sessions, GetRequestTableOverrides, iGetC6RestResponse<iUser_Sessions>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iUser_Sessions, GetRequestTableOverrides, iGetC6RestResponse<iUser_Sessions>, RestTableNames>({
     C6: C6,
     tableName: user_sessions.TABLE_NAME,
     requestMethod: GET,
@@ -61,7 +61,7 @@ export function putStateUser_Sessions(response : AxiosResponse<iPutC6RestRespons
     ], "user_sessions", user_sessions.PRIMARY_SHORT as (keyof iUser_Sessions)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iUser_Sessions, PutRequestTableOverrides, iPutC6RestResponse<iUser_Sessions>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iUser_Sessions, PutRequestTableOverrides, iPutC6RestResponse<iUser_Sessions>, RestTableNames>({
     C6: C6,
     tableName: user_sessions.TABLE_NAME,
     requestMethod: PUT,
@@ -104,7 +104,7 @@ export function postStateUser_Sessions(response : AxiosResponse<iPostC6RestRespo
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iUser_Sessions, PostRequestTableOverrides, iPostC6RestResponse<iUser_Sessions>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iUser_Sessions, PostRequestTableOverrides, iPostC6RestResponse<iUser_Sessions>, RestTableNames>({
     C6: C6,
     tableName: user_sessions.TABLE_NAME,
     requestMethod: POST,
@@ -126,7 +126,7 @@ export function deleteStateUser_Sessions(_response : AxiosResponse<iDeleteC6Rest
     ], "user_sessions", user_sessions.PRIMARY_SHORT as (keyof iUser_Sessions)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Sessions, DeleteRequestTableOverrides, iDeleteC6RestResponse<iUser_Sessions>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Sessions, DeleteRequestTableOverrides, iDeleteC6RestResponse<iUser_Sessions>, RestTableNames>({
     C6: C6,
     tableName: user_sessions.TABLE_NAME,
     requestMethod: DELETE,

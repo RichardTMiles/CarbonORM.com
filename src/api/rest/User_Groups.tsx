@@ -32,7 +32,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iUser_Groups, GetRequestTableOverrides, iGetC6RestResponse<iUser_Groups>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iUser_Groups, GetRequestTableOverrides, iGetC6RestResponse<iUser_Groups>, RestTableNames>({
     C6: C6,
     tableName: user_groups.TABLE_NAME,
     requestMethod: GET,
@@ -60,7 +60,7 @@ export function putStateUser_Groups(response : AxiosResponse<iPutC6RestResponse<
     ], "user_groups", user_groups.PRIMARY_SHORT as (keyof iUser_Groups)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iUser_Groups, PutRequestTableOverrides, iPutC6RestResponse<iUser_Groups>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iUser_Groups, PutRequestTableOverrides, iPutC6RestResponse<iUser_Groups>, RestTableNames>({
     C6: C6,
     tableName: user_groups.TABLE_NAME,
     requestMethod: PUT,
@@ -103,7 +103,7 @@ export function postStateUser_Groups(response : AxiosResponse<iPostC6RestRespons
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iUser_Groups, PostRequestTableOverrides, iPostC6RestResponse<iUser_Groups>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iUser_Groups, PostRequestTableOverrides, iPostC6RestResponse<iUser_Groups>, RestTableNames>({
     C6: C6,
     tableName: user_groups.TABLE_NAME,
     requestMethod: POST,
@@ -125,7 +125,7 @@ export function deleteStateUser_Groups(_response : AxiosResponse<iDeleteC6RestRe
     ], "user_groups", user_groups.PRIMARY_SHORT as (keyof iUser_Groups)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Groups, DeleteRequestTableOverrides, iDeleteC6RestResponse<iUser_Groups>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Groups, DeleteRequestTableOverrides, iDeleteC6RestResponse<iUser_Groups>, RestTableNames>({
     C6: C6,
     tableName: user_groups.TABLE_NAME,
     requestMethod: DELETE,

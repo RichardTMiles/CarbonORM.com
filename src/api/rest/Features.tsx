@@ -33,7 +33,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iFeatures, GetRequestTableOverrides, iGetC6RestResponse<iFeatures>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iFeatures, GetRequestTableOverrides, iGetC6RestResponse<iFeatures>, RestTableNames>({
     C6: C6,
     tableName: features.TABLE_NAME,
     requestMethod: GET,
@@ -61,7 +61,7 @@ export function putStateFeatures(response : AxiosResponse<iPutC6RestResponse<iFe
     ], "features", features.PRIMARY_SHORT as (keyof iFeatures)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iFeatures, PutRequestTableOverrides, iPutC6RestResponse<iFeatures>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iFeatures, PutRequestTableOverrides, iPutC6RestResponse<iFeatures>, RestTableNames>({
     C6: C6,
     tableName: features.TABLE_NAME,
     requestMethod: PUT,
@@ -104,7 +104,7 @@ export function postStateFeatures(response : AxiosResponse<iPostC6RestResponse<i
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iFeatures, PostRequestTableOverrides, iPostC6RestResponse<iFeatures>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iFeatures, PostRequestTableOverrides, iPostC6RestResponse<iFeatures>, RestTableNames>({
     C6: C6,
     tableName: features.TABLE_NAME,
     requestMethod: POST,
@@ -126,7 +126,7 @@ export function deleteStateFeatures(_response : AxiosResponse<iDeleteC6RestRespo
     ], "features", features.PRIMARY_SHORT as (keyof iFeatures)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iFeatures, DeleteRequestTableOverrides, iDeleteC6RestResponse<iFeatures>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iFeatures, DeleteRequestTableOverrides, iDeleteC6RestResponse<iFeatures>, RestTableNames>({
     C6: C6,
     tableName: features.TABLE_NAME,
     requestMethod: DELETE,

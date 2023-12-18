@@ -41,7 +41,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iWp_Links, GetRequestTableOverrides, iGetC6RestResponse<iWp_Links>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iWp_Links, GetRequestTableOverrides, iGetC6RestResponse<iWp_Links>, RestTableNames>({
     C6: C6,
     tableName: wp_links.TABLE_NAME,
     requestMethod: GET,
@@ -69,7 +69,7 @@ export function putStateWp_Links(response : AxiosResponse<iPutC6RestResponse<iWp
     ], "wp_links", wp_links.PRIMARY_SHORT as (keyof iWp_Links)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iWp_Links, PutRequestTableOverrides, iPutC6RestResponse<iWp_Links>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iWp_Links, PutRequestTableOverrides, iPutC6RestResponse<iWp_Links>, RestTableNames>({
     C6: C6,
     tableName: wp_links.TABLE_NAME,
     requestMethod: PUT,
@@ -112,7 +112,7 @@ export function postStateWp_Links(response : AxiosResponse<iPostC6RestResponse<i
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iWp_Links, PostRequestTableOverrides, iPostC6RestResponse<iWp_Links>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iWp_Links, PostRequestTableOverrides, iPostC6RestResponse<iWp_Links>, RestTableNames>({
     C6: C6,
     tableName: wp_links.TABLE_NAME,
     requestMethod: POST,
@@ -134,7 +134,7 @@ export function deleteStateWp_Links(_response : AxiosResponse<iDeleteC6RestRespo
     ], "wp_links", wp_links.PRIMARY_SHORT as (keyof iWp_Links)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Links, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Links>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Links, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Links>, RestTableNames>({
     C6: C6,
     tableName: wp_links.TABLE_NAME,
     requestMethod: DELETE,

@@ -36,7 +36,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iComments, GetRequestTableOverrides, iGetC6RestResponse<iComments>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iComments, GetRequestTableOverrides, iGetC6RestResponse<iComments>, RestTableNames>({
     C6: C6,
     tableName: comments.TABLE_NAME,
     requestMethod: GET,
@@ -64,7 +64,7 @@ export function putStateComments(response : AxiosResponse<iPutC6RestResponse<iCo
     ], "comments", comments.PRIMARY_SHORT as (keyof iComments)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iComments, PutRequestTableOverrides, iPutC6RestResponse<iComments>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iComments, PutRequestTableOverrides, iPutC6RestResponse<iComments>, RestTableNames>({
     C6: C6,
     tableName: comments.TABLE_NAME,
     requestMethod: PUT,
@@ -107,7 +107,7 @@ export function postStateComments(response : AxiosResponse<iPostC6RestResponse<i
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iComments, PostRequestTableOverrides, iPostC6RestResponse<iComments>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iComments, PostRequestTableOverrides, iPostC6RestResponse<iComments>, RestTableNames>({
     C6: C6,
     tableName: comments.TABLE_NAME,
     requestMethod: POST,
@@ -129,7 +129,7 @@ export function deleteStateComments(_response : AxiosResponse<iDeleteC6RestRespo
     ], "comments", comments.PRIMARY_SHORT as (keyof iComments)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iComments, DeleteRequestTableOverrides, iDeleteC6RestResponse<iComments>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iComments, DeleteRequestTableOverrides, iDeleteC6RestResponse<iComments>, RestTableNames>({
     C6: C6,
     tableName: comments.TABLE_NAME,
     requestMethod: DELETE,

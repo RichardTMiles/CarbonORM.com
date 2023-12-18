@@ -30,7 +30,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iDocumentation, GetRequestTableOverrides, iGetC6RestResponse<iDocumentation>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iDocumentation, GetRequestTableOverrides, iGetC6RestResponse<iDocumentation>, RestTableNames>({
     C6: C6,
     tableName: documentation.TABLE_NAME,
     requestMethod: GET,
@@ -58,7 +58,7 @@ export function putStateDocumentation(response : AxiosResponse<iPutC6RestRespons
     ], "documentation", documentation.PRIMARY_SHORT as (keyof iDocumentation)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iDocumentation, PutRequestTableOverrides, iPutC6RestResponse<iDocumentation>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iDocumentation, PutRequestTableOverrides, iPutC6RestResponse<iDocumentation>, RestTableNames>({
     C6: C6,
     tableName: documentation.TABLE_NAME,
     requestMethod: PUT,
@@ -101,7 +101,7 @@ export function postStateDocumentation(response : AxiosResponse<iPostC6RestRespo
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iDocumentation, PostRequestTableOverrides, iPostC6RestResponse<iDocumentation>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iDocumentation, PostRequestTableOverrides, iPostC6RestResponse<iDocumentation>, RestTableNames>({
     C6: C6,
     tableName: documentation.TABLE_NAME,
     requestMethod: POST,
@@ -123,7 +123,7 @@ export function deleteStateDocumentation(_response : AxiosResponse<iDeleteC6Rest
     ], "documentation", documentation.PRIMARY_SHORT as (keyof iDocumentation)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iDocumentation, DeleteRequestTableOverrides, iDeleteC6RestResponse<iDocumentation>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iDocumentation, DeleteRequestTableOverrides, iDeleteC6RestResponse<iDocumentation>, RestTableNames>({
     C6: C6,
     tableName: documentation.TABLE_NAME,
     requestMethod: DELETE,

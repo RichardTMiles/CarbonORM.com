@@ -32,7 +32,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iGroup_References, GetRequestTableOverrides, iGetC6RestResponse<iGroup_References>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iGroup_References, GetRequestTableOverrides, iGetC6RestResponse<iGroup_References>, RestTableNames>({
     C6: C6,
     tableName: group_references.TABLE_NAME,
     requestMethod: GET,
@@ -60,7 +60,7 @@ export function putStateGroup_References(response : AxiosResponse<iPutC6RestResp
     ], "group_references", group_references.PRIMARY_SHORT as (keyof iGroup_References)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iGroup_References, PutRequestTableOverrides, iPutC6RestResponse<iGroup_References>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iGroup_References, PutRequestTableOverrides, iPutC6RestResponse<iGroup_References>, RestTableNames>({
     C6: C6,
     tableName: group_references.TABLE_NAME,
     requestMethod: PUT,
@@ -103,7 +103,7 @@ export function postStateGroup_References(response : AxiosResponse<iPostC6RestRe
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iGroup_References, PostRequestTableOverrides, iPostC6RestResponse<iGroup_References>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iGroup_References, PostRequestTableOverrides, iPostC6RestResponse<iGroup_References>, RestTableNames>({
     C6: C6,
     tableName: group_references.TABLE_NAME,
     requestMethod: POST,
@@ -125,7 +125,7 @@ export function deleteStateGroup_References(_response : AxiosResponse<iDeleteC6R
     ], "group_references", group_references.PRIMARY_SHORT as (keyof iGroup_References)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iGroup_References, DeleteRequestTableOverrides, iDeleteC6RestResponse<iGroup_References>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iGroup_References, DeleteRequestTableOverrides, iDeleteC6RestResponse<iGroup_References>, RestTableNames>({
     C6: C6,
     tableName: group_references.TABLE_NAME,
     requestMethod: DELETE,

@@ -9,6 +9,8 @@ const randomString = Math.random().toString(36).substring(7);
 const randomInt = Math.floor(Math.random() * 1000000);
 const fillString = 'string' + randomString + randomInt;
 
+console.log('fillString', fillString);
+
 /**
 CREATE TABLE `carbon_wp_postmeta` (
   `meta_id` bigint unsigned NOT NULL AUTO_INCREMENT,
@@ -18,7 +20,7 @@ CREATE TABLE `carbon_wp_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 **/
 
 const Test_Data: iWp_Postmeta = {

@@ -32,7 +32,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iHistory_Logs, GetRequestTableOverrides, iGetC6RestResponse<iHistory_Logs>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iHistory_Logs, GetRequestTableOverrides, iGetC6RestResponse<iHistory_Logs>, RestTableNames>({
     C6: C6,
     tableName: history_logs.TABLE_NAME,
     requestMethod: GET,
@@ -60,7 +60,7 @@ export function putStateHistory_Logs(response : AxiosResponse<iPutC6RestResponse
     ], "history_logs", history_logs.PRIMARY_SHORT as (keyof iHistory_Logs)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iHistory_Logs, PutRequestTableOverrides, iPutC6RestResponse<iHistory_Logs>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iHistory_Logs, PutRequestTableOverrides, iPutC6RestResponse<iHistory_Logs>, RestTableNames>({
     C6: C6,
     tableName: history_logs.TABLE_NAME,
     requestMethod: PUT,
@@ -103,7 +103,7 @@ export function postStateHistory_Logs(response : AxiosResponse<iPostC6RestRespon
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iHistory_Logs, PostRequestTableOverrides, iPostC6RestResponse<iHistory_Logs>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iHistory_Logs, PostRequestTableOverrides, iPostC6RestResponse<iHistory_Logs>, RestTableNames>({
     C6: C6,
     tableName: history_logs.TABLE_NAME,
     requestMethod: POST,
@@ -125,7 +125,7 @@ export function deleteStateHistory_Logs(_response : AxiosResponse<iDeleteC6RestR
     ], "history_logs", history_logs.PRIMARY_SHORT as (keyof iHistory_Logs)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iHistory_Logs, DeleteRequestTableOverrides, iDeleteC6RestResponse<iHistory_Logs>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iHistory_Logs, DeleteRequestTableOverrides, iDeleteC6RestResponse<iHistory_Logs>, RestTableNames>({
     C6: C6,
     tableName: history_logs.TABLE_NAME,
     requestMethod: DELETE,

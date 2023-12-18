@@ -25,7 +25,7 @@ CREATE TABLE `carbon_wp_postmeta` (
   PRIMARY KEY (`meta_id`),
   KEY `post_id` (`post_id`),
   KEY `meta_key` (`meta_key`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 **/
 
 type GetCustomAndRequiredFields = {}
@@ -33,7 +33,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iWp_Postmeta, GetRequestTableOverrides, iGetC6RestResponse<iWp_Postmeta>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iWp_Postmeta, GetRequestTableOverrides, iGetC6RestResponse<iWp_Postmeta>, RestTableNames>({
     C6: C6,
     tableName: wp_postmeta.TABLE_NAME,
     requestMethod: GET,
@@ -61,7 +61,7 @@ export function putStateWp_Postmeta(response : AxiosResponse<iPutC6RestResponse<
     ], "wp_postmeta", wp_postmeta.PRIMARY_SHORT as (keyof iWp_Postmeta)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iWp_Postmeta, PutRequestTableOverrides, iPutC6RestResponse<iWp_Postmeta>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iWp_Postmeta, PutRequestTableOverrides, iPutC6RestResponse<iWp_Postmeta>, RestTableNames>({
     C6: C6,
     tableName: wp_postmeta.TABLE_NAME,
     requestMethod: PUT,
@@ -104,7 +104,7 @@ export function postStateWp_Postmeta(response : AxiosResponse<iPostC6RestRespons
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iWp_Postmeta, PostRequestTableOverrides, iPostC6RestResponse<iWp_Postmeta>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iWp_Postmeta, PostRequestTableOverrides, iPostC6RestResponse<iWp_Postmeta>, RestTableNames>({
     C6: C6,
     tableName: wp_postmeta.TABLE_NAME,
     requestMethod: POST,
@@ -126,7 +126,7 @@ export function deleteStateWp_Postmeta(_response : AxiosResponse<iDeleteC6RestRe
     ], "wp_postmeta", wp_postmeta.PRIMARY_SHORT as (keyof iWp_Postmeta)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Postmeta, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Postmeta>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Postmeta, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Postmeta>, RestTableNames>({
     C6: C6,
     tableName: wp_postmeta.TABLE_NAME,
     requestMethod: DELETE,

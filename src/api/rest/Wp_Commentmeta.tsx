@@ -33,7 +33,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iWp_Commentmeta, GetRequestTableOverrides, iGetC6RestResponse<iWp_Commentmeta>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iWp_Commentmeta, GetRequestTableOverrides, iGetC6RestResponse<iWp_Commentmeta>, RestTableNames>({
     C6: C6,
     tableName: wp_commentmeta.TABLE_NAME,
     requestMethod: GET,
@@ -61,7 +61,7 @@ export function putStateWp_Commentmeta(response : AxiosResponse<iPutC6RestRespon
     ], "wp_commentmeta", wp_commentmeta.PRIMARY_SHORT as (keyof iWp_Commentmeta)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iWp_Commentmeta, PutRequestTableOverrides, iPutC6RestResponse<iWp_Commentmeta>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iWp_Commentmeta, PutRequestTableOverrides, iPutC6RestResponse<iWp_Commentmeta>, RestTableNames>({
     C6: C6,
     tableName: wp_commentmeta.TABLE_NAME,
     requestMethod: PUT,
@@ -104,7 +104,7 @@ export function postStateWp_Commentmeta(response : AxiosResponse<iPostC6RestResp
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iWp_Commentmeta, PostRequestTableOverrides, iPostC6RestResponse<iWp_Commentmeta>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iWp_Commentmeta, PostRequestTableOverrides, iPostC6RestResponse<iWp_Commentmeta>, RestTableNames>({
     C6: C6,
     tableName: wp_commentmeta.TABLE_NAME,
     requestMethod: POST,
@@ -126,7 +126,7 @@ export function deleteStateWp_Commentmeta(_response : AxiosResponse<iDeleteC6Res
     ], "wp_commentmeta", wp_commentmeta.PRIMARY_SHORT as (keyof iWp_Commentmeta)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Commentmeta, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Commentmeta>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Commentmeta, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Commentmeta>, RestTableNames>({
     C6: C6,
     tableName: wp_commentmeta.TABLE_NAME,
     requestMethod: DELETE,

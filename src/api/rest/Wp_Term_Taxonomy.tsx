@@ -35,7 +35,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iWp_Term_Taxonomy, GetRequestTableOverrides, iGetC6RestResponse<iWp_Term_Taxonomy>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iWp_Term_Taxonomy, GetRequestTableOverrides, iGetC6RestResponse<iWp_Term_Taxonomy>, RestTableNames>({
     C6: C6,
     tableName: wp_term_taxonomy.TABLE_NAME,
     requestMethod: GET,
@@ -63,7 +63,7 @@ export function putStateWp_Term_Taxonomy(response : AxiosResponse<iPutC6RestResp
     ], "wp_term_taxonomy", wp_term_taxonomy.PRIMARY_SHORT as (keyof iWp_Term_Taxonomy)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iWp_Term_Taxonomy, PutRequestTableOverrides, iPutC6RestResponse<iWp_Term_Taxonomy>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iWp_Term_Taxonomy, PutRequestTableOverrides, iPutC6RestResponse<iWp_Term_Taxonomy>, RestTableNames>({
     C6: C6,
     tableName: wp_term_taxonomy.TABLE_NAME,
     requestMethod: PUT,
@@ -106,7 +106,7 @@ export function postStateWp_Term_Taxonomy(response : AxiosResponse<iPostC6RestRe
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iWp_Term_Taxonomy, PostRequestTableOverrides, iPostC6RestResponse<iWp_Term_Taxonomy>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iWp_Term_Taxonomy, PostRequestTableOverrides, iPostC6RestResponse<iWp_Term_Taxonomy>, RestTableNames>({
     C6: C6,
     tableName: wp_term_taxonomy.TABLE_NAME,
     requestMethod: POST,
@@ -128,7 +128,7 @@ export function deleteStateWp_Term_Taxonomy(_response : AxiosResponse<iDeleteC6R
     ], "wp_term_taxonomy", wp_term_taxonomy.PRIMARY_SHORT as (keyof iWp_Term_Taxonomy)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Term_Taxonomy, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Term_Taxonomy>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Term_Taxonomy, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Term_Taxonomy>, RestTableNames>({
     C6: C6,
     tableName: wp_term_taxonomy.TABLE_NAME,
     requestMethod: DELETE,

@@ -37,7 +37,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iPhotos, GetRequestTableOverrides, iGetC6RestResponse<iPhotos>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iPhotos, GetRequestTableOverrides, iGetC6RestResponse<iPhotos>, RestTableNames>({
     C6: C6,
     tableName: photos.TABLE_NAME,
     requestMethod: GET,
@@ -65,7 +65,7 @@ export function putStatePhotos(response : AxiosResponse<iPutC6RestResponse<iPhot
     ], "photos", photos.PRIMARY_SHORT as (keyof iPhotos)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iPhotos, PutRequestTableOverrides, iPutC6RestResponse<iPhotos>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iPhotos, PutRequestTableOverrides, iPutC6RestResponse<iPhotos>, RestTableNames>({
     C6: C6,
     tableName: photos.TABLE_NAME,
     requestMethod: PUT,
@@ -108,7 +108,7 @@ export function postStatePhotos(response : AxiosResponse<iPostC6RestResponse<iPh
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iPhotos, PostRequestTableOverrides, iPostC6RestResponse<iPhotos>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iPhotos, PostRequestTableOverrides, iPostC6RestResponse<iPhotos>, RestTableNames>({
     C6: C6,
     tableName: photos.TABLE_NAME,
     requestMethod: POST,
@@ -130,7 +130,7 @@ export function deleteStatePhotos(_response : AxiosResponse<iDeleteC6RestRespons
     ], "photos", photos.PRIMARY_SHORT as (keyof iPhotos)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iPhotos, DeleteRequestTableOverrides, iDeleteC6RestResponse<iPhotos>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iPhotos, DeleteRequestTableOverrides, iDeleteC6RestResponse<iPhotos>, RestTableNames>({
     C6: C6,
     tableName: photos.TABLE_NAME,
     requestMethod: DELETE,

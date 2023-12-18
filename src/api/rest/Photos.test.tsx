@@ -9,6 +9,8 @@ const randomString = Math.random().toString(36).substring(7);
 const randomInt = Math.floor(Math.random() * 1000000);
 const fillString = 'string' + randomString + randomInt;
 
+console.log('fillString', fillString);
+
 /**
 CREATE TABLE `carbon_photos` (
   `parent_id` binary(16) NOT NULL,

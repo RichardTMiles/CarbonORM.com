@@ -33,7 +33,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iWp_Usermeta, GetRequestTableOverrides, iGetC6RestResponse<iWp_Usermeta>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iWp_Usermeta, GetRequestTableOverrides, iGetC6RestResponse<iWp_Usermeta>, RestTableNames>({
     C6: C6,
     tableName: wp_usermeta.TABLE_NAME,
     requestMethod: GET,
@@ -61,7 +61,7 @@ export function putStateWp_Usermeta(response : AxiosResponse<iPutC6RestResponse<
     ], "wp_usermeta", wp_usermeta.PRIMARY_SHORT as (keyof iWp_Usermeta)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iWp_Usermeta, PutRequestTableOverrides, iPutC6RestResponse<iWp_Usermeta>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iWp_Usermeta, PutRequestTableOverrides, iPutC6RestResponse<iWp_Usermeta>, RestTableNames>({
     C6: C6,
     tableName: wp_usermeta.TABLE_NAME,
     requestMethod: PUT,
@@ -104,7 +104,7 @@ export function postStateWp_Usermeta(response : AxiosResponse<iPostC6RestRespons
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iWp_Usermeta, PostRequestTableOverrides, iPostC6RestResponse<iWp_Usermeta>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iWp_Usermeta, PostRequestTableOverrides, iPostC6RestResponse<iWp_Usermeta>, RestTableNames>({
     C6: C6,
     tableName: wp_usermeta.TABLE_NAME,
     requestMethod: POST,
@@ -126,7 +126,7 @@ export function deleteStateWp_Usermeta(_response : AxiosResponse<iDeleteC6RestRe
     ], "wp_usermeta", wp_usermeta.PRIMARY_SHORT as (keyof iWp_Usermeta)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Usermeta, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Usermeta>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Usermeta, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Usermeta>, RestTableNames>({
     C6: C6,
     tableName: wp_usermeta.TABLE_NAME,
     requestMethod: DELETE,

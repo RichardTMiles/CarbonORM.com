@@ -33,7 +33,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iLocation_References, GetRequestTableOverrides, iGetC6RestResponse<iLocation_References>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iLocation_References, GetRequestTableOverrides, iGetC6RestResponse<iLocation_References>, RestTableNames>({
     C6: C6,
     tableName: location_references.TABLE_NAME,
     requestMethod: GET,
@@ -61,7 +61,7 @@ export function putStateLocation_References(response : AxiosResponse<iPutC6RestR
     ], "location_references", location_references.PRIMARY_SHORT as (keyof iLocation_References)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iLocation_References, PutRequestTableOverrides, iPutC6RestResponse<iLocation_References>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iLocation_References, PutRequestTableOverrides, iPutC6RestResponse<iLocation_References>, RestTableNames>({
     C6: C6,
     tableName: location_references.TABLE_NAME,
     requestMethod: PUT,
@@ -104,7 +104,7 @@ export function postStateLocation_References(response : AxiosResponse<iPostC6Res
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iLocation_References, PostRequestTableOverrides, iPostC6RestResponse<iLocation_References>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iLocation_References, PostRequestTableOverrides, iPostC6RestResponse<iLocation_References>, RestTableNames>({
     C6: C6,
     tableName: location_references.TABLE_NAME,
     requestMethod: POST,
@@ -126,7 +126,7 @@ export function deleteStateLocation_References(_response : AxiosResponse<iDelete
     ], "location_references", location_references.PRIMARY_SHORT as (keyof iLocation_References)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iLocation_References, DeleteRequestTableOverrides, iDeleteC6RestResponse<iLocation_References>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iLocation_References, DeleteRequestTableOverrides, iDeleteC6RestResponse<iLocation_References>, RestTableNames>({
     C6: C6,
     tableName: location_references.TABLE_NAME,
     requestMethod: DELETE,

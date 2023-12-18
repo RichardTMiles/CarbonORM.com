@@ -41,7 +41,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iUser_Tasks, GetRequestTableOverrides, iGetC6RestResponse<iUser_Tasks>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iUser_Tasks, GetRequestTableOverrides, iGetC6RestResponse<iUser_Tasks>, RestTableNames>({
     C6: C6,
     tableName: user_tasks.TABLE_NAME,
     requestMethod: GET,
@@ -69,7 +69,7 @@ export function putStateUser_Tasks(response : AxiosResponse<iPutC6RestResponse<i
     ], "user_tasks", user_tasks.PRIMARY_SHORT as (keyof iUser_Tasks)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iUser_Tasks, PutRequestTableOverrides, iPutC6RestResponse<iUser_Tasks>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iUser_Tasks, PutRequestTableOverrides, iPutC6RestResponse<iUser_Tasks>, RestTableNames>({
     C6: C6,
     tableName: user_tasks.TABLE_NAME,
     requestMethod: PUT,
@@ -112,7 +112,7 @@ export function postStateUser_Tasks(response : AxiosResponse<iPostC6RestResponse
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iUser_Tasks, PostRequestTableOverrides, iPostC6RestResponse<iUser_Tasks>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iUser_Tasks, PostRequestTableOverrides, iPostC6RestResponse<iUser_Tasks>, RestTableNames>({
     C6: C6,
     tableName: user_tasks.TABLE_NAME,
     requestMethod: POST,
@@ -134,7 +134,7 @@ export function deleteStateUser_Tasks(_response : AxiosResponse<iDeleteC6RestRes
     ], "user_tasks", user_tasks.PRIMARY_SHORT as (keyof iUser_Tasks)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Tasks, DeleteRequestTableOverrides, iDeleteC6RestResponse<iUser_Tasks>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Tasks, DeleteRequestTableOverrides, iDeleteC6RestResponse<iUser_Tasks>, RestTableNames>({
     C6: C6,
     tableName: user_tasks.TABLE_NAME,
     requestMethod: DELETE,

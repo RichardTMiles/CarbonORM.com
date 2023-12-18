@@ -33,7 +33,7 @@ type GetCustomAndRequiredFields = {}
 type GetRequestTableOverrides = {}
 
 // required parameters, optional parameters, parameter type overrides, response, and table names
-export const Get = restRequest<GetCustomAndRequiredFields, iWp_Terms, GetRequestTableOverrides, iGetC6RestResponse<iWp_Terms>, RestTableNames>({
+const Get = restRequest<GetCustomAndRequiredFields, iWp_Terms, GetRequestTableOverrides, iGetC6RestResponse<iWp_Terms>, RestTableNames>({
     C6: C6,
     tableName: wp_terms.TABLE_NAME,
     requestMethod: GET,
@@ -61,7 +61,7 @@ export function putStateWp_Terms(response : AxiosResponse<iPutC6RestResponse<iWp
     ], "wp_terms", wp_terms.PRIMARY_SHORT as (keyof iWp_Terms)[])
 }
 
-export const Put = restRequest<PutCustomAndRequiredFields, iWp_Terms, PutRequestTableOverrides, iPutC6RestResponse<iWp_Terms>, RestTableNames>({
+const Put = restRequest<PutCustomAndRequiredFields, iWp_Terms, PutRequestTableOverrides, iPutC6RestResponse<iWp_Terms>, RestTableNames>({
     C6: C6,
     tableName: wp_terms.TABLE_NAME,
     requestMethod: PUT,
@@ -104,7 +104,7 @@ export function postStateWp_Terms(response : AxiosResponse<iPostC6RestResponse<i
     )
 }
 
-export const Post = restRequest<PostCustomAndRequiredFields, iWp_Terms, PostRequestTableOverrides, iPostC6RestResponse<iWp_Terms>, RestTableNames>({
+const Post = restRequest<PostCustomAndRequiredFields, iWp_Terms, PostRequestTableOverrides, iPostC6RestResponse<iWp_Terms>, RestTableNames>({
     C6: C6,
     tableName: wp_terms.TABLE_NAME,
     requestMethod: POST,
@@ -126,7 +126,7 @@ export function deleteStateWp_Terms(_response : AxiosResponse<iDeleteC6RestRespo
     ], "wp_terms", wp_terms.PRIMARY_SHORT as (keyof iWp_Terms)[])
 }
 
-export const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Terms, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Terms>, RestTableNames>({
+const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Terms, DeleteRequestTableOverrides, iDeleteC6RestResponse<iWp_Terms>, RestTableNames>({
     C6: C6,
     tableName: wp_terms.TABLE_NAME,
     requestMethod: DELETE,
