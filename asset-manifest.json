@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.7a00af08.css",
-    "main.js": "/static/js/main.46f4e9a2.js",
+    "main.js": "/static/js/main.13340e4b.js",
     "react-syntax-highlighter/refractor-core-import.js": "/static/js/react-syntax-highlighter/refractor-core-import.d3f3786d.chunk.js",
     "react-syntax-highlighter_languages_refractor_abap.js": "/static/js/react-syntax-highlighter_languages_refractor_abap.71a1dccf.chunk.js",
     "react-syntax-highlighter_languages_refractor_abnf.js": "/static/js/react-syntax-highlighter_languages_refractor_abnf.41ec4bd6.chunk.js",
@@ -280,18 +280,32 @@
     "react-syntax-highlighter_languages_refractor_yaml.js": "/static/js/react-syntax-highlighter_languages_refractor_yaml.14909b39.chunk.js",
     "react-syntax-highlighter_languages_refractor_yang.js": "/static/js/react-syntax-highlighter_languages_refractor_yang.429e9807.chunk.js",
     "react-syntax-highlighter_languages_refractor_zig.js": "/static/js/react-syntax-highlighter_languages_refractor_zig.72603868.chunk.js",
+    "static/media/Carbon-purple-180.png": "/static/media/Carbon-purple-180.996215589f243a00a672.png",
+    "static/media/profile-bg.jpg": "/static/media/profile-bg.8129069f58e43ac982d3.jpg",
+    "static/media/sign.jpg": "/static/media/sign.6177df0e42b988e2e63e.jpg",
     "static/media/landing-bg.jpg": "/static/media/landing-bg.64d7ac30b1e4b084e291.jpg",
     "static/media/Carbon-green.png": "/static/media/Carbon-green.28dd644211102752bcfc.png",
     "static/media/invertSD.png": "/static/media/invertSD.6a7b5bc784e192c1aa10.png",
+    "static/media/clem-onojegaw.jpg": "/static/media/clem-onojegaw.8809fc531f4c10dcd8f8.jpg",
+    "static/media/studio-2.jpg": "/static/media/studio-2.6fe3aba0045d53bf9275.jpg",
+    "static/media/clem-onojeghuo.jpg": "/static/media/clem-onojeghuo.862a09524e6ac92b37e2.jpg",
+    "static/media/studio-3.jpg": "/static/media/studio-3.cb63e16b70653f2f23eb.jpg",
+    "static/media/mariya-georgieva.jpg": "/static/media/mariya-georgieva.0817f3941a22a067a674.jpg",
+    "static/media/studio-5.jpg": "/static/media/studio-5.6b052d75c13ba524b937.jpg",
+    "static/media/cynthia-del-rio.jpg": "/static/media/cynthia-del-rio.4367396532f7114dd63d.jpg",
+    "static/media/bg.jpg": "/static/media/bg.527ceab20335f288abe8.jpg",
     "static/media/kendall.jpg": "/static/media/kendall.ab8e0d7e62e9a588f1df.jpg",
+    "static/media/studio-1.jpg": "/static/media/studio-1.56c6121d2580085ff246.jpg",
     "static/media/Carbon-teal.png": "/static/media/Carbon-teal.ad030b32d0121f8f5842.png",
     "static/media/Carbon-teal-180.png": "/static/media/Carbon-teal-180.64f8366dbf1604d2c46d.png",
     "static/media/christian.jpg": "/static/media/christian.36a49d2f110b271434be.jpg",
+    "static/media/studio-4.jpg": "/static/media/studio-4.4c272c46b0b3d5b8427c.jpg",
+    "static/media/olu-eletu.jpg": "/static/media/olu-eletu.429cd6ef5d978055993b.jpg",
     "static/media/avatar.jpg": "/static/media/avatar.37d93aaa242336604d06.jpg",
     "static/media/marc.jpg": "/static/media/marc.e860728791b7ef6a0a14.jpg",
     "index.html": "/index.html",
     "main.7a00af08.css.map": "/static/css/main.7a00af08.css.map",
-    "main.46f4e9a2.js.map": "/static/js/main.46f4e9a2.js.map",
+    "main.13340e4b.js.map": "/static/js/main.13340e4b.js.map",
     "refractor-core-import.d3f3786d.chunk.js.map": "/static/js/react-syntax-highlighter/refractor-core-import.d3f3786d.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_abap.71a1dccf.chunk.js.map": "/static/js/react-syntax-highlighter_languages_refractor_abap.71a1dccf.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_abnf.41ec4bd6.chunk.js.map": "/static/js/react-syntax-highlighter_languages_refractor_abnf.41ec4bd6.chunk.js.map",
@@ -573,6 +587,6 @@
   },
   "entrypoints": [
     "static/css/main.7a00af08.css",
-    "static/js/main.46f4e9a2.js"
+    "static/js/main.13340e4b.js"
   ]
 }
