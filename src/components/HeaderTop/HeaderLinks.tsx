@@ -15,7 +15,7 @@ import Button from "components/CustomButtons/Button";
 
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle";
 import {switchDarkAndLightTheme} from "state/ui";
-import {UI} from "views/UI/Dashboard";
+import {UI} from "views/UI/MaterialDashboard";
 import {MATERIAL_KIT} from "views/UI/MaterialKit";
 
 

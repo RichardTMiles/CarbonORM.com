@@ -23,9 +23,9 @@ var ps;
 
 export const UI = 'ui/';
 
-export const DASHBOARD_LAYOUT = 'Material-Dashboard/'
+export const MATERIAL_DASHBOARD = 'Material-Dashboard/'
 
-class Dashboard extends React.Component<{
+class MaterialDashboard extends React.Component<{
     classes: any,
     children: any,
 }, {
@@ -115,4 +115,4 @@ class Dashboard extends React.Component<{
 }
 
 
-export default withStyles(appStyle)(Dashboard);
+export default withStyles(appStyle)(MaterialDashboard);

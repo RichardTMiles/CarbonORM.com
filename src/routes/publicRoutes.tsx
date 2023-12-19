@@ -1,4 +1,4 @@
-import Dashboard from "views/UI/Dashboard"
+import Dashboard from "views/UI/MaterialDashboard"
 import Documentation from "views/Documentation/Documentation";
 import LandingPage from "views/LandingPage/LandingPage";
 import ProfilePage from "views/ProfilePage/ProfilePage";

@@ -94,4 +94,16 @@ let dashboardRoutes = [
     }
 ];
 
+let root = '/UI/Material-Dashboard';
+
+dashboardRoutes = dashboardRoutes.map(o => {
+    if ('path' in o) {
+        o.path = root + o.path;
+    }
+    if ('pathTo' in o) {
+        o.pathTo = root + o.pathTo;
+    }
+    return o;
+});
+
 export default dashboardRoutes;

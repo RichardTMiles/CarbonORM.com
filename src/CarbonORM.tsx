@@ -28,7 +28,7 @@ import Maps, {MAPS} from "views/Maps/Maps";
 import {NOTIFICATIONS} from "views/Notifications/Notifications";
 import TableList, {TABLES} from "views/TableList/TableList";
 import Typography, {TYPOGRAPHY} from "views/Typography/Typography";
-import Dashboard, {DASHBOARD_LAYOUT, UI} from "views/UI/Dashboard";
+import Dashboard, {MATERIAL_DASHBOARD, UI} from "views/UI/MaterialDashboard";
 import MaterialKit, {MATERIAL_KIT} from "views/UI/MaterialKit";
 import SectionBasics from "views/UI/Sections/SectionBasics";
 import SectionCompletedExamples from "views/UI/Sections/SectionCompletedExamples";
@@ -93,7 +93,7 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
             <CarbonWebSocket url={'ws://localhost:8888/ws'}/>
             <Routes>
                 <Route path={UI + "*"}>
-                    <Route path={DASHBOARD_LAYOUT + "*"} element={ppr(Dashboard, {})}>
+                    <Route path={MATERIAL_DASHBOARD + "*"} element={ppr(Dashboard, {})}>
                         <Route path={DASHBOARD + '*'} element={ppr(DashboardPage, {})}/>
                         <Route path={USER_PROFILE + '*'} element={ppr(UserProfile, {})}/>
                         <Route path={TABLES + '*'} element={ppr(TableList, {})}/>
@@ -102,7 +102,7 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
                         <Route path={MAPS + '*'} element={ppr(Maps, {})}/>
                         <Route path={NOTIFICATIONS + '*'} element={ppr(Notifications, {})}/>
                         <Route path={UPGRADE_TO_PRO + '*'} element={ppr(UpgradeToPro, {})}/>
-                        <Route path={'*'} element={<Navigate to={'/' + UI + DASHBOARD_LAYOUT + DASHBOARD}/>}/>
+                        <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_DASHBOARD + DASHBOARD}/>}/>
                     </Route>
                     <Route path={MATERIAL_KIT + "*"} element={ppr(MaterialKit, {})}>
                         <Route path={'SectionNavbars/*'} element={ppr(SectionNavbars, {})}/>
@@ -118,7 +118,7 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
                         <Route path={'SectionDownload/*'} element={ppr(SectionDownload, {})}/>
                         <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_KIT + 'SectionNavbars'}/>}/>
                     </Route>
-                    <Route path={'*'} element={<Navigate to={'/' + UI + DASHBOARD_LAYOUT}/>}/>
+                    <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_DASHBOARD}/>}/>
                 </Route>
                 <Route path="/documentation/*" element={ppr(Documentation, {})}>
                     <Route path="Support/" element={ppr(Support, {})}/>
