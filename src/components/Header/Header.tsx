@@ -1,4 +1,4 @@
-import useTheme from "@mui/material/styles/useTheme";
+import {useMediaQuery} from "@material-ui/core";
 import classNames from "classnames";
 import {WithStyles} from "@material-ui/core/styles";
 import {WithRouter} from "api/hoc/passPropertiesAndRender";
@@ -30,7 +30,7 @@ function Header({...props}: PropsWithChildren<WithStyles<typeof headerStyle> & W
         console.log(props)
         let name = '';
         props.routes.map((prop) => {
-            if (prop.path === props.location?.pathname) {
+            if (prop.path === props.location.pathname) {
                 name = prop.navbarName;
             }
             return null;
@@ -46,10 +46,8 @@ function Header({...props}: PropsWithChildren<WithStyles<typeof headerStyle> & W
         [" " + classes[color]]: color
     });
 
-    const theme = useTheme()
-
-    const mdUp = theme?.breakpoints.up('md') ?? true;
-    const smDown = theme?.breakpoints.down('sm');
+    const mdUp = useMediaQuery<any>(theme => theme.breakpoints.up('md'));
+    const smDown = useMediaQuery<any>(theme => theme.breakpoints.down('sm'));
 
     return (
         <AppBar className={classes.appBar + appBarClasses}>
