@@ -25,6 +25,8 @@ import image from "assets/img/bg.jpg";
 import profileImage from "assets/img/faces/avatar.jpg";
 import PropTypes from "prop-types";
 
+export const SECTION_NAVBARS = 'SectionNavbars/';
+
 class SectionNavbars extends React.Component {
   render() {
     const { classes } = this.props;

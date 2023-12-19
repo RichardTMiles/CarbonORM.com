@@ -15,6 +15,8 @@ import NavPills from "components/NavPills/NavPills";
 import pillsStyle from "assets/jss/material-kit-react/views/componentsSections/pillsStyle";
 import PropTypes from "prop-types";
 
+export const SECTION_PILLS = 'SectionPills/';
+
 class SectionPills extends React.Component {
   render() {
     const { classes } = this.props;

@@ -25,6 +25,8 @@ import Badge from "components/Badge/Badge";
 import basicsStyle from "assets/jss/material-kit-react/views/componentsSections/basicsStyle";
 import PropTypes from "prop-types";
 
+export const SECTION_BASICS = 'SectionBasics/';
+
 class SectionBasics extends React.Component {
   constructor(props) {
     super(props);

@@ -4,7 +4,7 @@ import {CodeBlock, dracula, googlecode} from "react-code-blocks";
 const codeBlock = (markdown: string, highlight: string = "", language: string = "php", dark: boolean = true) => {
     return <CodeBlock
         text={markdown}
-        language={language}
+        language={language.toLowerCase()}
         showLineNumbers={true}
         // @ts-ignore
         theme={dark ? dracula : googlecode}

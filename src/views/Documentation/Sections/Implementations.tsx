@@ -38,6 +38,8 @@ const CONFIG = `'DEPLOYMENT': [
             ],
         ],`;
 
+export const IMPLEMENTATIONS = 'implementations/';
+
 // @material-ui/icons
 interface iCarbonPHP extends WithStyles<typeof exampleStyle> {
   axios: AxiosInstance;

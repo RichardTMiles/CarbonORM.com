@@ -8,16 +8,16 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import GridItem from "components/Grid/GridItem";
 // sections for this page
-import SectionBasics from "./Sections/SectionBasics";
-import SectionNavbars from "./Sections/SectionNavbars";
-import SectionTabs from "./Sections/SectionTabs";
-import SectionPills from "./Sections/SectionPills";
-import SectionNotifications from "./Sections/SectionNotifications";
-import SectionTypography from "./Sections/SectionTypography";
-import SectionJavascript from "./Sections/SectionJavascript";
-import SectionCompletedExamples from "./Sections/SectionCompletedExamples";
-import SectionLogin from "./Sections/SectionLogin";
-import SectionDownload from "./Sections/SectionDownload";
+import SectionBasics from "views/UI/Sections/SectionBasics";
+import SectionNavbars from "views/UI/Sections/SectionNavbars";
+import SectionTabs from "views/UI/Sections/SectionTabs";
+import SectionPills from "views/UI/Sections/SectionPills";
+import SectionNotifications from "views/UI/Sections/SectionNotifications";
+import SectionTypography from "views/UI/Sections/SectionTypography";
+import SectionJavascript from "views/UI/Sections/SectionJavascript";
+import SectionCompletedExamples from "views/UI/Sections/SectionCompletedExamples";
+import SectionLogin from "views/UI/Sections/SectionLogin";
+import SectionDownload from "views/UI/Sections/SectionDownload";
 
 import componentsStyle from "assets/jss/material-kit-react/views/components";
 
@@ -30,15 +30,14 @@ import Footer from "components/Footer/Footer";
 import HeaderTop from "components/HeaderTop/HeaderTop";
 import HeaderLinks from "components/HeaderTop/HeaderLinks";
 import ProfilePage from "../ProfilePage/ProfilePage";
-import LandingPage from "../LandingPage/LandingPage";
-import PropTypes from "prop-types";
-import CarbonORM from "CarbonORM";
+import LandingPage from "views/UI/Sections/LandingPage/LandingPage";
+
 
 // react components for routing our app without refresh
 
 export const MATERIAL_KIT = 'material-kit/';
 
-class MaterialKit extends React.Component {
+class MaterialKit extends React.Component<any, any> {
   constructor(props) {
     super(props);
     this.state = {

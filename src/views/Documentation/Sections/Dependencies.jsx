@@ -8,7 +8,7 @@ import GridItem from "components/Grid/GridItem";
 import completedStyle from "assets/jss/material-kit-react/views/componentsSections/completedStyle";
 // @material-ui/icons
 
-
+export const DEPENDENCIES = 'dependencies/';
 
 // TODO - <GridContainer justify="center"> ?????
 class Dependencies extends React.Component {

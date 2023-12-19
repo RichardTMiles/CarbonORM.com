@@ -10,6 +10,8 @@ import Button from "components/CustomButtons/Button";
 // core components
 import downloadStyle from "assets/jss/material-kit-react/views/componentsSections/downloadStyle";
 
+export const SECTION_DOWNLOAD = 'SectionDownload/';
+
 class SectionDownload extends React.Component {
   render() {
     const { classes } = this.props;

@@ -8,22 +8,18 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views
-import DashboardPage from "views/Dashboard/Dashboard";
-import UserProfile from "views/UserProfile/UserProfile";
-import TableList from "views/TableList/TableList";
-import Typography from "views/Typography/Typography";
-import Icons from "views/Icons/Icons";
-import Maps from "views/Maps/Maps";
-import NotificationsPage from "views/Notifications/Notifications";
-import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro";
+import DashboardPage from "views/UI/MaterialDashboard/Dashboard/Dashboard";
+import UserProfile from "views/UI/MaterialDashboard/UserProfile/UserProfile";
+import TableList from "views/UI/MaterialDashboard/TableList/TableList";
+import Typography from "views/UI/MaterialDashboard/Typography/Typography";
+import Icons from "views/UI/MaterialDashboard/Icons/Icons";
+import Maps from "views/UI/MaterialDashboard/Maps/Maps";
+import NotificationsPage from "views/UI/MaterialDashboard/Notifications/Notifications";
+import UpgradeToPro from "views/UI/MaterialDashboard/UpgradeToPro/UpgradeToPro";
 
 
 let dashboardRoutes = [
     {
-
-        // path: "/AccessManagement",
-        //             name: "Access Management",
-        //             component: AccessControl
         path: "/dashboard",
         sidebarName: "Dashboard",
         navbarName: "Material Dashboard",

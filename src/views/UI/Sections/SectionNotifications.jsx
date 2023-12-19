@@ -13,6 +13,9 @@ import Info from "@material-ui/icons/Info";
 import ErrorRounded from "@material-ui/icons/ErrorRounded";
 import PropTypes from "prop-types";
 
+
+export const SECTION_NOTIFICATIONS = 'SectionNotifications/';
+
 class SectionNotifications extends React.Component {
   render() {
     const { classes } = this.props;

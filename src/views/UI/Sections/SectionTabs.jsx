@@ -14,6 +14,8 @@ import CustomTabs from "components/CustomTabs/CustomTabs";
 import tabsStyle from "assets/jss/material-kit-react/views/componentsSections/tabsStyle";
 import PropTypes from "prop-types";
 
+export const SECTION_TABS = 'SectionTabs/';
+
 class SectionTabs extends React.Component {
   render() {
     const { classes } = this.props;

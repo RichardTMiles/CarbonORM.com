@@ -14,34 +14,35 @@ import {authenticateUser, iAuthenticate, initialAuthenticateState} from "state/a
 import {initialUiState, iUi} from "state/ui";
 import {initialVersionsState, iVersions} from "state/versions";
 import {ToastContainer} from "react-toastify";
-import DashboardPage, {DASHBOARD} from "views/Dashboard/Dashboard";
-import Documentation from "views/Documentation/Documentation";
-import CarbonPHP from "views/Documentation/Sections/CarbonPHP";
-import Changelog from "views/Documentation/Sections/Changelog";
-import Dependencies from "views/Documentation/Sections/Dependencies";
-import Implementations from "views/Documentation/Sections/Implementations";
-import License from "views/Documentation/Sections/License";
-import Support from "views/Documentation/Sections/Support";
-import Icons, {ICONS} from "views/Icons/Icons";
-import LandingPage from "views/LandingPage/LandingPage";
-import Maps, {MAPS} from "views/Maps/Maps";
-import {NOTIFICATIONS} from "views/Notifications/Notifications";
-import TableList, {TABLES} from "views/TableList/TableList";
-import Typography, {TYPOGRAPHY} from "views/Typography/Typography";
+import CarbonORMIntroduction, {CARBON_ORM_INTRODUCTION} from "views/Documentation/Sections/CarbonORMIntroduction";
+import DashboardPage, {DASHBOARD} from "views/UI/MaterialDashboard/Dashboard/Dashboard";
+import Documentation, {DOCUMENTATION} from "views/Documentation/Documentation";
+import CarbonPHP, {CARBONPHP} from "views/Documentation/Sections/CarbonPHP";
+import Changelog, {CHANGELOG} from "views/Documentation/Sections/Changelog";
+import Dependencies, {DEPENDENCIES} from "views/Documentation/Sections/Dependencies";
+import Implementations, {IMPLEMENTATIONS} from "views/Documentation/Sections/Implementations";
+import License, {LICENSE} from "views/Documentation/Sections/License";
+import Support, {SUPPORT} from "views/Documentation/Sections/Support";
+import Icons, {ICONS} from "views/UI/MaterialDashboard/Icons/Icons";
+import LandingPage, {LANDING_PAGE} from "views/UI/Sections/LandingPage/LandingPage";
+import Maps, {MAPS} from "views/UI/MaterialDashboard/Maps/Maps";
+import {NOTIFICATIONS} from "views/UI/MaterialDashboard/Notifications/Notifications";
+import TableList, {TABLES} from "views/UI/MaterialDashboard/TableList/TableList";
+import Typography, {TYPOGRAPHY} from "views/UI/MaterialDashboard/Typography/Typography";
 import Dashboard, {MATERIAL_DASHBOARD, UI} from "views/UI/MaterialDashboard";
 import MaterialKit, {MATERIAL_KIT} from "views/UI/MaterialKit";
-import SectionBasics from "views/UI/Sections/SectionBasics";
-import SectionCompletedExamples from "views/UI/Sections/SectionCompletedExamples";
-import SectionDownload from "views/UI/Sections/SectionDownload";
-import SectionJavascript from "views/UI/Sections/SectionJavascript";
-import SectionLogin from "views/UI/Sections/SectionLogin";
-import SectionNavbars from "views/UI/Sections/SectionNavbars";
-import SectionNotifications from "views/UI/Sections/SectionNotifications";
-import SectionPills from "views/UI/Sections/SectionPills";
-import SectionTabs from "views/UI/Sections/SectionTabs";
-import SectionTypography from "views/UI/Sections/SectionTypography";
-import UpgradeToPro, {UPGRADE_TO_PRO} from "views/UpgradeToPro/UpgradeToPro";
-import UserProfile, {USER_PROFILE} from "views/UserProfile/UserProfile";
+import SectionBasics, {SECTION_BASICS} from "views/UI/Sections/SectionBasics";
+import SectionCompletedExamples, {SECTION_COMPLETED_EXAMPLES} from "views/UI/Sections/SectionCompletedExamples";
+import SectionDownload, {SECTION_DOWNLOAD} from "views/UI/Sections/SectionDownload";
+import SectionJavascript, {SECTION_JAVASCRIPT} from "views/UI/Sections/SectionJavascript";
+import SectionLogin, {SECTION_LOGIN} from "views/UI/Sections/SectionLogin";
+import SectionNavbars, {SECTION_NAVBARS} from "views/UI/Sections/SectionNavbars";
+import SectionNotifications, {SECTION_NOTIFICATIONS} from "views/UI/Sections/SectionNotifications";
+import SectionPills, {SECTION_PILLS} from "views/UI/Sections/SectionPills";
+import SectionTabs, {SECTION_TABS} from "views/UI/Sections/SectionTabs";
+import SectionTypography, {SECTION_TYPOGRAPHY} from "views/UI/Sections/SectionTypography";
+import UpgradeToPro, {UPGRADE_TO_PRO} from "views/UI/MaterialDashboard/UpgradeToPro/UpgradeToPro";
+import UserProfile, {USER_PROFILE} from "views/UI/MaterialDashboard/UserProfile/UserProfile";
 
 
 export const initialCarbonORMState: typeof initialRestfulObjectsState
@@ -88,7 +89,6 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
 
         }
 
-
         return <>
             <CarbonWebSocket url={'ws://localhost:8888/ws'}/>
             <Routes>
@@ -105,29 +105,30 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
                         <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_DASHBOARD + DASHBOARD}/>}/>
                     </Route>
                     <Route path={MATERIAL_KIT + "*"} element={ppr(MaterialKit, {})}>
-                        <Route path={'SectionNavbars/*'} element={ppr(SectionNavbars, {})}/>
-                        <Route path={'SectionBasics/*'} element={ppr(SectionBasics, {})}/>
-                        <Route path={'SectionTabs/*'} element={ppr(SectionTabs, {})}/>
-                        <Route path={'SectionPills/*'} element={ppr(SectionPills, {})}/>
-                        <Route path={'SectionNotifications/*'} element={ppr(SectionNotifications, {})}/>
-                        <Route path={'SectionTypography/*'} element={ppr(SectionTypography, {})}/>
-                        <Route path={'SectionJavascript/*'} element={ppr(SectionJavascript, {})}/>
-                        <Route path={'SectionCompletedExamples/*'} element={ppr(SectionCompletedExamples, {})}/>
-                        <Route path={'SectionLogin/*'} element={ppr(SectionLogin, {})}/>
-                        <Route path={'Landing/*'} element={ppr(LandingPage, {})}/>
-                        <Route path={'SectionDownload/*'} element={ppr(SectionDownload, {})}/>
-                        <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_KIT + 'SectionNavbars'}/>}/>
+                        <Route path={SECTION_NAVBARS + '*'} element={ppr(SectionNavbars, {})}/>
+                        <Route path={SECTION_BASICS + '*'} element={ppr(SectionBasics, {})}/>
+                        <Route path={SECTION_TABS + '*'} element={ppr(SectionTabs, {})}/>
+                        <Route path={SECTION_PILLS + '*'} element={ppr(SectionPills, {})}/>
+                        <Route path={SECTION_NOTIFICATIONS + '*'} element={ppr(SectionNotifications, {})}/>
+                        <Route path={SECTION_TYPOGRAPHY + '*'} element={ppr(SectionTypography, {})}/>
+                        <Route path={SECTION_JAVASCRIPT + '*'} element={ppr(SectionJavascript, {})}/>
+                        <Route path={SECTION_COMPLETED_EXAMPLES + '*'} element={ppr(SectionCompletedExamples, {})}/>
+                        <Route path={SECTION_LOGIN + '*'} element={ppr(SectionLogin, {})}/>
+                        <Route path={LANDING_PAGE + '*'} element={ppr(LandingPage, {})}/>
+                        <Route path={SECTION_DOWNLOAD + '*'} element={ppr(SectionDownload, {})}/>
+                        <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_KIT + SECTION_NAVBARS}/>}/>
                     </Route>
                     <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_DASHBOARD}/>}/>
                 </Route>
-                <Route path="/documentation/*" element={ppr(Documentation, {})}>
-                    <Route path="Support/" element={ppr(Support, {})}/>
-                    <Route path="CarbonPHP/" element={ppr(CarbonPHP, {})}/>
-                    <Route path="Dependencies/*" element={ppr(Dependencies, {})}/>
-                    <Route path="BrowserOSSupport/*" element={ppr(Changelog, {})}/>
-                    <Route path="Implementations/*" element={ppr(Implementations, {})}/>
-                    <Route path="License/*" element={ppr(License, {})}/>
-                    <Route path={'*'} element={<Navigate to={'/Documentation/CarbonPHP'}/>}/>
+                <Route path={DOCUMENTATION + '*'} element={ppr(Documentation, {})}>
+                    <Route path={CARBON_ORM_INTRODUCTION + '*'} element={ppr(CarbonORMIntroduction, {})}/>
+                    <Route path={SUPPORT + '*'} element={ppr(Support, {})}/>
+                    <Route path={CARBONPHP + '*'} element={ppr(CarbonPHP, {})}/>
+                    <Route path={DEPENDENCIES + '*'} element={ppr(Dependencies, {})}/>
+                    <Route path={CHANGELOG + "*"} element={ppr(Changelog, {})}/>
+                    <Route path={IMPLEMENTATIONS + "*"} element={ppr(Implementations, {})}/>
+                    <Route path={LICENSE + "*"} element={ppr(License, {})}/>
+                    <Route path={'*'} element={<Navigate to={'/' + DOCUMENTATION + CARBON_ORM_INTRODUCTION}/>}/>
                 </Route>
                 <Route path="/landing-page" element={ppr(LandingPage, {})}/>
                 <Route path={'*'} element={<Navigate to={'/documentation'}/>}/>

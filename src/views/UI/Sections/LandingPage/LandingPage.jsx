@@ -25,6 +25,8 @@ import PropTypes from "prop-types";
 
 const dashboardRoutes = [];
 
+export const LANDING_PAGE = 'LandingPage/';
+
 class LandingPage extends React.Component {
   render() {
     const { classes, ...rest } = this.props;

@@ -10,6 +10,8 @@ import GridItem from "components/Grid/GridItem";
 import completedStyle from "assets/jss/material-kit-react/views/componentsSections/completedStyle";
 import PropTypes from "prop-types";
 
+export const SECTION_COMPLETED_EXAMPLES = 'SectionCompletedExamples/';
+
 class SectionCompletedExamples extends React.Component {
   render() {
     const { classes } = this.props;

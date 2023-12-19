@@ -19,6 +19,10 @@ import Quote from "components/Typography/Quote";
 import typographyStyle from "assets/jss/material-kit-react/views/componentsSections/typographyStyle";
 import image from "assets/img/faces/avatar.jpg";
 import PropTypes from "prop-types";
+
+
+export const SECTION_TYPOGRAPHY = 'SectionTypography/';
+
 class SectionTypography extends React.Component {
   render() {
     const { classes } = this.props;

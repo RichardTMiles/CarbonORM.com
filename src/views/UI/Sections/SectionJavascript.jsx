@@ -27,6 +27,8 @@ function Transition(props) {
   return <Slide direction="down" {...props} />;
 }
 
+export const SECTION_JAVASCRIPT = 'SectionJavascript/';
+
 class SectionJavascript extends React.Component {
   anchorElLeft = null;
   anchorElTop = null;

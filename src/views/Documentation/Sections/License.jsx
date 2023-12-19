@@ -9,6 +9,8 @@ import GridItem from "components/Grid/GridItem";
 import completedStyle from "assets/jss/material-kit-react/views/componentsSections/completedStyle";
 
 
+export const LICENSE = 'license/';
+
 // TODO - <GridContainer justify="center"> ?????
 class License extends React.Component {
     render() {

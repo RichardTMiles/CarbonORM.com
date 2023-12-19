@@ -69,6 +69,7 @@ const JS_ORM_EXAMPLE_2 = ``;
 
 const JS_ORM_EXAMPLE_3 = ``;
 
+export const CARBONPHP = 'CarbonPHP/';
 
 interface UserAccessControl extends iUsers {
   group_name?: string,

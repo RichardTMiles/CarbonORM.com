@@ -29,14 +29,7 @@ import Changelog from "./Sections/Changelog";
 import Support from "./Sections/Support";
 import License from "./Sections/License";
 
-
-// react components for routing our app without refresh
-// @material-ui/icons
-// core components
-
-// sections for this page
-// import Sections from "views/Documentation/Sections/Sections";
-
+export const DOCUMENTATION = 'documentation/';
 
 class Documentation extends React.Component<{
     classes: iStyle,

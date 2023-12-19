@@ -9,7 +9,8 @@ import GridItem from "components/Grid/GridItem";
 import completedStyle from "assets/jss/material-kit-react/views/componentsSections/completedStyle";
 import Button from "@material-ui/core/Button/Button";
 
-// TODO - <GridContainer justify="center"> ?????
+export const SUPPORT = 'support/';
+
 class Template extends React.Component {
     render() {
         const {classes} = this.props;

@@ -19,6 +19,8 @@ import CustomInput from "components/CustomInput/CustomInput";
 import loginStyle from "assets/jss/material-kit-react/views/componentsSections/loginStyle";
 import PropTypes from "prop-types";
 
+export const SECTION_LOGIN = 'SectionLogin/';
+
 class SectionLogin extends React.Component {
   render() {
     const { classes } = this.props;

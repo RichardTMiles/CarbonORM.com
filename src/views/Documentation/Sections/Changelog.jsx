@@ -18,6 +18,8 @@ import Quote from "components/Typography/Quote";
 import typographyStyle from "assets/jss/material-kit-react/views/componentsSections/typographyStyle";
 import {Link} from "react-router-dom";
 
+export const CHANGELOG = 'changelog/';
+
 
 class Changelog extends React.Component {
   render() {
