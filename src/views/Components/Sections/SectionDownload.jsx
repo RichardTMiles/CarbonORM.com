@@ -4,11 +4,11 @@ import React from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import Button from "components/CustomButtons/Button";
 // core components
-import downloadStyle from "assets/jss/material-kit-react/views/componentsSections/downloadStyle.jsx";
+import downloadStyle from "assets/jss/material-kit-react/views/componentsSections/downloadStyle";
 
 class SectionDownload extends React.Component {
   render() {

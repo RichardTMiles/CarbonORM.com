@@ -7,6 +7,8 @@ import CarbonORM from "CarbonORM";
 import isTest from "variables/isTest";
 
 import "assets/css/material-dashboard-react.css?v=1.5.0";
+import '../node_modules/react-toastify/dist/ReactToastify.min.css';
+
 
 const container = document.getElementById('root');
 

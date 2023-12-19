@@ -8,22 +8,18 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views
-import DashboardPage from "views/Dashboard/Dashboard.jsx";
-import UserProfile from "views/UserProfile/UserProfile.jsx";
-import TableList from "views/TableList/TableList.jsx";
-import Typography from "views/Typography/Typography.jsx";
-import Icons from "views/Icons/Icons.jsx";
-import Maps from "views/Maps/Maps.jsx";
-import NotificationsPage from "views/Notifications/Notifications.jsx";
-import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
+import DashboardPage from "views/UI/MaterialDashboard/Dashboard/Dashboard";
+import UserProfile from "views/UI/MaterialDashboard/UserProfile/UserProfile";
+import TableList from "views/UI/MaterialDashboard/TableList/TableList";
+import Typography from "views/UI/MaterialDashboard/Typography/Typography";
+import Icons from "views/UI/MaterialDashboard/Icons/Icons";
+import Maps from "views/UI/MaterialDashboard/Maps/Maps";
+import NotificationsPage from "views/UI/MaterialDashboard/Notifications/Notifications";
+import UpgradeToPro from "views/UI/MaterialDashboard/UpgradeToPro/UpgradeToPro";
 
 
 let dashboardRoutes = [
     {
-
-        // path: "/AccessManagement",
-        //             name: "Access Management",
-        //             component: AccessControl
         path: "/dashboard",
         sidebarName: "Dashboard",
         navbarName: "Material Dashboard",
@@ -93,5 +89,17 @@ let dashboardRoutes = [
         pathTo: "/dashboard",
     }
 ];
+
+let root = '/UI/Material-Dashboard';
+
+dashboardRoutes = dashboardRoutes.map(o => {
+    if ('path' in o) {
+        o.path = root + o.path;
+    }
+    if ('pathTo' in o) {
+        o.pathTo = root + o.pathTo;
+    }
+    return o;
+});
 
 export default dashboardRoutes;

@@ -6,10 +6,10 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 
 // core components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
-import exampleStyle from "assets/jss/material-kit-react/views/componentsSections/exampleStyle.jsx";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import Button from "components/CustomButtons/Button";
+import exampleStyle from "assets/jss/material-kit-react/views/componentsSections/exampleStyle";
 
 import landing from "assets/img/landing.jpg";
 import profile from "assets/img/profile.jpg";

@@ -1,5 +1,6 @@
 import Feature_Group_References from "api/rest/Feature_Group_References";
 import Features from "api/rest/Features";
+import Group_References from "api/rest/Group_References";
 import Groups from "api/rest/Groups";
 import User_Groups from "api/rest/User_Groups";
 import Users from "api/rest/Users";
@@ -177,32 +178,17 @@ class AccessControl extends React.Component<{
     }
 
     deleteFeatureFromGroup(groupId: string | undefined, featureId: string | undefined) {
-        axiosInstance.delete('/rest/' + C6.feature_group_references.TABLE_NAME, {
-            data: {
-                [C6.WHERE]: {
-                    [C6.feature_group_references.FEATURE_ENTITY_ID]: featureId,
-                    [C6.feature_group_references.GROUP_ENTITY_ID]: groupId,
-                }
+        Feature_Group_References.Delete({
+            [C6.WHERE]: {
+                [C6.feature_group_references.FEATURE_ENTITY_ID]: featureId,
+                [C6.feature_group_references.GROUP_ENTITY_ID]: groupId,
             }
-        }).then(response => CarbonORM.instance.testRestfulPostPutDeleteResponse(response, 'Successfully deleted the feature from the group.',
-            'Failed to remove the feature from the group. Please try again later.') && this.setState({
-            groups: this.state.groups?.map(obj => {
+        })
 
-                if (obj.entity_id !== groupId) {
-                    return obj;
-                }
-                const fullFeature: iFeatures | undefined = this.state.features?.find((feature: iFeatures) => feature.feature_entity_id === featureId);
-
-                let regex = new RegExp('(^|,)' + fullFeature?.feature_code + ',?', 'g');
-
-                obj.feature_code = obj.feature_code?.replace(regex, ',');
-
-                return obj;
-            })
-        }))
     }
 
     deleteGroupFromUser(userId: string | undefined, groupId: string | undefined) {
+
         axiosInstance.delete('/rest/' + C6.user_groups.TABLE_NAME, {
             data: {
                 [C6.WHERE]: {
@@ -229,49 +215,20 @@ class AccessControl extends React.Component<{
     }
 
     newGroupGrantabillity(modifyGroupId: string | undefined, allowGroupGrantRightsId: string | undefined) {
-        this.setState({alert: null}, () =>
-            axiosInstance.post('/rest/' + C6.group_references.TABLE_NAME, {
-                [C6.group_references.GROUP_ID]: modifyGroupId,
-                [C6.group_references.ALLOWED_TO_GRANT_GROUP_ID]: allowGroupGrantRightsId,
-            })
-                .then(response => (CarbonORM.instance.testRestfulPostPutDeleteResponse(response, 'Successfully Created Feature Code',
-                        'An unknown issue occurred. We will be looking into this shortly.'))
-                    && this.setState({
-                        groups: this.state.groups?.map(obj => {
-                            if (obj.entity_id !== modifyGroupId) {
-                                return obj;
-                            }
-                            obj.allowed_to_grant_group_id += ',' + allowGroupGrantRightsId;
-                            return obj
-                        })
-                    }))
-        )
+        Group_References.Post({
+            group_id: modifyGroupId,
+            allowed_to_grant_group_id: allowGroupGrantRightsId,
+        })
     }
 
     deleteGroupGrantabillity(modifyGroupId: string | undefined, allowGroupGrantRightsId: string | undefined) {
-        axiosInstance.delete('/rest/' + C6.group_references.TABLE_NAME, {
-            data: {
-                [C6.WHERE]: {
-                    [C6.group_references.GROUP_ID]: modifyGroupId,
-                    [C6.group_references.ALLOWED_TO_GRANT_GROUP_ID]: allowGroupGrantRightsId,
-                }
+        Group_References.Delete({
+            [C6.WHERE]: {
+                [C6.group_references.GROUP_ID]: modifyGroupId,
+                [C6.group_references.ALLOWED_TO_GRANT_GROUP_ID]: allowGroupGrantRightsId,
             }
         })
-            .then(response => CarbonORM.instance.testRestfulPostPutDeleteResponse(response, 'Removed the ability to grant group.',
-                'Failed to remove status') && this.setState({
-                groups: this.state.groups?.map(obj => {
 
-                    if (obj.entity_id !== modifyGroupId) {
-                        return obj;
-                    }
-
-                    let regex = new RegExp('(^|,)' + allowGroupGrantRightsId + ',?', 'g');
-
-                    obj.allowed_to_grant_group_id = obj.allowed_to_grant_group_id?.replace(regex, ',');
-
-                    return obj;
-                })
-            }))
     }
 
     newFeature() {
@@ -410,7 +367,7 @@ class AccessControl extends React.Component<{
                                                                         group: {
                                                                             ...this.state.group,
                                                                             group_name: e.target.value,
-                                                                            created_by: CarbonORM.instance.state.id
+                                                                            created_by: CarbonORM.instance.state.user_id
                                                                         }
                                                                     })
                                                                 }}

@@ -2,7 +2,7 @@
 // // // ErrorPage view styles
 // #############################
 
-import { cardTitle } from "assets/jss/material-dashboard-react.jsx";
+import { cardTitle } from "assets/jss/material-dashboard-react";
 
 const errorPageStyle = {
   cardTitle,

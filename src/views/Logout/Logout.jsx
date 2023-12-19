@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import Redirect from "components/Redirect/Redirect.jsx";
+import Redirect from "components/Redirect/Redirect";
 
 // This is my action creator function
 // It takes three parameters: hours, minutes, seconds

@@ -6,20 +6,21 @@ import classNames from "classnames";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import GridItem from "components/Grid/GridItem.jsx";
+import GridItem from "components/Grid/GridItem";
 import {iStyle} from "variables/styleModules";
+import {CARBON_ORM_INTRODUCTION} from "views/Documentation/Sections/CarbonORMIntroduction";
 import CarbonPHP from "./Sections/CarbonPHP";
-import Bootstrap from "CarbonORM";
+//import Bootstrap from "CarbonORM";
 import Dependencies from "./Sections/Dependencies";
 import Implementations from "./Sections/Implementations";
 
 // FileStructure OptionsIndex Bootstrap Wrapper ParallelProcessing
-import componentsStyle from "assets/jss/material-kit-react/views/components.jsx";
+import componentsStyle from "assets/jss/material-kit-react/views/components";
 
 import Navbar from "views/Documentation/Navbar";
 import Parallax from "../../components/Parallax/Parallax";
 import GridContainer from "../../components/Grid/GridContainer";
-import Footer from "../../components/Footer/Footer";
+import Footer from "components/Footer/Footer";
 
 
 import HeaderTop from "components/HeaderTop/HeaderTop";
@@ -29,17 +30,11 @@ import Changelog from "./Sections/Changelog";
 import Support from "./Sections/Support";
 import License from "./Sections/License";
 
-
-// react components for routing our app without refresh
-// @material-ui/icons
-// core components
-
-// sections for this page
-// import Sections from "views/Documentation/Sections/Sections";
-
+export const DOCUMENTATION = 'documentation/';
 
 class Documentation extends React.Component<{
     classes: iStyle,
+    children: any,
 },{}> {
     constructor(props) {
         super(props);
@@ -61,12 +56,12 @@ class Documentation extends React.Component<{
         console.log(this.props);
 
         const {classes} = this.props;
-        const {versions, darkMode, pureWordpressPluginConfigured} = CarbonORM.instance.state;
+        const { pureWordpressPluginConfigured, darkMode} = CarbonORM.instance.state;
 
 
         let publicDocumentationRoutes = [
             {
-                path: "/Documentation/Support/*",
+                path: "/Documentation/" + CARBON_ORM_INTRODUCTION,
                 name: "ORM Introduction",
                 component: Support
             },
@@ -135,7 +130,6 @@ class Documentation extends React.Component<{
                 brand="CarbonPHP.com"
                 darkMode={CarbonORM.instance.state.darkMode}
                 rightLinks={<HeaderLinks
-                    versions={versions}
                     darkMode={darkMode}
                 />}
                 color={window.pageYOffset < 400 ? "transparent" : (darkMode ? "transparent" : "info")}
@@ -156,7 +150,7 @@ class Documentation extends React.Component<{
                                 </h1>
                                 <h3 className={classes.subtitle}
                                     style={{color: (darkMode ? "white" : "black")}}>
-                                    Automatically generate a RESTful API from your database. Write SECURE sql queries in front end!
+                                    Automatically generate your Restful API from your database. Write SECURE sql queries in front end!
                                 </h3>
                             </div>
                         </GridItem>
@@ -179,7 +173,8 @@ class Documentation extends React.Component<{
                             lineHeight: "+1.8em"
                         }
                     }>
-                        {Bootstrap.instance.subRoutingSwitch(publicDocumentationRoutes)}
+                        {/* Bootstrap.instance.subRoutingSwitch(publicDocumentationRoutes) */}
+                        {this.props.children}
                     </div>
 
                 </div>

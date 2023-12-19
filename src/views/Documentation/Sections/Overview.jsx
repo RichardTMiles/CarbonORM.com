@@ -1,9 +1,9 @@
 import React from "react";
 // @material-ui/core components
 // core components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import completedStyle from "assets/jss/material-kit-react/views/componentsSections/completedStyle.jsx";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import completedStyle from "assets/jss/material-kit-react/views/componentsSections/completedStyle";
 import SequenceDiagram from "assets/img/SD.png";
 
 // @material-ui/icons

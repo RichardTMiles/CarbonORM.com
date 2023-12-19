@@ -5,9 +5,9 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 import Info from "@material-ui/icons/Info";
 // core components
-import SnackbarContent from "components/Snackbar/SnackbarContent.jsx";
-import Clearfix from "components/Clearfix/Clearfix.jsx";
-import notificationsStyles from "assets/jss/material-kit-react/views/componentsSections/notificationsStyles.jsx";
+import SnackbarContent from "components/Snackbar/SnackbarContent";
+import Clearfix from "components/Clearfix/Clearfix";
+import notificationsStyles from "assets/jss/material-kit-react/views/componentsSections/notificationsStyles";
 
 class ControllerModel extends React.Component {
     render() {

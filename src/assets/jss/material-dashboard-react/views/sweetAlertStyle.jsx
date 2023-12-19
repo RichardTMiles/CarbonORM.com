@@ -2,7 +2,7 @@
 // // // SweetAlert view styles
 // #############################
 
-import buttonStyle from "assets/jss/material-dashboard-react/components/buttonStyle.jsx";
+import buttonStyle from "assets/jss/material-dashboard-react/components/buttonStyle";
 import { createStyles } from "@material-ui/core";
 
 const sweetAlertStyle = createStyles({
