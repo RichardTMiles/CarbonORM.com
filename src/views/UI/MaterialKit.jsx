@@ -36,10 +36,11 @@ import CarbonORM from "CarbonORM";
 
 // react components for routing our app without refresh
 
+export const MATERIAL_KIT = 'material-kit/';
 
-class Documentation extends React.Component {
-  constructor() {
-    super();
+class MaterialKit extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       isLoaded: false
     }
@@ -186,7 +187,7 @@ class Documentation extends React.Component {
             <div>
               <Navbar brand="Material Kit UI" color="danger" routes={publicDocumentationRoutes}/>
               <div className={classNames(classes.main, classes.mainRaised)}>
-                {CarbonORM.instance.subRoutingSwitch(publicDocumentationRoutes, rest)}
+                {this.props.children}
               </div>
             </div>
           </div>
@@ -198,9 +199,4 @@ class Documentation extends React.Component {
 }
 
 
-Documentation.propTypes = {
-  classes: PropTypes.object.isRequired,
-  subRoutingSwitch: PropTypes.func.isRequired,
-};
-
-export default withStyles(componentsStyle)(Documentation);
+export default withStyles(componentsStyle)(MaterialKit);

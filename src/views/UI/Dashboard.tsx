@@ -21,7 +21,9 @@ import logo from "assets/img/reactlogo.png";
 
 var ps;
 
-export const DASHBOARD_LAYOUT = 'dashboard-layout/';
+export const UI = 'ui/';
+
+export const DASHBOARD_LAYOUT = 'Material-Dashboard/'
 
 class Dashboard extends React.Component<{
     classes: any,

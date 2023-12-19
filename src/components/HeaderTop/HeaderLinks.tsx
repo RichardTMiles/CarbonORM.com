@@ -15,6 +15,8 @@ import Button from "components/CustomButtons/Button";
 
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle";
 import {switchDarkAndLightTheme} from "state/ui";
+import {UI} from "views/UI/Dashboard";
+import {MATERIAL_KIT} from "views/UI/MaterialKit";
 
 
 class HeaderLinks extends React.Component<{ classes: any }, { zoom: number }> {
@@ -55,7 +57,7 @@ class HeaderLinks extends React.Component<{ classes: any }, { zoom: number }> {
 
     render() {
         const {classes} = this.props;
-        const { darkMode, versions} = CarbonORM.instance.state;
+        const { darkMode} = CarbonORM.instance.state;
 
         return (
             <List className={classes.list}>
@@ -98,23 +100,6 @@ class HeaderLinks extends React.Component<{ classes: any }, { zoom: number }> {
                 <ListItem className={classes.listItem}>
                     <CustomDropdown
                         noLiPadding
-                        buttonText="Versions"
-                        buttonProps={{
-                            className: classes.navLink,
-                            color: "transparent"
-                        }}
-                        darkMode={darkMode}
-                        buttonIcon={Apps}
-                        dropdownList={versions && versions.map(version =>
-                            <a href={'/view/releases/' + version} target="_blank" className={classes.dropdownLink}>
-                                Version {version}
-                            </a>,
-                        )}
-                    />
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <CustomDropdown
-                        noLiPadding
                         buttonText="UI"
                         buttonProps={{
                             className: classes.navLink,
@@ -123,7 +108,7 @@ class HeaderLinks extends React.Component<{ classes: any }, { zoom: number }> {
                         darkMode={darkMode}
                         buttonIcon={Apps}
                         dropdownList={[
-                            <Link to="/UI/Material-Kit"
+                            <Link to={'/' + UI + MATERIAL_KIT}
                                   target="_blank"
                                   className={classes.dropdownLink}>
                                 Material Kit

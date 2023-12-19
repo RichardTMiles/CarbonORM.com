@@ -3,7 +3,7 @@ import Documentation from "views/Documentation/Documentation";
 import LandingPage from "views/LandingPage/LandingPage";
 import ProfilePage from "views/ProfilePage/ProfilePage";
 import LoginPage from "views/LoginPage/LoginPage";
-import Components from "views/UI/Documentation";
+import Components from "views/UI/MaterialKit";
 import AccessControl from "views/AccessControl/AccessControl";
 
 export default function() {

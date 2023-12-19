@@ -62,7 +62,7 @@ class Documentation extends React.Component<{
         console.log(this.props);
 
         const {classes} = this.props;
-        const {versions, darkMode, pureWordpressPluginConfigured} = CarbonORM.instance.state;
+        const { pureWordpressPluginConfigured, darkMode} = CarbonORM.instance.state;
 
 
         let publicDocumentationRoutes = [
@@ -136,7 +136,6 @@ class Documentation extends React.Component<{
                 brand="CarbonPHP.com"
                 darkMode={CarbonORM.instance.state.darkMode}
                 rightLinks={<HeaderLinks
-                    versions={versions}
                     darkMode={darkMode}
                 />}
                 color={window.pageYOffset < 400 ? "transparent" : (darkMode ? "transparent" : "info")}
