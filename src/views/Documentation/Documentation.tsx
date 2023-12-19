@@ -40,6 +40,7 @@ import License from "./Sections/License";
 
 class Documentation extends React.Component<{
     classes: iStyle,
+    children: any,
 },{}> {
     constructor(props) {
         super(props);
@@ -156,7 +157,7 @@ class Documentation extends React.Component<{
                                 </h1>
                                 <h3 className={classes.subtitle}
                                     style={{color: (darkMode ? "white" : "black")}}>
-                                    Automatically generate a RESTful API from your database. Write SECURE sql queries in front end!
+                                    Automatically generate your Restful API from your database. Write SECURE sql queries in front end!
                                 </h3>
                             </div>
                         </GridItem>
@@ -180,6 +181,7 @@ class Documentation extends React.Component<{
                         }
                     }>
                         {/* Bootstrap.instance.subRoutingSwitch(publicDocumentationRoutes) */}
+                        {this.props.children}
                     </div>
 
                 </div>

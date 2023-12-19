@@ -29,7 +29,7 @@ class Private extends React.Component<any, any> {
     };
 
     componentDidUpdate(e) {
-        if (e.history.location.pathname !== e.location.pathname) {
+        if (e.history?.location?.pathname !== e?.location?.pathname) {
             // @ts-ignore
             //this.refs.mainPanel.scrollTop = 0;
             if (this.state.mobileOpen) {
@@ -74,7 +74,7 @@ class Private extends React.Component<any, any> {
                         handleDrawerToggle={this.handleDrawerToggle}
                     />
                     {/* On the /maps/full-screen-maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
-                    {(this.props.location.pathname !== "/maps/full-screen-maps") ? (
+                    {(this.props.location?.pathname !== "/maps/full-screen-maps") ? (
                         <>
                             <div className={classes.content}>
                                 <div className={classes.container}>

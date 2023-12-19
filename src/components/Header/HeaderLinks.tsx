@@ -1,4 +1,4 @@
-import {useMediaQuery, WithStyles} from "@material-ui/core";
+import { WithStyles} from "@material-ui/core";
 import React from "react";
 import classNames from "classnames";
 // @material-ui/core components
@@ -41,7 +41,7 @@ class HeaderLinks extends React.Component<WithStyles<typeof headerLinksStyle>, {
     render() {
         const {classes} = this.props;
         const {open} = this.state;
-        const mdUp = useMediaQuery<any>(theme => theme.breakpoints.up('md'));
+        const mdUp = true // useMediaQuery<any>(theme => theme.breakpoints.up('md'));
         return (
             <div>
                 <div className={classes.searchWrapper}>

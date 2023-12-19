@@ -1,4 +1,4 @@
-import {useMediaQuery, WithStyles} from "@material-ui/core";
+import {WithStyles} from "@material-ui/core";
 import {WithRouter} from "api/hoc/passPropertiesAndRender";
 import classNames from "classnames";
 import { NavLink } from "react-router-dom";
@@ -88,8 +88,8 @@ const Sidebar = ({ ...props }: WithStyles<typeof sidebarStyle> & WithRouter & iS
     </div>
   );
 
-  const mdUp = useMediaQuery<any>(theme => theme?.breakpoints.up('md') ?? true);
-  const smDown = useMediaQuery<any>(theme => theme?.breakpoints.down('sm'));
+  const mdUp = true // useMediaQuery<any>(theme => theme?.breakpoints.up('md') ?? true);
+  const smDown = false // useMediaQuery<any>(theme => theme?.breakpoints.down('sm'));
   return (
     <div>
       {mdUp ? null : <Drawer

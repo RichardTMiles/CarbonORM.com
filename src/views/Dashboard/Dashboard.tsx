@@ -42,7 +42,7 @@ import {
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle";
 
 export const DASHBOARD = 'dashboard/'
-export const WP_DASHBOARD = '/wp-admin/admin.php?page=CarbonPHP'
+export const WP_DASHBOARD = 'wp-admin/admin.php?page=CarbonPHP'
 
 class Dashboard extends React.Component<WithStyles<typeof dashboardStyle> & WithRouter, { value: number }> {
     state = {
