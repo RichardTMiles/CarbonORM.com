@@ -6,6 +6,8 @@ import {
   Marker
 } from "react-google-maps";
 
+export const MAPS = 'maps/'
+
 const CustomSkinMap = withScriptjs(
   withGoogleMap(props => (
     <GoogleMap

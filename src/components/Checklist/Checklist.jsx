@@ -10,7 +10,7 @@ import TableCell from "@material-ui/core/TableCell";
 // @material-ui/icons
 import Check from "@material-ui/icons/Check";
 // core components
-import tasksStyle from "assets/jss/material-dashboard-react/components/tasksStyle.jsx";
+import tasksStyle from "assets/jss/material-dashboard-react/components/tasksStyle";
 
 class Checklist extends React.Component {
   state = {

@@ -1,3 +1,4 @@
+import {StyleRulesCallback} from "@material-ui/core";
 import {
   container,
   defaultFont,
@@ -7,9 +8,9 @@ import {
   successColor,
   warningColor,
   dangerColor
-} from "assets/jss/material-dashboard-react.jsx";
+} from "assets/jss/material-dashboard-react";
 
-const headerStyle = () => ({
+const headerStyle: StyleRulesCallback<any,any> = () => ({
   appBar: {
     backgroundColor: "transparent",
     boxShadow: "none",
@@ -18,7 +19,7 @@ const headerStyle = () => ({
     position: "absolute",
     width: "100%",
     paddingTop: "10px",
-    zIndex: "1029",
+    zIndex: 1029,
     color: "#555555",
     border: "0",
     borderRadius: "3px",

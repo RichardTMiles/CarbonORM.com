@@ -1,3 +1,4 @@
+import {StyleRulesCallback} from "@material-ui/core";
 import {
   warningColor,
   primaryColor,
@@ -7,9 +8,9 @@ import {
   roseColor,
   grayColor,
   defaultFont
-} from "assets/jss/material-dashboard-react.jsx";
+} from "assets/jss/material-dashboard-react";
 
-const tableStyle = theme => ({
+const tableStyle: StyleRulesCallback<any,any> = theme => ({
   warningTableHeader: {
     color: warningColor
   },

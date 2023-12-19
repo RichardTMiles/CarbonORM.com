@@ -6,20 +6,20 @@ import classNames from "classnames";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import GridItem from "components/Grid/GridItem.jsx";
+import GridItem from "components/Grid/GridItem";
 import {iStyle} from "variables/styleModules";
 import CarbonPHP from "./Sections/CarbonPHP";
-import Bootstrap from "CarbonORM";
+//import Bootstrap from "CarbonORM";
 import Dependencies from "./Sections/Dependencies";
 import Implementations from "./Sections/Implementations";
 
 // FileStructure OptionsIndex Bootstrap Wrapper ParallelProcessing
-import componentsStyle from "assets/jss/material-kit-react/views/components.jsx";
+import componentsStyle from "assets/jss/material-kit-react/views/components";
 
 import Navbar from "views/Documentation/Navbar";
 import Parallax from "../../components/Parallax/Parallax";
 import GridContainer from "../../components/Grid/GridContainer";
-import Footer from "../../components/Footer/Footer";
+import Footer from "components/Footer/Footer";
 
 
 import HeaderTop from "components/HeaderTop/HeaderTop";
@@ -179,7 +179,7 @@ class Documentation extends React.Component<{
                             lineHeight: "+1.8em"
                         }
                     }>
-                        {Bootstrap.instance.subRoutingSwitch(publicDocumentationRoutes)}
+                        {/* Bootstrap.instance.subRoutingSwitch(publicDocumentationRoutes) */}
                     </div>
 
                 </div>

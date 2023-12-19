@@ -1,28 +1,36 @@
-import React from "react";
+import useTheme from "@mui/material/styles/useTheme";
 import classNames from "classnames";
-import PropTypes from "prop-types";
+import {WithStyles} from "@material-ui/core/styles";
+import {WithRouter} from "api/hoc/passPropertiesAndRender";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import Hidden from "@material-ui/core/Hidden";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
 // core components
-import HeaderLinks from "./HeaderLinks";
-import Button from "components/CustomButtons/Button.jsx";
+import HeaderLinks from "components/Header/HeaderLinks";
+import Button from "components/CustomButtons/Button";
 
-import headerStyle from "assets/jss/material-dashboard-react/components/headerStyle.jsx";
+import headerStyle from "assets/jss/material-dashboard-react/components/headerStyle";
 import CarbonORM from "CarbonORM";
+import {PropsWithChildren} from "react";
 
-function Header({...props}) {
+interface iHeader {
+    color: "primary" | "info" | "success" | "warning" | "danger",
+    routes: any[],
+    location: {},
+    handleDrawerToggle: () => void
+}
+
+function Header({...props}: PropsWithChildren<WithStyles<typeof headerStyle> & WithRouter & iHeader>) {
 
     function makeBrand() {
         console.log(props)
         let name = '';
         props.routes.map((prop) => {
-            if (prop.path === props.location.pathname) {
+            if (prop.path === props.location?.pathname) {
                 name = prop.navbarName;
             }
             return null;
@@ -38,6 +46,11 @@ function Header({...props}) {
         [" " + classes[color]]: color
     });
 
+    const theme = useTheme()
+
+    const mdUp = theme?.breakpoints.up('md') ?? true;
+    const smDown = theme?.breakpoints.down('sm');
+
     return (
         <AppBar className={classes.appBar + appBarClasses}>
             <Toolbar className={classes.container}>
@@ -47,29 +60,17 @@ function Header({...props}) {
                         {makeBrand()}
                     </Button>
                 </div>
-                <Hidden smDown implementation="css">
-                    <HeaderLinks/>
-                </Hidden>
-                <Hidden mdUp implementation="css">
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        onClick={props.handleDrawerToggle}
-                    >
-                        <Menu/>
-                    </IconButton>
-                </Hidden>
+                {smDown ? null : <HeaderLinks/>}
+                {mdUp ? null : <IconButton
+                    color="inherit"
+                    aria-label="open drawer"
+                    onClick={props.handleDrawerToggle}
+                >
+                    <Menu/>
+                </IconButton>}
             </Toolbar>
         </AppBar>
     );
 }
-
-Header.propTypes = {
-    classes: PropTypes.object.isRequired,
-    color: PropTypes.oneOf(["primary", "info", "success", "warning", "danger"]),
-    routes: PropTypes.array.isRequired,
-    location: PropTypes.object,
-    handleDrawerToggle: PropTypes.any
-};
 
 export default withStyles(headerStyle)(Header);

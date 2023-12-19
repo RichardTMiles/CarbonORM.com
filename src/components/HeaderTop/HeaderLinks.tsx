@@ -10,10 +10,11 @@ import ListItem from "@material-ui/core/ListItem";
 // @material-ui/icons
 import {Add, Apps, CloudDownload, NightsStay, Remove, WbSunny} from "@material-ui/icons";
 // core components
-import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
-import Button from "components/CustomButtons/Button.jsx";
+import CustomDropdown from "components/CustomDropdown/CustomDropdown";
+import Button from "components/CustomButtons/Button";
 
-import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
+import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle";
+import {switchDarkAndLightTheme} from "state/ui";
 
 
 class HeaderLinks extends React.Component<{ classes: any }, { zoom: number }> {
@@ -54,8 +55,6 @@ class HeaderLinks extends React.Component<{ classes: any }, { zoom: number }> {
 
     render() {
         const {classes} = this.props;
-
-        const { switchDarkAndLightTheme} = CarbonORM.instance;
         const { darkMode, versions} = CarbonORM.instance.state;
 
         return (

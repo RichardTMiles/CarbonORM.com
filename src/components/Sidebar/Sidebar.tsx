@@ -1,11 +1,11 @@
-import React from "react";
+import { WithStyles} from "@material-ui/core";
+import useTheme from "@mui/material/styles/useTheme";
+import {WithRouter} from "api/hoc/passPropertiesAndRender";
 import classNames from "classnames";
-import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Drawer from "@material-ui/core/Drawer";
-import Hidden from "@material-ui/core/Hidden";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -14,14 +14,26 @@ import Icon from "@material-ui/core/Icon";
 // core components
 import HeaderLinks from "components/Header/HeaderLinks";
 
-import sidebarStyle from "assets/jss/material-dashboard-react/components/sidebarStyle.jsx";
+import sidebarStyle from "assets/jss/material-dashboard-react/components/sidebarStyle";
 
-const Sidebar = ({ ...props }) => {
+interface iSidebar {
+  classes: any,
+  color: any,
+  logo: any,
+  image: any,
+  logoText: any,
+  routes: any,
+  open: any,
+  handleDrawerToggle: any
+}
+
+const Sidebar = ({ ...props }: WithStyles<typeof sidebarStyle> & WithRouter & iSidebar) => {
   // verifies if routeName is the one active (in browser input)
   function activeRoute(routeName) {
-    return props.location.pathname.indexOf(routeName) > -1;
+    return props.location?.pathname?.indexOf(routeName) > -1;
   }
   const { classes, color, logo, image, logoText, routes } = props;
+
   var links = (
     <List className={classes.list}>
       {routes.map((prop, key) => {
@@ -45,7 +57,6 @@ const Sidebar = ({ ...props }) => {
           <NavLink
             to={prop.path}
             className={activePro + classes.item}
-            activeClassName="active"
             key={key}
           >
             <ListItem button className={classes.itemLink + listItemClasses}>
@@ -77,10 +88,14 @@ const Sidebar = ({ ...props }) => {
       </a>
     </div>
   );
+
+  const theme = useTheme()
+
+  const mdUp = theme?.breakpoints.up('md') ?? true;
+  const smDown = theme?.breakpoints.down('sm');
   return (
     <div>
-      <Hidden mdUp implementation="css">
-        <Drawer
+      {mdUp ? null : <Drawer
           variant="temporary"
           anchor="right"
           open={props.open}
@@ -103,9 +118,9 @@ const Sidebar = ({ ...props }) => {
               style={{ backgroundImage: "url(" + image + ")" }}
             />
           ) : null}
-        </Drawer>
-      </Hidden>
-      <Hidden smDown implementation="css">
+        </Drawer>}
+
+      {smDown ? null :
         <Drawer
           anchor="left"
           variant="permanent"
@@ -122,22 +137,10 @@ const Sidebar = ({ ...props }) => {
               style={{ backgroundImage: "url(" + image + ")" }}
             />
           ) : null}
-        </Drawer>
-      </Hidden>
+        </Drawer>}
+
     </div>
   );
-};
-
-Sidebar.propTypes = {
-  classes: PropTypes.object.isRequired,
-  routes: PropTypes.array,
-  logoText: PropTypes.string,
-  open: PropTypes.bool,
-  location: PropTypes.object.isRequired,
-  color: PropTypes.string,
-  logo: PropTypes.string,
-  image: PropTypes.string,
-  handleDrawerToggle: PropTypes.any
 };
 
 export default withStyles(sidebarStyle)(Sidebar);

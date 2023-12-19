@@ -4,21 +4,21 @@ import React from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import Button from "components/CustomButtons/Button";
 import Code from "@material-ui/icons/Code";
 import Build from "@material-ui/icons/Build";
 import Cloud from "@material-ui/icons/Cloud";
 // core components
-import downloadStyle from "assets/jss/material-kit-react/views/componentsSections/downloadStyle.jsx";
-import Checklist from "components/Checklist/Checklist.jsx";
-import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
+import downloadStyle from "assets/jss/material-kit-react/views/componentsSections/downloadStyle";
+import Checklist from "components/Checklist/Checklist";
+import CustomTabs from "components/CustomTabs/CustomTabs";
 import BugReport from "@material-ui/core/SvgIcon/SvgIcon";
 import {bugs, server, website} from "../../../variables/general";
-import SnackbarContent from "components/Snackbar/SnackbarContent.jsx";
-import Snackbar from "components/Snackbar/Snackbar.jsx";
-import Quote from "components/Typography/Quote.jsx";
+import SnackbarContent from "components/Snackbar/SnackbarContent";
+import Snackbar from "components/Snackbar/Snackbar";
+import Quote from "components/Typography/Quote";
 
 
 class Environment extends React.Component {

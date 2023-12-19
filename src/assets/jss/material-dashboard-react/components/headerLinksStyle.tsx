@@ -1,11 +1,12 @@
 import {
   defaultFont,
   dangerColor
-} from "assets/jss/material-dashboard-react.jsx";
+} from "assets/jss/material-dashboard-react";
 
-import dropdownStyle from "assets/jss/material-dashboard-react/dropdownStyle.jsx";
+import dropdownStyle from "assets/jss/material-dashboard-react/dropdownStyle";
+import {StyleRulesCallback} from "@material-ui/core";
 
-const headerLinksStyle = theme => ({
+const headerLinksStyle: StyleRulesCallback<any,any> = theme => ({
   ...dropdownStyle(theme),
   search: {
     "& > div": {
@@ -25,7 +26,7 @@ const headerLinksStyle = theme => ({
     }
   },
   linkText: {
-    zIndex: "4",
+    zIndex: 4,
     ...defaultFont,
     fontSize: "14px",
     margin: "0px"
@@ -63,15 +64,15 @@ const headerLinksStyle = theme => ({
     }
   },
   margin: {
-    zIndex: "4",
+    zIndex: 4,
     margin: "0"
   },
   searchIcon: {
     width: "17px",
-    zIndex: "4"
+    zIndex: 4
   },
   notifications: {
-    zIndex: "4",
+    zIndex: 4,
     [theme.breakpoints.up("md")]: {
       position: "absolute",
       top: "2px",

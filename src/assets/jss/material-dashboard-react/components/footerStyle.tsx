@@ -1,10 +1,12 @@
+import {Styles} from "@material-ui/styles/withStyles/withStyles";
 import {
   defaultFont,
   container,
   primaryColor
-} from "assets/jss/material-dashboard-react.jsx";
+} from "assets/jss/material-dashboard-react";
+import {FloatProperty, FontWeightProperty} from "csstype";
 
-const footerStyle = {
+const footerStyle: Styles<any,any> = {
   block: {
     color: "inherit",
     padding: "15px",
@@ -14,18 +16,18 @@ const footerStyle = {
     position: "relative",
     display: "block",
     ...defaultFont,
-    fontWeight: "500",
+    fontWeight: "500" as FontWeightProperty,
     fontSize: "12px"
   },
   left: {
-    float: "left!important",
+    float: "left !important" as FloatProperty,
     display: "block"
   },
   right: {
     padding: "15px 0",
     margin: "0",
     fontSize: "14px",
-    float: "right!important"
+    float: "right !important" as FloatProperty
   },
   footer: {
     bottom: "0",

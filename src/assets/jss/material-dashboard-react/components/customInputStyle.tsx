@@ -1,11 +1,13 @@
+import {Styles} from "@material-ui/styles/withStyles/withStyles";
 import {
   primaryColor,
   dangerColor,
   successColor,
   defaultFont
-} from "assets/jss/material-dashboard-react.jsx";
+} from "assets/jss/material-dashboard-react";
+import {FontWeightProperty} from "csstype";
 
-const customInputStyle = {
+const customInputStyle: Styles<any,any> = {
   disabled: {
     "&:before": {
       backgroundColor: "transparent !important"
@@ -33,7 +35,7 @@ const customInputStyle = {
   labelRoot: {
     ...defaultFont,
     color: "#AAAAAA !important",
-    fontWeight: "400",
+    fontWeight: "400" as FontWeightProperty,
     fontSize: "14px",
     lineHeight: "1.42857"
   },
@@ -47,7 +49,7 @@ const customInputStyle = {
     position: "absolute",
     top: "18px",
     right: "0",
-    zIndex: "2",
+    zIndex: 2,
     display: "block",
     width: "24px",
     height: "24px",

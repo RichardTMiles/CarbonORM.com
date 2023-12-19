@@ -14,10 +14,10 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
 // core components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
 
-import navPillsStyle from "assets/jss/material-kit-react/components/navPillsStyle.jsx";
+import navPillsStyle from "assets/jss/material-kit-react/components/navPillsStyle";
 
 
 const BindKeyboardSwipeableViews = bindKeyboard(SwipeableViews);

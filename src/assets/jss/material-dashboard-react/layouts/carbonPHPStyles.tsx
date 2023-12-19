@@ -4,7 +4,7 @@
 
 import {
   transition,
-} from "assets/jss/material-dashboard-react.jsx";
+} from "assets/jss/material-dashboard-react";
 import {createStyles} from "@material-ui/core";
 
 

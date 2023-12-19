@@ -1,6 +1,7 @@
-import { primaryColor } from "assets/jss/material-dashboard-react.jsx";
+import { primaryColor } from "assets/jss/material-dashboard-react";
+import {Styles} from "@material-ui/styles/withStyles/withStyles";
 
-const checkboxAdnRadioStyle = {
+const checkboxAdnRadioStyle: Styles<any, any> = {
   root: {
     padding: "13px"
   },

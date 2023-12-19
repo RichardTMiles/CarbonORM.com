@@ -1,4 +1,7 @@
-const tooltipStyle = {
+import {Styles} from "@material-ui/styles/withStyles/withStyles";
+import {FontWeightProperty} from "csstype";
+
+const tooltipStyle: Styles<any, any> = {
   tooltip: {
     padding: "10px 15px",
     minWidth: "130px",
@@ -12,7 +15,7 @@ const tooltipStyle = {
     fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif',
     fontSize: "12px",
     fontStyle: "normal",
-    fontWeight: "400",
+    fontWeight: "400" as FontWeightProperty,
     textShadow: "none",
     textTransform: "none",
     letterSpacing: "normal",
@@ -23,4 +26,5 @@ const tooltipStyle = {
     lineBreak: "auto"
   }
 };
+
 export default tooltipStyle;

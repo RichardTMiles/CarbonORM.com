@@ -7,20 +7,20 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 
 // core components
-import HeaderTop from "components/HeaderTop/HeaderTop.jsx";
-import Footer from "components/Footer/Footer.jsx";
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
+import HeaderTop from "components/HeaderTop/HeaderTop";
+import Footer from "components/Footer/Footer";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import Button from "components/CustomButtons/Button";
 import HeaderLinks from "components/Header/HeaderLinks";
-import Parallax from "components/Parallax/Parallax.jsx";
+import Parallax from "components/Parallax/Parallax";
 
-import landingPageStyle from "assets/jss/material-kit-react/views/landingPage.tsx";
+import landingPageStyle from "assets/jss/material-kit-react/views/landingPage";
 
 // Sections for this page
-import ProductSection from "./Sections/ProductSection.jsx";
-import TeamSection from "./Sections/TeamSection.jsx";
-import WorkSection from "./Sections/WorkSection.jsx";
+import ProductSection from "./Sections/ProductSection";
+import TeamSection from "./Sections/TeamSection";
+import WorkSection from "./Sections/WorkSection";
 import PropTypes from "prop-types";
 
 const dashboardRoutes = [];

@@ -6,9 +6,9 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Check from "@material-ui/icons/Check";
 import Warning from "@material-ui/icons/Warning";
 // core components
-import SnackbarContent from "components/Snackbar/SnackbarContent.jsx";
-import Clearfix from "components/Clearfix/Clearfix.jsx";
-import notificationsStyles from "assets/jss/material-kit-react/views/componentsSections/notificationsStyles.jsx";
+import SnackbarContent from "components/Snackbar/SnackbarContent";
+import Clearfix from "components/Clearfix/Clearfix";
+import notificationsStyles from "assets/jss/material-kit-react/views/componentsSections/notificationsStyles";
 import Info from "@material-ui/icons/Info";
 import ErrorRounded from "@material-ui/icons/ErrorRounded";
 import PropTypes from "prop-types";

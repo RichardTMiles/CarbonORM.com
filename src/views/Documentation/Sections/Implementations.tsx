@@ -1,15 +1,15 @@
-import CarbonORM from "CarbonORM";
+import CodeBlock from "components/CodeBlock/CodeBlock";
 import React from "react";
 // react components for routing our app without refresh
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // core components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
 
 
-import Button from "components/CustomButtons/Button.jsx";
-import exampleStyle from "assets/jss/material-kit-react/views/componentsSections/exampleStyle.jsx";
+import Button from "components/CustomButtons/Button";
+import exampleStyle from "assets/jss/material-kit-react/views/componentsSections/exampleStyle";
 
 import landing from "assets/img/Carbon-teal.png";
 import profile from "assets/img/Carbon-green.png";
@@ -57,7 +57,6 @@ class Implementations extends React.Component<iCarbonPHP, {
   }
 
   render() {
-    const {codeBlock} = CarbonORM.instance;
     const { classes } = this.props;
     return <GridContainer style={{ paddingTop: '20px' }} justify="center">
       <GridItem xs={12} sm={12} md={6}>
@@ -103,17 +102,17 @@ class Implementations extends React.Component<iCarbonPHP, {
       <GridItem xs={12} sm={12} md={8}>
         <h2>Quick Start</h2>
         <p>Clone this repository and run this website locally.</p><br/>
-        {codeBlock(gitCloneBlock)}
+        {CodeBlock(gitCloneBlock)}
         <br/>
         <p>Add CarbonPHP to an existing composer enabled project.</p><br/>
-        {codeBlock('composer require “richardtmiles/carbonphp:6.3.3"')}
+        {CodeBlock('composer require “richardtmiles/carbonphp:6.3.3"')}
 
         <h3>Deploy to the Cloud</h3>
         <p className="lead">
           <p>Linux users may find this script useful for deploying to
             <a href="https://cloud.google.com/sdk/docs/quickstart" target="_blank" rel="noopener noreferrer" >Google Compute Engine</a>. The script is a bash shell
             script which uses <b>#!/usr/bin/env bash</b> as the shebang.</p>
-          {codeBlock('./programs/gcpDeployment.sh')}
+          {CodeBlock('./programs/gcpDeployment.sh')}
           It has the following three
           command line options.
           <ul>
@@ -145,7 +144,7 @@ class Implementations extends React.Component<iCarbonPHP, {
         <br/>
         <br/>
         <p>The following configuration must be available to successfully deploy to gcp.</p>
-        {codeBlock(CONFIG)}
+        {CodeBlock(CONFIG)}
         <br/><br/>
         <br/><br/>
         <Button round color={this.state.showCode ? 'success' : 'info'} onClick={() => this.setState({
@@ -154,7 +153,7 @@ class Implementations extends React.Component<iCarbonPHP, {
           {!this.state.showCode ? 'Show Google Compute Engine Deployment Script' : 'Hide Code'}
         </Button>
         <br/><br/>
-        {this.state.showCode ? codeBlock(CODE_EXAMPLES.gcpDeployment) : ''}
+        {this.state.showCode ? CodeBlock(CODE_EXAMPLES.gcpDeployment) : ''}
       </GridItem>
     </GridContainer>
 

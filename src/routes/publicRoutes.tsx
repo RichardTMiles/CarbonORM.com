@@ -9,7 +9,7 @@ import AccessControl from "views/AccessControl/AccessControl";
 export default function() {
 
     return [
-        // TODO - The following arn't setup
+        // TODO - The following are not setup
         {
             path: "/landing-page/*",
             name: "Landing Page Management",

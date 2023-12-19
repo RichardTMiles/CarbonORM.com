@@ -41,11 +41,14 @@ const options = {
 
         }
 
-        if ('http://127.0.0.1:3000/' === host || '' === host) {
+        log.info(host);
+
+        if (host.startsWith('http://127.0.0.1:3000/') || '' === host) {
 
             return proxyDestination('dev')
 
         }
+
 
         const tld = new URL(host).hostname.split('.').pop();
 

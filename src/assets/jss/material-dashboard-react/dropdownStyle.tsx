@@ -2,9 +2,11 @@ import {
   primaryColor,
   primaryBoxShadow,
   defaultFont
-} from "assets/jss/material-dashboard-react.jsx";
+} from "assets/jss/material-dashboard-react";
+import {StyleRulesCallback} from "@material-ui/core";
+import {FontWeightProperty} from "csstype";
 
-const dropdownStyle = theme => ({
+const dropdownStyle :StyleRulesCallback<any,any> = theme => ({
   buttonLink: {
     [theme.breakpoints.down("md")]: {
       display: "flex",
@@ -15,7 +17,7 @@ const dropdownStyle = theme => ({
   links: {
     width: "20px",
     height: "20px",
-    zIndex: "4",
+    zIndex: 4,
     [theme.breakpoints.down("md")]: {
       display: "block",
       width: "30px",
@@ -25,7 +27,7 @@ const dropdownStyle = theme => ({
     }
   },
   linkText: {
-    zIndex: "4",
+    zIndex: 4,
     ...defaultFont,
     fontSize: "14px"
   },
@@ -79,7 +81,7 @@ const dropdownStyle = theme => ({
     border: "0",
     boxShadow: "0 2px 5px 0 rgba(0, 0, 0, 0.26)",
     top: "100%",
-    zIndex: "1000",
+    zIndex: 1000,
     minWidth: "160px",
     padding: "5px 0",
     margin: "2px 0 0",
@@ -103,7 +105,7 @@ const dropdownStyle = theme => ({
     transition: "all 150ms linear",
     display: "block",
     clear: "both",
-    fontWeight: "400",
+    fontWeight: "400" as FontWeightProperty,
     lineHeight: "1.42857143",
     color: "#333",
     whiteSpace: "nowrap",

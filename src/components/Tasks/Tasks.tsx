@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import {WithStyles} from "@material-ui/core/styles";
+import React, {ReactNode} from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -14,9 +14,15 @@ import Edit from "@material-ui/icons/Edit";
 import Close from "@material-ui/icons/Close";
 import Check from "@material-ui/icons/Check";
 // core components
-import tasksStyle from "assets/jss/material-dashboard-react/components/tasksStyle.jsx";
+import tasksStyle from "assets/jss/material-dashboard-react/components/tasksStyle";
 
-class Tasks extends React.Component {
+interface iTasks {
+  tasksIndexes: number[],
+  tasks: ReactNode[],
+  checkedIndexes: any
+}
+
+class Tasks extends React.Component<WithStyles<typeof tasksStyle> & iTasks> {
   state = {
     checked: this.props.checkedIndexes
   };
@@ -102,11 +108,5 @@ class Tasks extends React.Component {
   }
 }
 
-Tasks.propTypes = {
-  classes: PropTypes.object.isRequired,
-  tasksIndexes: PropTypes.arrayOf(PropTypes.number),
-  tasks: PropTypes.arrayOf(PropTypes.node),
-  checkedIndexes: PropTypes.any
-};
 
 export default withStyles(tasksStyle)(Tasks);

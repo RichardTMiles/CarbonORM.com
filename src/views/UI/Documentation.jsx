@@ -6,25 +6,25 @@ import cx from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 // core components
-import GridItem from "components/Grid/GridItem.jsx";
+import GridItem from "components/Grid/GridItem";
 // sections for this page
-import SectionBasics from "./Sections/SectionBasics.jsx";
-import SectionNavbars from "./Sections/SectionNavbars.jsx";
-import SectionTabs from "./Sections/SectionTabs.jsx";
-import SectionPills from "./Sections/SectionPills.jsx";
-import SectionNotifications from "./Sections/SectionNotifications.jsx";
-import SectionTypography from "./Sections/SectionTypography.jsx";
-import SectionJavascript from "./Sections/SectionJavascript.jsx";
-import SectionCompletedExamples from "./Sections/SectionCompletedExamples.jsx";
-import SectionLogin from "./Sections/SectionLogin.jsx";
-import SectionDownload from "./Sections/SectionDownload.jsx";
+import SectionBasics from "./Sections/SectionBasics";
+import SectionNavbars from "./Sections/SectionNavbars";
+import SectionTabs from "./Sections/SectionTabs";
+import SectionPills from "./Sections/SectionPills";
+import SectionNotifications from "./Sections/SectionNotifications";
+import SectionTypography from "./Sections/SectionTypography";
+import SectionJavascript from "./Sections/SectionJavascript";
+import SectionCompletedExamples from "./Sections/SectionCompletedExamples";
+import SectionLogin from "./Sections/SectionLogin";
+import SectionDownload from "./Sections/SectionDownload";
 
-import componentsStyle from "assets/jss/material-kit-react/views/components.jsx";
+import componentsStyle from "assets/jss/material-kit-react/views/components";
 
 import Navbar from "views/Documentation/Navbar";
 import Parallax from "../../components/Parallax/Parallax";
 import GridContainer from "../../components/Grid/GridContainer";
-import Footer from "../../components/Footer/Footer";
+import Footer from "components/Footer/Footer";
 
 
 import HeaderTop from "components/HeaderTop/HeaderTop";
