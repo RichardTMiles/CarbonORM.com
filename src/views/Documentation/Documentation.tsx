@@ -8,6 +8,7 @@ import classNames from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
 import GridItem from "components/Grid/GridItem";
 import {iStyle} from "variables/styleModules";
+import {CARBON_ORM_INTRODUCTION} from "views/Documentation/Sections/CarbonORMIntroduction";
 import CarbonPHP from "./Sections/CarbonPHP";
 //import Bootstrap from "CarbonORM";
 import Dependencies from "./Sections/Dependencies";
@@ -60,7 +61,7 @@ class Documentation extends React.Component<{
 
         let publicDocumentationRoutes = [
             {
-                path: "/Documentation/Support/*",
+                path: "/Documentation/" + CARBON_ORM_INTRODUCTION,
                 name: "ORM Introduction",
                 component: Support
             },
