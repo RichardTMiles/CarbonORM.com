@@ -13,12 +13,12 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import Explore from "@material-ui/icons/Explore";
 // core components
 
-import HeaderTop from "components/HeaderTop/HeaderTop.jsx";
-import CustomInput from "components/CustomInput/CustomInput.jsx";
-import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
-import Button from "components/CustomButtons/Button.jsx";
+import HeaderTop from "components/HeaderTop/HeaderTop";
+import CustomInput from "components/CustomInput/CustomInput";
+import CustomDropdown from "components/CustomDropdown/CustomDropdown";
+import Button from "components/CustomButtons/Button";
 
-import navbarsStyle from "assets/jss/material-kit-react/views/componentsSections/navbarsStyle.jsx";
+import navbarsStyle from "assets/jss/material-kit-react/views/componentsSections/navbarsStyle";
 
 import {NavLink} from "react-router-dom";
 

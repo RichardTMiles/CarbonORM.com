@@ -1,7 +1,7 @@
+import {setCookies} from "@carbonorm/carbonreact";
 import {AxiosResponse} from "axios";
 import {toast} from "react-toastify";
-import {setCookies} from "api/hoc/axiosInterceptors";
-import CarbonORM from "CarbonORM";
+import CarbonORM, {initialCarbonORMState} from "CarbonORM";
 import axiosInstance from "variables/axiosInstance";
 import toastOptions from "variables/toastOptions";
 
@@ -14,7 +14,7 @@ export default async function logout(userDeleted = false): Promise<null|AxiosRes
 
     const bootstrap = CarbonORM.instance;
 
-    if (undefined === bootstrap.state.id) {
+    if (undefined === bootstrap.state.user_id) {
 
         toast.error('Failed to change the logged in status! Please contact Drop-In Gaming if problems persist.', toastOptions.toastOptions)
 
@@ -35,12 +35,7 @@ export default async function logout(userDeleted = false): Promise<null|AxiosRes
 
     }));
 
-    const clearState = () => bootstrap.setState({
-        id: undefined,
-        websocketEvents: [],
-        websocketData: [],
-        alertsWaiting: [],
-    });
+    const clearState = () => bootstrap.setState(initialCarbonORMState);
 
     if (false === userDeleted) {
 

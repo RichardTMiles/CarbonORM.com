@@ -1,4 +1,4 @@
-import CarbonORM from "CarbonORM";
+import CodeBlock from "components/CodeBlock/CodeBlock";
 import React from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -24,8 +24,8 @@ import {
   ViewComfy
 } from "@material-ui/icons";
 // core components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
 import NavPills from "components/NavPills/NavPills";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle";
 
@@ -69,6 +69,7 @@ const JS_ORM_EXAMPLE_2 = ``;
 
 const JS_ORM_EXAMPLE_3 = ``;
 
+export const CARBONPHP = 'CarbonPHP/';
 
 interface UserAccessControl extends iUsers {
   group_name?: string,
@@ -124,7 +125,6 @@ class CarbonPHP extends React.Component<{classes: any}, {
 
   render() {
     console.log('CarbonPHP.tsx Render()');
-    const { codeBlock } = CarbonORM.instance;
     const { classes } = this.props;
     const axios = axiosInstance;
 
@@ -180,7 +180,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                           all C6
                           configuration will be available for the Config's constructor.
                         </p>
-                        {codeBlock("include 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php'\n(new CarbonPHP\\CarbonPHP( Config\\Config::class ), __DIR__ . DIRECTORY_SEPARATOR)();", "", "php", true)}
+                        {CodeBlock("include 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php'\n(new CarbonPHP\\CarbonPHP( Config\\Config::class ), __DIR__ . DIRECTORY_SEPARATOR)();", "", "php", true)}
                         <br/>
                         <p>In this example the <b>Config\Config::class</b> implements the
                           interface <b>CarbonPHP\Interfaces\iConfig</b>.
@@ -189,7 +189,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                           The Config class will never be instanced in the below example and will only call the
                           static
                           configuration method.</p>
-                        {codeBlock("(new CarbonPHP\\CarbonPHP( Config\\Config::class ))( Application\\Application::class  );", "", "php", true)}
+                        {CodeBlock("(new CarbonPHP\\CarbonPHP( Config\\Config::class ))( Application\\Application::class  );", "", "php", true)}
                         <br/>
                         <p>
                           Other ways to build with C6 get increasingly verbose, start with our Hello World example
@@ -216,7 +216,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                                     custom error handling, ect.
                                   </p>
                                   <h4>/index.php</h4>
-                                  {codeBlock(HelloWorld)}
+                                  {CodeBlock(HelloWorld)}
                                 </>
 
                               )
@@ -230,7 +230,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                                   <p>The goal: Determine what the user wants by looking at the URI first and route
                                     to </p>
                                   <p>C6 solution: Use regular expression on the Request URI sent to the Server.</p>
-                                  {codeBlock("$this->uri = trim(urldecode(parse_url(trim(preg_replace('/\\s+/', ' ', $_SERVER['REQUEST_URI'])), PHP_URL_PATH)));\n")}
+                                  {CodeBlock("$this->uri = trim(urldecode(parse_url(trim(preg_replace('/\\s+/', ' ', $_SERVER['REQUEST_URI'])), PHP_URL_PATH)));\n")}
                                   <p>* ps, the URL contains your domain name, this, the URI, does not.</p>
                                   <p>
                                     The below examples are designed to highlight the <b>$this-&gt;structure(
@@ -239,7 +239,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                                     method which is defined in <b>CarbonPHP\Route::class </b> extended through the
                                     <b> CarbonPHP\Application::class </b> which you are required to extend.
                                   </p>
-                                  {codeBlock("public function structure(callable $struct = null): Route;")}
+                                  {CodeBlock("public function structure(callable $struct = null): Route;")}
                                   <br/>
                                   <p>
                                     This method, signatured above, is to be used in conjunction with
@@ -250,7 +250,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                                     if</u>
                                     ('iff') the regex matches.
                                   </p>
-                                  {codeBlock(RegexMatch)}
+                                  {CodeBlock(RegexMatch)}
                                   <p>
                                     In this example we see callbacks defined by the <b>structure </b> method. The
                                     extra
@@ -272,7 +272,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                                     should be
                                     executed when and <u>iff</u> the regex is matched.
                                   </p>
-                                  {codeBlock(RoutingEx1)}
+                                  {CodeBlock(RoutingEx1)}
                                 </>
                               )
                             },
@@ -307,7 +307,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                                     method.
                                     It is syntactically formatted to show type then the default option if any.
                                   </p>
-                                  {codeBlock(iConfigPHPDOC, "", "PHP", true)}
+                                  {CodeBlock(iConfigPHPDOC, "", "PHP", true)}
                                   <p>
                                     * Deprecation notice :: we support passing the configuration file as an absolute
                                     path to
@@ -321,7 +321,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                                     documentation is shown on the next "https://CarbonPHP.com/" tab.
                                   </p>
                                   <h3>/config/Config.php</h3>
-                                  {codeBlock(iConfig)}
+                                  {CodeBlock(iConfig)}
 
                                 </>
                               )
@@ -331,7 +331,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                               tabIcon: Looks4,
                               tabContent: (
                                 <>
-                                  {codeBlock(InstantChat)}
+                                  {CodeBlock(InstantChat)}
                                 </>
                               )
                             },
@@ -347,9 +347,9 @@ class CarbonPHP extends React.Component<{classes: any}, {
                                   in mind.
                                   <br/>
                                   <br/>
-                                  {codeBlock("(new CarbonPHP\\CarbonPHP( Config\\Config::class ))();")}
+                                  {CodeBlock("(new CarbonPHP\\CarbonPHP( Config\\Config::class ))();")}
                                   <h2>/config/Config.php</h2>
-                                  {codeBlock(CarbonPHPConfig)}
+                                  {CodeBlock(CarbonPHPConfig)}
                                 </>
                               )
                             },
@@ -359,7 +359,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                               tabContent: (
                                 <>
                                   <h2>/StatsCoach.php</h2>
-                                  {codeBlock(StatsCoach)}
+                                  {CodeBlock(StatsCoach)}
                                 </>
                               )
                             },
@@ -497,7 +497,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                       </p>
                       <br/>
                       <p>The command line interface is used to generate and regenerate bindings.</p>
-                      {codeBlock("php index.php rest", "", "php", true)}
+                      {CodeBlock("php index.php rest", "", "php", true)}
                       <small>You may append the <b>"-help"</b> flag to see a full list or options.</small>
                       <br/>
                       <GridContainer justify="center">
@@ -661,7 +661,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                         {this.state.jsonStringOutput !== '' ? this.state.jsonStringOutput : ''}
                       </pre>
                         {this.state.jsonStringOutput !== '' ? <h5><b>Part 2, frontend request.</b></h5> : ''}
-                        {this.state.exampleCode !== '' ? codeBlock(this.state.exampleCode, '', 'javascript') : ''}
+                        {this.state.exampleCode !== '' ? CodeBlock(this.state.exampleCode, '', 'javascript') : ''}
                       </div>
                       <br/>
                       <h2>Requirements</h2>
@@ -681,7 +681,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                         is our minimal rest example, which would give full rest access to any generated tables.
                       </p>
                       <h5><small>Minimum working example:</small></h5>
-                      {codeBlock(minimalRestExample)}
+                      {CodeBlock(minimalRestExample)}
                       <br/><br/>
                       <h2>Restful API</h2>
                       <p>
@@ -705,7 +705,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                         <br/>
                         <br/>
                         <div>
-                          {this.state.exampleInterface !== '' ? codeBlock(this.state.exampleInterface, '', 'php') : ''}
+                          {this.state.exampleInterface !== '' ? CodeBlock(this.state.exampleInterface, '', 'php') : ''}
                         </div>
                       </p>
                       <h2>Internal API</h2>
@@ -731,7 +731,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                         <br/>
                         <br/>
                         <div>
-                          {this.state.exampleCodeAPI !== '' ? codeBlock(this.state.exampleCodeAPI, '', 'php') : ''}
+                          {this.state.exampleCodeAPI !== '' ? CodeBlock(this.state.exampleCodeAPI, '', 'php') : ''}
                         </div>
 
                       </p>
@@ -764,7 +764,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                           {this.state.expandUsersRestTable ? "Collapse Example Code" : "Expand Fully Generated Restful ORM"}
                         </Button>
                         <br/><br/>
-                        {this.state.expandUsersRestTable === true ? codeBlock(CarbonUsersTable) : ''}
+                        {this.state.expandUsersRestTable === true ? CodeBlock(CarbonUsersTable) : ''}
                         <br/><br/>
                       </p>
                       <h2>Data Retention with <i>-Triggers</i></h2>
@@ -855,7 +855,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                   <GridContainer justify="center">
                   <GridItem xs={false} sm={false} md={1}> </GridItem>
                   <GridItem xs={12} sm={12} md={10}>
-                    {codeBlock("php index.php rest", "", "bash", true)}
+                    {CodeBlock("php index.php rest", "", "bash", true)}
                     <AccessControl />
                   </GridItem>
                 </GridContainer>
@@ -872,7 +872,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                       </h3>
                       <p>This process shrinks load time by reducing file sizes.</p>
                       <br/><br/>
-                      {codeBlock("php index.php minify", "", "php", true)}
+                      {CodeBlock("php index.php minify", "", "php", true)}
                       <small>Use the command above built into the CLI to execute this routing. It is recommended to add
                         this to your build routine.</small>
                       <br/><br/>
@@ -882,10 +882,10 @@ class CarbonPHP extends React.Component<{classes: any}, {
                         returned
                         by the configuration.
                         More specifically by the
-                        field: {codeBlock("$return['MINIFY']['CSS']['OUT']\n$return['MINIFY']['JS']['OUT']", "", "php", true)}
+                        field: {CodeBlock("$return['MINIFY']['CSS']['OUT']\n$return['MINIFY']['JS']['OUT']", "", "php", true)}
                       </p>
 
-                      {codeBlock(Minification)}
+                      {CodeBlock(Minification)}
                     </GridItem>
                   </GridContainer>
                 )
@@ -899,7 +899,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                     <GridItem xs={12} sm={12} md={11}>
                       <h3 className={classes.textCenter}>
                       </h3>
-                      {codeBlock(CacheControl)}
+                      {CodeBlock(CacheControl)}
                     </GridItem>
                   </GridContainer>
                 )
@@ -921,7 +921,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                         deprecated and removed.
                       </p>
                       <br/>
-                      {codeBlock(composerCode)}
+                      {CodeBlock(composerCode)}
                     </GridItem>
                   </GridContainer>
                 )
@@ -1022,9 +1022,9 @@ class CarbonPHP extends React.Component<{classes: any}, {
                         other methods.
                         In a pure C6 implementation the first step after a uri is matched is the controller.
                       </p>
-                      {codeBlock("$this->structure($this->MVC());", "", "php", true)}
+                      {CodeBlock("$this->structure($this->MVC());", "", "php", true)}
                       <br/>
-                      {codeBlock('$this->match(\'Recover/{user_email?}/{user_generated_string?}\', \'User\', \'recover\')()', "", "php", true)}
+                      {CodeBlock('$this->match(\'Recover/{user_email?}/{user_generated_string?}\', \'User\', \'recover\')()', "", "php", true)}
 
                       <p>
                         We would expect to find the above code in the bootstrap. This would move to
@@ -1204,7 +1204,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
                         <b> Fork::safe()</b> to help avoid cross platform issues. So programs simply require the
                         library,
                         such as websockets.</p>
-                      {codeBlock(forksCode)}
+                      {CodeBlock(forksCode)}
                     </GridItem>
                   </GridContainer>
                 )
@@ -1221,9 +1221,9 @@ class CarbonPHP extends React.Component<{classes: any}, {
                       </h3>
                       <small>Websockets all for realtime persistent communication.</small>
                       <br/><br/>
-                      {codeBlock("php index.php websocket", "", "php", true)}
+                      {CodeBlock("php index.php websocket", "", "php", true)}
                       <br/><br/>
-                      {codeBlock(websocketCode)}
+                      {CodeBlock(websocketCode)}
                     </GridItem>
                   </GridContainer>
                 )

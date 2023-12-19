@@ -1,401 +1,87 @@
-import {CarbonReact} from "@carbonorm/carbonreact";
+import {CarbonReact, initialRequiredCarbonORMState, CarbonWebSocket} from "@carbonorm/carbonreact";
+import Notifications from "@material-ui/icons/Notifications";
 import Carbons from "api/rest/Carbons";
-import {AxiosResponse} from "axios";
-import {iUsers} from "api/rest/C6";
-import React from 'react';
+import {initialRestfulObjectsState} from "api/rest/C6";
 import {Routes, Route, Navigate} from 'react-router-dom';
 
-import swal from '@sweetalert/with-react';
 import {ppr} from "api/hoc/passPropertiesAndRender";
-import Public from 'layouts/Public';
-import Private from 'layouts/Private';
+//import Public from 'layouts/Public';
+//import Private from 'layouts/Private';
+//import PrivateRoutes from "routes/privateRoutes";
+//import PublicRoutes from "routes/publicRoutes";
 // This is our ajax class
-import {CodeBlock, dracula, googlecode} from 'react-code-blocks';
-import axiosInstance from "variables/axiosInstance";
+import {authenticateUser, iAuthenticate, initialAuthenticateState} from "state/authenticate";
+import {initialUiState, iUi} from "state/ui";
+import {initialVersionsState, iVersions} from "state/versions";
+import {ToastContainer} from "react-toastify";
+import CarbonORMIntroduction, {CARBON_ORM_INTRODUCTION} from "views/Documentation/Sections/CarbonORMIntroduction";
+import DashboardPage, {DASHBOARD} from "views/UI/MaterialDashboard/Dashboard/Dashboard";
+import Documentation, {DOCUMENTATION} from "views/Documentation/Documentation";
+import CarbonPHP, {CARBONPHP} from "views/Documentation/Sections/CarbonPHP";
+import Changelog, {CHANGELOG} from "views/Documentation/Sections/Changelog";
+import Dependencies, {DEPENDENCIES} from "views/Documentation/Sections/Dependencies";
+import Implementations, {IMPLEMENTATIONS} from "views/Documentation/Sections/Implementations";
+import License, {LICENSE} from "views/Documentation/Sections/License";
+import Support, {SUPPORT} from "views/Documentation/Sections/Support";
+import Icons, {ICONS} from "views/UI/MaterialDashboard/Icons/Icons";
+import LandingPage, {LANDING_PAGE} from "views/UI/Sections/LandingPage/LandingPage";
+import Maps, {MAPS} from "views/UI/MaterialDashboard/Maps/Maps";
+import {NOTIFICATIONS} from "views/UI/MaterialDashboard/Notifications/Notifications";
+import TableList, {TABLES} from "views/UI/MaterialDashboard/TableList/TableList";
+import Typography, {TYPOGRAPHY} from "views/UI/MaterialDashboard/Typography/Typography";
+import Dashboard, {MATERIAL_DASHBOARD, UI} from "views/UI/MaterialDashboard";
+import MaterialKit, {MATERIAL_KIT} from "views/UI/MaterialKit";
+import SectionBasics, {SECTION_BASICS} from "views/UI/Sections/SectionBasics";
+import SectionCompletedExamples, {SECTION_COMPLETED_EXAMPLES} from "views/UI/Sections/SectionCompletedExamples";
+import SectionDownload, {SECTION_DOWNLOAD} from "views/UI/Sections/SectionDownload";
+import SectionJavascript, {SECTION_JAVASCRIPT} from "views/UI/Sections/SectionJavascript";
+import SectionLogin, {SECTION_LOGIN} from "views/UI/Sections/SectionLogin";
+import SectionNavbars, {SECTION_NAVBARS} from "views/UI/Sections/SectionNavbars";
+import SectionNotifications, {SECTION_NOTIFICATIONS} from "views/UI/Sections/SectionNotifications";
+import SectionPills, {SECTION_PILLS} from "views/UI/Sections/SectionPills";
+import SectionTabs, {SECTION_TABS} from "views/UI/Sections/SectionTabs";
+import SectionTypography, {SECTION_TYPOGRAPHY} from "views/UI/Sections/SectionTypography";
+import UpgradeToPro, {UPGRADE_TO_PRO} from "views/UI/MaterialDashboard/UpgradeToPro/UpgradeToPro";
+import UserProfile, {USER_PROFILE} from "views/UI/MaterialDashboard/UserProfile/UserProfile";
 
-export default class CarbonORM extends CarbonReact<{}, {
-    authenticate: string,
-    authenticated?: boolean,
-    maintenanceMode?: boolean,
-    backendThrowable: { [key: string]: any }[],
-    pureWordpressPluginConfigured?: boolean,
-    documentationVersionURI: string,
-    alert?: boolean,
-    operationActive: boolean,
-    isLoaded: boolean,
-    darkMode: boolean,
-    alertsWaiting: Array<any>,
-    versions: Array<any>,
-    users?: Array<iUsers>,
-    websocketEvents?: Array<any>,
-    websocketData?: Array<any>,
-    id?: string
-}> {
+
+export const initialCarbonORMState: typeof initialRestfulObjectsState
+    & typeof initialRequiredCarbonORMState
+    & iAuthenticate
+    & iVersions
+    & iUi
+    & {} = {
+    ...initialVersionsState,
+    ...initialRestfulObjectsState,
+    ...initialRequiredCarbonORMState,
+    ...initialAuthenticateState,
+    ...initialUiState,
+}
+
+
+export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, typeof initialCarbonORMState> {
 
     static instance: CarbonORM;
 
-    state = {
-        carbons: undefined, websocketData: [], websocketEvents: [], websocketMounted: false,
-        users: undefined,
-        backendThrowable: [],
-        maintenanceMode: false,
-        authenticate: '/carbon/authenticated',
-        documentationVersionURI: '0.0.0',
-        authenticated: undefined,
-        pureWordpressPluginConfigured: false,
-        alert: false,
-        operationActive: false,
-        isLoaded: false,
-        alertsWaiting: [],
-        darkMode: true,
-        versions: [],
-        id: ''
-    };
+    state = initialCarbonORMState;
 
     constructor(props) {
         super(props);
         CarbonORM.instance = this;
         CarbonReact.instance = this;
-        this.switchDarkAndLightTheme = this.switchDarkAndLightTheme.bind(this);
-        this.handleResponseCodes = this.handleResponseCodes.bind(this);
-        this.authenticate = this.authenticate.bind(this);
-        this.subRoutingSwitch = this.subRoutingSwitch.bind(this);
-        this.semaphoreLock = this.semaphoreLock.bind(this);
-        this.testRestfulPostPutDeleteResponse = this.testRestfulPostPutDeleteResponse.bind(this);
-        this.codeBlock = this.codeBlock.bind(this);
     }
 
-    codeBlock = (markdown: string, highlight: string = "", language: string = "php", dark: boolean = true) => {
-        return <CodeBlock
-            text={markdown}
-            language={language}
-            showLineNumbers={true}
-            // @ts-ignore
-            theme={dark ? dracula : googlecode}
-            highlight={highlight}
-        />
-    };
-
-    switchDarkAndLightTheme = () => {
-        this.setState({
-            darkMode: !this.state.darkMode
-        });
-    };
-
-    semaphoreLock = <T extends React.Component>(context ?: T): Function =>
-
-        (callback: Function, localLock: boolean = false): Function => (opt ?: any): boolean => {
-
-            const criticalSection = async (): Promise<void> => {
-                console.time("Critical Section");
-                try {
-                    if (context === undefined) {
-                        await callback(opt);
-                    } else {
-                        console.log('opActive: true');
-                        await context.setState({operationActive: true}, async () => {
-                            await callback(opt);
-                            console.log('opActive: false');
-                            context.setState({
-                                operationActive: false
-                            })
-                        })
-                    }
-                } finally {
-                    console.timeEnd("Critical Section")
-                }
-                if (!localLock) {
-                    this.setState({
-                        operationActive: false
-                    })
-                }
-            };
-
-            const lockError = () => {
-                swal({
-                    text: 'An issue with out system has occurred.',
-                    buttons: {
-                        cancel: "Close",
-                    }
-                })
-            };
-
-            if (!this.state.operationActive) {
-                if (!localLock) {
-                    this.setState({operationActive: true},
-                        () => criticalSection().catch(lockError))
-                } else {
-                    criticalSection().catch(lockError)
-                }
-                return true;
-            }
-            return false;
-        };
-
-
-    changeLoggedInStatus = () => {
-        this.setState({authenticated: !this.state.authenticated});
-    };
-
-    subRoutingSwitch = (routes) => <Routes>{routes.map((prop, key) => {
-
-        console.log('prop', prop);
-
-        if (prop.redirect) {
-            if (!prop.pathTo) {
-                console.log('bad route redirect,', prop);
-                return "";
-            }
-            return <Route
-                key={key}
-                path={prop.path}
-                element={<><Navigate
-                    to={prop.pathTo}
-                    key={key}/></>}/>;
-        }
-        if (prop.views) {
-            return prop.views.map((x, key) => {
-                return (
-                    <Route
-                        path={x.path}
-                        element={ppr(x.component, {})}
-                        key={key}/>
-                );
-            });
-        }
-        return <Route
-            path={prop.path}
-            element={ppr(prop.component, {})}
-            key={key}/>;
-    })}</Routes>;
-
-
-    authenticate = () => {
-
-        axiosInstance.get<any, AxiosResponse<{
-            versions: string[],
-            success: boolean,
-            pureWordpressPluginConfigured: boolean,
-            authenticated: boolean,
-            id: string,
-        }, any>>(this.state.authenticate)
-            .then(res => {
-                console.log("authenticate data: ", res);
-                this.setState({
-                    id: res?.data?.id || '',
-                    pureWordpressPluginConfigured: res?.data?.pureWordpressPluginConfigured || false,
-                    authenticated: res?.data?.success || false,
-                    versions: res?.data?.versions?.sort((v1: string, v2: string) => {
-                        let lexicographical = false,
-                            zeroExtend = false,
-                            v1parts = v1.split('.'),
-                            v2parts = v2.split('.');
-
-                        function isValidPart(x) {
-                            return (lexicographical ? /^\d+[A-Za-z]*$/ : /^\d+$/).test(x);
-                        }
-
-                        if (!v1parts.every(isValidPart) || !v2parts.every(isValidPart)) {
-                            return NaN;
-                        }
-
-                        if (zeroExtend) {
-                            while (v1parts.length < v2parts.length) v1parts.push("0");
-                            while (v2parts.length < v1parts.length) v2parts.push("0");
-                        }
-
-                        for (let i = 0; i < v1parts.length; ++i) {
-                            if (v2parts.length === i) {
-                                return 1;
-                            }
-
-                            if (v1parts[i] === v2parts[i]) {
-                                // noinspection UnnecessaryContinueJS - clarity call
-                                continue;
-                            } else if (v1parts[i] > v2parts[i]) {
-                                return 1;
-                            } else {
-                                return -1;
-                            }
-                        }
-
-                        if (v1parts.length !== v2parts.length) {
-                            return -1;
-                        }
-
-                        return 0;
-
-                    }).reverse() ?? [],
-                    isLoaded: true
-                });
-            })
-            .catch(err => {
-              console.log("authenticate error: ", err);
-                this.setState({
-                    isLoaded: true,
-                    authenticated: false,
-                    versions: ['loading error'],
-                })
-
-            })
-    };
-
-    testRestfulPostPutDeleteResponse = (response, success, error) => {
-        if (('data' in response) && ('rest' in response.data) &&
-            (('created' in response.data.rest) ||
-                ('updated' in response.data.rest) ||
-                ('deleted' in response.data.rest))
-        ) {
-            if (typeof success === 'function') {
-                return success(response);
-            }
-            if (success === null || typeof success === 'string') {
-                swal("Success!", success, "success");
-            }
-
-            return response.data.rest?.created ?? response.data.rest?.updated ?? response.data.rest?.deleted ?? true;
-        }
-
-        if (typeof error === 'function') {
-            return error(response);
-        }
-
-        if (error === null || typeof error === 'string') {
-            swal("Whoops!", error, "error");
-        }
-
-        return false;
-    };
-
-    handleResponseCodes = data => {
-        console.log("handleResponseCodes data", data);
-
-        interface iAlert {
-            intercept?: boolean,
-            message?: string,
-            title?: string,
-            type?: string,
-        }
-
-        let handleAlert = (alert: iAlert): void => {
-
-            console.log("alert", Object.assign({}, alert));
-
-            if (alert.intercept === false) {
-                return; // recursive ending condition
-            }
-
-            swal({
-                title: alert.title || 'Danger! You didn\'t set a title in your react alert.',
-                text: alert.message || 'An alert was encountered, but no message could be parsed.',
-                icon: alert.type || 'error',
-            }).then(() => {
-                let alertsWaiting = this.state.alertsWaiting;
-                let nextAlert = alertsWaiting?.pop();
-                this.setState({
-                    alert: nextAlert !== undefined,
-                    alertsWaiting: alertsWaiting
-                }, () => nextAlert !== undefined && handleAlert(nextAlert));     // this is another means to end. note: doesn't hurt
-            });
-
-            //
-        };
-
-        if (data?.data?.alert) {
-            console.log("handleResponseCodes ∈ Bootstrap");
-
-            let a: iAlert = data.data.alert, stack: Array<iAlert> = [];
-
-            // C6 Public Alerts
-
-            ['info', 'success', 'warning', 'danger'].map(value => {
-                if (value in a) {
-                    a[value].map(message => {
-                        stack.push({
-                            'intercept': true,    // for now lets intercept all
-                            'message': message,
-                            'title': value,
-                            'type': value,
-                        });
-                        return null;
-                    });
-                    console.log("stack", Object.assign({}, stack));
-                }
-                return false; // free up memory through a map
-            });
-
-            if (stack.length === 0) {
-                return null;
-            }
-
-            if (this.state.alert === true) {
-                let alertsWaiting: any = this.state.alertsWaiting;
-                alertsWaiting.push(stack);
-                this.setState({
-                    alertsWaiting: alertsWaiting
-                });
-                return null;
-            }
-
-            let alert = stack.pop();
-
-            if (undefined === alert) {
-                return;
-            }
-
-            console.log("alert", Object.assign({}, alert));
-
-            this.setState({
-                alert: true,
-                alertsWaiting: stack
-            });
-
-            handleAlert(alert);
-        }
-    };
-
     componentDidMount() {
-        axiosInstance.interceptors.request.use(req => {
-                if (req.method === 'get' && req.url?.match(/^\/rest\/.*$/)) {
-                    req.params = JSON.stringify(req.params)
-                }
-                return req;
-            }, error => {
-                return Promise.reject(error);
-            }
-        );
-        axiosInstance.interceptors.response.use(
-            response => {
-                // Do something with response data
-                console.log(
-                    "Every Axios response is logged in login.jsx :: ",
-                    response
-                );
-                if (response?.data?.alert) {
-                    console.log("alert ∈ response");
-                    this.handleResponseCodes(response);
-                    return (response?.data?.alert?.error || response?.data?.alert?.danger) ?
-                        Promise.reject(response) :
-                        response;
-                }
-                return response;
-            },
-            error => {
-                this.handleResponseCodes(error.response);
-                console.log("Carbon Axios Caught A Response Error response :: ", error.response);
-                return Promise.reject(error);
-            }
-        );
 
         Carbons.Get()
 
-        this.authenticate();
+        authenticateUser()
     }
 
     render() {
-        console.log("LOGIN JSX RENDER");
+        console.log("CarbonORM TSX RENDER");
 
-        const {isLoaded, authenticated, alert} = this.state;
+        const {isLoaded} = this.state;
 
         if (!isLoaded) {
 
@@ -403,14 +89,61 @@ export default class CarbonORM extends CarbonReact<{}, {
 
         }
 
-        return (
-            <div>
-                {alert}
-                {authenticated
-                    ? ppr(Private, {})
-                    : ppr(Public, {})}
-            </div>
-        );
+        return <>
+            <CarbonWebSocket url={'ws://localhost:8888/ws'}/>
+            <Routes>
+                <Route path={UI + "*"}>
+                    <Route path={MATERIAL_DASHBOARD + "*"} element={ppr(Dashboard, {})}>
+                        <Route path={DASHBOARD + '*'} element={ppr(DashboardPage, {})}/>
+                        <Route path={USER_PROFILE + '*'} element={ppr(UserProfile, {})}/>
+                        <Route path={TABLES + '*'} element={ppr(TableList, {})}/>
+                        <Route path={TYPOGRAPHY + '*'} element={ppr(Typography, {})}/>
+                        <Route path={ICONS + '*'} element={ppr(Icons, {})}/>
+                        <Route path={MAPS + '*'} element={ppr(Maps, {})}/>
+                        <Route path={NOTIFICATIONS + '*'} element={ppr(Notifications, {})}/>
+                        <Route path={UPGRADE_TO_PRO + '*'} element={ppr(UpgradeToPro, {})}/>
+                        <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_DASHBOARD + DASHBOARD}/>}/>
+                    </Route>
+                    <Route path={MATERIAL_KIT + "*"} element={ppr(MaterialKit, {})}>
+                        <Route path={SECTION_NAVBARS + '*'} element={ppr(SectionNavbars, {})}/>
+                        <Route path={SECTION_BASICS + '*'} element={ppr(SectionBasics, {})}/>
+                        <Route path={SECTION_TABS + '*'} element={ppr(SectionTabs, {})}/>
+                        <Route path={SECTION_PILLS + '*'} element={ppr(SectionPills, {})}/>
+                        <Route path={SECTION_NOTIFICATIONS + '*'} element={ppr(SectionNotifications, {})}/>
+                        <Route path={SECTION_TYPOGRAPHY + '*'} element={ppr(SectionTypography, {})}/>
+                        <Route path={SECTION_JAVASCRIPT + '*'} element={ppr(SectionJavascript, {})}/>
+                        <Route path={SECTION_COMPLETED_EXAMPLES + '*'} element={ppr(SectionCompletedExamples, {})}/>
+                        <Route path={SECTION_LOGIN + '*'} element={ppr(SectionLogin, {})}/>
+                        <Route path={LANDING_PAGE + '*'} element={ppr(LandingPage, {})}/>
+                        <Route path={SECTION_DOWNLOAD + '*'} element={ppr(SectionDownload, {})}/>
+                        <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_KIT + SECTION_NAVBARS}/>}/>
+                    </Route>
+                    <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_DASHBOARD}/>}/>
+                </Route>
+                <Route path={DOCUMENTATION + '*'} element={ppr(Documentation, {})}>
+                    <Route path={CARBON_ORM_INTRODUCTION + '*'} element={ppr(CarbonORMIntroduction, {})}/>
+                    <Route path={SUPPORT + '*'} element={ppr(Support, {})}/>
+                    <Route path={CARBONPHP + '*'} element={ppr(CarbonPHP, {})}/>
+                    <Route path={DEPENDENCIES + '*'} element={ppr(Dependencies, {})}/>
+                    <Route path={CHANGELOG + "*"} element={ppr(Changelog, {})}/>
+                    <Route path={IMPLEMENTATIONS + "*"} element={ppr(Implementations, {})}/>
+                    <Route path={LICENSE + "*"} element={ppr(License, {})}/>
+                    <Route path={'*'} element={<Navigate to={'/' + DOCUMENTATION + CARBON_ORM_INTRODUCTION}/>}/>
+                </Route>
+                <Route path="/landing-page" element={ppr(LandingPage, {})}/>
+                <Route path={'*'} element={<Navigate to={'/documentation'}/>}/>
+            </Routes>
+            <ToastContainer
+                autoClose={3000}
+                draggable={false}
+                position="top-right"
+                hideProgressBar={false}
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnHover
+            />
+        </>
 
     }
 }

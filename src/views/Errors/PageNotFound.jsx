@@ -5,14 +5,14 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
-import Card from "components/Card/Card.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
-import CardBody from "components/Card/CardBody.jsx";
-import CardFooter from "components/Card/CardFooter.jsx";
-import CardIcon from "components/Card/CardIcon.jsx";
+import Card from "components/Card/Card";
+import CardHeader from "components/Card/CardHeader";
+import CardBody from "components/Card/CardBody";
+import CardFooter from "components/Card/CardFooter";
+import CardIcon from "components/Card/CardIcon";
 import Error from "@material-ui/icons/Error";
 
-import errorPageStyle from "assets/jss/material-dashboard-react/views/errorPageStyles.jsx";
+import errorPageStyle from "assets/jss/material-dashboard-react/views/errorPageStyles";
 
 function PageNotFound() {
 

@@ -4,12 +4,13 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 
 // core components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import completedStyle from "assets/jss/material-kit-react/views/componentsSections/completedStyle.jsx";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import completedStyle from "assets/jss/material-kit-react/views/componentsSections/completedStyle";
 import Button from "@material-ui/core/Button/Button";
 
-// TODO - <GridContainer justify="center"> ?????
+export const SUPPORT = 'support/';
+
 class Template extends React.Component {
     render() {
         const {classes} = this.props;

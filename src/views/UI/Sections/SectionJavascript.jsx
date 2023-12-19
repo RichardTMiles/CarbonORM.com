@@ -17,15 +17,17 @@ import Popover from "@material-ui/core/Popover";
 import LibraryBooks from "@material-ui/icons/LibraryBooks";
 import Close from "@material-ui/icons/Close";
 // core components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import Button from "components/CustomButtons/Button.jsx";
-import javascriptStyles from "assets/jss/material-kit-react/views/componentsSections/javascriptStyles.jsx";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import Button from "components/CustomButtons/Button";
+import javascriptStyles from "assets/jss/material-kit-react/views/componentsSections/javascriptStyles";
 import PropTypes from "prop-types";
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;
 }
+
+export const SECTION_JAVASCRIPT = 'SectionJavascript/';
 
 class SectionJavascript extends React.Component {
   anchorElLeft = null;

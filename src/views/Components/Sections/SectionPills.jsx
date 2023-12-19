@@ -9,10 +9,10 @@ import Schedule from "@material-ui/icons/Schedule";
 import List from "@material-ui/icons/List";
 
 // core components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import NavPills from "components/NavPills/NavPills.jsx";
-import pillsStyle from "assets/jss/material-kit-react/views/componentsSections/pillsStyle.jsx";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import NavPills from "components/NavPills/NavPills";
+import pillsStyle from "assets/jss/material-kit-react/views/componentsSections/pillsStyle";
 import PropTypes from "prop-types";
 
 class SectionPills extends React.Component {

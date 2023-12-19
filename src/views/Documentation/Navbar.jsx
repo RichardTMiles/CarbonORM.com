@@ -4,10 +4,10 @@ import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import HeaderTop from "components/HeaderTop/HeaderTop.jsx";
-import CustomDropdown from "components/CustomDropdown/CustomDropdown.jsx";
+import HeaderTop from "components/HeaderTop/HeaderTop";
+import CustomDropdown from "components/CustomDropdown/CustomDropdown";
 
-import navbarsStyle from "assets/jss/material-kit-react/views/componentsSections/navbarsStyle.jsx";
+import navbarsStyle from "assets/jss/material-kit-react/views/componentsSections/navbarsStyle";
 
 import {NavLink} from "react-router-dom";
 

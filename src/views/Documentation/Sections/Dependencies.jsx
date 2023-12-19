@@ -3,12 +3,12 @@ import React from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import completedStyle from "assets/jss/material-kit-react/views/componentsSections/completedStyle.jsx";
+import GridContainer from "components/Grid/GridContainer";
+import GridItem from "components/Grid/GridItem";
+import completedStyle from "assets/jss/material-kit-react/views/componentsSections/completedStyle";
 // @material-ui/icons
 
-
+export const DEPENDENCIES = 'dependencies/';
 
 // TODO - <GridContainer justify="center"> ?????
 class Dependencies extends React.Component {
