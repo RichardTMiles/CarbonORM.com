@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "https://carbonorm.dev/static/css/main.7a00af08.css",
-    "main.js": "https://carbonorm.dev/static/js/main.964e9de2.js",
+    "main.js": "https://carbonorm.dev/static/js/main.e8bcf4b4.js",
     "react-syntax-highlighter/refractor-core-import.js": "https://carbonorm.dev/static/js/react-syntax-highlighter/refractor-core-import.d3f3786d.chunk.js",
     "react-syntax-highlighter_languages_refractor_abap.js": "https://carbonorm.dev/static/js/react-syntax-highlighter_languages_refractor_abap.71a1dccf.chunk.js",
     "react-syntax-highlighter_languages_refractor_abnf.js": "https://carbonorm.dev/static/js/react-syntax-highlighter_languages_refractor_abnf.41ec4bd6.chunk.js",
@@ -303,7 +303,7 @@
     "static/media/marc.jpg": "https://carbonorm.dev/static/media/marc.e860728791b7ef6a0a14.jpg",
     "index.html": "https://carbonorm.dev/index.html",
     "main.7a00af08.css.map": "https://carbonorm.dev/static/css/main.7a00af08.css.map",
-    "main.964e9de2.js.map": "https://carbonorm.dev/static/js/main.964e9de2.js.map",
+    "main.e8bcf4b4.js.map": "https://carbonorm.dev/static/js/main.e8bcf4b4.js.map",
     "refractor-core-import.d3f3786d.chunk.js.map": "https://carbonorm.dev/static/js/react-syntax-highlighter/refractor-core-import.d3f3786d.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_abap.71a1dccf.chunk.js.map": "https://carbonorm.dev/static/js/react-syntax-highlighter_languages_refractor_abap.71a1dccf.chunk.js.map",
     "react-syntax-highlighter_languages_refractor_abnf.41ec4bd6.chunk.js.map": "https://carbonorm.dev/static/js/react-syntax-highlighter_languages_refractor_abnf.41ec4bd6.chunk.js.map",
@@ -585,6 +585,6 @@
   },
   "entrypoints": [
     "static/css/main.7a00af08.css",
-    "static/js/main.964e9de2.js"
+    "static/js/main.e8bcf4b4.js"
   ]
 }
