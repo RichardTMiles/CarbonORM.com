@@ -2,14 +2,12 @@ import CarbonORM from "CarbonORM";
 
 
 export interface iUi {
-    pureWordpressPluginConfigured?: boolean,
     documentationVersionURI: string,
     isLoaded: boolean,
     darkMode: boolean,
 }
 
-export const initialUiState: iUi = {
-    pureWordpressPluginConfigured: false,
+export const initialUiState: iUi  = {
     documentationVersionURI: '0.0.0',
     isLoaded: false,
     darkMode: true,

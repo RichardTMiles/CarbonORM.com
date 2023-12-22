@@ -45,6 +45,7 @@ import UpgradeToPro, {UPGRADE_TO_PRO} from "pages/UI/MaterialDashboard/UpgradeTo
 import UserProfile, {USER_PROFILE} from "pages/UI/MaterialDashboard/UserProfile/UserProfile";
 import CarbonORMDocumentation, {CARBON_ORM_INTRODUCTION} from "pages/Documentation/CarbonORM/CarbonORM"
 import isTest from "variables/isTest";
+import {initialWordPressState, iWordPress} from "state/wordpress";
 
 
 export const initialCarbonORMState: typeof initialRestfulObjectsState
@@ -52,7 +53,9 @@ export const initialCarbonORMState: typeof initialRestfulObjectsState
     & iAuthenticate
     & iVersions
     & iUi
+    & iWordPress
     & {} = {
+    ...initialWordPressState,
     ...initialVersionsState,
     ...initialRestfulObjectsState,
     ...initialRequiredCarbonORMState,
@@ -83,12 +86,12 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
     render() {
         console.log("CarbonORM TSX RENDER");
 
-        const {isLoaded, backendThrowable} = this.state;
+        const {isLoaded, backendThrowable, pureWordpressPluginConfigured} = this.state;
 
 
         if (backendThrowable.length > 0) {
 
-            return <BackendThrowable />
+            return <BackendThrowable/>
 
         }
 
@@ -161,7 +164,13 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
                     <Route path={IMPLEMENTATIONS + "*"} element={ppr(Implementations, {})}/>
                     <Route path={SUPPORT + '*'} element={ppr(Support, {})}/>
                     <Route path={LICENSE + "*"} element={ppr(License, {})}/>
-                    <Route path={'*'} element={<Navigate to={'/' + DOCUMENTATION + CARBON_ORM_INTRODUCTION}/>}/>
+                    <Route path={'*'} element={
+                        <Navigate to={'/' + DOCUMENTATION
+                            + (pureWordpressPluginConfigured
+                                ? CARBON_WORDPRESS
+                                : CARBON_ORM_INTRODUCTION)}
+                        />
+                    }/>
                 </Route>
                 <Route path="/landing-page" element={ppr(LandingPage, {})}/>
                 <Route path={'*'} element={<Navigate to={'/' + DOCUMENTATION}/>}/>

@@ -86,8 +86,8 @@ class Documentation extends React.Component<{
                                 </h1>
                                 <h3 className={classes.subtitle}
                                     style={{color: (darkMode ? "white" : "black")}}>
-                                    Generate a powerful MySQL Restful ORM. Write secure json based sql queries in front end.
-                                    Auto-magically manage your database across multiple servers and teams!
+                                    Generate a powerful MySQL Restful ORM. Write secure json based sql queries in front
+                                    end and middleware. Auto-magically manage your database across multiple servers and teams!
                                 </h3>
                             </div>
                         </GridItem>
