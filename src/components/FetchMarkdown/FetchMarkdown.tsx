@@ -80,6 +80,7 @@ export default function FetchMarkdown({url}: { url: string }) {
             ? null
             : editPage({text: 'See an issues below?'})}
         <ReactMarkdown
+            skipHtml={false}
             components={{
                 code({className, children}) {
 
