@@ -60,7 +60,7 @@
     "getTag": "git describe --tags `git rev-list --tags --max-count=1`",
     "start": "npm run-script env && react-scripts start",
     "build": "npm run-script env && react-scripts build",
-    "build:actions": "react-scripts build",
+    "build:actions": "PUBLIC_URL=https://www.carbonorm.dev/ react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
