@@ -1,8 +1,11 @@
-import {CarbonReact, initialRequiredCarbonORMState, CarbonWebSocket} from "@carbonorm/carbonreact";
+import {CarbonReact, initialRequiredCarbonORMState, CarbonWebSocket, BackendThrowable} from "@carbonorm/carbonreact";
 import Notifications from "@material-ui/icons/Notifications";
 import Carbons from "api/rest/Carbons";
 import {initialRestfulObjectsState} from "api/rest/C6";
-import {Routes, Route, Navigate} from 'react-router-dom';
+import CarbonNode, {CARBON_NODE} from "pages/Documentation/CarbonNode/CarbonNode";
+import CarbonReactDocumentation, {CARBON_REACT} from "pages/Documentation/CarbonReact/CarbonReact";
+import CarbonWordPress, {CARBON_WORDPRESS} from "pages/Documentation/CarbonWordPress/CarbonWordPress";
+import {Routes, Route, Navigate, MemoryRouter, HashRouter} from 'react-router-dom';
 
 import {ppr} from "api/hoc/passPropertiesAndRender";
 //import Public from 'layouts/Public';
@@ -14,35 +17,34 @@ import {authenticateUser, iAuthenticate, initialAuthenticateState} from "state/a
 import {initialUiState, iUi} from "state/ui";
 import {initialVersionsState, iVersions} from "state/versions";
 import {ToastContainer} from "react-toastify";
-import CarbonORMIntroduction, {CARBON_ORM_INTRODUCTION} from "views/Documentation/Sections/CarbonORMIntroduction";
-import DashboardPage, {DASHBOARD} from "views/UI/MaterialDashboard/Dashboard/Dashboard";
-import Documentation, {DOCUMENTATION} from "views/Documentation/Documentation";
-import CarbonPHP, {CARBONPHP} from "views/Documentation/Sections/CarbonPHP";
-import Changelog, {CHANGELOG} from "views/Documentation/Sections/Changelog";
-import Dependencies, {DEPENDENCIES} from "views/Documentation/Sections/Dependencies";
-import Implementations, {IMPLEMENTATIONS} from "views/Documentation/Sections/Implementations";
-import License, {LICENSE} from "views/Documentation/Sections/License";
-import Support, {SUPPORT} from "views/Documentation/Sections/Support";
-import Icons, {ICONS} from "views/UI/MaterialDashboard/Icons/Icons";
-import LandingPage, {LANDING_PAGE} from "views/UI/Sections/LandingPage/LandingPage";
-import Maps, {MAPS} from "views/UI/MaterialDashboard/Maps/Maps";
-import {NOTIFICATIONS} from "views/UI/MaterialDashboard/Notifications/Notifications";
-import TableList, {TABLES} from "views/UI/MaterialDashboard/TableList/TableList";
-import Typography, {TYPOGRAPHY} from "views/UI/MaterialDashboard/Typography/Typography";
-import Dashboard, {MATERIAL_DASHBOARD, UI} from "views/UI/MaterialDashboard";
-import MaterialKit, {MATERIAL_KIT} from "views/UI/MaterialKit";
-import SectionBasics, {SECTION_BASICS} from "views/UI/Sections/SectionBasics";
-import SectionCompletedExamples, {SECTION_COMPLETED_EXAMPLES} from "views/UI/Sections/SectionCompletedExamples";
-import SectionDownload, {SECTION_DOWNLOAD} from "views/UI/Sections/SectionDownload";
-import SectionJavascript, {SECTION_JAVASCRIPT} from "views/UI/Sections/SectionJavascript";
-import SectionLogin, {SECTION_LOGIN} from "views/UI/Sections/SectionLogin";
-import SectionNavbars, {SECTION_NAVBARS} from "views/UI/Sections/SectionNavbars";
-import SectionNotifications, {SECTION_NOTIFICATIONS} from "views/UI/Sections/SectionNotifications";
-import SectionPills, {SECTION_PILLS} from "views/UI/Sections/SectionPills";
-import SectionTabs, {SECTION_TABS} from "views/UI/Sections/SectionTabs";
-import SectionTypography, {SECTION_TYPOGRAPHY} from "views/UI/Sections/SectionTypography";
-import UpgradeToPro, {UPGRADE_TO_PRO} from "views/UI/MaterialDashboard/UpgradeToPro/UpgradeToPro";
-import UserProfile, {USER_PROFILE} from "views/UI/MaterialDashboard/UserProfile/UserProfile";
+import DashboardPage, {DASHBOARD} from "pages/UI/MaterialDashboard/Dashboard/Dashboard";
+import Documentation, {DOCUMENTATION, iDocumentation} from "pages/Documentation/Documentation";
+import CarbonPHP, {CARBON_PHP} from "pages/Documentation/CarbonPHP/CarbonPHP";
+import Implementations, {IMPLEMENTATIONS} from "pages/Documentation/Implementations/Implementations";
+import License, {LICENSE} from "pages/Documentation/License/License";
+import Support, {SUPPORT} from "pages/Documentation/Support/Support";
+import Icons, {ICONS} from "pages/UI/MaterialDashboard/Icons/Icons";
+import LandingPage, {LANDING_PAGE} from "pages/UI/Sections/LandingPage/LandingPage";
+import Maps, {MAPS} from "pages/UI/MaterialDashboard/Maps/Maps";
+import {NOTIFICATIONS} from "pages/UI/MaterialDashboard/Notifications/Notifications";
+import TableList, {TABLES} from "pages/UI/MaterialDashboard/TableList/TableList";
+import Typography, {TYPOGRAPHY} from "pages/UI/MaterialDashboard/Typography/Typography";
+import Dashboard, {MATERIAL_DASHBOARD, UI} from "pages/UI/MaterialDashboard";
+import MaterialKit, {MATERIAL_KIT} from "pages/UI/MaterialKit";
+import SectionBasics, {SECTION_BASICS} from "pages/UI/Sections/SectionBasics";
+import SectionCompletedExamples, {SECTION_COMPLETED_EXAMPLES} from "pages/UI/Sections/SectionCompletedExamples";
+import SectionDownload, {SECTION_DOWNLOAD} from "pages/UI/Sections/SectionDownload";
+import SectionJavascript, {SECTION_JAVASCRIPT} from "pages/UI/Sections/SectionJavascript";
+import SectionLogin, {SECTION_LOGIN} from "pages/UI/Sections/SectionLogin";
+import SectionNavbars, {SECTION_NAVBARS} from "pages/UI/Sections/SectionNavbars";
+import SectionNotifications, {SECTION_NOTIFICATIONS} from "pages/UI/Sections/SectionNotifications";
+import SectionPills, {SECTION_PILLS} from "pages/UI/Sections/SectionPills";
+import SectionTabs, {SECTION_TABS} from "pages/UI/Sections/SectionTabs";
+import SectionTypography, {SECTION_TYPOGRAPHY} from "pages/UI/Sections/SectionTypography";
+import UpgradeToPro, {UPGRADE_TO_PRO} from "pages/UI/MaterialDashboard/UpgradeToPro/UpgradeToPro";
+import UserProfile, {USER_PROFILE} from "pages/UI/MaterialDashboard/UserProfile/UserProfile";
+import CarbonORMDocumentation, {CARBON_ORM_INTRODUCTION} from "pages/Documentation/CarbonORM/CarbonORM"
+import isTest from "variables/isTest";
 
 
 export const initialCarbonORMState: typeof initialRestfulObjectsState
@@ -81,7 +83,14 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
     render() {
         console.log("CarbonORM TSX RENDER");
 
-        const {isLoaded} = this.state;
+        const {isLoaded, backendThrowable} = this.state;
+
+
+        if (backendThrowable.length > 0) {
+
+            return <BackendThrowable />
+
+        }
 
         if (!isLoaded) {
 
@@ -89,7 +98,19 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
 
         }
 
-        return <>
+        const reactRouterContext = (children: any) => {
+
+            if (isTest) {
+
+                return <MemoryRouter initialEntries={['/']}>{children}</MemoryRouter>
+
+            }
+
+            return <HashRouter>{children}</HashRouter>
+
+        }
+
+        return reactRouterContext(<>
             <CarbonWebSocket url={'ws://localhost:8888/ws'}/>
             <Routes>
                 <Route path={UI + "*"}>
@@ -120,18 +141,30 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
                     </Route>
                     <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_DASHBOARD}/>}/>
                 </Route>
-                <Route path={DOCUMENTATION + '*'} element={ppr(Documentation, {})}>
-                    <Route path={CARBON_ORM_INTRODUCTION + '*'} element={ppr(CarbonORMIntroduction, {})}/>
-                    <Route path={SUPPORT + '*'} element={ppr(Support, {})}/>
-                    <Route path={CARBONPHP + '*'} element={ppr(CarbonPHP, {})}/>
-                    <Route path={DEPENDENCIES + '*'} element={ppr(Dependencies, {})}/>
-                    <Route path={CHANGELOG + "*"} element={ppr(Changelog, {})}/>
+                <Route path={DOCUMENTATION + '*'} element={ppr<iDocumentation>(Documentation, {
+                    headerLinks: [
+                        {name: "ORM Introduction", path: "/" + DOCUMENTATION + CARBON_ORM_INTRODUCTION},
+                        {name: "PHP", path: "/" + DOCUMENTATION + CARBON_PHP},
+                        {name: "Node", path: "/" + DOCUMENTATION + CARBON_NODE},
+                        {name: "React", path: "/" + DOCUMENTATION + CARBON_REACT},
+                        {name: "WordPress", path: "/" + DOCUMENTATION + CARBON_WORDPRESS},
+                        {name: "Implementations", path: "/" + DOCUMENTATION + IMPLEMENTATIONS},
+                        {name: "Support", path: "/" + DOCUMENTATION + SUPPORT},
+                        {name: "License", path: "/" + DOCUMENTATION + LICENSE}
+                    ]
+                })}>
+                    <Route path={CARBON_ORM_INTRODUCTION + '*'} element={ppr(CarbonORMDocumentation, {})}/>
+                    <Route path={CARBON_PHP + '*'} element={ppr(CarbonPHP, {})}/>
+                    <Route path={CARBON_NODE + '*'} element={ppr(CarbonNode, {})}/>
+                    <Route path={CARBON_REACT + '*'} element={ppr(CarbonReactDocumentation, {})}/>
+                    <Route path={CARBON_WORDPRESS + '*'} element={ppr(CarbonWordPress, {})}/>
                     <Route path={IMPLEMENTATIONS + "*"} element={ppr(Implementations, {})}/>
+                    <Route path={SUPPORT + '*'} element={ppr(Support, {})}/>
                     <Route path={LICENSE + "*"} element={ppr(License, {})}/>
                     <Route path={'*'} element={<Navigate to={'/' + DOCUMENTATION + CARBON_ORM_INTRODUCTION}/>}/>
                 </Route>
                 <Route path="/landing-page" element={ppr(LandingPage, {})}/>
-                <Route path={'*'} element={<Navigate to={'/documentation'}/>}/>
+                <Route path={'*'} element={<Navigate to={'/' + DOCUMENTATION}/>}/>
             </Routes>
             <ToastContainer
                 autoClose={3000}
@@ -143,7 +176,7 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
                 rtl={false}
                 pauseOnHover
             />
-        </>
+        </>)
 
     }
 }

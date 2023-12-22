@@ -15,8 +15,8 @@ import Button from "components/CustomButtons/Button";
 
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle";
 import {switchDarkAndLightTheme} from "state/ui";
-import {UI} from "views/UI/MaterialDashboard";
-import {MATERIAL_KIT} from "views/UI/MaterialKit";
+import {UI} from "pages/UI/MaterialDashboard";
+import {MATERIAL_KIT} from "pages/UI/MaterialKit";
 
 
 class HeaderLinks extends React.Component<{ classes: any }, { zoom: number }> {
