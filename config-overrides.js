@@ -104,7 +104,8 @@ module.exports = override(
                 exportGlobals: true,
                 getLocalIdent: (context, localIdentName, localName, options) => {
 
-                    if (false === context.resourcePath.endsWith('/react/src/variables/bootstrap.module.scss')) {
+                    // noinspection JSUnresolvedReference
+                    if (false === context?.resourcePath.endsWith('variables/bootstrap.module.scss')) {
 
                         localName = defaultGetLocalIdent(context, localIdentName, localName, options)
                             .replace("[local]", localName)

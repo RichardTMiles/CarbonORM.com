@@ -15,7 +15,7 @@ const style = {
 function GridContainer(props) {
   const { classes, children, justify, ...rest } = props;
   return (
-    <Grid container justify {...rest} className={classes.grid}>
+    <Grid container justifyContent={justify} {...rest} className={classes.grid}>
       {children}
     </Grid>
   );

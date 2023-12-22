@@ -1,6 +1,6 @@
 import {CarbonReact, initialRequiredCarbonORMState, CarbonWebSocket, BackendThrowable} from "@carbonorm/carbonreact";
 import Notifications from "@material-ui/icons/Notifications";
-import Carbons from "api/rest/Carbons";
+//import Carbons from "api/rest/Carbons";
 import {initialRestfulObjectsState} from "api/rest/C6";
 import CarbonNode, {CARBON_NODE} from "pages/Documentation/CarbonNode/CarbonNode";
 import CarbonReactDocumentation, {CARBON_REACT} from "pages/Documentation/CarbonReact/CarbonReact";
@@ -13,7 +13,7 @@ import {ppr} from "api/hoc/passPropertiesAndRender";
 //import PrivateRoutes from "routes/privateRoutes";
 //import PublicRoutes from "routes/publicRoutes";
 // This is our ajax class
-import {authenticateUser, iAuthenticate, initialAuthenticateState} from "state/authenticate";
+import {iAuthenticate, initialAuthenticateState} from "state/authenticate";
 import {initialUiState, iUi} from "state/ui";
 import {initialVersionsState, iVersions} from "state/versions";
 import {ToastContainer} from "react-toastify";
@@ -78,9 +78,8 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
 
     componentDidMount() {
 
-        Carbons.Get()
-
-        authenticateUser()
+        // Carbons.Get()
+        //authenticateUser()
     }
 
     render() {

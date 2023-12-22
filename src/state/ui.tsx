@@ -9,7 +9,7 @@ export interface iUi {
 
 export const initialUiState: iUi  = {
     documentationVersionURI: '0.0.0',
-    isLoaded: false,
+    isLoaded: true,
     darkMode: true,
 }
 
