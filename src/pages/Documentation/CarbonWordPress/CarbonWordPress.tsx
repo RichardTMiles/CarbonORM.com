@@ -10,16 +10,20 @@ export default function () {
 
     const {pureWordpressPluginConfigured} = CarbonORM.instance.state;
 
-    return <GridContainer justify="center">
-        {pureWordpressPluginConfigured && <><GridItem sm={0} md={2}/>
-            <GridItem sm={0} md={2}>
+    return <GridContainer>
+        {pureWordpressPluginConfigured && <>
+            <GridItem sm={0} md={2}/>
+            <GridItem sm={12} md={8}>
                 <GuidedUserInterface/>
             </GridItem>
-            <GridItem sm={0} md={2}/></>}
-
+            <GridItem sm={0} md={2}/>
+            <br/>
+            <br/>
+        </>}
         <GridItem sm={0} md={2}/>
         <GridItem sm={12} md={8}>
             <FetchMarkdown url={'https://raw.githubusercontent.com/CarbonORM/CarbonWordPress/main/README.md'}/>
         </GridItem>
+        <GridItem sm={0} md={2}/>
     </GridContainer>
 }

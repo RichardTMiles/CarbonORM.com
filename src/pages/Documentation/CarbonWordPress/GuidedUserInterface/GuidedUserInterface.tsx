@@ -4,6 +4,10 @@ import NavPills from "components/NavPills/NavPills";
 
 export default function GuidedUserInterface() {
 
+
+
+
+
     return <>
 
         <h2>GuidedUserInterface</h2>
@@ -17,6 +21,7 @@ export default function GuidedUserInterface() {
                     tabIcon: LooksOne,
                     tabContent: (
                         <>
+                            <h3>Congratulations! You have installed CarbonWordPress successfully.</h3>
                         </>
                     )
                 },
