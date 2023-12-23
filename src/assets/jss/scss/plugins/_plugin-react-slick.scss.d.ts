@@ -1,0 +1,57 @@
+export type Styles = {
+  dragging: string;
+  slick_active: string;
+  slick_arrow: string;
+  slick_caption: string;
+  slick_dots: string;
+  slick_hidden: string;
+  slick_icons: string;
+  slick_image: string;
+  slick_initialized: string;
+  slick_list: string;
+  slick_loading: string;
+  slick_next: string;
+  slick_prev: string;
+  slick_slide: string;
+  slick_slider: string;
+  slick_track: string;
+  slick_vertical: string;
+  "slick-active": string;
+  "slick-arrow": string;
+  "slick-caption": string;
+  "slick-dots": string;
+  "slick-hidden": string;
+  "slick-icons": string;
+  "slick-image": string;
+  "slick-initialized": string;
+  "slick-list": string;
+  "slick-loading": string;
+  "slick-next": string;
+  "slick-prev": string;
+  "slick-slide": string;
+  "slick-slider": string;
+  "slick-track": string;
+  "slick-vertical": string;
+  slickActive: string;
+  slickArrow: string;
+  slickCaption: string;
+  slickDots: string;
+  slickHidden: string;
+  slickIcons: string;
+  slickImage: string;
+  slickInitialized: string;
+  slickList: string;
+  slickLoading: string;
+  slickNext: string;
+  slickPrev: string;
+  slickSlide: string;
+  slickSlider: string;
+  slickTrack: string;
+  slickVertical: string;
+};
+
+export type ClassNames = keyof Styles;
+
+declare const styles: Styles;
+
+export default styles;

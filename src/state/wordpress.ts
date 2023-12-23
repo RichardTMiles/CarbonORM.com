@@ -1,9 +1,9 @@
 
 export interface iWordPress {
-    pureWordpressPluginConfigured?: boolean,
-    C6WordPressGuidedSetup?: boolean,
-    C6WordPressVersion?: string,
-    C6PHPVersion?: string,
+    pureWordpressPluginConfigured: boolean,
+    C6WordPressGuidedSetup: boolean,
+    C6WordPressVersion: string,
+    C6PHPVersion: string,
 }
 
 

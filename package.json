@@ -63,21 +63,26 @@
     "webpack-bundle-analyzer": "^4.10.1"
   },
   "scripts": {
+    "build": "npm run-script env && npm run build:css && react-app-rewired build",
+    "build-package": "babel src --out-dir dist",
+    "build:css": "npm run sass && npm run css:modules",
     "c6": "npx generateRestBindings",
+    "css:modules": "typed-scss-modules 'src/**/*.?(s)css' --nameFormat all --exportType default src",
+    "css:modules:watch": "typed-scss-modules 'src/**/*.?(s)css' --watch --nameFormat all --exportType default src",
+    "eject": "react-app-rewired eject",
     "env": "npm run c6",
     "getTag": "git describe --tags `git rev-list --tags --max-count=1`",
-    "start": "npm run-script env && concurrently 'npm:watch:sass' 'npm:start:rewired'",
-    "watch:sass": "sass ./src:./src --watch",
-    "start:rewired": "npm run-script env && react-app-rewired start",
-    "start:wordpress": "npm run-script env && PUBLIC_URL=https://127.0.0.1:3000/ react-app-rewired start",
-    "build": "npm run-script env && react-app-rewired build",
-    "test": "react-app-rewired test --env=jsdom",
-    "eject": "react-app-rewired eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
-    "rei": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "lint:check": "eslint . --ext=js,jsx;  exit 0",
     "lint:fix": "eslint . --ext=js,jsx --fix;  exit 0",
-    "build-package": "babel src --out-dir dist"
+    "rei": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "sass": "sass ./src:./src",
+    "sass:watch": "sass ./src:./src --watch",
+    "start": "concurrently 'npm:start:cra:rewired' 'npm:watch:sass' 'npm:rewired:start'",
+    "start:cra": "npm run-script env && react-scripts start",
+    "start:cra:rewired": "npm run-script env && react-app-rewired start",
+    "start:car:wordpress": "npm run-script env && PUBLIC_URL=https://127.0.0.1:3000/ react-app-rewired start",
+    "test": "react-app-rewired test --env=jsdom"
   },
   "repository": {
     "type": "git",
@@ -122,6 +127,7 @@
     "react-swipeable-views-utils": "^0.14.0",
     "source-map-loader": "^4.0.1",
     "typescript": "^5.1.6",
-    "webpack-log": "^3.0.2"
+    "webpack-log": "^3.0.2",
+    "sass": "^1.54.5"
   }
 }

@@ -1,4 +1,5 @@
 import CarbonORM from "CarbonORM";
+import {initialWordPressState} from "state/wordpress";
 
 
 export interface iUi {
@@ -10,7 +11,7 @@ export interface iUi {
 export const initialUiState: iUi  = {
     documentationVersionURI: '0.0.0',
     isLoaded: true,
-    darkMode: true,
+    darkMode: initialWordPressState.pureWordpressPluginConfigured ?? true,
 }
 
 

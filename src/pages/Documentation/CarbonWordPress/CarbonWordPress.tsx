@@ -1,5 +1,5 @@
 import CarbonORM from "CarbonORM";
-import FetchMarkdown from "components/FetchMarkdown/FetchMarkdown";
+import FetchMarkdownWithGrid from "components/FetchMarkdown/FetchMarkdownWithGrid";
 import GridContainer from "components/Grid/GridContainer";
 import GridItem from "components/Grid/GridItem";
 import GuidedUserInterface from "pages/Documentation/CarbonWordPress/GuidedUserInterface/GuidedUserInterface";
@@ -20,10 +20,14 @@ export default function () {
             <br/>
             <br/>
         </>}
+
         <GridItem sm={0} md={2}/>
         <GridItem sm={12} md={8}>
-            <FetchMarkdown url={'https://raw.githubusercontent.com/CarbonORM/CarbonWordPress/main/README.md'}/>
+            <h1>Carbon WordPress (README.md)</h1>
         </GridItem>
         <GridItem sm={0} md={2}/>
+
+        <FetchMarkdownWithGrid url={'https://raw.githubusercontent.com/CarbonORM/CarbonWordPress/main/README.md'}/>
+
     </GridContainer>
 }
