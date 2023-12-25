@@ -105,7 +105,8 @@ module.exports = override(
                 getLocalIdent: (context, localIdentName, localName, options) => {
 
                     // noinspection JSUnresolvedReference
-                    if (false === context?.resourcePath.endsWith('variables/bootstrap.module.scss')) {
+                    if (false === context?.resourcePath.endsWith('variables/bootstrap.module.scss') ||
+                        false === context?.resourcePath.endsWith('CarbonORM.module.scss')) {
 
                         localName = defaultGetLocalIdent(context, localIdentName, localName, options)
                             .replace("[local]", localName)

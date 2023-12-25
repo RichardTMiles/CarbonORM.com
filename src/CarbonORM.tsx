@@ -48,6 +48,11 @@ import isTest from "variables/isTest";
 import {initialWordPressState, iWordPress} from "state/wordpress";
 
 
+import C6Styles from 'CarbonORM.style.scss';
+
+console.log(C6Styles);
+
+
 export const initialCarbonORMState: typeof initialRestfulObjectsState
     & typeof initialRequiredCarbonORMState
     & iAuthenticate
