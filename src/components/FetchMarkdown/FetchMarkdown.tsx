@@ -17,19 +17,19 @@ let fullMarkdownCache: {
 } = {};
 
 function githubRawBlobToEditForm(url: string) {
-    const regex = /^https:\/\/raw\.githubusercontent\.com\/(.+)\/(.+)\/(.+)\/(.+)$/i;
-    return url.replace(regex, 'https://github.com/$1/edit/$2/$3/$4');
+    const regex = /^https:\/\/raw\.githubusercontent\.com\/([^\/]+)\/([^\/]+)\/(.+)$/i;
+    return url.replace(regex, 'https://github.com/$1/$2/edit/$3');
 }
 
 function githubRawBlobToView(url: string) {
-    const regex = /^https:\/\/raw\.githubusercontent\.com\/(.+)\/(.+)\/(.+)\/(.+)$/i;
-    return url.replace(regex, 'https://github.com/$1/blob/$2/$3/$4');
+    const regex = /^https:\/\/raw\.githubusercontent\.com\/([^\/]+)\/([^\/]+)\/(.+)$/i;
+    return url.replace(regex, 'https://github.com/$1/$2/blob/$3');
 }
 
 
 function githubRawBlobToRepoPath(url: string) {
-    const regex = /^https:\/\/raw\.githubusercontent\.com\/(.+)\/(.+)\/(.+)\/(.+)$/i;
-    return url.replace(regex, '$1/$2/$3/$4');
+    const regex = /^https:\/\/raw\.githubusercontent\.com\/([^\/]+)\/([^\/]+)\/(.+)$/i;
+    return url.replace(regex, '$1/$2/$3');
 }
 
 
@@ -74,11 +74,11 @@ export default function FetchMarkdown({url}: iFetchMarkdown) {
     const editPage = ({text, float = 'inherit'}: { text: string, float?: FloatProperty }) => <small
         style={{float: float}}>
         {text + ' '}
-        <a href={markdownCache.editUrl}>
+        <a target='_blank' rel='noreferrer' href={markdownCache.editUrl}>
             Edit this page here!
         </a>
         <br/>
-        <a href={markdownCache.viewUrl}>{markdownCache?.repoPath}</a>
+        <a target='_blank' rel='noreferrer' href={markdownCache.viewUrl}>{markdownCache?.repoPath}</a>
     </small>
 
     return <div style={{overflow: "none"}}>

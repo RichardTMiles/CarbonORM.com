@@ -6,12 +6,8 @@ import CarbonNode, {CARBON_NODE} from "pages/Documentation/CarbonNode/CarbonNode
 import CarbonReactDocumentation, {CARBON_REACT} from "pages/Documentation/CarbonReact/CarbonReact";
 import CarbonWordPress, {CARBON_WORDPRESS} from "pages/Documentation/CarbonWordPress/CarbonWordPress";
 import {Routes, Route, Navigate, MemoryRouter, HashRouter} from 'react-router-dom';
-
 import {ppr} from "api/hoc/passPropertiesAndRender";
-//import Public from 'layouts/Public';
-//import Private from 'layouts/Private';
-//import PrivateRoutes from "routes/privateRoutes";
-//import PublicRoutes from "routes/publicRoutes";
+
 // This is our ajax class
 import {iAuthenticate, initialAuthenticateState} from "state/authenticate";
 import {initialUiState, iUi} from "state/ui";
@@ -52,7 +48,6 @@ import C6Styles from 'CarbonORM.style.scss';
 
 console.log(C6Styles);
 
-
 export const initialCarbonORMState: typeof initialRestfulObjectsState
     & typeof initialRequiredCarbonORMState
     & iAuthenticate
@@ -79,12 +74,6 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
         super(props);
         CarbonORM.instance = this;
         CarbonReact.instance = this;
-    }
-
-    componentDidMount() {
-
-        // Carbons.Get()
-        //authenticateUser()
     }
 
     render() {
