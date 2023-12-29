@@ -65,7 +65,8 @@
     "webpack-bundle-analyzer": "^4.10.1"
   },
   "scripts": {
-    "build": "npm run-script env && npm run build:css && PUBLIC_URL=https://carbonorm.dev/ react-app-rewired build",
+    "build": "npm run-script env && npm run build:css && npm run build:actions",
+    "build:actions": "PUBLIC_URL=https://carbonorm.dev/ react-app-rewired build",
     "build:css": "npm run sass && npm run css:modules",
     "c6": "npx generateRestBindings",
     "css:modules": "typed-scss-modules 'src/**/*.?(s)css' --nameFormat all --exportType default src",
