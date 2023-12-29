@@ -125,7 +125,7 @@ class CarbonPHP extends React.Component<{classes: any}, {
               {
                 tabIcon: Storage,
                 tabButton: "ORM",
-                tabContent: <FetchMarkdown url={'https://raw.githubusercontent.com/CarbonORM/CarbonPHP/lts/documentation/orm.md'}/>
+                tabContent: <FetchMarkdown url={'https://raw.githubusercontent.com/CarbonORM/CarbonPHP/lts/documentation/orm/orm.md'}/>
               },
               {
                 tabIcon: RecentActors,
