@@ -19,11 +19,15 @@ import {C6, iHistory_Logs, history_logs, RestTableNames} from "./C6";
 /**
 CREATE TABLE `carbon_history_logs` (
   `history_uuid` binary(16) NOT NULL,
+  `history_uri` longtext,
   `history_table` varchar(255) DEFAULT NULL,
-  `history_type` varchar(20) DEFAULT NULL,
-  `history_data` json DEFAULT NULL,
-  `history_original_query` varchar(1024) DEFAULT NULL,
-  `history_time` datetime DEFAULT CURRENT_TIMESTAMP
+  `history_type` varchar(200) DEFAULT NULL,
+  `history_request` json DEFAULT NULL,
+  `history_response` json DEFAULT NULL,
+  `history_query` longtext,
+  `history_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `history_updated` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`history_uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 **/
 

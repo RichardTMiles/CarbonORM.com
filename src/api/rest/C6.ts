@@ -642,41 +642,55 @@ export const groups: iC6RestfulModel<RestTableNames> & iDefineGroups = {
 
 export interface iHistory_Logs {
     'history_uuid'?: string;
+    'history_uri'?: string | null;
     'history_table'?: string | null;
     'history_type'?: string | null;
-    'history_data'?: string | null;
-    'history_original_query'?: string | null;
+    'history_request'?: string | null;
+    'history_response'?: string | null;
+    'history_query'?: string | null;
     'history_time'?: string | null;
+    'history_updated'?: string | null;
 }
 
 interface iDefineHistory_Logs {
     'HISTORY_UUID': string;
+    'HISTORY_URI': string;
     'HISTORY_TABLE': string;
     'HISTORY_TYPE': string;
-    'HISTORY_DATA': string;
-    'HISTORY_ORIGINAL_QUERY': string;
+    'HISTORY_REQUEST': string;
+    'HISTORY_RESPONSE': string;
+    'HISTORY_QUERY': string;
     'HISTORY_TIME': string;
+    'HISTORY_UPDATED': string;
 }
 
 export const history_logs: iC6RestfulModel<RestTableNames> & iDefineHistory_Logs = {
     TABLE_NAME: 'carbon_history_logs',
     HISTORY_UUID: 'carbon_history_logs.history_uuid',
+    HISTORY_URI: 'carbon_history_logs.history_uri',
     HISTORY_TABLE: 'carbon_history_logs.history_table',
     HISTORY_TYPE: 'carbon_history_logs.history_type',
-    HISTORY_DATA: 'carbon_history_logs.history_data',
-    HISTORY_ORIGINAL_QUERY: 'carbon_history_logs.history_original_query',
+    HISTORY_REQUEST: 'carbon_history_logs.history_request',
+    HISTORY_RESPONSE: 'carbon_history_logs.history_response',
+    HISTORY_QUERY: 'carbon_history_logs.history_query',
     HISTORY_TIME: 'carbon_history_logs.history_time',
+    HISTORY_UPDATED: 'carbon_history_logs.history_updated',
     PRIMARY: [
+        'carbon_history_logs.history_uuid',
     ],
     PRIMARY_SHORT: [
+        'history_uuid',
     ],
     COLUMNS: {
         'carbon_history_logs.history_uuid': 'history_uuid',
+        'carbon_history_logs.history_uri': 'history_uri',
         'carbon_history_logs.history_table': 'history_table',
         'carbon_history_logs.history_type': 'history_type',
-        'carbon_history_logs.history_data': 'history_data',
-        'carbon_history_logs.history_original_query': 'history_original_query',
+        'carbon_history_logs.history_request': 'history_request',
+        'carbon_history_logs.history_response': 'history_response',
+        'carbon_history_logs.history_query': 'history_query',
         'carbon_history_logs.history_time': 'history_time',
+        'carbon_history_logs.history_updated': 'history_updated',
     },
     TYPE_VALIDATION: {
         'carbon_history_logs.history_uuid': {
@@ -684,6 +698,12 @@ export const history_logs: iC6RestfulModel<RestTableNames> & iDefineHistory_Logs
             MAX_LENGTH: '16',
             AUTO_INCREMENT: false,
             SKIP_COLUMN_IN_POST: false
+        },
+        'carbon_history_logs.history_uri': {
+            MYSQL_TYPE: 'longtext',
+            MAX_LENGTH: '',
+            AUTO_INCREMENT: false,
+            SKIP_COLUMN_IN_POST: true
         },
         'carbon_history_logs.history_table': {
             MYSQL_TYPE: 'varchar',
@@ -693,23 +713,35 @@ export const history_logs: iC6RestfulModel<RestTableNames> & iDefineHistory_Logs
         },
         'carbon_history_logs.history_type': {
             MYSQL_TYPE: 'varchar',
-            MAX_LENGTH: '20',
+            MAX_LENGTH: '200',
             AUTO_INCREMENT: false,
             SKIP_COLUMN_IN_POST: false
         },
-        'carbon_history_logs.history_data': {
+        'carbon_history_logs.history_request': {
             MYSQL_TYPE: 'json',
             MAX_LENGTH: '',
             AUTO_INCREMENT: false,
             SKIP_COLUMN_IN_POST: false
         },
-        'carbon_history_logs.history_original_query': {
-            MYSQL_TYPE: 'varchar',
-            MAX_LENGTH: '1024',
+        'carbon_history_logs.history_response': {
+            MYSQL_TYPE: 'json',
+            MAX_LENGTH: '',
             AUTO_INCREMENT: false,
             SKIP_COLUMN_IN_POST: false
         },
+        'carbon_history_logs.history_query': {
+            MYSQL_TYPE: 'longtext',
+            MAX_LENGTH: '',
+            AUTO_INCREMENT: false,
+            SKIP_COLUMN_IN_POST: true
+        },
         'carbon_history_logs.history_time': {
+            MYSQL_TYPE: 'datetime',
+            MAX_LENGTH: '',
+            AUTO_INCREMENT: false,
+            SKIP_COLUMN_IN_POST: false
+        },
+        'carbon_history_logs.history_updated': {
             MYSQL_TYPE: 'datetime',
             MAX_LENGTH: '',
             AUTO_INCREMENT: false,
@@ -1030,7 +1062,7 @@ export const reports: iC6RestfulModel<RestTableNames> & iDefineReports = {
             SKIP_COLUMN_IN_POST: false
         },
         'carbon_reports.report': {
-            MYSQL_TYPE: 'text',
+            MYSQL_TYPE: 'longblob',
             MAX_LENGTH: '',
             AUTO_INCREMENT: false,
             SKIP_COLUMN_IN_POST: true
@@ -1042,7 +1074,7 @@ export const reports: iC6RestfulModel<RestTableNames> & iDefineReports = {
             SKIP_COLUMN_IN_POST: false
         },
         'carbon_reports.call_trace': {
-            MYSQL_TYPE: 'text',
+            MYSQL_TYPE: 'longblob',
             MAX_LENGTH: '',
             AUTO_INCREMENT: false,
             SKIP_COLUMN_IN_POST: false
@@ -3119,7 +3151,7 @@ export const COLUMNS = {
 'carbon_features.feature_entity_id': 'feature_entity_id','carbon_features.feature_code': 'feature_code','carbon_features.feature_creation_date': 'feature_creation_date',
 'carbon_group_references.group_id': 'group_id','carbon_group_references.allowed_to_grant_group_id': 'allowed_to_grant_group_id',
 'carbon_groups.group_name': 'group_name','carbon_groups.entity_id': 'entity_id','carbon_groups.created_by': 'created_by','carbon_groups.creation_date': 'creation_date',
-'carbon_history_logs.history_uuid': 'history_uuid','carbon_history_logs.history_table': 'history_table','carbon_history_logs.history_type': 'history_type','carbon_history_logs.history_data': 'history_data','carbon_history_logs.history_original_query': 'history_original_query','carbon_history_logs.history_time': 'history_time',
+'carbon_history_logs.history_uuid': 'history_uuid','carbon_history_logs.history_uri': 'history_uri','carbon_history_logs.history_table': 'history_table','carbon_history_logs.history_type': 'history_type','carbon_history_logs.history_request': 'history_request','carbon_history_logs.history_response': 'history_response','carbon_history_logs.history_query': 'history_query','carbon_history_logs.history_time': 'history_time','carbon_history_logs.history_updated': 'history_updated',
 'carbon_location_references.entity_reference': 'entity_reference','carbon_location_references.location_reference': 'location_reference','carbon_location_references.location_time': 'location_time',
 'carbon_locations.entity_id': 'entity_id','carbon_locations.latitude': 'latitude','carbon_locations.longitude': 'longitude','carbon_locations.street': 'street','carbon_locations.city': 'city','carbon_locations.state': 'state','carbon_locations.elevation': 'elevation','carbon_locations.zip': 'zip',
 'carbon_photos.parent_id': 'parent_id','carbon_photos.photo_id': 'photo_id','carbon_photos.user_id': 'user_id','carbon_photos.photo_path': 'photo_path','carbon_photos.photo_description': 'photo_description',

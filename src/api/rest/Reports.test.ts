@@ -14,9 +14,9 @@ console.log('fillString', fillString);
 /**
 CREATE TABLE `carbon_reports` (
   `log_level` varchar(20) DEFAULT NULL,
-  `report` text,
+  `report` longblob,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `call_trace` text NOT NULL
+  `call_trace` longblob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 **/
 
