@@ -3,7 +3,7 @@ import {FloatProperty} from "csstype";
 import {useEffect, useState} from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-
+import remarkGfm from 'remark-gfm'
 
 interface iFetchMarkdownCache {
     markdown: string,
@@ -88,6 +88,7 @@ export default function FetchMarkdown({url}: iFetchMarkdown) {
         <ReactMarkdown
             skipHtml={false}
             rehypePlugins={[rehypeRaw]}
+            remarkPlugins={[remarkGfm]}
             components={{
                 code({children, className, node, ...rest}) {
 
