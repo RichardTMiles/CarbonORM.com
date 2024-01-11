@@ -26,10 +26,10 @@ export default function Popup({
 
     }
 
-    const dig = getStyles()
+    const styles = getStyles()
 
     return <>
-        <div className={classNames(dig.modal, dig.fade, dig.show, dig.dBlock)}
+        <div className={classNames(styles.modal, styles.fade, styles.show, styles.dBlock)}
              style={{backgroundColor: "rgba(0,0,0,0.8)"}}
              id="exampleModalCenter"
              tabIndex={-1} aria-labelledby="exampleModalCenterTitle"
@@ -38,11 +38,11 @@ export default function Popup({
             <div
                 style={{maxWidth: maxWidth}}
                 className={classNames(
-                    dig.modalDialog, dig.modalDialogCentered,
+                    styles.modalDialog, styles.modalDialogCentered,
                 )}
             >
                 <OutsideClickHandler onOutsideClick={() => handleClose()}>
-                    <div className={classNames(dig.modalContent, dig.bgTransparent, dig.modalDialogScrollable, dig.walletModal)}>
+                    <div className={classNames(styles.modalContent, styles.bgTransparent, styles.modalDialogScrollable)}>
                         {children}
                     </div>
                 </OutsideClickHandler>

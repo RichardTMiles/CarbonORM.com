@@ -1,59 +1,10 @@
 // noinspection HttpUrlsUsage
 const {createProxyMiddleware} = require('http-proxy-middleware');
 
-const getLogger = require("webpack-log");
-
-const log = getLogger({name: 'setupProxy.js'});
-
-const isGitHubActions = process.env.REACT_APP_TEST_REMOTE === 'true'
-
-// shit broken? have you tried restarting your computer?
-// @link https://github.com/netlify/create-react-app-lambda/issues/19
-const subdomain = isGitHubActions ? 'www': 'local'; // don't change this to the remote as it will not work, this is currently experimental.
-
-const port = isGitHubActions ? '' : ':8080';
-
-const proxyProtocol = 'http' + (isGitHubActions ? 's' : '');
-
-const proxyDestination = (tld) => {
-    const dest = proxyProtocol + '://' + subdomain + '.carbonorm.' + tld + port + '/'
-    log.info(dest)
-    return dest
-}
-
 const options = {
     target: 'http://127.0.0.1',
-    router: (req) => {
-
-        let host = ''
-
-        req.rawHeaders.find((value, index) => {
-            if (value === 'Referer') {
-                return host = req.rawHeaders[index + 1];
-            }
-        });
-
-        if ('string' !== typeof host) {
-
-            log.info(req.rawHeaders);
-
-            throw new Error('host not found');
-
-        }
-
-        log.info(host);
-
-        if (host.startsWith('http://127.0.0.1:3000/') || '' === host) {
-
-            return proxyDestination('dev')
-
-        }
-
-
-        const tld = new URL(host).hostname.split('.').pop();
-
-        return proxyDestination(tld);
-
+    router: () => {
+        return 'http://127.0.0.1:8080/';
     },
     changeOrigin: true,
     secure: false,
@@ -61,11 +12,6 @@ const options = {
     proxyTimeout: 60000,
     logLevel: "debug"
 };
-
-// I see this change between starts for no apparent reason.
-const explicitDS = true;
-
-const optionallyExplicitDS = explicitDS ? '/' : '';
 
 /**
  * This file may seem broken but its more likely your computers internal resolve to the hosts file
@@ -89,7 +35,7 @@ module.exports = function (app) {
         pathFilter: '/rest/**',
         pathRewrite(path, req) {
             //log.info(path, 3);
-            path = path.replace(/^\/rest/, optionallyExplicitDS + 'rest');
+            path = path.replace(/^\/rest/, '/rest');
             return path;
         },
         onProxyRes
@@ -100,7 +46,7 @@ module.exports = function (app) {
         pathFilter: '/carbon/**',
         pathRewrite(path, req) {
             //log.info(path, 5);
-            path = path.replace(/^\/carbon/, optionallyExplicitDS + 'carbon');
+            path = path.replace(/^\/carbon/, '/carbon');
             return path;
         },
         onProxyRes
@@ -111,7 +57,7 @@ module.exports = function (app) {
         pathFilter: '/logout/**',
         pathRewrite(path, req) {
             //log.info(path, 6);
-            path = path.replace(/^\/logout/, optionallyExplicitDS + 'logout');
+            path = path.replace(/^\/logout/, '/logout');
             return path;
         },
         onProxyRes

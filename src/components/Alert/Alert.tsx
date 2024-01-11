@@ -128,7 +128,7 @@ export default function Alert() {
 
     const bootstrap = CarbonORM.instance
 
-    const dig = getStyles()
+    const styles = getStyles()
 
     let cancelTimeout: any = null
 
@@ -159,19 +159,19 @@ export default function Alert() {
     }
 
     return <Popup handleClose={handleClose}>
-        <div className={classNames("model-content", dig.rounded0, dig.border0)} style={{
+        <div className={classNames("model-content", styles.rounded0, styles.border0)} style={{
             maxWidth: '75vw',
             maxHeight: '75vh',
         }}>
-            <div className={classNames(dig.modalHeader, dig.rounded0, dig.border0, {
+            <div className={classNames(styles.modalHeader, styles.rounded0, styles.border0, {
                 // icon?: "warning" | "error" | "success" | "info" | "question"
-                [dig.digBgCardHeader]: "info" === alert.icon || alert.icon === undefined || alert.icon === null,
-                [dig.digBgDarkgreen]: "success" === alert.icon,
-                [dig.digBgOrange]: "warning" === alert.icon,
-                [dig.digBgOrange]: "error" === alert.icon, // TODO - change to red
-                [dig.bgPrimary]: "question" === alert.icon,
+                [styles.bgPrimary]: "info" === alert.icon || alert.icon === undefined || alert.icon === null,
+                [styles.bgSuccess]: "success" === alert.icon,
+                [styles.bgWarning]: "warning" === alert.icon,
+                [styles.bgDanger]: "error" === alert.icon, // TODO - change to red
+                [styles.bgPrimary]: "question" === alert.icon,
             })}>
-                <h3 className={classNames(dig.modalTitle, dig.textDark)} id="staticBackdropLabel">
+                <h3 className={classNames(styles.modalTitle, styles.textDark)} id="staticBackdropLabel">
                     #{alertWaiting} {alert.title}
                 </h3>
                 <div onClick={handleClose}>
@@ -181,26 +181,26 @@ export default function Alert() {
                     size={'xl'}/>
                 </div>
             </div>
-            <div className={classNames(dig.modalBody, dig.border0, dig.digBgNeutral8, dig.digTextWhite)}>
-                <div className={dig.textCenter}>
+            <div className={classNames(styles.modalBody, styles.border0, styles.bgLightSubtle, styles.textWhite)}>
+                <div className={styles.textCenter}>
                     {alert.text}
                     {alert.component}
                 </div>
             </div>
             {undefined !== alert.buttons &&
-                <div className={classNames(dig.modalFooter, dig.digBgNeutral7, dig.border0, dig.rounded0)}>
-                    {alert.footerText && <div className={classNames(dig.textCenter, dig.digTextWhite)}>{alert.footerText}</div>}
+                <div className={classNames(styles.modalFooter, styles.bgLightSubtle, styles.border0, styles.rounded0)}>
+                    {alert.footerText && <div className={classNames(styles.textCenter, styles.textWhite)}>{alert.footerText}</div>}
 
                     {alert.buttons?.map((button: iAlertButtonOptions, index: number) => {
 
                         return <button key={index}
-                                       className={classNames(dig.btn, dig.btnLg, {
+                                       className={classNames(styles.btn, styles.btnLg, {
                                            // todo - color: "default" | "primary" | "secondary" | "inherit" | "danger" | "info" | "success" | "warning" | undefined,
-                                           [dig.digBtnGreen]: "success" === button.color,
-                                           [dig.digBtnRed]: "danger" === button.color,
-                                           [dig.digBtnBlue]: "primary" === button.color,
-                                           [dig.digBtnLightRed]: "warning" === button.color,
-                                       }, "btn-Yes", dig.rounded0)}
+                                           [styles.bgSuccess]: "success" === button.color,
+                                           [styles.bgDanger]: "danger" === button.color,
+                                           [styles.bgPrimary]: "primary" === button.color,
+                                           [styles.bgWarning]: "warning" === button.color,
+                                       }, "btn-Yes", styles.rounded0)}
                                        onClick={() => {
                                            handleClose()
                                            alert?.then?.(button.value ?? button.text)

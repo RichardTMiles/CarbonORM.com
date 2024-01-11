@@ -16,9 +16,10 @@ export const SUPPORT = 'Support/';
 function License() {
     return <GridContainer justify="center">
         <GridItem sm={0} md={2}/>
-        <GridItem mdOffset={2} sm={12} md={8}>
+        <GridItem sm={12} md={8}>
             <FetchMarkdown url={'https://raw.githubusercontent.com/CarbonORM/CarbonPHP/lts/documentation/support.md'}/>
         </GridItem>
+        <GridItem sm={0} md={2}/>
     </GridContainer>
 }
 

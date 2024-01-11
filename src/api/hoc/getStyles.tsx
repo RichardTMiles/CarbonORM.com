@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import BootstrapStyle from "variables/bootstrap.module.scss"
-import DropInGamingStyles from "style.module.scss"
+import ApplicationStyle from "CarbonORM.module.scss"
 
 export const getRootStyleValue = (property = '--dig_primary_color') : string => {
 
@@ -27,18 +27,18 @@ function mergeStyles<iStyleA extends iStyle, iStyleB extends iStyle>(styleA : iS
 
 }
 
-const dropStyles = mergeStyles(BootstrapStyle, DropInGamingStyles);
+const compiledStyles = mergeStyles(BootstrapStyle, ApplicationStyle);
 
 type tBootstrap = typeof BootstrapStyle
 
-type tDropInGaming = typeof DropInGamingStyles
+type tApplicationStyle = typeof ApplicationStyle
 
-export default function getStyles<iCSS extends {}>(overrides: iCSS = {} as iCSS): tBootstrap & tDropInGaming & iCSS {
+export default function getStyles<iCSS extends {}>(overrides: iCSS = {} as iCSS): tBootstrap & tApplicationStyle & iCSS {
 
     if (0 === Object.keys(overrides).length) {
-        return dropStyles as (typeof dropStyles) & iCSS
+        return compiledStyles as (typeof compiledStyles) & iCSS
     }
 
-    return mergeStyles(dropStyles, overrides)
+    return mergeStyles(compiledStyles, overrides)
 
 }

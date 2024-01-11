@@ -5,6 +5,7 @@ import Groups from "api/rest/Groups";
 import User_Groups from "api/rest/User_Groups";
 import Users from "api/rest/Users";
 import CarbonORM from "CarbonORM";
+import Popup from "components/Popup/Popup";
 import React, {ChangeEvent} from "react";
 // nodejs library to set properties for components
 // nodejs library that concatenates classes
@@ -232,7 +233,10 @@ class AccessControl extends React.Component<{
     }
 
     newFeature() {
-        this.setState({alert: null}, () => Features.Post(this.state.feature))
+
+        console.log('this.state.feature', this.state.feature);
+
+        // this.setState({alert: null}, () => Features.Post(this.state.feature))
     }
 
     deleteFeature(id: string | undefined) {
@@ -318,33 +322,40 @@ class AccessControl extends React.Component<{
                                     </p>
                                     <Button
                                         color="success"
-                                        onClick={() => swal({
-                                            buttons: true,
-                                            content: <div><h2>Create a new feature flag</h2><b>(Site Admin
-                                                Only)</b><br/><br/>
-                                                Your New Feature Name:
-                                                <hr/>
-                                                <CustomInput
-                                                    success
-                                                    labelText="Feature Flag Name"
-                                                    id="Feature_Flag_Name"
-                                                    formControlProps={{
-                                                        fullWidth: true
-                                                    }}
-                                                    inputProps={{
-                                                        onChange: (e: ChangeEvent<HTMLInputElement>) => this.setState({
-                                                            feature: {
-                                                                feature_code: e.target.value,
-                                                                feature_entity_id: undefined,
-                                                            }
-                                                        })
-                                                    }}
-                                                />
-                                                <br/>
-                                                <hr/>
-                                            </div>
-                                        }).then(shouldSubmit => shouldSubmit && this.newFeature())}
-                                    >
+                                        onClick={() => {
+
+                                            this.setState({
+                                                alert: <Popup handleClose={() => this.setState({alert: null})}>
+                                                    <div>
+                                                        <h2>Create a new feature flag</h2>
+                                                        <b>(Site Admin Only)</b>
+                                                        <br/><br/>
+                                                        Your New Feature Name:
+                                                        <hr/>
+                                                        <input
+                                                            id="Feature_Flag_Name"
+                                                            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+
+                                                                console.log('feature_entity_id', e, {
+                                                                    feature_code: e.target.value,
+                                                                    feature_entity_id: undefined,
+                                                                })
+
+                                                                this.setState({
+                                                                    feature: {
+                                                                        feature_code: e.target.value,
+                                                                        feature_entity_id: undefined,
+                                                                    }
+                                                                })
+                                                            }}
+                                                        />
+                                                        <br/>
+                                                        <hr/>
+                                                    </div>
+                                                </Popup>
+                                            })
+
+                                        }}>
                                         Start New Feature
                                     </Button>
                                     <Button color="warning"

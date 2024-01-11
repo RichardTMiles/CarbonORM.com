@@ -11,7 +11,7 @@ export default axios.create({
     baseURL: '',
 
     /**
-     * These headers are important to use here at dig.
+     * These headers are important to use here
      * XMLHttpRequest - is a standard header all jquery ajax requests send by default. This allows our php side to return
      *                  nothing while running the get_header() and get_footer() functions with (bool) DropVariables::$ajax;
      *
