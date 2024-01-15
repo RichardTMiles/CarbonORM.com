@@ -1,7 +1,7 @@
 import CarbonORM from "CarbonORM";
-import FetchMarkdownWithGrid from "components/FetchMarkdown/FetchMarkdownWithGrid";
-import GridContainer from "components/Grid/GridContainer";
-import GridItem from "components/Grid/GridItem";
+import FetchMarkdownWithGrid from "pages/UI/MaterialUI/components/FetchMarkdown/FetchMarkdownWithGrid";
+import GridContainer from "pages/UI/MaterialUI/components/Grid/GridContainer";
+import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
 import GuidedUserInterface from "pages/Documentation/CarbonWordPress/GuidedUserInterface/GuidedUserInterface";
 
 export const CARBON_WORDPRESS: string = 'CarbonWordPress/';

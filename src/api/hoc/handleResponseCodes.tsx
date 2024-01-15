@@ -1,5 +1,5 @@
 import CarbonORM from "CarbonORM";
-import {iAlert} from "components/Alert/Alert";
+import {iAlert} from "pages/UI/MaterialUI/components/Alert/Alert";
 
 export default function HandleResponseCodes(data: any): void {
 

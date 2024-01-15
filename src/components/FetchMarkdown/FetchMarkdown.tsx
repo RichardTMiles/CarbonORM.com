@@ -1,4 +1,4 @@
-import CodeBlock from "components/CodeBlock/CodeBlock";
+import CodeBlock from "pages/UI/MaterialUI/components/CodeBlock/CodeBlock";
 import {FloatProperty} from "csstype";
 import {useEffect, useState} from "react";
 import ReactMarkdown from "react-markdown";

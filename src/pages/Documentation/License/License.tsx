@@ -1,4 +1,4 @@
-import FetchMarkdownWithGrid from "components/FetchMarkdown/FetchMarkdownWithGrid";
+import FetchMarkdownWithGrid from "pages/UI/MaterialUI/components/FetchMarkdown/FetchMarkdownWithGrid";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components

@@ -1,6 +1,6 @@
-import FetchMarkdown from "components/FetchMarkdown/FetchMarkdown";
-import GridContainer from "components/Grid/GridContainer";
-import GridItem from "components/Grid/GridItem";
+import FetchMarkdown from "pages/UI/MaterialUI/components/FetchMarkdown/FetchMarkdown";
+import GridContainer from "pages/UI/MaterialUI/components/Grid/GridContainer";
+import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
 
 export const CARBON_ORM_INTRODUCTION: string = 'carbon-orm-introduction/';
 

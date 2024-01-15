@@ -5,23 +5,23 @@ import Groups from "api/rest/Groups";
 import User_Groups from "api/rest/User_Groups";
 import Users from "api/rest/Users";
 import CarbonORM from "CarbonORM";
-import Popup from "components/Popup/Popup";
+import Popup from "pages/UI/MaterialUI/components/Popup/Popup";
 import React, {ChangeEvent} from "react";
 // nodejs library to set properties for components
 // nodejs library that concatenates classes
-import GridContainer from "../../components/Grid/GridContainer";
-import GridItem from "../../components/Grid/GridItem";
-import Button from "../../components/CustomButtons/Button";
+import GridContainer from "../UI/MaterialUI/components/Grid/GridContainer";
+import GridItem from "../UI/MaterialUI/components/Grid/GridItem";
+import Button from "../UI/MaterialUI/components/CustomButtons/Button";
 
 import landingPageStyle from "../../assets/jss/material-kit-react/views/landingPage";
 // Sections for this page
 import axiosInstance from "variables/axiosInstance";
 
 
-import Card from "components/Card/Card";
-import CardHeader from "components/Card/CardHeader";
-import CardBody from "components/Card/CardBody";
-import Table from "components/Table/Table";
+import Card from "pages/UI/MaterialUI/components/Card/Card";
+import CardHeader from "pages/UI/MaterialUI/components/Card/CardHeader";
+import CardBody from "pages/UI/MaterialUI/components/Card/CardBody";
+import Table from "pages/UI/MaterialUI/components/Table/Table";
 import axios from "axios";
 import {
     C6,
@@ -31,7 +31,7 @@ import {
     iUser_Groups,
     iUsers
 } from "api/rest/C6";
-import CustomInput from "components/CustomInput/CustomInput";
+import CustomInput from "pages/UI/MaterialUI/components/CustomInput/CustomInput";
 import swal from '@sweetalert/with-react';
 import withStyles from "@material-ui/core/styles/withStyles";
 

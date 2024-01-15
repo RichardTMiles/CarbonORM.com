@@ -6,31 +6,31 @@ import cx from "classnames";
 import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 // core components
-import GridItem from "components/Grid/GridItem";
+import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
 // sections for this page
-import SectionBasics from "pages/UI/Sections/SectionBasics";
-import SectionNavbars from "pages/UI/Sections/SectionNavbars";
-import SectionTabs from "pages/UI/Sections/SectionTabs";
-import SectionPills from "pages/UI/Sections/SectionPills";
-import SectionNotifications from "pages/UI/Sections/SectionNotifications";
-import SectionTypography from "pages/UI/Sections/SectionTypography";
-import SectionJavascript from "pages/UI/Sections/SectionJavascript";
-import SectionCompletedExamples from "pages/UI/Sections/SectionCompletedExamples";
-import SectionLogin from "pages/UI/Sections/SectionLogin";
-import SectionDownload from "pages/UI/Sections/SectionDownload";
+import SectionBasics from "pages/UI/MaterialUI/MaterialKit/SectionBasics";
+import SectionNavbars from "pages/UI/MaterialUI/MaterialKit/SectionNavbars";
+import SectionTabs from "pages/UI/MaterialUI/MaterialKit/SectionTabs";
+import SectionPills from "pages/UI/MaterialUI/MaterialKit/SectionPills";
+import SectionNotifications from "pages/UI/MaterialUI/MaterialKit/SectionNotifications";
+import SectionTypography from "pages/UI/MaterialUI/MaterialKit/SectionTypography";
+import SectionJavascript from "pages/UI/MaterialUI/MaterialKit/SectionJavascript";
+import SectionCompletedExamples from "pages/UI/MaterialUI/MaterialKit/SectionCompletedExamples";
+import SectionLogin from "pages/UI/MaterialUI/MaterialKit/SectionLogin";
+import SectionDownload from "pages/UI/MaterialUI/MaterialKit/SectionDownload";
 
 import componentsStyle from "assets/jss/material-kit-react/views/components";
 
 import Navbar from "pages/Documentation/Navbar";
-import Parallax from "../../components/Parallax/Parallax";
-import GridContainer from "../../components/Grid/GridContainer";
-import Footer from "components/Footer/Footer";
+import Parallax from "./MaterialUI/components/Parallax/Parallax";
+import GridContainer from "./MaterialUI/components/Grid/GridContainer";
+import Footer from "pages/UI/MaterialUI/components/Footer/Footer";
 
 
-import HeaderTop from "components/HeaderTop/HeaderTop";
-import HeaderLinks from "components/HeaderTop/HeaderLinks";
-import ProfilePage from "../ProfilePage/ProfilePage";
-import LandingPage from "pages/UI/Sections/LandingPage/LandingPage";
+import HeaderTop from "pages/Documentation/HeaderTop/HeaderTop";
+import HeaderLinks from "pages/Documentation/HeaderTop/HeaderLinks";
+import ProfilePage from "./MaterialUI/MaterialKit/ProfilePage/ProfilePage";
+import LandingPage from "pages/UI/MaterialUI/MaterialKit/LandingPage/LandingPage";
 
 
 // react components for routing our app without refresh
@@ -158,7 +158,7 @@ class MaterialKit extends React.Component<any, any> {
       <div>
         <div className={classes.wrapper}>
           <HeaderTop
-            brand="CarbonPHP.com"
+            brand="CarbonORM.dev"
             rightLinks={<HeaderLinks/>}
             fixed
             color="dark"

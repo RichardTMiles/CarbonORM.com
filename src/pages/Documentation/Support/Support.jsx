@@ -4,10 +4,10 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 
 // core components
-import GridContainer from "components/Grid/GridContainer";
-import GridItem from "components/Grid/GridItem";
+import GridContainer from "pages/UI/MaterialUI/components/Grid/GridContainer";
+import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
 import completedStyle from "assets/jss/material-kit-react/views/componentsSections/completedStyle";
-import FetchMarkdown from "components/FetchMarkdown/FetchMarkdown";
+import FetchMarkdown from "pages/UI/MaterialUI/components/FetchMarkdown/FetchMarkdown";
 
 
 export const SUPPORT = 'Support/';

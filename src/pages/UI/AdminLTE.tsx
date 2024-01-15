@@ -1,44 +1,34 @@
-import {useState, useEffect, useCallback} from 'react';
+import getStyles from "api/hoc/getStyles";
+import store from "pages/UI/AdminLTE/store/store";
 import {Outlet} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import ControlSidebar from './AdminLTE/modules/main/control-sidebar/ControlSidebar';
+import Header from './AdminLTE/modules/main/header/Header';
+import MenuSidebar from './AdminLTE/modules/main/menu-sidebar/MenuSidebar';
+import Footer from './AdminLTE/modules/main/footer/Footer';
+export const ADMIN_LTE = 'AdminLTE/';
 
-const Main = () => {
-    const [isAppLoaded, setIsAppLoaded] = useState(false);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setIsAppLoaded(true);
-        }, 1000);
-    }, [])
+const AdminLTE = () => {
 
-    const getAppTemplate = useCallback(() => {
-        if (!isAppLoaded) {
-            return (
-                <div className="preloader flex-column justify-content-center align-items-center">
-                    <img
-                        className="animation__shake"
-                        src="/img/logo.png"
-                        alt="AdminLTELogo"
-                        height={60}
-                        width={60}
-                    />
-                </div>
-            );
-        }
+    console.log('AdminLTE Rendered');
 
-        return (
-            <>
+    const styles = getStyles()
 
-                <div className="content-wrapper">
-                    <div className="pt-3"/>
-                    <section className="content">
-                        <Outlet/>
-                    </section>
-                </div>
-            </>
-        );
-    }, [isAppLoaded]);
+    return <div className={"wrapper"}>
+            <Header/>
 
-    return <div className="wrapper">{getAppTemplate()}</div>;
+            <MenuSidebar/>
+
+            <div className={"content-wrapper"}>
+                <div className={styles.pt3}/>
+                <section className="content">
+                    <Outlet/>
+                </section>
+            </div>
+            <Footer/>
+            <ControlSidebar/>
+        </div>
 };
 
-export default Main;
+export default () => <Provider store={store}><AdminLTE/></Provider>;

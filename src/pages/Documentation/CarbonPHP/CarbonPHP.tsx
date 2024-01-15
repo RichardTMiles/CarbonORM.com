@@ -1,4 +1,4 @@
-import FetchMarkdown from "components/FetchMarkdown/FetchMarkdown";
+import FetchMarkdown from "pages/UI/MaterialUI/components/FetchMarkdown/FetchMarkdown";
 import React from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -18,9 +18,9 @@ import {
     ViewComfy
 } from "@material-ui/icons";
 // core components
-import GridContainer from "components/Grid/GridContainer";
-import GridItem from "components/Grid/GridItem";
-import NavPills from "components/NavPills/NavPills";
+import GridContainer from "pages/UI/MaterialUI/components/Grid/GridContainer";
+import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
+import NavPills from "pages/UI/MaterialUI/components/NavPills/NavPills";
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle";
 
 

@@ -1,10 +1,17 @@
 import {CarbonReact, initialRequiredCarbonORMState, CarbonWebSocket, BackendThrowable} from "@carbonorm/carbonreact";
 import Notifications from "@material-ui/icons/Notifications";
-//import Carbons from "api/rest/Carbons";
 import {initialRestfulObjectsState} from "api/rest/C6";
 import CarbonNode, {CARBON_NODE} from "pages/Documentation/CarbonNode/CarbonNode";
 import CarbonReactDocumentation, {CARBON_REACT} from "pages/Documentation/CarbonReact/CarbonReact";
 import CarbonWordPress, {CARBON_WORDPRESS} from "pages/Documentation/CarbonWordPress/CarbonWordPress";
+import ForgetPassword from "pages/UI/AdminLTE/modules/forgot-password/ForgotPassword";
+import Login from "pages/UI/AdminLTE/modules/login/Login";
+import RecoverPassword from "pages/UI/AdminLTE/modules/recover-password/RecoverPassword";
+import Register from "pages/UI/AdminLTE/modules/register/Register";
+import AdminLTEDashboard from "pages/UI/AdminLTE/pages/AdminLTEDashboard";
+import Blank from "pages/UI/AdminLTE/pages/Blank";
+import Profile from "pages/UI/AdminLTE/pages/profile/Profile";
+import SubMenu from "pages/UI/AdminLTE/pages/SubMenu";
 import {Routes, Route, Navigate, MemoryRouter, HashRouter} from 'react-router-dom';
 import {ppr} from "api/hoc/passPropertiesAndRender";
 
@@ -13,32 +20,33 @@ import {iAuthenticate, initialAuthenticateState} from "state/authenticate";
 import {initialUiState, iUi} from "state/ui";
 import {initialVersionsState, iVersions} from "state/versions";
 import {ToastContainer} from "react-toastify";
-import DashboardPage, {DASHBOARD} from "pages/UI/MaterialDashboard/Dashboard/Dashboard";
+import DashboardPage, {DASHBOARD} from "pages/UI/MaterialUI/MaterialDashboard/Dashboard/Dashboard";
 import Documentation, {DOCUMENTATION, iDocumentation} from "pages/Documentation/Documentation";
 import CarbonPHP, {CARBON_PHP} from "pages/Documentation/CarbonPHP/CarbonPHP";
 import Implementations, {IMPLEMENTATIONS} from "pages/Documentation/Implementations/Implementations";
 import License, {LICENSE} from "pages/Documentation/License/License";
 import Support, {SUPPORT} from "pages/Documentation/Support/Support";
-import Icons, {ICONS} from "pages/UI/MaterialDashboard/Icons/Icons";
-import LandingPage, {LANDING_PAGE} from "pages/UI/Sections/LandingPage/LandingPage";
-import Maps, {MAPS} from "pages/UI/MaterialDashboard/Maps/Maps";
-import {NOTIFICATIONS} from "pages/UI/MaterialDashboard/Notifications/Notifications";
-import TableList, {TABLES} from "pages/UI/MaterialDashboard/TableList/TableList";
-import Typography, {TYPOGRAPHY} from "pages/UI/MaterialDashboard/Typography/Typography";
+import Icons, {ICONS} from "pages/UI/MaterialUI/MaterialDashboard/Icons/Icons";
+import LandingPage, {LANDING_PAGE} from "pages/UI/MaterialUI/MaterialKit/LandingPage/LandingPage";
+import Maps, {MAPS} from "pages/UI/MaterialUI/MaterialDashboard/Maps/Maps";
+import {NOTIFICATIONS} from "pages/UI/MaterialUI/MaterialDashboard/Notifications/Notifications";
+import TableList, {TABLES} from "pages/UI/MaterialUI/MaterialDashboard/TableList/TableList";
+import Typography, {TYPOGRAPHY} from "pages/UI/MaterialUI/MaterialDashboard/Typography/Typography";
 import Dashboard, {MATERIAL_DASHBOARD, UI} from "pages/UI/MaterialDashboard";
+import AdminLTE, {ADMIN_LTE} from "pages/UI/AdminLTE";
 import MaterialKit, {MATERIAL_KIT} from "pages/UI/MaterialKit";
-import SectionBasics, {SECTION_BASICS} from "pages/UI/Sections/SectionBasics";
-import SectionCompletedExamples, {SECTION_COMPLETED_EXAMPLES} from "pages/UI/Sections/SectionCompletedExamples";
-import SectionDownload, {SECTION_DOWNLOAD} from "pages/UI/Sections/SectionDownload";
-import SectionJavascript, {SECTION_JAVASCRIPT} from "pages/UI/Sections/SectionJavascript";
-import SectionLogin, {SECTION_LOGIN} from "pages/UI/Sections/SectionLogin";
-import SectionNavbars, {SECTION_NAVBARS} from "pages/UI/Sections/SectionNavbars";
-import SectionNotifications, {SECTION_NOTIFICATIONS} from "pages/UI/Sections/SectionNotifications";
-import SectionPills, {SECTION_PILLS} from "pages/UI/Sections/SectionPills";
-import SectionTabs, {SECTION_TABS} from "pages/UI/Sections/SectionTabs";
-import SectionTypography, {SECTION_TYPOGRAPHY} from "pages/UI/Sections/SectionTypography";
-import UpgradeToPro, {UPGRADE_TO_PRO} from "pages/UI/MaterialDashboard/UpgradeToPro/UpgradeToPro";
-import UserProfile, {USER_PROFILE} from "pages/UI/MaterialDashboard/UserProfile/UserProfile";
+import SectionBasics, {SECTION_BASICS} from "pages/UI/MaterialUI/MaterialKit/SectionBasics";
+import SectionCompletedExamples, {SECTION_COMPLETED_EXAMPLES} from "pages/UI/MaterialUI/MaterialKit/SectionCompletedExamples";
+import SectionDownload, {SECTION_DOWNLOAD} from "pages/UI/MaterialUI/MaterialKit/SectionDownload";
+import SectionJavascript, {SECTION_JAVASCRIPT} from "pages/UI/MaterialUI/MaterialKit/SectionJavascript";
+import SectionLogin, {SECTION_LOGIN} from "pages/UI/MaterialUI/MaterialKit/SectionLogin";
+import SectionNavbars, {SECTION_NAVBARS} from "pages/UI/MaterialUI/MaterialKit/SectionNavbars";
+import SectionNotifications, {SECTION_NOTIFICATIONS} from "pages/UI/MaterialUI/MaterialKit/SectionNotifications";
+import SectionPills, {SECTION_PILLS} from "pages/UI/MaterialUI/MaterialKit/SectionPills";
+import SectionTabs, {SECTION_TABS} from "pages/UI/MaterialUI/MaterialKit/SectionTabs";
+import SectionTypography, {SECTION_TYPOGRAPHY} from "pages/UI/MaterialUI/MaterialKit/SectionTypography";
+import UpgradeToPro, {UPGRADE_TO_PRO} from "pages/UI/MaterialUI/MaterialDashboard/UpgradeToPro/UpgradeToPro";
+import UserProfile, {USER_PROFILE} from "pages/UI/MaterialUI/MaterialDashboard/UserProfile/UserProfile";
 import CarbonORMDocumentation, {CARBON_ORM_INTRODUCTION} from "pages/Documentation/CarbonORM/CarbonORM"
 import isTest from "variables/isTest";
 import {initialWordPressState, iWordPress} from "state/wordpress";
@@ -130,7 +138,21 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
                         <Route path={SECTION_DOWNLOAD + '*'} element={ppr(SectionDownload, {})}/>
                         <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_KIT + SECTION_NAVBARS}/>}/>
                     </Route>
-                    <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_DASHBOARD}/>}/>
+                    <Route path={ADMIN_LTE + "*"}>
+                        <Route path="*" element={<AdminLTE/>}>
+                            <Route path="recover-password" element={<RecoverPassword/>}/>
+                            <Route path="forgot-password" element={<ForgetPassword/>}/>
+                            <Route path="register" element={<Register/>}/>
+                            <Route path="login" element={<Login/>}/>
+                            <Route path="sub-menu-2" element={<Blank/>}/>
+                            <Route path="sub-menu-1" element={<SubMenu/>}/>
+                            <Route path="blank" element={<Blank/>}/>
+                            <Route path="profile" element={<Profile/>}/>
+                            <Route path="dashboard" element={<AdminLTEDashboard/>}/>
+                        </Route>
+                        <Route path={'*'} element={<Navigate to={'login'}/>}/>
+                    </Route>
+                    <Route path={'*'} element={<Navigate to={MATERIAL_DASHBOARD}/>}/>
                 </Route>
                 <Route path={DOCUMENTATION + '*'} element={ppr<iDocumentation>(Documentation, {
                     headerLinks: [

@@ -1,5 +1,5 @@
 import {Looks3, Looks4, Looks5, Looks6, LooksOne, LooksTwo} from "@material-ui/icons";
-import NavPills from "components/NavPills/NavPills";
+import NavPills from "pages/UI/MaterialUI/components/NavPills/NavPills";
 
 
 export default function GuidedUserInterface() {

@@ -4,11 +4,11 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 
 // core components
-import GridContainer from "components/Grid/GridContainer";
-import GridItem from "components/Grid/GridItem";
+import GridContainer from "pages/UI/MaterialUI/components/Grid/GridContainer";
+import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
 import completedStyle from "assets/jss/material-kit-react/views/componentsSections/completedStyle";
-import FetchMarkdown from "components/FetchMarkdown/FetchMarkdown";
-import NavPills from "components/NavPills/NavPills";
+import FetchMarkdown from "pages/UI/MaterialUI/components/FetchMarkdown/FetchMarkdown";
+import NavPills from "pages/UI/MaterialUI/components/NavPills/NavPills";
 import {
     AccountTree,
     AllInclusive, Announcement,
@@ -23,8 +23,8 @@ import {
     Timeline,
     ViewComfy
 } from "@material-ui/icons";
-import CodeBlock from "components/CodeBlock/CodeBlock";
-import Button from "components/CustomButtons/Button";
+import CodeBlock from "pages/UI/MaterialUI/components/CodeBlock/CodeBlock";
+import Button from "pages/UI/MaterialUI/components/CustomButtons/Button";
 import {C6} from "api/rest/C6";
 import AccessControl from "pages/AccessControl/AccessControl";
 import SequenceDiagram from "assets/img/invertSD.png";
@@ -82,7 +82,7 @@ function Implementations() {
                         )
                     },
                     {
-                        tabButton: "https://CarbonPHP.com/",
+                        tabButton: "/",
                         tabIcon: Looks5,
                         tabContent: (
                             <>

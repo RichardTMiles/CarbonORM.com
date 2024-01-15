@@ -4,8 +4,8 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import classNames from "classnames";
-import HeaderTop from "components/HeaderTop/HeaderTop";
-import CustomDropdown from "components/CustomDropdown/CustomDropdown";
+import HeaderTop from "pages/Documentation/HeaderTop/HeaderTop";
+import CustomDropdown from "pages/UI/MaterialUI/components/CustomDropdown/CustomDropdown";
 
 import navbarsStyle from "assets/jss/material-kit-react/views/componentsSections/navbarsStyle";
 

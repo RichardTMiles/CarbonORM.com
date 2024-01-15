@@ -6,20 +6,20 @@ import classNames from "classnames";
 
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import GridItem from "components/Grid/GridItem";
+import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
 import {iStyle} from "variables/styleModules";
 
 // FileStructure OptionsIndex Bootstrap Wrapper ParallelProcessing
 import componentsStyle from "assets/jss/material-kit-react/views/components";
 
 import Navbar from "pages/Documentation/Navbar";
-import Parallax from "../../components/Parallax/Parallax";
-import GridContainer from "../../components/Grid/GridContainer";
-import Footer from "components/Footer/Footer";
+import Parallax from "../UI/MaterialUI/components/Parallax/Parallax";
+import GridContainer from "../UI/MaterialUI/components/Grid/GridContainer";
+import Footer from "pages/UI/MaterialUI/components/Footer/Footer";
 
 
-import HeaderTop from "components/HeaderTop/HeaderTop";
-import HeaderLinks from "components/HeaderTop/HeaderLinks";
+import HeaderTop from "./HeaderTop/HeaderTop";
+import HeaderLinks from "./HeaderTop/HeaderLinks";
 
 
 export const DOCUMENTATION = 'documentation/';
@@ -63,7 +63,7 @@ class Documentation extends React.Component<{
         return <>
             <HeaderTop
                 fixed
-                brand="CarbonPHP.com"
+                brand="CarbonORM.dev"
                 darkMode={CarbonORM.instance.state.darkMode}
                 rightLinks={<HeaderLinks
                     darkMode={darkMode}
