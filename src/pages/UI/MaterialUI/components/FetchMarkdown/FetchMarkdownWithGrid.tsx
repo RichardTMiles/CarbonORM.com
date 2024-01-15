@@ -67,10 +67,10 @@ function FetchMarkdown({url}: iFetchMarkdown) {
 
         }
 
-    }, [])
+    }, [url])
 
     if (markdownCache === undefined) {
-        return <small>LOADING ({url})...</small>
+        return <small>LOADING (<a href={url}>{url}</a>)...</small>
     }
 
     const editPage = ({text, float = 'inherit'}: { text: string, float?: FloatProperty }) => <small

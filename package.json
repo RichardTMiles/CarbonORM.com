@@ -1,6 +1,6 @@
 {
   "name": "carbonorm",
-  "version": "10",
+  "version": "10.0.0",
   "description": "CarbonORM Documentation by Richard Miles.",
   "private": false,
   "main": "src/index.tsx",

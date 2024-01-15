@@ -110,17 +110,14 @@ class HeaderLinks extends React.Component<{ classes: any }, { zoom: number }> {
                         buttonIcon={Apps}
                         dropdownList={[
                             <Link to={'/' + UI + MATERIAL_KIT}
-                                  target="_blank"
                                   className={classes.dropdownLink}>
                                 Material Kit
                             </Link>,
                             <Link to={'/' + UI + MATERIAL_DASHBOARD}
-                                  target="_blank"
                                   className={classes.dropdownLink}>
                                 Material Dashboard
                             </Link>,
                             <Link to={'/' + UI + ADMIN_LTE}
-                                  target="_blank"
                                   className={classes.dropdownLink}>
                                 AdminLTE
                             </Link>
