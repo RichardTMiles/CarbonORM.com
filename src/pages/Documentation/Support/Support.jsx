@@ -7,7 +7,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import GridContainer from "pages/UI/MaterialUI/components/Grid/GridContainer";
 import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
 import completedStyle from "assets/jss/material-kit-react/views/componentsSections/completedStyle";
-import FetchMarkdown from "pages/UI/MaterialUI/components/FetchMarkdown/FetchMarkdown";
+import FetchMarkdown from "components/FetchMarkdown/FetchMarkdown";
 
 
 export const SUPPORT = 'Support/';

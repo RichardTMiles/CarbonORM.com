@@ -1,4 +1,4 @@
-import FetchMarkdown from "pages/UI/MaterialUI/components/FetchMarkdown/FetchMarkdown";
+import FetchMarkdown from "components/FetchMarkdown/FetchMarkdown";
 import React from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";

@@ -5,23 +5,25 @@ import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 
 const style = {
-  grid: {
-    padding: "0 15px !important"
-  }
+    grid: {
+        padding: "0 15px !important",
+        margin: "auto",
+        overflowWrap: "break-word"
+    }
 };
 
-function GridItem({ ...props }) {
-  const { classes, children, ...rest } = props;
-  return (
-    <Grid item {...rest} className={classes.grid}>
-      {children}
-    </Grid>
-  );
+function GridItem({...props}) {
+    const {classes, children, ...rest} = props;
+    return (
+        <Grid item {...rest} className={classes.grid}>
+            {children}
+        </Grid>
+    );
 }
 
 GridItem.propTypes = {
-  children: PropTypes.any,
-  classes: PropTypes.object.isRequired,
+    children: PropTypes.any,
+    classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(style)(GridItem);

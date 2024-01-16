@@ -1,4 +1,4 @@
-import FetchMarkdown from "pages/UI/MaterialUI/components/FetchMarkdown/FetchMarkdown";
+import FetchMarkdown from "components/FetchMarkdown/FetchMarkdown";
 import GridContainer from "pages/UI/MaterialUI/components/Grid/GridContainer";
 import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
 

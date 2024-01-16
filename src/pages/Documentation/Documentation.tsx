@@ -1,3 +1,4 @@
+import {Grid} from "@material-ui/core";
 import CarbonORM from "CarbonORM";
 import React from "react";
 
@@ -61,6 +62,7 @@ class Documentation extends React.Component<{
 
         // todo - if we were to merge version ia PHP ^7.4 application tool kit & framework with code it would be here {this.props.subRoutingSwitch(publicDocumentationRoutes, rest)}
         return <>
+
             <HeaderTop
                 fixed
                 brand="CarbonORM.dev"
@@ -107,7 +109,7 @@ class Documentation extends React.Component<{
                             backgroundColor: (darkMode ? "black" : "white"),
                             color: (darkMode ? "white" : "black"),
                             fontSize: "+1.2em",
-                            lineHeight: "+1.8em"
+                            lineHeight: "+1.8em",
                         }
                     }>
                         <br/>

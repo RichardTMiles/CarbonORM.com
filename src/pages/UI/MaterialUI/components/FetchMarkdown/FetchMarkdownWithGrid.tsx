@@ -1,3 +1,4 @@
+import {Container} from "@material-ui/core";
 import GridContainer from "pages/UI/MaterialUI/components/Grid/GridContainer";
 import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
 import CodeBlock from "pages/UI/MaterialUI/components/CodeBlock/CodeBlock";
@@ -126,11 +127,13 @@ function FetchMarkdown({url}: iFetchMarkdown) {
     </div>
 }
 
-export default function FetchMarkdownWithGrid({url}: iFetchMarkdown) {
+export default function FetchMarkdownWithGrid({url, maxWidth = "lg"}: iFetchMarkdown & { maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false; }) {
     return <GridContainer justify="center">
         <GridItem sm={0} md={2}/>
-        <GridItem mdOffset={2} sm={12} md={8}>
-            <FetchMarkdown url={url}/>
+        <GridItem sm={12} md={8} >
+            <Container maxWidth={maxWidth}>
+                <FetchMarkdown url={url}/>
+            </Container>
         </GridItem>
         <GridItem sm={0} md={2}/>
     </GridContainer>
