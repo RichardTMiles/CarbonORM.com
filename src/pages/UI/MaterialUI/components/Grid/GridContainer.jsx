@@ -8,7 +8,6 @@ import PropTypes from "prop-types";
 const style = {
   grid: {
     margin: "0 35px 0 15px !important",
-    width: "unset"
   }
 };
 

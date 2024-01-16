@@ -86,9 +86,11 @@ class Documentation extends React.Component<{
                                     CarbonORM [C6]
                                 </h1>
                                 <h3 className={classes.subtitle}
-                                    style={{color: (darkMode ? "white" : "black")}}>
-                                    Generate a powerful MySQL Restful ORM. Write secure json based sql queries in front
-                                    end and middleware. Auto-magically manage your database across multiple servers and teams!
+                                    style={{color: (darkMode ? "white" : "black"), fontWeight: "2em"}}>
+                                    Carbon is the universal building block for life as we know it. CarbonORM aims
+                                    Generate a powerful MySQL Restful ORM to foundation your applications. Write secure
+                                    json based sql queries in frontend user interfaces and middleware servers.
+                                    Auto-magically manage your database across multiple servers and teams!
                                 </h3>
                             </div>
                         </GridItem>
@@ -109,6 +111,7 @@ class Documentation extends React.Component<{
                             color: (darkMode ? "white" : "black"),
                             fontSize: "+1.2em",
                             lineHeight: "+1.8em",
+                            display: "flex",
                         }
                     }>
                         <br/>
