@@ -14,10 +14,10 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
 // core components
-import GridContainer from "pages/UI/MaterialUI/components/Grid/GridContainer";
 import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
 
 import navPillsStyle from "assets/jss/material-kit-react/components/navPillsStyle";
+import Grid from "@material-ui/core/Grid";
 
 
 const BindKeyboardSwipeableViews = bindKeyboard(SwipeableViews);
@@ -113,10 +113,10 @@ class NavPills extends React.Component {
       </div>
     );
     return horizontal !== undefined ? (
-      <GridContainer>
+      <Grid container style={{display:"flex"}}>
         <GridItem {...horizontal.tabsGrid}>{tabButtons}</GridItem>
         <GridItem {...horizontal.contentGrid}>{tabContent}</GridItem>
-      </GridContainer>
+      </Grid>
     ) : (
       <>
         {tabButtons}

@@ -21,6 +21,8 @@ import Footer from "pages/UI/MaterialUI/components/Footer/Footer";
 import HeaderTop from "./HeaderTop/HeaderTop";
 import HeaderLinks from "./HeaderTop/HeaderLinks";
 
+import CarbonTeal180 from "assets/img/Carbon-teal-180.png";
+import CarbonBlack from "assets/img/carbonimg/Carbon-black-180.png";
 
 export const DOCUMENTATION = 'documentation/';
 
@@ -73,14 +75,14 @@ class Documentation extends React.Component<{
                 rightLinks={<HeaderLinks
                     darkMode={darkMode}
                 />}
-                color={window.pageYOffset < 400 ? "transparent" : (darkMode ? "transparent" : "info")}
+                color={(darkMode ? "transparent" : "info")}
                 changeColorOnScroll={{
                     height: 400,
                     color: CarbonORM.instance.state.darkMode ? "dark" : "info"
                 }}
             />
             <Parallax
-                image={CarbonORM.instance.state.darkMode ? "https://carbonphp.com/view/assets/img/Carbon-teal-180.png" : "https://carbonphp.com/view/assets/img/Full-Carbon-Teal-White-1920x1080.png"}>
+                image={CarbonORM.instance.state.darkMode ? CarbonTeal180 : CarbonBlack}>
                 <div className={classes.container}>
                     <GridContainer>
                         <GridItem>

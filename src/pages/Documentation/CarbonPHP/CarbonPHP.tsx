@@ -1,3 +1,4 @@
+import Grid from "@material-ui/core/Grid";
 import FetchMarkdown from "components/FetchMarkdown/FetchMarkdown";
 import React from "react";
 // @material-ui/core components
@@ -92,7 +93,7 @@ class CarbonPHP extends React.Component<{ classes: any }, {
         };
 
         return (
-            <GridContainer justify="center">
+            <Grid container style={{display:"inline"}}>
                 <GridItem xs={12} sm={12} md={12}>
                     <div className={classes.textCenter}>
                         <h2><b>CarbonPHP</b></h2>
@@ -106,7 +107,7 @@ class CarbonPHP extends React.Component<{ classes: any }, {
                         color="info"
                         scrollButtons={this.state.mobile ? 'on' : 'off'}
                         horizontal={this.state.mobile ? undefined : orientation}
-                        tabs={[
+                        tabs={ [
                             {
                                 tabIcon: Dashboard,
                                 tabButton: "Introduction",
@@ -191,7 +192,7 @@ class CarbonPHP extends React.Component<{ classes: any }, {
                         ]}
                     />
                 </GridItem>
-            </GridContainer>
+            </Grid>
         );
     }
 }

@@ -8,6 +8,7 @@ const style = {
     grid: {
         padding: "0 15px !important",
         margin: "auto",
+        marginTop: "1em",
         //margin: "inherit",
         overflowWrap: "break-word"
     }
