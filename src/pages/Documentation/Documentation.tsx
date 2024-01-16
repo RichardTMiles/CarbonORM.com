@@ -36,7 +36,7 @@ export interface iDocumentation {
 class Documentation extends React.Component<{
     classes: iStyle,
     children: any,
-} & iDocumentation,{}> {
+} & iDocumentation, {}> {
     constructor(props) {
         super(props);
         this.state = {
@@ -57,10 +57,14 @@ class Documentation extends React.Component<{
         console.log(this.props);
 
         const {classes} = this.props;
-        const {  darkMode} = CarbonORM.instance.state;
+        const {darkMode} = CarbonORM.instance.state;
 
         // todo - if we were to merge version ia PHP ^7.4 application tool kit & framework with code it would be here {this.props.subRoutingSwitch(publicDocumentationRoutes, rest)}
-        return <>
+        return <div style={
+            {
+                backgroundColor: darkMode ? "info" : "black",
+            }
+        }>
 
             <HeaderTop
                 fixed
@@ -86,7 +90,11 @@ class Documentation extends React.Component<{
                                     CarbonORM [C6]
                                 </h1>
                                 <h3 className={classes.subtitle}
-                                    style={{color: (darkMode ? "white" : "black"), fontWeight: "2em"}}>
+                                    style={{
+                                        color: (darkMode ? "white" : "black"),
+                                        fontWeight: "2em",
+                                        marginRight: "2em"
+                                    }}>
                                     Carbon is the universal building block for life as we know it. CarbonORM aims
                                     Generate a powerful MySQL Restful ORM to foundation your applications. Write secure
                                     json based sql queries in frontend user interfaces and middleware servers.
@@ -99,7 +107,6 @@ class Documentation extends React.Component<{
             </Parallax>
             <div>
                 <div>
-
                     <Navbar
                         color={darkMode ? "dark" : "info"}
                         className={classNames(classes.main, classes.mainRaised)}
@@ -111,19 +118,16 @@ class Documentation extends React.Component<{
                             color: (darkMode ? "white" : "black"),
                             fontSize: "+1.2em",
                             lineHeight: "+1.8em",
-                            display: "flex",
+                            display: "block",
                         }
                     }>
                         <br/>
-                        {/* Bootstrap.instance.subRoutingSwitch(publicDocumentationRoutes) */}
                         {this.props.children}
                     </div>
-
                 </div>
-
             </div>
             <Footer fluid/>
-        </>;
+        </div>;
     }
 }
 
