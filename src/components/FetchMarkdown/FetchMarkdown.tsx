@@ -16,20 +16,29 @@ let fullMarkdownCache: {
     [url: string]: iFetchMarkdownCache
 } = {};
 
+
+
+const rawFileRegex = /^https:\/\/raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/(.+)$/i;
+
+// ex - https://raw.githubusercontent.com/wiki/CarbonORM/CarbonORM.dev/Home.md
+const rawWikiRegex = /^https:\/\/raw\.githubusercontent\.com\/wiki\/([^/]+)\/([^/]+)\/(.+).md$/i;
+
 function githubRawBlobToEditForm(url: string) {
-    const regex = /^https:\/\/raw\.githubusercontent\.com\/([^\/]+)\/([^\/]+)\/(.+)$/i;
-    return url.replace(regex, 'https://github.com/$1/$2/edit/$3');
+    return url.startsWith('https://raw.githubusercontent.com/wiki/')
+        ? url.replace(rawWikiRegex, 'https://github.com/$1/$2/wiki/$3/_edit')
+        : url.replace(rawFileRegex, 'https://github.com/$1/$2/edit/$3');
 }
 
 function githubRawBlobToView(url: string) {
-    const regex = /^https:\/\/raw\.githubusercontent\.com\/([^\/]+)\/([^\/]+)\/(.+)$/i;
-    return url.replace(regex, 'https://github.com/$1/$2/blob/$3');
+    return url.startsWith('https://raw.githubusercontent.com/wiki/')
+        ? url.replace(rawWikiRegex, 'https://github.com/$1/$2/wiki/$3')
+        : url.replace(rawFileRegex, 'https://github.com/$1/$2/blob/$3');
 }
 
-
 function githubRawBlobToRepoPath(url: string) {
-    const regex = /^https:\/\/raw\.githubusercontent\.com\/([^\/]+)\/([^\/]+)\/(.+)$/i;
-    return url.replace(regex, '$1/$2/$3');
+    return url.startsWith('https://raw.githubusercontent.com/wiki/')
+        ? url.replace(rawWikiRegex, '$1/$2/wiki/$3')
+        : url.replace(rawFileRegex, '$1/$2/$3');
 }
 
 

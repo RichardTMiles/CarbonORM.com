@@ -78,7 +78,7 @@ class MaterialKit extends React.Component<any, any> {
         name: "Basics",
         component: SectionBasics
       },
-      // I havent been able to get this to work
+      // I haven't been able to get this to work
       // {
       //     path: "/SectionCarousel",
       //     name: "Carousel",
