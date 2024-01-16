@@ -137,10 +137,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iFeature_Group_Referen
     responseCallback: deleteStateFeature_Group_References
 });
 
-export default {
+const Feature_Group_References = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default Feature_Group_References;

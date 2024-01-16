@@ -4,7 +4,7 @@ import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
 
 export const CARBON_REACT: string = 'CarbonReact/';
 
-export default function () {
+export default function CarbonReact() {
     return <GridContainer justify="center">
         <GridItem sm={0} md={2}/>
         <GridItem mdOffset={2} sm={12} md={8}>

@@ -74,7 +74,7 @@ export default function FetchMarkdown({url}: iFetchMarkdown) {
 
         }
 
-    }, [])
+    }, [url])
 
     if (markdownCache === undefined) {
         return <small>LOADING ({url})...</small>

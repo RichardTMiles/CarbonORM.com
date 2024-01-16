@@ -142,10 +142,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iLocations, DeleteRequ
     responseCallback: deleteStateLocations
 });
 
-export default {
+const Locations = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default Locations;

@@ -138,10 +138,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Commentmeta, Delet
     responseCallback: deleteStateWp_Commentmeta
 });
 
-export default {
+const Wp_Commentmeta = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default Wp_Commentmeta;

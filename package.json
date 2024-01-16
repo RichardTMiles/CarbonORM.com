@@ -1,12 +1,12 @@
 {
   "name": "carbonorm",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "description": "CarbonORM Documentation by Richard Miles.",
   "private": false,
   "main": "src/index.tsx",
   "homepage": "https://carbonorm.dev/",
   "dependencies": {
-    "@carbonorm/carbonnode": "^1.4.1",
+    "@carbonorm/carbonnode": "^1.4.3",
     "@carbonorm/carbonreact": "^3.4.7",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
@@ -83,7 +83,7 @@
     "build": "npm run-script env && npm run build:css && npm run build:actions",
     "build:actions": "CI=true PUBLIC_URL=https://carbonorm.dev/ react-app-rewired build",
     "build:css": "npm run sass && npm run css:modules",
-    "c6": "npx generateRestBindings",
+    "c6": "npx generateRestBindings --user root --password password --host 127.0.0.1 --port 3306 --dbname CarbonPHP --prefix carbon_ --output /src/api/rest",
     "css:modules": "typed-scss-modules 'src/**/*.?(s)css' --nameFormat all --exportType default src",
     "css:modules:watch": "typed-scss-modules 'src/**/*.?(s)css' --watch --nameFormat all --exportType default src",
     "eject": "react-app-rewired eject",
@@ -132,6 +132,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/jest": "^29.5.11",
     "@types/nouislider": "^9.0.5",
     "@types/react": "^18.2.17",

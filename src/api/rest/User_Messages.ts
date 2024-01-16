@@ -144,10 +144,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Messages, Delete
     responseCallback: deleteStateUser_Messages
 });
 
-export default {
+const User_Messages = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default User_Messages;

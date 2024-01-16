@@ -138,10 +138,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iCarbons, DeleteReques
     responseCallback: deleteStateCarbons
 });
 
-export default {
+const Carbons = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default Carbons;

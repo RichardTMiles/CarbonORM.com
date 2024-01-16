@@ -138,10 +138,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iLocation_References, 
     responseCallback: deleteStateLocation_References
 });
 
-export default {
+const Location_References = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default Location_References;

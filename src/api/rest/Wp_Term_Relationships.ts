@@ -136,10 +136,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Term_Relationships
     responseCallback: deleteStateWp_Term_Relationships
 });
 
-export default {
+const Wp_Term_Relationships = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default Wp_Term_Relationships;

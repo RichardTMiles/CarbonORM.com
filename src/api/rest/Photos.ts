@@ -142,10 +142,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iPhotos, DeleteRequest
     responseCallback: deleteStatePhotos
 });
 
-export default {
+const Photos = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default Photos;

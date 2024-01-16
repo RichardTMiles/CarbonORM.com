@@ -138,10 +138,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Sessions, Delete
     responseCallback: deleteStateUser_Sessions
 });
 
-export default {
+const User_Sessions = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default User_Sessions;

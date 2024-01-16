@@ -141,10 +141,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iHistory_Logs, DeleteR
     responseCallback: deleteStateHistory_Logs
 });
 
-export default {
+const History_Logs = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default History_Logs;

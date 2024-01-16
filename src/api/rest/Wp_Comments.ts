@@ -152,10 +152,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Comments, DeleteRe
     responseCallback: deleteStateWp_Comments
 });
 
-export default {
+const Wp_Comments = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default Wp_Comments;

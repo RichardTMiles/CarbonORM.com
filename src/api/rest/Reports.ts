@@ -135,10 +135,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iReports, DeleteReques
     responseCallback: deleteStateReports
 });
 
-export default {
+const Reports = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default Reports;

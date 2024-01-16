@@ -140,10 +140,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iWp_Term_Taxonomy, Del
     responseCallback: deleteStateWp_Term_Taxonomy
 });
 
-export default {
+const Wp_Term_Taxonomy = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default Wp_Term_Taxonomy;

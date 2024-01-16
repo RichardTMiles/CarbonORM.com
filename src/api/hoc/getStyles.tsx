@@ -19,7 +19,7 @@ function mergeStyles<iStyleA extends iStyle, iStyleB extends iStyle>(styleA : iS
 
     const mergedClassNames = Object.keys(styleA).concat(Object.keys(styleB))
 
-    mergedClassNames.map(className => {
+    mergedClassNames.forEach(className => {
         styles[className] = classNames(styleA[className], styleB[className])
     })
 

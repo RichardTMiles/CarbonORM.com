@@ -137,10 +137,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Groups, DeleteRe
     responseCallback: deleteStateUser_Groups
 });
 
-export default {
+const User_Groups = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default User_Groups;

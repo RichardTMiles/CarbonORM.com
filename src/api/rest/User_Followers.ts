@@ -140,10 +140,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iUser_Followers, Delet
     responseCallback: deleteStateUser_Followers
 });
 
-export default {
+const User_Followers = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default User_Followers;

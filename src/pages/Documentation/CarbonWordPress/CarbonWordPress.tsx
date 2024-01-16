@@ -6,7 +6,7 @@ import GuidedUserInterface from "pages/Documentation/CarbonWordPress/GuidedUserI
 
 export const CARBON_WORDPRESS: string = 'CarbonWordPress/';
 
-export default function () {
+export default function CarbonWordPress() {
 
     const {pureWordpressPluginConfigured} = CarbonORM.instance.state;
 

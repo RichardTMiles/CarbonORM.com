@@ -141,10 +141,12 @@ const Delete = restRequest<DeleteCustomAndRequiredFields, iComments, DeleteReque
     responseCallback: deleteStateComments
 });
 
-export default {
+const Comments = {
     // Export all GET, POST, PUT, DELETE functions for each table
     Get,
     Post,
     Put,
     Delete,
 }
+
+export default Comments;
