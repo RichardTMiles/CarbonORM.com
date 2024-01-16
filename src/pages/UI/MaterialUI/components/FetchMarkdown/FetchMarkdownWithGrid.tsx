@@ -127,7 +127,7 @@ function FetchMarkdown({url}: iFetchMarkdown) {
     </div>
 }
 
-export default function FetchMarkdownWithGrid({url, maxWidth = "lg"}: iFetchMarkdown & { maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false; }) {
+export default function FetchMarkdownWithGrid({url, maxWidth = "xl"}: iFetchMarkdown & { maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false; }) {
     return <GridContainer justify="center">
         <GridItem sm={0} md={2}/>
         <GridItem sm={12} md={8} >
