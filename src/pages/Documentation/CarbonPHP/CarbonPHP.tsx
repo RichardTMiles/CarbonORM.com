@@ -189,7 +189,6 @@ class CarbonPHP extends React.Component<{ classes: any }, {
                                     url={'https://raw.githubusercontent.com/CarbonORM/CarbonPHP/lts/documentation/mvc.md'}/>
                             },
                         ]}
-
                     />
                 </GridItem>
             </GridContainer>

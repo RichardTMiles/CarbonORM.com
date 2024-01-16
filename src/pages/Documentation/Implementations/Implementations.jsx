@@ -10,24 +10,13 @@ import completedStyle from "assets/jss/material-kit-react/views/componentsSectio
 import FetchMarkdown from "components/FetchMarkdown/FetchMarkdown";
 import NavPills from "pages/UI/MaterialUI/components/NavPills/NavPills";
 import {
-    AccountTree,
-    AllInclusive, Announcement,
-    Dashboard, Exposure,
     Looks3,
     Looks4,
     Looks5,
     Looks6,
     LooksOne,
-    LooksTwo, Power, RecentActors, Restaurant, RestorePage,
-    Storage,
-    Timeline,
-    ViewComfy
+    LooksTwo,
 } from "@material-ui/icons";
-import CodeBlock from "pages/UI/MaterialUI/components/CodeBlock/CodeBlock";
-import Button from "pages/UI/MaterialUI/components/CustomButtons/Button";
-import {C6} from "api/rest/C6";
-import AccessControl from "pages/AccessControl/AccessControl";
-import SequenceDiagram from "assets/img/invertSD.png";
 
 
 export const IMPLEMENTATIONS = 'Implementations/';

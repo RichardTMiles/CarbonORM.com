@@ -81,7 +81,7 @@
   },
   "scripts": {
     "build": "npm run-script env && npm run build:css && npm run build:actions",
-    "build:actions": "PUBLIC_URL=https://carbonorm.dev/ react-app-rewired build",
+    "build:actions": "CI=true PUBLIC_URL=https://carbonorm.dev/ react-app-rewired build",
     "build:css": "npm run sass && npm run css:modules",
     "c6": "npx generateRestBindings",
     "css:modules": "typed-scss-modules 'src/**/*.?(s)css' --nameFormat all --exportType default src",
@@ -89,16 +89,18 @@
     "eject": "react-app-rewired eject",
     "env": "npm run c6",
     "getTag": "git describe --tags `git rev-list --tags --max-count=1`",
+    "githooks": "git config core.hooksPath .githooks && chmod +x .githooks/*",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "lint:check": "eslint . --ext=js,jsx;  exit 0",
     "lint:fix": "eslint . --ext=js,jsx --fix;  exit 0",
+    "postinstall": "npm run githooks",
     "rei": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "sass": "sass ./src:./src",
     "sass:watch": "sass ./src:./src --watch",
     "start": "rm -rf node_modules/.cache/ && npm cache clean --force && concurrently 'npm:start:cra:rewired' 'npm:css:modules:watch'",
+    "start:car:wordpress": "npm run-script env && PUBLIC_URL=https://127.0.0.1:3000/ react-app-rewired start",
     "start:cra": "npm run-script env && react-scripts start",
     "start:cra:rewired": "npm run-script env && react-app-rewired start",
-    "start:car:wordpress": "npm run-script env && PUBLIC_URL=https://127.0.0.1:3000/ react-app-rewired start",
     "test": "react-app-rewired test --env=jsdom"
   },
   "repository": {
