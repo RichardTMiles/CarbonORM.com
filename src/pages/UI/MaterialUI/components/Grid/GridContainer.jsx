@@ -7,7 +7,6 @@ import PropTypes from "prop-types";
 // The Typography seems to be off when 0 is set. 15 looks better on mobile
 const style = {
   grid: {
-    //margin: "0 35px 0 35px !important",
     display: "inherit",
     margin: "1em 0 1em 0 !important",
   }

@@ -1,13 +1,15 @@
-import {CodeBlock, dracula, googlecode} from "react-code-blocks";
+import CarbonORM from "CarbonORM";
+import {CodeBlock, dracula, rainbow} from "react-code-blocks";
 
 
-const codeBlock = (markdown: string, highlight: string = "", language: string = "php", dark: boolean = true) => {
+const codeBlock = (markdown: string, highlight: string = "", language: string = "php", dark?: boolean) => {
+    dark ??= CarbonORM.instance.state.darkMode;
     return <CodeBlock
         text={markdown}
         language={language.toLowerCase()}
         showLineNumbers={true}
         // @ts-ignore
-        theme={dark ? dracula : googlecode}
+        theme={dark ? dracula : rainbow}
         highlight={highlight}
     />
 }
