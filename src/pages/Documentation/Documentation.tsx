@@ -98,9 +98,10 @@ class Documentation extends React.Component<{
                                         marginRight: "2em"
                                     }}>
                                     Carbon is the universal building block for life as we know it. CarbonORM aims
-                                    Generate a powerful MySQL Restful ORM to streamline and empower your applications.
+                                    generate a powerful MySQL Restful ORM to streamline and empower your applications.
                                     Write secure json based sql queries in frontend user interfaces and middleware
-                                    servers. Auto-magically manage your database across multiple servers and teams!
+                                    servers. Auto-magically manage your database across multiple servers and teams.
+                                    Start building with CarbonORM today!
                                 </h3>
                             </div>
                         </GridItem>
