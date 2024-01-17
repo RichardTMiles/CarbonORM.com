@@ -38,8 +38,6 @@ const Parallax: React.FC<ParallaxProps> = (props) => {
 
             }
 
-            header.style.backgroundPosition = '30000px 38px;';
-
             let start: number | null = null;
 
             const element = header;
@@ -51,10 +49,11 @@ const Parallax: React.FC<ParallaxProps> = (props) => {
                 if (!start) {
                     start = timestamp;
                 }
-                console.log(timestamp);
+                timestamp /= 10;
                 element.style.backgroundPosition = `${timestamp}px 38px`;
-                window.requestAnimationFrame(step);
-
+                setTimeout(() => {
+                    window.requestAnimationFrame(step);
+                }, 100);
             }
 
             window.requestAnimationFrame(step);
