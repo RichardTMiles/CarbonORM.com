@@ -6,7 +6,7 @@
   "main": "src/index.tsx",
   "homepage": "https://carbonorm.dev/",
   "dependencies": {
-    "@carbonorm/carbonnode": "^1.4.3",
+    "@carbonorm/carbonnode": "^1.4.4",
     "@carbonorm/carbonreact": "^3.4.7",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",

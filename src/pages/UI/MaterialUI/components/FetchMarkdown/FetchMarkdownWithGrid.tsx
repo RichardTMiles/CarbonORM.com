@@ -99,8 +99,6 @@ function FetchMarkdown({url}: iFetchMarkdown) {
 
                     const code = String(children).replace(/\n$/, '');
 
-                    console.log([match, code.split('\n').length, node, rest]);
-
                     const language = match ? match[1] : 'text';
 
                     return 'text' === language

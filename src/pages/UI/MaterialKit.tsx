@@ -22,7 +22,7 @@ import SectionDownload from "pages/UI/MaterialUI/MaterialKit/SectionDownload";
 import componentsStyle from "assets/jss/material-kit-react/views/components";
 
 import Navbar from "pages/Documentation/Navbar";
-import Parallax from "./MaterialUI/components/Parallax/Parallax";
+import Parallax from "pages/UI/MaterialUI/components/Parallax/Parallax";
 import GridContainer from "./MaterialUI/components/Grid/GridContainer";
 import Footer from "pages/UI/MaterialUI/components/Footer/Footer";
 

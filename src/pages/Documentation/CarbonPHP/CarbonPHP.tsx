@@ -116,7 +116,7 @@ class CarbonPHP extends React.Component<{ classes: any }, {
                             },
                             {
                                 tabIcon: Timeline,
-                                tabButton: "Overview",
+                                tabButton: "Setup",
                                 tabContent: <FetchMarkdown
                                     url={'https://raw.githubusercontent.com/CarbonORM/CarbonPHP/lts/documentation/overview.md'}/>
                             },

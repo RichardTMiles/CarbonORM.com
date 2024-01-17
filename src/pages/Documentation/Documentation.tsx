@@ -13,7 +13,7 @@ import {iStyle} from "variables/styleModules";
 import componentsStyle from "assets/jss/material-kit-react/views/components";
 
 import Navbar from "pages/Documentation/Navbar";
-import Parallax from "../UI/MaterialUI/components/Parallax/Parallax";
+import Parallax from "pages/UI/MaterialUI/components/Parallax/Parallax";
 import GridContainer from "../UI/MaterialUI/components/Grid/GridContainer";
 import Footer from "pages/UI/MaterialUI/components/Footer/Footer";
 
@@ -21,8 +21,8 @@ import Footer from "pages/UI/MaterialUI/components/Footer/Footer";
 import HeaderTop from "./HeaderTop/HeaderTop";
 import HeaderLinks from "./HeaderTop/HeaderLinks";
 
-import CarbonTeal180 from "assets/img/Carbon-teal-180.png";
-import CarbonBlack from "assets/img/carbonimg/Carbon-black-180.png";
+import CarbonWhite from "assets/img/carbonimg/Carbon-white-hollow.png";
+import CarbonBlack from "assets/img/carbonimg/Carbon-black-hollow.png";
 
 export const DOCUMENTATION = 'documentation/';
 
@@ -82,7 +82,7 @@ class Documentation extends React.Component<{
                 }}
             />
             <Parallax
-                image={CarbonORM.instance.state.darkMode ? CarbonTeal180 : CarbonBlack}>
+                image={CarbonORM.instance.state.darkMode ? CarbonBlack : CarbonWhite}>
                 <div className={classes.container}>
                     <GridContainer>
                         <GridItem>
@@ -98,9 +98,9 @@ class Documentation extends React.Component<{
                                         marginRight: "2em"
                                     }}>
                                     Carbon is the universal building block for life as we know it. CarbonORM aims
-                                    Generate a powerful MySQL Restful ORM to foundation your applications. Write secure
-                                    json based sql queries in frontend user interfaces and middleware servers.
-                                    Auto-magically manage your database across multiple servers and teams!
+                                    Generate a powerful MySQL Restful ORM to streamline and empower your applications.
+                                    Write secure json based sql queries in frontend user interfaces and middleware
+                                    servers. Auto-magically manage your database across multiple servers and teams!
                                 </h3>
                             </div>
                         </GridItem>
