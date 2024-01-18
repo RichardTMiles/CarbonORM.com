@@ -133,6 +133,12 @@ class CarbonPHP extends React.Component<{ classes: any }, {
                                     url={'https://raw.githubusercontent.com/CarbonORM/CarbonPHP/lts/documentation/orm/orm.md'}/>
                             },
                             {
+                                tabIcon: Storage,
+                                tabButton: "Migrations",
+                                tabContent: <FetchMarkdown
+                                    url={'https://raw.githubusercontent.com/CarbonORM/CarbonPHP/lts/documentation/orm/orm.md'}/>
+                            },
+                            {
                                 tabIcon: Announcement,
                                 tabButton: "Throwables",
                                 tabContent: <FetchMarkdown

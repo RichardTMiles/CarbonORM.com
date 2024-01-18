@@ -75,7 +75,7 @@ class Documentation extends React.Component<{
                 rightLinks={<HeaderLinks
                     darkMode={darkMode}
                 />}
-                color={(darkMode ? "transparent" : "info")}
+                color={window.pageYOffset < 400 ? "transparent" : (darkMode ? "transparent" : "info")}
                 changeColorOnScroll={{
                     height: 400,
                     color: CarbonORM.instance.state.darkMode ? "dark" : "info"

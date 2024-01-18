@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import classNames from "classnames";
-import { WithStyles } from "@material-ui/core";
-import withStyles from "@material-ui/core/styles/withStyles";
+import React, {useEffect} from "react";
+import {makeStyles} from "@material-ui/core/styles";
 import parallaxStyle from "assets/jss/material-kit-react/components/parallaxStyle";
 import colorStrip from "assets/img/colorStrip";
 
-interface ParallaxProps extends WithStyles<typeof parallaxStyle> {
+const useStyles = makeStyles(parallaxStyle);
+
+interface ParallaxProps {
     className?: string;
     filter?: boolean;
     children?: React.ReactNode;
@@ -15,32 +15,31 @@ interface ParallaxProps extends WithStyles<typeof parallaxStyle> {
 }
 
 const Parallax: React.FC<ParallaxProps> = (props) => {
-    const [transform, setTransform] = useState<string>("translate3d(0,0px,0)");
-
-    const resetTransform = (): void => {
-        const windowScrollTop: number = window.pageYOffset / 3;
-        setTransform(`translate3d(0,${windowScrollTop}px,0)`);
-    };
+    const {className, filter, children, style, image, small} = props;
+    const classes = useStyles();
 
     useEffect(() => {
         let isMounted = true;
-        const windowScrollTop: number = window.pageYOffset / 3;
-        setTransform(`translate3d(0,${windowScrollTop}px,0)`);
+        const parallax = document.getElementById('parallax');
+        const parallaxContent = document.getElementById('parallaxContent');
+
+        const resetTransform = () => {
+            const windowScrollTopSlowed = window.pageYOffset / 2;
+            const windowScrollContentOffset = window.pageYOffset / -10;
+            if (parallax) {
+                parallax.style.transform = `translate3d(0,${windowScrollTopSlowed}px,0)`;
+            }
+            if (parallaxContent) {
+                parallaxContent.style.transform = `translate3d(0,${windowScrollContentOffset}px,0)`;
+            }
+        };
 
         window.addEventListener("scroll", resetTransform);
+
+
         const runGlow = (): void => {
 
-            const header = document.getElementById('colorStrip');
-
-            if (null === header) {
-
-                return;
-
-            }
-
             let start: number | null = null;
-
-            const element = header;
 
             function step(timestamp: number) {
                 if (!isMounted) {
@@ -49,8 +48,11 @@ const Parallax: React.FC<ParallaxProps> = (props) => {
                 if (!start) {
                     start = timestamp;
                 }
-                timestamp /= 10;
-                element.style.backgroundPosition = `${timestamp}px 38px`;
+                if (null === parallax) {
+                    return;
+                }
+                timestamp /= 5;
+                parallax.style.backgroundPosition = `${timestamp}px 38px`;
                 setTimeout(() => {
                     window.requestAnimationFrame(step);
                 }, 100);
@@ -62,30 +64,16 @@ const Parallax: React.FC<ParallaxProps> = (props) => {
         runGlow();
 
         return () => {
-            window.removeEventListener("scroll", resetTransform);
             isMounted = false;
-        };
+            window.removeEventListener("scroll", resetTransform);
+        }
+
     }, []);
 
-    const {
-        classes,
-        filter,
-        className,
-        children,
-        style,
-        image,
-        small
-    } = props;
-
-    const parallaxClasses = classNames({
-        [classes.parallax]: true,
-        [classes.filter]: filter,
-        [classes.small]: small,
-        [className || ""]: className !== undefined
-    });
+    const parallaxClasses = `${classes.parallax} ${filter ? classes.filter : ''} ${small ? classes.small : ''} ${className || ''}`;
 
     return (
-        <div id={'colorStrip'} className={parallaxClasses} style={{...style, backgroundImage: `url(${colorStrip})`, transform}}>
+        <div id="parallax" className={parallaxClasses} style={{...style, backgroundImage: `url(${colorStrip})`}}>
             <div
                 className={parallaxClasses}
                 style={{
@@ -94,13 +82,15 @@ const Parallax: React.FC<ParallaxProps> = (props) => {
                     width: "100vw",
                     height: "100vh",
                     objectFit: "cover",
-                    objectPosition: "center"
+                    objectPosition: "center",
                 }}
             >
-                {children}
+                <div id={"parallaxContent"}>
+                    {children}
+                </div>
             </div>
         </div>
     );
 };
 
-export default withStyles(parallaxStyle)(Parallax);
+export default React.memo(Parallax);
