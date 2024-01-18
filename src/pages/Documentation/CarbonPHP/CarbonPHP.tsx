@@ -16,7 +16,8 @@ import {
     RestorePage,
     Storage,
     Timeline,
-    ViewComfy
+    ViewComfy,
+    SyncAlt
 } from "@material-ui/icons";
 // core components
 import GridContainer from "pages/UI/MaterialUI/components/Grid/GridContainer";
@@ -26,7 +27,7 @@ import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardS
 
 
 // pages
-import AccessControl from "../../AccessControl/AccessControl";
+import AccessControl from "./AccessControl/AccessControl";
 import {iFeatures, iGroups, iUsers} from "api/rest/C6";
 
 export const CARBON_PHP = 'CarbonPHP/';
@@ -133,10 +134,10 @@ class CarbonPHP extends React.Component<{ classes: any }, {
                                     url={'https://raw.githubusercontent.com/CarbonORM/CarbonPHP/lts/documentation/orm/orm.md'}/>
                             },
                             {
-                                tabIcon: Storage,
+                                tabIcon: SyncAlt,
                                 tabButton: "Migrations",
                                 tabContent: <FetchMarkdown
-                                    url={'https://raw.githubusercontent.com/CarbonORM/CarbonPHP/lts/documentation/orm/orm.md'}/>
+                                    url={'https://raw.githubusercontent.com/wiki/CarbonORM/CarbonPHP/Migrations.md'}/>
                             },
                             {
                                 tabIcon: Announcement,

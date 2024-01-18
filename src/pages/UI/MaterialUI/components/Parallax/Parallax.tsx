@@ -79,8 +79,8 @@ const Parallax: React.FC<ParallaxProps> = (props) => {
                 style={{
                     ...style,
                     backgroundImage: `url(${image})`,
-                    width: "100vw",
-                    height: "100vh",
+                    width: "100%", // we need % over vw as we regularly zoom out via functions in the header
+                    height: "100%",
                     objectFit: "cover",
                     objectPosition: "center",
                 }}

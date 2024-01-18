@@ -9,11 +9,11 @@ import Popup from "pages/UI/MaterialUI/components/Popup/Popup";
 import React, {ChangeEvent} from "react";
 // nodejs library to set properties for components
 // nodejs library that concatenates classes
-import GridContainer from "../UI/MaterialUI/components/Grid/GridContainer";
-import GridItem from "../UI/MaterialUI/components/Grid/GridItem";
-import Button from "../UI/MaterialUI/components/CustomButtons/Button";
+import GridContainer from "pages/UI/MaterialUI/components/Grid/GridContainer";
+import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
+import Button from "pages/UI/MaterialUI/components/CustomButtons/Button";
 
-import landingPageStyle from "../../assets/jss/material-kit-react/views/landingPage";
+import landingPageStyle from "assets/jss/material-kit-react/views/landingPage";
 // Sections for this page
 import axiosInstance from "variables/axiosInstance";
 
