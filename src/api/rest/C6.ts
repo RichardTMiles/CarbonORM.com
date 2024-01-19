@@ -9,7 +9,6 @@ export const RestTablePrefix = 'carbon_';
 
 export type RestTableNames = 'carbon_carbons'
  | 'carbon_comments'
- | 'carbon_documentation'
  | 'carbon_feature_group_references'
  | 'carbon_features'
  | 'carbon_group_references'
@@ -40,7 +39,6 @@ export type RestTableNames = 'carbon_carbons'
 
 export type RestShortTableNames = 'carbons'
  | 'comments'
- | 'documentation'
  | 'feature_group_references'
  | 'features'
  | 'group_references'
@@ -322,72 +320,6 @@ export const comments: iC6RestfulModel<RestTableNames> & iDefineComments = {
             COLUMN: 'entity_pk',
             CONSTRAINT: 'entity_comments_entity_user_pk_fk',
         },],
-    },
-    TABLE_REFERENCED_BY: {
-        
-    }
-}
-
-export interface iDocumentation {
-    'documentation_uri'?: string;
-    'documentation_data'?: string | null;
-    'documentation_version'?: string;
-    'documentation_active'?: number;
-}
-
-interface iDefineDocumentation {
-    'DOCUMENTATION_URI': string;
-    'DOCUMENTATION_DATA': string;
-    'DOCUMENTATION_VERSION': string;
-    'DOCUMENTATION_ACTIVE': string;
-}
-
-export const documentation: iC6RestfulModel<RestTableNames> & iDefineDocumentation = {
-    TABLE_NAME: 'carbon_documentation',
-    DOCUMENTATION_URI: 'carbon_documentation.documentation_uri',
-    DOCUMENTATION_DATA: 'carbon_documentation.documentation_data',
-    DOCUMENTATION_VERSION: 'carbon_documentation.documentation_version',
-    DOCUMENTATION_ACTIVE: 'carbon_documentation.documentation_active',
-    PRIMARY: [
-    ],
-    PRIMARY_SHORT: [
-    ],
-    COLUMNS: {
-        'carbon_documentation.documentation_uri': 'documentation_uri',
-        'carbon_documentation.documentation_data': 'documentation_data',
-        'carbon_documentation.documentation_version': 'documentation_version',
-        'carbon_documentation.documentation_active': 'documentation_active',
-    },
-    TYPE_VALIDATION: {
-        'carbon_documentation.documentation_uri': {
-            MYSQL_TYPE: 'varchar',
-            MAX_LENGTH: '255',
-            AUTO_INCREMENT: false,
-            SKIP_COLUMN_IN_POST: false
-        },
-        'carbon_documentation.documentation_data': {
-            MYSQL_TYPE: 'longblob',
-            MAX_LENGTH: '',
-            AUTO_INCREMENT: false,
-            SKIP_COLUMN_IN_POST: true
-        },
-        'carbon_documentation.documentation_version': {
-            MYSQL_TYPE: 'varchar',
-            MAX_LENGTH: '40',
-            AUTO_INCREMENT: false,
-            SKIP_COLUMN_IN_POST: false
-        },
-        'carbon_documentation.documentation_active': {
-            MYSQL_TYPE: 'tinyint',
-            MAX_LENGTH: '',
-            AUTO_INCREMENT: false,
-            SKIP_COLUMN_IN_POST: false
-        },
-    },
-    REGEX_VALIDATION: {
-    },
-    TABLE_REFERENCES: {
-        
     },
     TABLE_REFERENCED_BY: {
         
@@ -3106,7 +3038,6 @@ export const wp_users: iC6RestfulModel<RestTableNames> & iDefineWp_Users = {
 export const TABLES: tC6Tables = {
     carbons: carbons,
     comments: comments,
-    documentation: documentation,
     feature_group_references: feature_group_references,
     features: features,
     group_references: group_references,
@@ -3146,7 +3077,6 @@ export const C6 : iC6Object = {
 export const COLUMNS = {
 'carbon_carbons.entity_pk': 'entity_pk','carbon_carbons.entity_fk': 'entity_fk','carbon_carbons.entity_tag': 'entity_tag',
 'carbon_comments.parent_id': 'parent_id','carbon_comments.comment_id': 'comment_id','carbon_comments.user_id': 'user_id','carbon_comments.comment': 'comment',
-'carbon_documentation.documentation_uri': 'documentation_uri','carbon_documentation.documentation_data': 'documentation_data','carbon_documentation.documentation_version': 'documentation_version','carbon_documentation.documentation_active': 'documentation_active',
 'carbon_feature_group_references.feature_entity_id': 'feature_entity_id','carbon_feature_group_references.group_entity_id': 'group_entity_id',
 'carbon_features.feature_entity_id': 'feature_entity_id','carbon_features.feature_code': 'feature_code','carbon_features.feature_creation_date': 'feature_creation_date',
 'carbon_group_references.group_id': 'group_id','carbon_group_references.allowed_to_grant_group_id': 'allowed_to_grant_group_id',
@@ -3180,7 +3110,6 @@ export const COLUMNS = {
 
 export type RestTableInterfaces = iCarbons
  | iComments
- | iDocumentation
  | iFeature_Group_References
  | iFeatures
  | iGroup_References
@@ -3216,7 +3145,6 @@ export type tStatefulApiData<T> = T[] | undefined | null;
 export interface iRestfulObjectArrayTypes {
     carbons: tStatefulApiData<iCarbons>,
     comments: tStatefulApiData<iComments>,
-    documentation: tStatefulApiData<iDocumentation>,
     feature_group_references: tStatefulApiData<iFeature_Group_References>,
     features: tStatefulApiData<iFeatures>,
     group_references: tStatefulApiData<iGroup_References>,
@@ -3249,7 +3177,6 @@ export interface iRestfulObjectArrayTypes {
 export const initialRestfulObjectsState: iRestfulObjectArrayTypes = {
     carbons: undefined,
     comments: undefined,
-    documentation: undefined,
     feature_group_references: undefined,
     features: undefined,
     group_references: undefined,

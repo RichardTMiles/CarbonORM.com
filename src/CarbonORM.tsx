@@ -1,6 +1,7 @@
 import {CarbonReact, initialRequiredCarbonORMState, CarbonWebSocket, BackendThrowable} from "@carbonorm/carbonreact";
 import Notifications from "@material-ui/icons/Notifications";
 import {initialRestfulObjectsState} from "api/rest/C6";
+import CarbonJava, {CARBON_JAVA} from "pages/CarbonJava/CarbonJava";
 import CarbonNode, {CARBON_NODE} from "pages/Documentation/CarbonNode/CarbonNode";
 import CarbonReactDocumentation, {CARBON_REACT} from "pages/Documentation/CarbonReact/CarbonReact";
 import CarbonWordPress, {CARBON_WORDPRESS} from "pages/Documentation/CarbonWordPress/CarbonWordPress";
@@ -161,6 +162,7 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
                         {name: "Node", path: "/" + DOCUMENTATION + CARBON_NODE},
                         {name: "React", path: "/" + DOCUMENTATION + CARBON_REACT},
                         {name: "WordPress", path: "/" + DOCUMENTATION + CARBON_WORDPRESS},
+                        {name: "Java", path: "/" + DOCUMENTATION + CARBON_JAVA},
                         {name: "Implementations", path: "/" + DOCUMENTATION + IMPLEMENTATIONS},
                         {name: "Support", path: "/" + DOCUMENTATION + SUPPORT},
                         {name: "License", path: "/" + DOCUMENTATION + LICENSE}
@@ -171,6 +173,7 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
                     <Route path={CARBON_NODE + '*'} element={ppr(CarbonNode, {})}/>
                     <Route path={CARBON_REACT + '*'} element={ppr(CarbonReactDocumentation, {})}/>
                     <Route path={CARBON_WORDPRESS + '*'} element={ppr(CarbonWordPress, {})}/>
+                    <Route path={CARBON_JAVA + '*'} element={ppr(CarbonJava, {})}/>
                     <Route path={IMPLEMENTATIONS + "*"} element={ppr(Implementations, {})}/>
                     <Route path={SUPPORT + '*'} element={ppr(Support, {})}/>
                     <Route path={LICENSE + "*"} element={ppr(License, {})}/>
