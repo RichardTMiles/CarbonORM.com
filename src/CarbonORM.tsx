@@ -37,7 +37,9 @@ import Dashboard, {MATERIAL_DASHBOARD, UI} from "pages/UI/MaterialDashboard";
 import AdminLTE, {ADMIN_LTE} from "pages/UI/AdminLTE";
 import MaterialKit, {MATERIAL_KIT} from "pages/UI/MaterialKit";
 import SectionBasics, {SECTION_BASICS} from "pages/UI/MaterialUI/MaterialKit/SectionBasics";
-import SectionCompletedExamples, {SECTION_COMPLETED_EXAMPLES} from "pages/UI/MaterialUI/MaterialKit/SectionCompletedExamples";
+import SectionCompletedExamples, {
+    SECTION_COMPLETED_EXAMPLES
+} from "pages/UI/MaterialUI/MaterialKit/SectionCompletedExamples";
 import SectionDownload, {SECTION_DOWNLOAD} from "pages/UI/MaterialUI/MaterialKit/SectionDownload";
 import SectionJavascript, {SECTION_JAVASCRIPT} from "pages/UI/MaterialUI/MaterialKit/SectionJavascript";
 import SectionLogin, {SECTION_LOGIN} from "pages/UI/MaterialUI/MaterialKit/SectionLogin";
@@ -139,21 +141,19 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
                         <Route path={SECTION_DOWNLOAD + '*'} element={ppr(SectionDownload, {})}/>
                         <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_KIT + SECTION_NAVBARS}/>}/>
                     </Route>
-                    <Route path={ADMIN_LTE + "*"}>
-                        <Route path="*" element={<AdminLTE/>}>
-                            <Route path="recover-password" element={<RecoverPassword/>}/>
-                            <Route path="forgot-password" element={<ForgetPassword/>}/>
-                            <Route path="register" element={<Register/>}/>
-                            <Route path="login" element={<Login/>}/>
-                            <Route path="sub-menu-2" element={<Blank/>}/>
-                            <Route path="sub-menu-1" element={<SubMenu/>}/>
-                            <Route path="blank" element={<Blank/>}/>
-                            <Route path="profile" element={<Profile/>}/>
-                            <Route path="dashboard" element={<AdminLTEDashboard/>}/>
-                        </Route>
-                        <Route path={'*'} element={<Navigate to={'login'}/>}/>
+                    <Route path={ADMIN_LTE} element={<AdminLTE/>}>
+                        <Route path="recover-password" element={<RecoverPassword/>}/>
+                        <Route path="forgot-password" element={<ForgetPassword/>}/>
+                        <Route path="register" element={<Register/>}/>
+                        <Route path="login" element={<Login/>}/>
+                        <Route path="sub-menu-2" element={<Blank/>}/>
+                        <Route path="sub-menu-1" element={<SubMenu/>}/>
+                        <Route path="blank" element={<Blank/>}/>
+                        <Route path="profile" element={<Profile/>}/>
+                        <Route path="dashboard" element={<AdminLTEDashboard/>}/>
+                        <Route path={'*'} element={<Navigate to={'/' + UI + ADMIN_LTE + 'login'}/>}/>
                     </Route>
-                    <Route path={'*'} element={<Navigate to={MATERIAL_DASHBOARD}/>}/>
+                    <Route path={'*'} element={<Navigate to={'/' + UI + MATERIAL_DASHBOARD}/>}/>
                 </Route>
                 <Route path={DOCUMENTATION + '*'} element={ppr<iDocumentation>(Documentation, {
                     headerLinks: [

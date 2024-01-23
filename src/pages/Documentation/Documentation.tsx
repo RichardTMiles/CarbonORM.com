@@ -21,8 +21,8 @@ import Footer from "pages/UI/MaterialUI/components/Footer/Footer";
 import HeaderTop from "./HeaderTop/HeaderTop";
 import HeaderLinks from "./HeaderTop/HeaderLinks";
 
-import CarbonWhite from "assets/img/carbonimg/Carbon-white-hollow.png";
-import CarbonBlack from "assets/img/carbonimg/Carbon-black-hollow.png";
+import CarbonWhite from "assets/img/carbonimg/Carbon-white-hollow";
+import CarbonBlack from "assets/img/carbonimg/Carbon-black-hollow";
 
 export const DOCUMENTATION = 'documentation/';
 
