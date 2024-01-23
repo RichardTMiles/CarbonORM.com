@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "https://carbonorm.dev/static/css/main.8ff0ce07.css",
-    "main.js": "https://carbonorm.dev/static/js/main.31cb5b91.js",
+    "main.js": "https://carbonorm.dev/static/js/main.4c36b223.js",
     "react-syntax-highlighter/refractor-core-import.js": "https://carbonorm.dev/static/js/react-syntax-highlighter/refractor-core-import.80dd4ecc.chunk.js",
     "react-syntax-highlighter_languages_refractor_abap.js": "https://carbonorm.dev/static/js/react-syntax-highlighter_languages_refractor_abap.92367a92.chunk.js",
     "react-syntax-highlighter_languages_refractor_abnf.js": "https://carbonorm.dev/static/js/react-syntax-highlighter_languages_refractor_abnf.caa5c560.chunk.js",
@@ -281,10 +281,8 @@
     "react-syntax-highlighter_languages_refractor_yang.js": "https://carbonorm.dev/static/js/react-syntax-highlighter_languages_refractor_yang.2f581595.chunk.js",
     "react-syntax-highlighter_languages_refractor_zig.js": "https://carbonorm.dev/static/js/react-syntax-highlighter_languages_refractor_zig.3b13ef6d.chunk.js",
     "static/js/2207.d1dccd11.chunk.js": "https://carbonorm.dev/static/js/2207.d1dccd11.chunk.js",
-    "static/media/Carbon-white-hollow.png": "https://carbonorm.dev/static/media/Carbon-white-hollow.9abd4e7315adc7f48c25.png",
     "static/media/fa-solid-900.svg": "https://carbonorm.dev/static/media/fa-solid-900.7a8b4f130182d19a2d7c.svg",
     "static/media/Carbon-purple-180.png": "https://carbonorm.dev/static/media/Carbon-purple-180.996215589f243a00a672.png",
-    "static/media/Carbon-black-hollow.png": "https://carbonorm.dev/static/media/Carbon-black-hollow.6c299c2c00d778e2ed53.png",
     "static/media/fa-brands-400.svg": "https://carbonorm.dev/static/media/fa-brands-400.2f517e09eb2ca6650ff5.svg",
     "static/media/profile-bg.jpg": "https://carbonorm.dev/static/media/profile-bg.8129069f58e43ac982d3.jpg",
     "static/media/sign.jpg": "https://carbonorm.dev/static/media/sign.6177df0e42b988e2e63e.jpg",
@@ -323,6 +321,6 @@
   "entrypoints": [
     "main.css",
     "static/css/main.8ff0ce07.css",
-    "static/js/main.31cb5b91.js"
+    "static/js/main.4c36b223.js"
   ]
 }
