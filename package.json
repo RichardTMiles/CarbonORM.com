@@ -98,7 +98,7 @@
     "sass": "sass ./src:./src",
     "sass:watch": "sass ./src:./src --watch",
     "start": "rm -rf node_modules/.cache/ && npm cache clean --force && concurrently 'npm:start:cra:rewired' 'npm:css:modules:watch'",
-    "start:car:wordpress": "npm run-script env && PUBLIC_URL=https://127.0.0.1:3000/ react-app-rewired start",
+    "start:sync": "rm -rf node_modules/.cache/ && npm cache clean --force && npm run css:modules && npm run start:cra:rewired",
     "start:cra": "npm run-script env && react-scripts start",
     "start:cra:rewired": "npm run-script env && react-app-rewired start",
     "test": "react-app-rewired test --env=jsdom"

@@ -85,7 +85,7 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
     render() {
         console.log("CarbonORM TSX RENDER");
 
-        const {isLoaded, backendThrowable, pureWordpressPluginConfigured} = this.state;
+        const {isLoaded, backendThrowable, C6WordPress} = this.state;
 
 
         if (backendThrowable.length > 0) {
@@ -179,7 +179,7 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
                     <Route path={LICENSE + "*"} element={ppr(License, {})}/>
                     <Route path={'*'} element={
                         <Navigate to={'/' + DOCUMENTATION
-                            + (pureWordpressPluginConfigured
+                            + (C6WordPress
                                 ? CARBON_WORDPRESS
                                 : CARBON_ORM_INTRODUCTION)}
                         />

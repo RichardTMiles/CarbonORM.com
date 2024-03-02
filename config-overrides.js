@@ -10,6 +10,7 @@ const log = getLogger({name: 'config-overrides.js'});
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path');
 
+// I have seen issues when you take the relative path from the package.json file, please do not remove the ./
 const pkg = require('./package.json');
 
 const {

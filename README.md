@@ -1,13 +1,3 @@
 # [CarbonPHP](https://carbonphp.com)
-To update the version 
-update the header menu
 
-    components/HeaderTop/HeaderLinks.tsx
-
-and version number
-
-    variables/carbonphp.jsx
-
-
-
-https://richardtmiles.github.io/carbonphp.com/
+todo - create react app rewired - does not work with "start" and using a host in the asset-mainifest.json

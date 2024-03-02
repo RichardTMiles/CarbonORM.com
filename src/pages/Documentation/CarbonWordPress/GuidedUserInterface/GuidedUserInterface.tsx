@@ -6,8 +6,6 @@ export default function GuidedUserInterface() {
 
 
 
-
-
     return <>
 
         <h2>GuidedUserInterface</h2>
@@ -21,7 +19,8 @@ export default function GuidedUserInterface() {
                     tabIcon: LooksOne,
                     tabContent: (
                         <>
-                            <h3>Congratulations! You have installed CarbonWordPress successfully.</h3>
+                            <h3>Congratulations! You have activated CarbonWordPress successfully. </h3>
+                            <p>Let's verify the rest of your configuration.</p>
                         </>
                     )
                 },

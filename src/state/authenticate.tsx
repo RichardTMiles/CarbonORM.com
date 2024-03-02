@@ -18,7 +18,6 @@ export const authenticateUser = () => {
     axiosInstance.get<any, AxiosResponse<{
         versions: string[],
         success: boolean,
-        pureWordpressPluginConfigured: boolean,
         authenticated: boolean,
         id: string,
     }, any>>('/carbon/authenticated')
@@ -26,7 +25,6 @@ export const authenticateUser = () => {
             console.log("authenticate data: ", res);
             CarbonORM.instance.setState({
                 user_id: res?.data?.id || '',
-                pureWordpressPluginConfigured: res?.data?.pureWordpressPluginConfigured || false,
                 authenticated: res?.data?.success || false,
                 versions: res?.data?.versions?.sort((v1: string, v2: string) => {
                     let lexicographical = false,
