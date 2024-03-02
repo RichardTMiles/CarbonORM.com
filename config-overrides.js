@@ -36,8 +36,8 @@ module.exports = override(
              * Why? Read here: https://github.com/dherman/defense-of-dot-js/blob/master/proposal.md#typical-usage
              */
             const entryFile = pkg.module;
-            
-            
+
+
             const outFile = path.basename(pkg.main);
             const outDir = pkg.main.replace(outFile, '');
             /**
@@ -48,7 +48,7 @@ module.exports = override(
             /**
              * Change the webpack entry and output path
              */
-            config.entry = { [libraryName]: path.resolve(entryFile) };
+            config.entry = {[libraryName]: path.resolve(entryFile)};
             config.output.filename = outFile;
             config.output.path = path.resolve(outDir);
 
@@ -91,6 +91,15 @@ module.exports = override(
         return config;
     },
     addWebpackPlugin(new MiniCssExtractPlugin()),
+    function (config, env) {
+
+        const publicUrl = process.env.PUBLIC_URL || '/';
+
+        // Override publicPath in development
+        config.output.publicPath = publicUrl.endsWith('/') ? publicUrl : `${publicUrl}/`;
+
+        return config;
+    },
     function (config, _env) {
 
         log.info('webpack env', process.env.NODE_ENV)

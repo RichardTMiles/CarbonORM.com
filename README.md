@@ -1,3 +1,3 @@
 # [CarbonPHP](https://carbonphp.com)
 
-todo - create react app rewired - does not work with "start" and using a host in the asset-mainifest.json
+todo - create react app rewired - does not work with "start" and using a host in the asset-manifest.json
