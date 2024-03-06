@@ -4,7 +4,7 @@ const getLogger = require('webpack-log');
 const rewireTypingsForCssModule = require("react-app-rewire-typings-for-css-module");
 const {
     override,
-    addWebpackPlugin, getBabelLoader, addExternalBabelPlugins, useBabelRc, addBundleVisualizer, addBabelPreset,
+    addWebpackPlugin, removeWebpackPlugin, getBabelLoader, addBundleVisualizer,
 } = require('customize-cra')
 const log = getLogger({name: 'config-overrides.js'});
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -16,90 +16,53 @@ const pkg = require('./package.json');
 const {
     defaultGetLocalIdent
 } = require("css-loader/dist/utils")
+const {WebpackManifestPlugin} = require("webpack-manifest-plugin");
 
 
 // https://github.com/osdevisnot/react-app-rewire-create-react-library/blob/master/index.js
 module.exports = override(
-    addBundleVisualizer({
-        "analyzerMode": "static",
-        "reportFilename": "report.html",
-    }, true),
-    (config) => {
-        if (process.argv.includes('library')) {
-            /**
-             * Determine Library Name based on package name
-             * basename will omit scope name from npm scoped packages
-             */
-            const libraryName = path.basename(pkg.name);
-            /**
-             * Read the entry and output filename from package.json's module and main properties
-             * Why? Read here: https://github.com/dherman/defense-of-dot-js/blob/master/proposal.md#typical-usage
-             */
-            const entryFile = pkg.module;
+    ((config) => {
+        addBundleVisualizer({
+            "analyzerMode": "static",
+            "reportFilename": "report.html",
+        }, true);
+        return config;
+    })
+        //addWebpackPlugin(new MiniCssExtractPlugin()),
+        ((config) => {
 
+            const updatedAssetManifest = new WebpackManifestPlugin({
+                fileName: 'asset-manifest.json',
+                publicPath: process.env.PUBLIC_URL,
+                generate: (seed, files, entrypoints) => {
+                    const manifestFiles = files.reduce((manifest, file) => {
+                        manifest[file.name] = file.path;
+                        return manifest;
+                    }, seed);
 
-            const outFile = path.basename(pkg.main);
-            const outDir = pkg.main.replace(outFile, '');
-            /**
-             * add library configurations to webpack config
-             */
-            config.output.library = libraryName;
-            config.output.libraryTarget = 'umd';
-            /**
-             * Change the webpack entry and output path
-             */
-            config.entry = {[libraryName]: path.resolve(entryFile)};
-            config.output.filename = outFile;
-            config.output.path = path.resolve(outDir);
+                    const entrypointFiles = entrypoints.main.filter(
+                        fileName => !fileName.endsWith('.map')
+                    );
 
-            /**
-             * Add all package dependencies as externals as commonjs externals
-             */
-            let externals = {};
-
-            Object.keys(process.env).forEach(key => {
-
-                if (key.includes('npm_package_dependencies_')) {
-
-                    let pkgName = key.replace('npm_package_dependencies_', '');
-
-                    pkgName = pkgName.replace(/_/g, '-');
-
-                    // below if condition addresses scoped packages : eg: @storybook/react
-                    if (pkgName.startsWith('-')) {
-                        const scopeName = pkgName.substr(1, pkgName.indexOf('-', 1) - 1);
-                        const remainingPackageName = pkgName.substr(pkgName.indexOf('-', 1) + 1, pkgName.length);
-                        pkgName = `@${scopeName}/${remainingPackageName}`;
-                    }
-
-                    externals[pkgName] = `commonjs ${pkgName}`;
-
-                }
-
+                    return {
+                        files: manifestFiles,
+                        entrypoints: entrypointFiles,
+                    };
+                },
             });
 
-            config.externals = externals;
+            config.plugins.forEach((p, i) => {
+                if (p instanceof WebpackManifestPlugin
+                    || (undefined !== p?.options?.fileName && p?.options?.fileName === 'asset-manifest.json')) {
+                    log.info('WebpackManifestPlugin found, replacing it');
+                    // node_modules/react-scripts/config/webpack.config.js
+                    config.plugins.splice(i, 1, updatedAssetManifest);
+                }
+            });
 
-            /**
-             * Clear all plugins from CRA webpack config
-             */
-            config.plugins = [
-                addWebpackPlugin(new MiniCssExtractPlugin())
-            ];
+            return config;
 
-        }
-        return config;
-    },
-    addWebpackPlugin(new MiniCssExtractPlugin()),
-    function (config, env) {
-
-        const publicUrl = process.env.PUBLIC_URL || '/';
-
-        // Override publicPath in development
-        config.output.publicPath = publicUrl.endsWith('/') ? publicUrl : `${publicUrl}/`;
-
-        return config;
-    },
+        }),
     function (config, _env) {
 
         log.info('webpack env', process.env.NODE_ENV)

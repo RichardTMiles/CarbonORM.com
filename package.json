@@ -12,6 +12,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@material-ui/core": "4.12.4",
     "@material-ui/icons": "4.11.3",
+    "@milessystems/react-code-blocks": "^1.0.11",
     "@profabric/react-components": "^0.1.7",
     "@react-jvectormap/core": "1.0.4",
     "@reduxjs/toolkit": "^2.0.1",
@@ -54,7 +55,6 @@
     "react-big-calendar": "1.8.1",
     "react-bootstrap": "^2.9.2",
     "react-chartist": "0.14.4",
-    "react-code-blocks": "0.1.0",
     "react-datetime": "^3.2.0",
     "react-dom": "^18.2.0",
     "react-google-maps": "9.4.5",
@@ -86,7 +86,6 @@
     "c6": "npx generateRestBindings --user root --password password --host 127.0.0.1 --port 3306 --dbname CarbonPHP --prefix carbon_ --output /src/api/rest",
     "css:modules": "typed-scss-modules 'src/**/*.?(s)css' --nameFormat all --exportType default src",
     "css:modules:watch": "typed-scss-modules 'src/**/*.?(s)css' --watch --nameFormat all --exportType default src",
-    "eject": "react-app-rewired eject",
     "env": "npm run c6",
     "getTag": "git describe --tags `git rev-list --tags --max-count=1`",
     "githooks": "git config core.hooksPath .githooks && chmod +x .githooks/*",
@@ -100,7 +99,7 @@
     "start": "rm -rf node_modules/.cache/ && npm cache clean --force && concurrently 'npm:start:cra:rewired' 'npm:css:modules:watch'",
     "start:sync": "rm -rf node_modules/.cache/ && npm cache clean --force && npm run css:modules && npm run start:cra:rewired",
     "start:cra": "npm run-script env && react-scripts start",
-    "start:cra:rewired": "npm run-script env && CI=true HOST=local.example.com PUBLIC_URL=http://local.example.com:3000/ react-app-rewired start",
+    "start:cra:rewired": "npm run-script env && CI=true PUBLIC_URL=http://127.0.0.1:3000/ react-app-rewired start",
     "test": "react-app-rewired test --env=jsdom"
   },
   "repository": {
@@ -148,6 +147,7 @@
     "sass": "^1.54.5",
     "source-map-loader": "^4.0.1",
     "typescript": "^5.1.6",
-    "webpack-log": "^3.0.2"
+    "webpack-log": "^3.0.2",
+    "webpack-manifest-plugin": "^5.0.0"
   }
 }

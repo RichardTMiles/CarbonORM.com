@@ -1,5 +1,5 @@
 import CarbonORM from "CarbonORM";
-import {CodeBlock, dracula, rainbow} from "react-code-blocks";
+import {CodeBlock, dracula, rainbow} from "@milessystems/react-code-blocks";
 
 
 const codeBlock = (markdown: string, highlight: string = "", language: string = "php", dark?: boolean) => {
