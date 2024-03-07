@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "https://carbonorm.dev/static/css/main.8ff0ce07.css",
-    "main.js": "https://carbonorm.dev/static/js/main.c850c1bf.js",
+    "main.js": "https://carbonorm.dev/static/js/main.aa96d115.js",
     "static/js/550.c75e906e.chunk.js": "https://carbonorm.dev/static/js/550.c75e906e.chunk.js",
     "static/media/fa-solid-900.svg": "https://carbonorm.dev/static/media/fa-solid-900.7a8b4f130182d19a2d7c.svg",
     "static/media/Carbon-purple-180.png": "https://carbonorm.dev/static/media/Carbon-purple-180.996215589f243a00a672.png",
@@ -42,6 +42,6 @@
   },
   "entrypoints": [
     "static/css/main.8ff0ce07.css",
-    "static/js/main.c850c1bf.js"
+    "static/js/main.aa96d115.js"
   ]
 }
