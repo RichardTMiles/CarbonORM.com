@@ -4,6 +4,8 @@ import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
 // core components
 import footerStyle from "assets/jss/material-dashboard-react/components/footerStyle";
+import PackageJson from "package.json";
+import {Link} from "react-router-dom";
 
 function Footer({ ...props }) {
   const { classes } = props;
@@ -13,22 +15,17 @@ function Footer({ ...props }) {
         <div className={classes.left}>
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
-              <a href="#home" className={classes.block}>
+              <Link to="/" className={classes.block}>
                 Home
-              </a>
+              </Link>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
-              <a href="#company" className={classes.block}>
+              <a href="https://www.miles.systems/" className={classes.block}>
                 Company
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
-              <a href="#portfolio" className={classes.block}>
-                Portfolio
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a href="#blog" className={classes.block}>
+              <a href="https://www.miles.systems/blog" className={classes.block}>
                 Blog
               </a>
             </ListItem>
@@ -36,10 +33,10 @@ function Footer({ ...props }) {
         </div>
         <p className={classes.right}>
           <span>
-            &copy; {1900 + (new Date()).getUTCFullYear()}{" "}
+            &copy; {(new Date()).getUTCFullYear()}{" "}
             <a href="https://www.miles.systems" className={classes.a}>
               Richard T Miles
-            </a>, made free for everyone
+            </a>, you are using the {process.env.NODE_ENV === 'development' ? 'development' : 'live'} frontend version ({PackageJson.version}). Awesome stuff :)
           </span>
         </p>
       </div>

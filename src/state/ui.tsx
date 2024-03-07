@@ -11,7 +11,7 @@ export interface iUi {
 export const initialUiState: iUi  = {
     documentationVersionURI: '0.0.0',
     isLoaded: true,
-    darkMode: initialWordPressState.C6WordPress ?? true,
+    darkMode: undefined !== initialWordPressState.C6WordPress,
 }
 
 
