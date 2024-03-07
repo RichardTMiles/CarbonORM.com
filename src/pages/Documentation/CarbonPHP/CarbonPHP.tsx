@@ -143,7 +143,7 @@ class CarbonPHP extends React.Component<{ classes: any }, {
                                 tabIcon: Announcement,
                                 tabButton: "Throwables",
                                 tabContent: <FetchMarkdown
-                                    url={'https://raw.githubusercontent.com/wiki/CarbonORM/CarbonPHP/RichardTMilesThrowables-(Error-&-Exception-Handling).md'}/>
+                                    url={'https://raw.githubusercontent.com/wiki/CarbonORM/CarbonPHP/Throwables-(Error-&-Exception-Handling).md'}/>
                             },
                             {
                                 tabIcon: Restaurant,
