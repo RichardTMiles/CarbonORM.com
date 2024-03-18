@@ -15,7 +15,12 @@
 declare global {
     interface Window {
         C6WordPress?: {
+            C6MigrationRunning: string,
             C6WordPressAbsPath: string,
+            C6PastMigrations: string,
+            C6WebsocketRunning: boolean,
+            C6WebsocketRunningCommand: string,
+            C6MigrateLicense: string,
             C6WordPressVersion: string,
             C6CarbonPHPVersion: string,
             C6AutoLoadPath: string,

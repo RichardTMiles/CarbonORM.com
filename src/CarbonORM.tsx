@@ -113,7 +113,8 @@ export default class CarbonORM extends CarbonReact<{ browserRouter?: boolean }, 
         }
 
         return reactRouterContext(<>
-            <CarbonWebSocket url={'ws://localhost:8888/ws'}/>
+            <CarbonWebSocket
+                url={'ws' + (window.location.protocol === 'https:' ? 's' : '') + '://' + window.location.host + '/carbonorm/websocket'}/>
             <Routes>
                 <Route path={UI + "*"}>
                     <Route path={MATERIAL_DASHBOARD + "*"} element={ppr(Dashboard, {})}>

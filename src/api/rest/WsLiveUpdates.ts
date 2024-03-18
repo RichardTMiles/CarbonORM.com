@@ -4,6 +4,7 @@ import {
 
 import { putStateCarbons, postStateCarbons, deleteStateCarbons } from "./Carbons";
 import { putStateComments, postStateComments, deleteStateComments } from "./Comments";
+import { putStateDocumentation, postStateDocumentation, deleteStateDocumentation } from "./Documentation";
 import { putStateFeature_Group_References, postStateFeature_Group_References, deleteStateFeature_Group_References } from "./Feature_Group_References";
 import { putStateFeatures, postStateFeatures, deleteStateFeatures } from "./Features";
 import { putStateGroup_References, postStateGroup_References, deleteStateGroup_References } from "./Group_References";
@@ -42,6 +43,11 @@ const wsLiveUpdates: tWsLiveUpdate = {
         PUT: putStateComments,
         POST: postStateComments,
         DELETE: deleteStateComments,
+    },
+    documentation: {
+        PUT: putStateDocumentation,
+        POST: postStateDocumentation,
+        DELETE: deleteStateDocumentation,
     },
     feature_group_references: {
         PUT: putStateFeature_Group_References,

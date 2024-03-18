@@ -1,0 +1,62 @@
+/index.php
+/composer.phar
+.idea/dataSources/
+.idea/inspectionProfiles/
+.idea/webServers.xml
+config/buildDatabase.php
+.DS_Store
+.phpunit.result.cache
+createTables.sql
+/vendor/
+/node_modules/
+/*/node_modules/
+/logs/*.log
+/logs/default_log.txt
+/mysql.cnf
+/mysqldump.cxrnf
+/mysqldump_data.sql
+/mysqldump.sql
+/triggers.sql
+/scratch/
+/junit.xml
+/PhpMetrics
+/out/*
+/out
+/tmp
+/wp-admin
+/wp-content
+/wp-includes
+/logs
+/temp
+/view
+
+# wordpress
+/wp-content/index.php
+/wp-content/themes/index.php
+
+# wordpress themes
+!wp-content/themes/documentation/*
+/wp-content/themes/twenty*/*
+
+# other wordpress content
+/wp-content/plugins/*
+/wp-content/uploads/*
+
+# wordpress admin
+wp-admin/*
+
+# wordpress root
+/wp-includes/*
+readme.html
+/xmlrpc.php
+license.txt
+migration-license.php
+
+
+# wp rest tables
+carbonphp/tables/Wp_*
+carbonphp/tables/interfaces/iWp_*
+
+cache/*
+.idea/
+*.iml

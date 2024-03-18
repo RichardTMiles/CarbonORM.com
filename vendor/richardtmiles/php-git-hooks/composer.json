@@ -1,0 +1,27 @@
+{
+    "name": "richardtmiles/php-git-hooks",
+    "version": "0.2.5",
+    "description": "version and release management",
+    "type": "library",
+    "license": "mit",
+    "require": {
+        "php": ">=8.2",
+        "carbonorm/carbonphp": ">=20.1.9"
+    },
+    "scripts": {
+        "post-install-cmd": "PhpGitHooks\\PhpGitHooks::install",
+        "post-update-cmd": "PhpGitHooks\\PhpGitHooks::install"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhpGitHooks\\": "phpgithooks/"
+        }
+    },
+    "authors": [
+        {
+            "name": "richardtmiles",
+            "email": "richard@miles.systems"
+        }
+    ],
+    "minimum-stability": "dev"
+}

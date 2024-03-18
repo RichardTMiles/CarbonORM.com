@@ -1,0 +1,163 @@
+{
+  "name": "carbonorm/carbonphp",
+  "license": "MIT",
+  "type": "library",
+  "version": "20.2.0",
+  "keywords": [
+    "Sockets",
+    "Carbon",
+    "Pipes",
+    "IO",
+    "Session",
+    "Routing"
+  ],
+  "homepage": "https://github.com/richardtmiles/carbonphp",
+  "description": "A PHP 8.1+ tool kit featuring RESTFUL ORM, sockets, session management, and routing.",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=8.2",
+    "mustache/mustache": "^2.13.0",
+    "psr/log": "1.1.4",
+    "ext-json": "*",
+    "ext-pdo": "*",
+    "ext-curl": "*",
+    "ext-openssl": "*",
+    "ext-fileinfo": "*",
+    "ext-posix": "*",
+    "ext-readline": "*",
+    "ext-zip": "*",
+    "ext-pcntl": "*",
+    "ext-sockets": "*"
+  },
+  "require-dev": {
+    "wp-cli/wp-cli-bundle": ">=2.6.0",
+    "phpunit/phpunit-selenium": ">=9.0.1",
+    "se/selenium-server-standalone": ">=3.141.59",
+    "phpunit/phpunit": ">=9.5",
+    "phpmetrics/phpmetrics": ">=2.7",
+    "matthiasmullie/minify": "^1.3",
+    "patchwork/jsqueeze": "^2.0"
+  },
+  "authors": [
+    {
+      "name": "Richard Miles",
+      "email": "Richard@Miles.systems",
+      "homepage": "https://www.carbonPHP.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "CarbonPHP\\Abstracts\\": "carbonphp/abstracts/",
+      "CarbonPHP\\Error\\": "carbonphp/error/",
+      "CarbonPHP\\Enums\\": "carbonphp/enums/",
+      "CarbonPHP\\Helpers\\": "carbonphp/helpers/",
+      "CarbonPHP\\Interfaces\\": "carbonphp/interfaces/",
+      "CarbonPHP\\Programs\\": "carbonphp/programs/",
+      "CarbonPHP\\Restful\\": "carbonphp/restful/",
+      "CarbonPHP\\Tables\\": "carbonphp/tables/",
+      "CarbonPHP\\Tables\\Traits\\": "carbonphp/tables/traits/",
+      "CarbonPHP\\WebSocket\\": "carbonphp/websocket/",
+      "CarbonPHP\\": "carbonphp/",
+      "Tests\\Browser\\": "tests/browser/",
+      "Tests\\Feature\\": "tests/feature/",
+      "Tests\\": "tests/",
+      "Config\\": "config/"
+    }
+  },
+  "scripts": {
+    "apache:linkApplication": [
+      "mkdir -p ./logs/httpd/",
+      "rm /usr/local/var/www",
+      "ln -s $(pwd) /usr/local/var/www",
+      "@apache:restart:mac"
+    ],
+    "apache:restart:mac": "sudo brew services restart httpd",
+    "apache:start:mac": "sudo brew services start httpd",
+    "apache:stop:mac": "sudo brew services stop httpd",
+    "db": [
+      "@mysql:cnf",
+      "php index.php buildDatabase -r"
+    ],
+    "mysql:cnf": "php index.php cnf",
+    "mysql": [
+      "@mysql:cnf",
+      "mysql --defaults-extra-file=\"`pwd`/mysql.cnf\""
+    ],
+    "database:refresh:schema": [
+      "@db"
+    ],
+    "force": "@composer install --ignore-platform-reqs",
+    "forceUp": "@composer update --ignore-platform-reqs",
+    "metrics": [
+      "php ./vendor/bin/phpmetrics --config=php-metrics.json ."
+    ],
+    "post-install-cmd": [
+      "@githooks",
+      "@apache:linkApplication",
+      "@database:refresh:schema",
+      "@rest",
+      "@test"
+    ],
+    "gcloud:instance:delete": [
+      "chmod +x ./carbonphp/programs/gcpDeployment.sh",
+      "./carbonphp/programs/gcpDeployment.sh -delete"
+    ],
+    "gcloud:instance:new": [
+      "chmod +x ./carbonphp/programs/gcpDeployment.sh",
+      "./carbonphp/programs/gcpDeployment.sh -deploy"
+    ],
+    "gcloud": [
+      "gcloud projects list",
+      "gcloud compute instances list"
+    ],
+    "gcloud:ssh": [
+      "gcloud compute ssh --zone \"us-central1-a\" \"purpleteam\" --project \"carbonphp-191421\""
+    ],
+    "gcloud:ssh:tunnel": [
+      "sudo gcloud compute ssh --zone \"us-central1-a\" \"purpleteam\" --project \"carbonphp-191421\" -- -NL 8080:localhost:80 -NL 8443:localhost:443 -NL 222:localhost:22"
+    ],
+    "post-update-cmd": [
+      "@rest",
+      "@test"
+    ],
+    "rei": "rm -rf vendor && rm composer.lock && composer i",
+    "rest": [
+      "php index.php restbuilder -json"
+    ],
+    "rest:dataDump": [
+      "php index.php restbuilder -json -dumpData"
+    ],
+    "rest:production": [
+      "php index.php restbuilder -excludeTablesRegex '#wp_.*#' -json -dumpData -react view/ -javascript view/"
+    ],
+    "setup": [
+      "@database:refresh:schema",
+      "@rest",
+      "npm install",
+      "php index.php ApacheConfig"
+    ],
+    "console": [
+      "echo https://cloud.google.com/sdk/docs/downloads-interactive"
+    ],
+    "start": [
+      "php -S local.carbonphp.com:80 dev-routing.php -d display_errors=1"
+    ],
+    "githooks": [
+      "git config core.hooksPath .githooks",
+      "chmod +x .githooks/*"
+    ],
+    "open": "open http://local.carbonphp.com:80/",
+    "socket": "php index.php websocket",
+    "test": [
+      "echo 'Use the following to enable XDEBUG :: export XDEBUG_MODE=debug XDEBUG_SESSION=1'",
+      "XDEBUG_MODE=debug XDEBUG_SESSION=1 ./vendor/bin/phpunit --log-junit junit.xml  --testdox || ./vendor/bin/phpunit --verbose --log-junit junit.xml >> logs/tests.txt"
+    ]
+  },
+  "config": {
+    "allow-plugins": {
+      "cweagans/composer-patches": true
+    }
+  }
+}
