@@ -178,7 +178,7 @@ export default function CarbonWordPress() {
         }
 
 
-    }, [migrationInProgress, C6WordpressFullyLoaded])
+    }, [migrationInProgress, C6WordpressFullyLoaded, migrationOutput])
 
 
     return <GridContainer>
