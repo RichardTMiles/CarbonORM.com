@@ -17,7 +17,7 @@ function License() {
     return <GridContainer justify="center">
         <GridItem sm={0} md={2}/>
         <GridItem sm={12} md={8}>
-            <FetchMarkdown url={'https://raw.githubusercontent.com/CarbonORM/CarbonPHP/lts/documentation/support.md'}/>
+            <FetchMarkdown url={'https://raw.githubusercontent.com/wiki/CarbonORM/CarbonPHP/Support.md'}/>
         </GridItem>
         <GridItem sm={0} md={2}/>
     </GridContainer>

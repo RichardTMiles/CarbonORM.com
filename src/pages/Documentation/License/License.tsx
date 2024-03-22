@@ -7,7 +7,8 @@ import completedStyle from "assets/jss/material-kit-react/views/componentsSectio
 export const LICENSE = 'license/';
 
 function License() {
-    return <FetchMarkdownWithGrid url={'https://raw.githubusercontent.com/CarbonORM/CarbonPHP/lts/documentation/license.md'}/>
+    return <FetchMarkdownWithGrid url={'https://raw.githubusercontent.com/wiki/CarbonORM/CarbonPHP/License.md'}/>
+
 }
 
 export default withStyles(completedStyle)(License);
