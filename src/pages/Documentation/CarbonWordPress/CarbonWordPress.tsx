@@ -47,6 +47,7 @@ export default function CarbonWordPress() {
     const [showReadMe, setShowReadMe] = useState(!C6WordPressVersion);
     const [remoteURL, setRemoteURL] = useState<string>('https://www.example.com/');
     const [remoteAPIKey, setRemoteAPIKey] = useState<string>(C6MigrateLicense ?? '');
+    const [remoteFoldersToTransfer, setRemoteFoldersToTransfer] = useState<string>('wp-content/plugins,wp-content/mu-plugins,wp-content/themes,wp-content/uploads');
     const [composerUpdateOutput, setComposerUpdateOutput] = useState<undefined | null | string>(undefined);
     const [migrationCommandOutput, setMigrationCommandOutput] = useState<string>('');
     const [migrationOutput, setMigrationOutput] = useState<undefined | null | string>(undefined);
@@ -60,9 +61,13 @@ export default function CarbonWordPress() {
 
 
     function updateComposerUpdateOutput() {
+
         if (composerUpdateOutput === null) {
+
             return;
+
         }
+
         setComposerUpdateOutput(null);
 
         fetch('/c6wordpress/logs/composer/update/')
@@ -118,7 +123,8 @@ export default function CarbonWordPress() {
             },
             body: JSON.stringify({
                 remoteURL,
-                remoteAPIKey
+                remoteAPIKey,
+                remoteFoldersToTransfer
             })
         }).then(response => response.text())
             .then(text => {
@@ -148,7 +154,9 @@ export default function CarbonWordPress() {
                 .then(text => {
                     setMigrationOutput(text)
                     // regex match Completed in 0.0 seconds in text
-                    if (text.match(/Completed in \d+\.\d+ seconds/)) {
+                    if (text.match(/Completed in /g)
+                        || text.match(/CarbonPHP\\Error\\PrivateAlert/g)
+                        || text.match(/CarbonPHP\\Error\\PublicAlert/g)) {
                         setMigrationInProgress(false);
                     }
                 });
@@ -168,7 +176,7 @@ export default function CarbonWordPress() {
 
         if (migrationInProgress) {
 
-            intervalMigrate = setInterval(migrationLog, 3000);
+            intervalMigrate = setInterval(migrationLog, 5000);
 
         }
 
@@ -313,6 +321,14 @@ export default function CarbonWordPress() {
                                                         width: '100%'
                                                     }}
                                                     onChange={e => setRemoteAPIKey(e.target.value)}/>
+                                     <br/>Transfer Folders:
+                                        <br/><input value={remoteFoldersToTransfer}
+                                                    style={{
+                                                        width: '100%'
+                                                    }}
+                                                    onChange={e => setRemoteFoldersToTransfer(e.target.value)}/>
+
+
                                     </>}
                                     <br/><br/>
                                     <button

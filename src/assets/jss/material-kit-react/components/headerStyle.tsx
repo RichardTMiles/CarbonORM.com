@@ -53,7 +53,8 @@ const headerStyle = createStyles({
     flexFlow: "row nowrap",
     justifyContent: "flex-start",
     position: "relative",
-    zIndex: "unset"
+    zIndex: "unset",
+    top: "auto",
   },
   absolute: {
     zIndex: 1100,

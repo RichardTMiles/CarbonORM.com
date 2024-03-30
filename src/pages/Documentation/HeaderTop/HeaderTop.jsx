@@ -73,7 +73,8 @@ class HeaderTop extends React.Component {
       [classes.appBar]: true,
       [classes[color]]: color,
       [classes.absolute]: absolute,
-      [classes.fixed]: fixed
+      [classes.fixed]: fixed,
+      [classes.top]: 'auto',
     });
     const brandComponent = <Link to={'/'}><Button className={classes.title} style={{ color: (darkMode ?  "white" : "black") }}>{brand}</Button></Link>;
     return (
