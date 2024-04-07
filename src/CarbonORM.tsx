@@ -53,7 +53,6 @@ import UserProfile, {USER_PROFILE} from "pages/UI/MaterialUI/MaterialDashboard/U
 import CarbonORMDocumentation, {CARBON_ORM_INTRODUCTION} from "pages/Documentation/CarbonORM/CarbonORM"
 import isTest from "variables/isTest";
 import {initialWordPressState, iWordPress} from "state/wordpress";
-
 export const initialCarbonORMState: typeof initialRestfulObjectsState
     & typeof initialRequiredCarbonORMState
     & iAuthenticate

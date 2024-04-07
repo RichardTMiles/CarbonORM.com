@@ -1,5 +1,0 @@
-<?php
-
-
-/** @noinspection ForgottenDebugOutputInspection */
-phpinfo();

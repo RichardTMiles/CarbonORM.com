@@ -7,6 +7,8 @@ import footerStyle from "assets/jss/material-dashboard-react/components/footerSt
 import PackageJson from "package.json";
 import {Link} from "react-router-dom";
 
+
+
 function Footer({ ...props }) {
   const { classes } = props;
   return (

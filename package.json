@@ -13,6 +13,7 @@
     "@material-ui/core": "4.12.4",
     "@material-ui/icons": "4.11.3",
     "@milessystems/react-code-blocks": "^1.0.11",
+    "@paypal/react-paypal-js": "^8.2.0",
     "@profabric/react-components": "^0.1.7",
     "@react-jvectormap/core": "1.0.4",
     "@reduxjs/toolkit": "^2.0.1",
