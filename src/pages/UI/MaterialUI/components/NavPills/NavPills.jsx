@@ -98,7 +98,7 @@ class NavPills extends React.Component {
       <div className={classes.contentWrapper}>
         <SlideComponent
           axis={direction === "rtl" ? "x-reverse" : "x"}
-          enableMouseEvents={true}
+          enableMouseEvents={false}
           index={this.state.active}
           onChangeIndex={this.handleChangeIndex}
         >

@@ -15,27 +15,20 @@ export default function PayPalButtonComponent({payPalButton = ePayPalButton.ORDE
 
     console.log('PayPalButtonComponent', payPalButton, amount, currency)
 
-    const [PayPalLoaded, setPayPalLoaded] = useState(false);
+    const [PayPalLoaded, setPayPalLoaded] = useState(!!window.paypal);
 
     const CLIENT_ID = 'AZvop1cSH9CHzNtezCR9mL7XqGchTZG0GfWDAOwk03dstvm-VjhNpj8uRlC36qRl7baScgOLbGHK_Bx9';
 
-
     useEffect(() => {
 
-
-
-        if (window.paypal) {
+        if (PayPalLoaded) {
             alert('PayPal Script Already Loaded')
             // If script is already loaded, don't load it again
             return;
         }
 
-
-        alert('Loading PayPal Script')
-
         // Function to dynamically load the PayPal script
         const addPayPalScript = () => {
-            alert('Adding PayPal Script')
             const script = document.createElement('script');
             script.type = 'text/javascript';
             // <script src="https://www.sandbox.paypal.com/sdk/js">
@@ -50,14 +43,10 @@ export default function PayPalButtonComponent({payPalButton = ePayPalButton.ORDE
 
     }, [currency]);
 
-
-    if (!PayPalLoaded) {
-        return <div>Loading...</div>;
-    }
-
-    return (
+    return <div style={{display: 'flex', justifyContent: 'center',flexShrink: 0}}>
         <PayPalScriptProvider options={{clientId: CLIENT_ID}}>
-            {payPalButton === ePayPalButton.SUBSCRIPTION
+            <div style={{ minWidth: '125vh' }}>
+            {payPalButton !== ePayPalButton.SUBSCRIPTION
                 ? <PayPalButtons
                     createOrder={(data, actions) => {
                         console.log("Creating Order", data);
@@ -85,7 +74,7 @@ export default function PayPalButtonComponent({payPalButton = ePayPalButton.ORDE
                     }}
                 />
                 : <PayPalButtons
-                    style={{layout: 'vertical'}}
+                    style={{layout: 'vertical', }}
                     createSubscription={(data, actions) => {
                         console.log(data, actions)
                         return actions.subscription.create({
@@ -100,8 +89,9 @@ export default function PayPalButtonComponent({payPalButton = ePayPalButton.ORDE
                         // Optionally, call your backend to finalize the subscription process
                     }}
                 />}
+                </div>
         </PayPalScriptProvider>
-    );
+    </div>
 }
 
 

@@ -9,6 +9,7 @@ import Person from "@material-ui/icons/Person";
 import Favorite from '@material-ui/icons/Favorite';
 import Ansi from "ansi-to-react";
 import CarbonORM from "CarbonORM";
+import PayPalButtonComponent from "components/PayPal/PayPal";
 import SupportMe from "components/SupportMe/SupportMe";
 import FetchMarkdownWithGrid from "pages/UI/MaterialUI/components/FetchMarkdown/FetchMarkdownWithGrid";
 import GridContainer from "pages/UI/MaterialUI/components/Grid/GridContainer";
@@ -61,8 +62,8 @@ export default function CarbonWordPress() {
 
     const DEFAULT_REMOTE_URL = 'https://www.example.com/';
 
-    const [numberOfDomains, setNumberOfDomains] = useState<number>(1);
-    const [numberOfOperators, setNumberOfOperators] = useState<number>(1);
+    const [numberOfDomains, setNumberOfDomains] = useState<number>(5);
+    const [numberOfOperators, setNumberOfOperators] = useState<number>(20);
     const [websocketLog, setWebsocketLog] = useState<string>('');
     const [migrationInProgress, setMigrationInProgress] = useState<boolean>(false);
     const [showReadMe, setShowReadMe] = useState(!C6WordPressVersion);
@@ -80,34 +81,59 @@ export default function CarbonWordPress() {
         }
     } = JSON.parse(C6PastMigrations ?? '{}');
 
-    const bulkLicenseDiscountPercentage = {
-        2: 0.2,
-        5: 0.25,
-        10: 0.3,
-        20: 0.35,
-        30: 0.4
+    function bulkLicenseDiscountPercentage(individual: boolean) {
+        return individual ? {
+            2: 0.10,
+            4: 0.15,
+            6: 0.20,
+            10: 0.25,
+            12: 0.30,
+            15: 0.35,
+        } : {
+            10: 0.10,
+            15: 0.15,
+            20: 0.20,
+            25: 0.25,
+            30: 0.30,
+            35: 0.35,
+            40: 0.40
+        }
     }
 
-    function getLicenseCost(baseCost: number, numberOfLicenses: number) {
+    function getDiscountPercentage(numberOfLicenses: number, individual: boolean) {
+        if (numberOfLicenses === 1) {
+            return 0;
+        }
+
+        const discountPercentages = bulkLicenseDiscountPercentage(individual);
+
+        for (let i = numberOfLicenses; i >= 2; i--) {
+            if (discountPercentages[i]) {
+                return discountPercentages[i];
+            }
+        }
+
+        return 0;
+    }
+
+    function getLicenseCost(baseCost: number, numberOfLicenses: number, individual: boolean) {
         if (numberOfLicenses === 1) {
             return baseCost;
         }
 
-        let discount = 0;
-        for (let i = numberOfLicenses; i >= 2; i--) {
-            if (bulkLicenseDiscountPercentage[i]) {
-                discount = bulkLicenseDiscountPercentage[i];
-                break;
-            }
-        }
+        let discount = getDiscountPercentage(numberOfLicenses, individual);
 
         return baseCost * (1 - discount);
     }
 
 
-    const individualLicenseCost = getLicenseCost(200, numberOfDomains);
+    const individualLicenseBaseCost = 120;
+    const individualLicenseDiscount = getDiscountPercentage(numberOfDomains, true);
+    const individualLicenseCost = getLicenseCost(individualLicenseBaseCost, numberOfDomains, true);
     const individualLicenseTotalCost = individualLicenseCost * numberOfDomains;
-    const organizationLicenseCost = getLicenseCost(750, numberOfOperators);
+    const organizationLicenseBaseCost = 750;
+    const organizationLicenseDiscount = getDiscountPercentage(numberOfOperators, false);
+    const organizationLicenseCost = getLicenseCost(organizationLicenseBaseCost, numberOfOperators, false);
     const organizationLicenseTotalCost = organizationLicenseCost * numberOfOperators;
 
     function updateComposerUpdateOutput() {
@@ -253,6 +279,62 @@ export default function CarbonWordPress() {
         <li>Continuous Integration and Development CI/CD Cli Support</li>
     </>
 
+    enum ePricingInformation {
+        INDIVIDUAL,
+        ORGANIZATION,
+        NONPROFIT
+    }
+
+    function pricingInformation(type: ePricingInformation) {
+
+        return <>
+            {(() => {
+                switch (type) {
+                    case ePricingInformation.NONPROFIT:
+                        return <p>
+                            Non Profits with tax exempt status will save an additional 50% along with any bulk pricing
+                            discounts. <br/>
+                            Purchasing the <b>{numberOfOperators} Operators License</b> will qualify for a
+                            <b style={{color: "green"}}> {50 + organizationLicenseDiscount * 100}% discount</b>,
+                            from <s>${(organizationLicenseBaseCost).toFixed(2)}</s> down to <b
+                            style={{color: "green"}}>${(organizationLicenseCost / 2).toFixed(2)}</b>.<br/>
+                            <b style={{color: "green"}}>
+                                {numberOfOperators} Non Profit Operators License<br/>
+                                Totaling ${(organizationLicenseTotalCost / 2).toFixed(2)} Annually
+                            </b>
+                        </p>
+                    case ePricingInformation.ORGANIZATION:
+                        return <p>{0 !== organizationLicenseDiscount && <>
+                            You will save <b style={{color: "green"}}>{organizationLicenseDiscount * 100}%</b>,
+                            from <s>${organizationLicenseBaseCost.toFixed(2)}</s> down to <b
+                            style={{color: "green"}}>${organizationLicenseCost.toFixed(2)}</b>, when you buy
+                            the <b>{numberOfOperators} Operators License</b>!<br/>
+                        </>}
+                            <b style={{color: "green"}}>
+                                {numberOfOperators} Operators License<br/>
+                                Totaling ${organizationLicenseTotalCost.toFixed(2)} Annually
+                            </b>
+                        </p>
+                    case ePricingInformation.INDIVIDUAL:
+                        return <p>{0 !== individualLicenseDiscount && <>
+                            You will save <b style={{color: "green"}}>{individualLicenseDiscount * 100}%</b>,
+                            from <s>${individualLicenseBaseCost.toFixed(2)}</s> down to <b
+                            style={{color: "green"}}>${individualLicenseCost.toFixed(2)}</b>, when you buy
+                            the <b>{numberOfDomains} domain license</b>!<br/>
+                        </>}
+                            <b style={{color: "green"}}>
+                                {numberOfDomains} Domain License<br/>
+                                Totaling ${individualLicenseTotalCost.toFixed(2)} Annually
+                            </b>
+                        </p>
+
+                }
+            })()}
+            <PayPalButtonComponent/>
+        </>
+
+    }
+
     const WebSocketInfo = <>
         <h3>WebSocket Features</h3>
         <p>
@@ -307,6 +389,7 @@ export default function CarbonWordPress() {
         borderRadius: '1em',
     }}>
         <h1>Carbon WordPress Pricing</h1>
+
         <p>
             Our free version comes with PHP's best error handling and logging system.
             We've invested a LOT of time writing code to help you debug your WordPress installation and
@@ -325,16 +408,18 @@ export default function CarbonWordPress() {
                 {
                     tabButton: "Individual",
                     tabIcon: Person,
-                    tabContent: <>
+                    tabContent: <div style={{
+                        padding: "1em"
+                    }}>
                         <h1>Individual licenses are priced per domain</h1>
-                        <h2>Domains</h2>
-                        <Slider min={1} max={375} defaultValue={numberOfDomains} onChange={(_event, value) => {
+                        <h2>CarbonWordPress {numberOfDomains} Domain License</h2>
+                        <Slider min={1} max={20} defaultValue={numberOfDomains} onChange={(_event, value) => {
                             setNumberOfDomains(value as number)
                         }} aria-label="Default" valueLabelDisplay="auto"/>
-                        <p><b>${individualLicenseTotalCost}</b></p>
+                        {pricingInformation(ePricingInformation.INDIVIDUAL)}
                         <p>
-                            The Individual license is for single developer or operator to use across single or
-                            multiple domains.
+                            The Individual license is for a <u>single developer or operator</u> to use across single or
+                            multiple domains based on license.
                         </p>
                         <h3>Migration Features</h3>
                         <ul>
@@ -342,31 +427,48 @@ export default function CarbonWordPress() {
                             {premiumFeatures}
                         </ul>
                         {WebSocketInfo}
-                    </>
+                    </div>
                 },
                 {
                     tabButton: "Organization",
                     tabIcon: Group,
-                    tabContent: <>
+                    tabContent: <div style={{
+                        padding: "1em"
+                    }}>
                         <h1>Organization licenses are priced per operator</h1>
-                        <Slider min={2} max={100} value={numberOfOperators} onChange={(_event, value) => {
+                        <Slider min={2} max={100}
+                                step={1}
+                                value={numberOfOperators} onChange={(_event, value) => {
                             setNumberOfOperators(value as number)
                         }} aria-label="Default" valueLabelDisplay="auto"/>
-                        <p><b>${organizationLicenseTotalCost}</b></p>
+                        {pricingInformation(ePricingInformation.ORGANIZATION)}
+                        <h3>Migration Features</h3>
                         <ul>
                             <li>Unlimited Domains</li>
                             {premiumFeatures}
                         </ul>
                         {WebSocketInfo}
-                    </>
+                    </div>
 
                 },
                 {
                     tabButton: "Enterprise",
                     tabIcon: Public,
-                    tabContent: <>
+                    tabContent: <div style={{
+                        padding: "1em"
+                    }}>
                         <h1>Enterprise License grants full unrestricted access</h1>
-                        <p><b>$45,000</b></p>
+                        <p>
+                            <b style={{color: "green"}}>
+                                Unlimited Migration Operators<br/>
+                                Unlimited Domains<br/>
+                                Priority Support<br/>
+                                Unparalleled Performance<br/>
+                                Real Time Communication<br/>
+                                Totaling $45,000 Annually
+                            </b>
+                        </p>
+
 
                         <ul>
                             <li>Unlimited Migration Operators</li>
@@ -377,27 +479,33 @@ export default function CarbonWordPress() {
                             {premiumFeatures}
                         </ul>
                         {WebSocketInfo}
-                    </>
+                    </div>
                 },
                 {
                     tabButton: "Non Profit",
                     tabIcon: Favorite,
-                    tabContent: <>
+                    tabContent: <div style={{
+                        padding: "1em"
+                    }}>
                         <h1>Non Profit licenses are priced per operator</h1>
-                        <Slider min={2} max={200} value={numberOfOperators} onChange={(_event, value) => {
+                        <Slider min={2} step={1} max={200} value={numberOfOperators} onChange={(_event, value) => {
                             setNumberOfOperators(value as number)
-                        }} aria-label="Default" valueLabelDisplay="auto"/>                        <p><b>${(organizationLicenseTotalCost / 2)}</b></p>
+                        }} aria-label="Default" valueLabelDisplay="auto"/>
+                        {pricingInformation(ePricingInformation.NONPROFIT)}
+                        <h3>Migration Features</h3>
                         <ul>
                             <li>Unlimited Domains</li>
                             {premiumFeatures}
                         </ul>
                         {WebSocketInfo}
-                    </>
+                    </div>
                 },
                 {
                     tabButton: "Students & Teachers",
                     tabIcon: School,
-                    tabContent: <>
+                    tabContent: <div style={{
+                        padding: "1em"
+                    }}>
                         <h1>Students & Teachers</h1>
                         <p>Free</p>
                         <p>For academic access only. Education licenses may not be used on commercial products.</p>
@@ -407,7 +515,17 @@ export default function CarbonWordPress() {
                             {premiumFeatures}
                         </ul>
                         {WebSocketInfo}
-                    </>
+                    </div>
+                },
+                {
+                    tabButton: "Videos",
+                    tabIcon: School,
+                    tabContent: <div style={{
+                        padding: "1em"
+                    }}>
+                        <h1>Online Tutorial Here</h1>
+                        <p></p>
+                    </div>
                 }
             ]}
         /></div>
