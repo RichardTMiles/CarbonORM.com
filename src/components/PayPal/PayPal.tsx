@@ -45,7 +45,7 @@ export default function PayPalButtonComponent({payPalButton = ePayPalButton.ORDE
 
     return <div style={{display: 'flex', justifyContent: 'center',flexShrink: 0}}>
         <PayPalScriptProvider options={{clientId: CLIENT_ID}}>
-            <div style={{ minWidth: '125vh' }}>
+            <div style={{ minWidth: '40vw' }}>
             {payPalButton !== ePayPalButton.SUBSCRIPTION
                 ? <PayPalButtons
                     createOrder={(data, actions) => {
