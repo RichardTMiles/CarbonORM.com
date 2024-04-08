@@ -40,7 +40,7 @@ export default function PayPalButtonComponent({payPalButton = ePayPalButton.ORDE
 
         addPayPalScript();
 
-    }, [currency]);
+    }, [currency,PayPalLoaded]);
 
     return <div style={{display: 'flex', justifyContent: 'center',flexShrink: 0}}>
         <PayPalScriptProvider options={{clientId: CLIENT_ID}}>

@@ -40,6 +40,14 @@ let verifiedUrlCache: {
     [key: string]: boolean
 } = {};
 
+function formatDollarAmount(amount) {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+    }).format(amount);
+}
+
+
 export default function CarbonWordPress() {
 
     const wordpress = CarbonORM.instance.state?.C6WordPress;
@@ -301,7 +309,7 @@ export default function CarbonWordPress() {
                             style={{color: "green"}}>${(organizationLicenseCost / 2).toFixed(2)}</b>.<br/>
                             <b style={{color: "green"}}>
                                 {numberOfOperators} Non Profit Operators License<br/>
-                                Totaling ${(organizationLicenseTotalCost / 2).toFixed(2)} Annually
+                                Totaling {formatDollarAmount(organizationLicenseTotalCost / 2)} Annually
                             </b>
                             <Button color="primary" onClick={() => {
                                 window.open('mailto:richard@miles.systems?subject=Non Profit Request&body=Please include a link to your institution. We will respond within 24 hours.')
@@ -316,7 +324,7 @@ export default function CarbonWordPress() {
                         </>}
                             <b style={{color: "green"}}>
                                 {numberOfOperators} Operators License<br/>
-                                Totaling ${organizationLicenseTotalCost.toFixed(2)} Annually
+                                Totaling {formatDollarAmount(organizationLicenseTotalCost)} Annually
                             </b>
                             <PayPalButtonComponent/>
                         </p>
@@ -329,7 +337,7 @@ export default function CarbonWordPress() {
                         </>}
                             <b style={{color: "green"}}>
                                 {numberOfDomains} Domain License<br/>
-                                Totaling ${individualLicenseTotalCost.toFixed(2)} Annually
+                                Totaling {formatDollarAmount(individualLicenseTotalCost)} Annually
                             </b>
                             <PayPalButtonComponent/>
                         </p>
@@ -510,7 +518,7 @@ export default function CarbonWordPress() {
                         padding: "1em"
                     }}>
                         <h1>Students & Teachers</h1>
-                        <p>Free</p>
+                        <p><b style={{color:"green"}}>Free for academic, non-commercial, projects!</b></p>
                         <p>For academic access only. Education licenses may not be used on commercial products.</p>
                         <ul>
                             <li>Unlimited Domains</li>
