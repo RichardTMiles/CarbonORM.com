@@ -7,6 +7,7 @@ import Power from "@material-ui/icons/Power";
 import Group from "@material-ui/icons/Group";
 import Public from "@material-ui/icons/Public";
 import Person from "@material-ui/icons/Person";
+import VideoLibrary from "@material-ui/icons/VideoLibrary";
 import Favorite from '@material-ui/icons/Favorite';
 import Ansi from "ansi-to-react";
 import CarbonORM from "CarbonORM";
@@ -521,12 +522,12 @@ export default function CarbonWordPress() {
                 },
                 {
                     tabButton: "Videos",
-                    tabIcon: School,
+                    tabIcon: VideoLibrary,
                     tabContent: <div style={{
                         padding: "1em"
                     }}>
-                        <h1>Online Tutorial Here</h1>
-                        <p></p>
+                        <h1>Online Tutorials</h1>
+                        <p>Arriving April 2024!</p>
                     </div>
                 }
             ]}
