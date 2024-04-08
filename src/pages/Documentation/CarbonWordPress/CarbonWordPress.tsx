@@ -1,4 +1,5 @@
 import {Slider} from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 import {School, SystemUpdate} from "@material-ui/icons";
 import Code from "@material-ui/icons/Code";
 import CompareArrows from "@material-ui/icons/CompareArrows";
@@ -287,8 +288,7 @@ export default function CarbonWordPress() {
 
     function pricingInformation(type: ePricingInformation) {
 
-        return <>
-            {(() => {
+
                 switch (type) {
                     case ePricingInformation.NONPROFIT:
                         return <p>
@@ -302,6 +302,9 @@ export default function CarbonWordPress() {
                                 {numberOfOperators} Non Profit Operators License<br/>
                                 Totaling ${(organizationLicenseTotalCost / 2).toFixed(2)} Annually
                             </b>
+                            <Button color="primary" onClick={() => {
+                                window.open('mailto:richard@miles.systems?subject=Non Profit Request&body=Please include a link to your institution. We will respond within 24 hours.')
+                            }}/>
                         </p>
                     case ePricingInformation.ORGANIZATION:
                         return <p>{0 !== organizationLicenseDiscount && <>
@@ -314,6 +317,7 @@ export default function CarbonWordPress() {
                                 {numberOfOperators} Operators License<br/>
                                 Totaling ${organizationLicenseTotalCost.toFixed(2)} Annually
                             </b>
+                            <PayPalButtonComponent/>
                         </p>
                     case ePricingInformation.INDIVIDUAL:
                         return <p>{0 !== individualLicenseDiscount && <>
@@ -326,12 +330,11 @@ export default function CarbonWordPress() {
                                 {numberOfDomains} Domain License<br/>
                                 Totaling ${individualLicenseTotalCost.toFixed(2)} Annually
                             </b>
+                            <PayPalButtonComponent/>
                         </p>
 
                 }
-            })()}
-            <PayPalButtonComponent/>
-        </>
+
 
     }
 
@@ -436,7 +439,7 @@ export default function CarbonWordPress() {
                         padding: "1em"
                     }}>
                         <h1>Organization licenses are priced per operator</h1>
-                        <Slider min={2} max={100}
+                        <Slider min={2} max={99}
                                 step={1}
                                 value={numberOfOperators} onChange={(_event, value) => {
                             setNumberOfOperators(value as number)
@@ -468,8 +471,7 @@ export default function CarbonWordPress() {
                                 Totaling $45,000 Annually
                             </b>
                         </p>
-
-
+                        <h3>Migration Features</h3>
                         <ul>
                             <li>Unlimited Migration Operators</li>
                             <li>Unlimited Domains</li>
@@ -488,7 +490,7 @@ export default function CarbonWordPress() {
                         padding: "1em"
                     }}>
                         <h1>Non Profit licenses are priced per operator</h1>
-                        <Slider min={2} step={1} max={200} value={numberOfOperators} onChange={(_event, value) => {
+                        <Slider min={2} step={1} max={199} value={numberOfOperators} onChange={(_event, value) => {
                             setNumberOfOperators(value as number)
                         }} aria-label="Default" valueLabelDisplay="auto"/>
                         {pricingInformation(ePricingInformation.NONPROFIT)}

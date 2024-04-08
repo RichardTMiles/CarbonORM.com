@@ -22,7 +22,6 @@ export default function PayPalButtonComponent({payPalButton = ePayPalButton.ORDE
     useEffect(() => {
 
         if (PayPalLoaded) {
-            alert('PayPal Script Already Loaded')
             // If script is already loaded, don't load it again
             return;
         }
@@ -45,7 +44,7 @@ export default function PayPalButtonComponent({payPalButton = ePayPalButton.ORDE
 
     return <div style={{display: 'flex', justifyContent: 'center',flexShrink: 0}}>
         <PayPalScriptProvider options={{clientId: CLIENT_ID}}>
-            <div style={{ minWidth: '40vw' }}>
+            <div style={{ minWidth: '30vw' }}>
             {payPalButton !== ePayPalButton.SUBSCRIPTION
                 ? <PayPalButtons
                     createOrder={(data, actions) => {
