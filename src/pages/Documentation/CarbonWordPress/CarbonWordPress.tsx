@@ -1,22 +1,19 @@
-import {Slider} from "@material-ui/core";
-import Button from "@material-ui/core/Button";
-import {School, SystemUpdate} from "@material-ui/icons";
+import {SystemUpdate} from "@material-ui/icons";
 import Code from "@material-ui/icons/Code";
 import CompareArrows from "@material-ui/icons/CompareArrows";
 import Power from "@material-ui/icons/Power";
-import Group from "@material-ui/icons/Group";
-import Public from "@material-ui/icons/Public";
-import Person from "@material-ui/icons/Person";
-import VideoLibrary from "@material-ui/icons/VideoLibrary";
-import Favorite from '@material-ui/icons/Favorite';
+import Lock from "@material-ui/icons/Lock";
+import LockOpen from "@material-ui/icons/LockOpen";
 import Ansi from "ansi-to-react";
 import CarbonORM from "CarbonORM";
-import PayPalButtonComponent from "components/PayPal/PayPal";
 import SupportMe from "components/SupportMe/SupportMe";
+import Pricing from "pages/Documentation/CarbonWordPress/Pricing";
 import FetchMarkdownWithGrid from "pages/UI/MaterialUI/components/FetchMarkdown/FetchMarkdownWithGrid";
 import GridContainer from "pages/UI/MaterialUI/components/Grid/GridContainer";
 import GridItem from "pages/UI/MaterialUI/components/Grid/GridItem";
 import NavPills from "pages/UI/MaterialUI/components/NavPills/NavPills";
+import Button from "pages/UI/MaterialUI/components/CustomButtons/Button";
+
 import {useEffect, useState} from "react";
 
 
@@ -40,14 +37,6 @@ let verifiedUrlCache: {
     [key: string]: boolean
 } = {};
 
-function formatDollarAmount(amount) {
-    return new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-    }).format(amount);
-}
-
-
 export default function CarbonWordPress() {
 
     const wordpress = CarbonORM.instance.state?.C6WordPress;
@@ -68,16 +57,19 @@ export default function CarbonWordPress() {
         C6Groups,
         C6SetupComplete,
         C6PastMigrations,
+        C6WordPressLicense,
+        C6WordPressUser,
     } = wordpress ?? {};
 
     const DEFAULT_REMOTE_URL = 'https://www.example.com/';
 
-    const [numberOfDomains, setNumberOfDomains] = useState<number>(5);
-    const [numberOfOperators, setNumberOfOperators] = useState<number>(20);
+    const [iStartedMigration, setIStartedMigration] = useState<boolean>(false);
     const [websocketLog, setWebsocketLog] = useState<string>('');
     const [migrationInProgress, setMigrationInProgress] = useState<boolean>(false);
+    const [licesnseVerified, setLicenseVerified] = useState<boolean>(false);
     const [showReadMe, setShowReadMe] = useState(!C6WordPressVersion);
     const [remoteURL, setRemoteURL] = useState<string>(DEFAULT_REMOTE_URL);
+    const [c6WPLicense, setC6WPLicense] = useState<string>(C6WordPressLicense ?? '');
     const [remoteAPIKey, setRemoteAPIKey] = useState<string>(C6MigrateLicense ?? '');
     const [remoteFoldersToTransfer, setRemoteFoldersToTransfer] = useState<string>('wp-content/plugins,wp-content/mu-plugins,wp-content/themes,wp-content/uploads');
     const [composerUpdateOutput, setComposerUpdateOutput] = useState<undefined | null | string>(undefined);
@@ -91,60 +83,27 @@ export default function CarbonWordPress() {
         }
     } = JSON.parse(C6PastMigrations ?? '{}');
 
-    function bulkLicenseDiscountPercentage(individual: boolean) {
-        return individual ? {
-            2: 0.10,
-            4: 0.15,
-            6: 0.20,
-            10: 0.25,
-            12: 0.30,
-            15: 0.35,
-        } : {
-            10: 0.10,
-            15: 0.15,
-            20: 0.20,
-            25: 0.25,
-            30: 0.30,
-            35: 0.35,
-            40: 0.40
-        }
-    }
-
-    function getDiscountPercentage(numberOfLicenses: number, individual: boolean) {
-        if (numberOfLicenses === 1) {
-            return 0;
-        }
-
-        const discountPercentages = bulkLicenseDiscountPercentage(individual);
-
-        for (let i = numberOfLicenses; i >= 2; i--) {
-            if (discountPercentages[i]) {
-                return discountPercentages[i];
-            }
-        }
-
-        return 0;
-    }
-
-    function getLicenseCost(baseCost: number, numberOfLicenses: number, individual: boolean) {
-        if (numberOfLicenses === 1) {
-            return baseCost;
-        }
-
-        let discount = getDiscountPercentage(numberOfLicenses, individual);
-
-        return baseCost * (1 - discount);
-    }
-
-
-    const individualLicenseBaseCost = 120;
-    const individualLicenseDiscount = getDiscountPercentage(numberOfDomains, true);
-    const individualLicenseCost = getLicenseCost(individualLicenseBaseCost, numberOfDomains, true);
-    const individualLicenseTotalCost = individualLicenseCost * numberOfDomains;
-    const organizationLicenseBaseCost = 750;
-    const organizationLicenseDiscount = getDiscountPercentage(numberOfOperators, false);
-    const organizationLicenseCost = getLicenseCost(organizationLicenseBaseCost, numberOfOperators, false);
-    const organizationLicenseTotalCost = organizationLicenseCost * numberOfOperators;
+    useEffect(() => {
+        // double verify the license when true? this could be good, stop little fucks?
+        void fetch('https://systems.miles.systems/CarbonWordPress/' + (iStartedMigration ? 'commit' : 'inquire') + '/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: C6WordPressUser,
+                domain: (remoteURL),
+                license: c6WPLicense
+            })
+        }).then(response => response.json())
+            .then(json => {
+                // this rather than state because it will be harder for the user to change
+                if (json.success) {
+                    setLicenseVerified(true);
+                }
+                console.log('CarbonWordPress license response', json);
+            })
+    }, [c6WPLicense, remoteURL, C6WordPressUser, iStartedMigration])
 
     function updateComposerUpdateOutput() {
 
@@ -194,6 +153,8 @@ export default function CarbonWordPress() {
     }, [remoteURL, remoteAPIKey])
 
     function startMigrationPostRequest() {
+
+        setIStartedMigration(true);
 
         if (migrationInProgress === true) {
             return
@@ -274,272 +235,6 @@ export default function CarbonWordPress() {
 
     }, [migrationInProgress, C6WordpressFullyLoaded, migrationOutput])
 
-    const premiumFeatures = <>
-        <li>Unlimited WordPress Database Migrations</li>
-        <li>Unlimited Media and Upload imports</li>
-        <li>Unlimited Theme and Plugin imports</li>
-        <li>Arbitrary File and Folder importer</li>
-        <li>Database Only Importer</li>
-        <li>File Only Importer</li>
-        <li>Restore from Previous Migrations</li>
-        <li>Adjustment of Folder Compression Sizes</li>
-        <li>Table Exclusions</li>
-        <li>Multisite Support</li>
-        <li>Super fast migration - Multi-threading toggle</li>
-        <li>Continuous Integration and Development CI/CD Cli Support</li>
-    </>
-
-    enum ePricingInformation {
-        INDIVIDUAL,
-        ORGANIZATION,
-        NONPROFIT
-    }
-
-    function pricingInformation(type: ePricingInformation) {
-
-
-                switch (type) {
-                    case ePricingInformation.NONPROFIT:
-                        return <p>
-                            Non Profits with tax exempt status will save an additional 50% along with any bulk pricing
-                            discounts. <br/>
-                            Purchasing the <b>{numberOfOperators} Operators License</b> will qualify for a
-                            <b style={{color: "green"}}> {50 + organizationLicenseDiscount * 100}% discount</b>,
-                            from <s>${(organizationLicenseBaseCost).toFixed(2)}</s> down to <b
-                            style={{color: "green"}}>${(organizationLicenseCost / 2).toFixed(2)}</b>.<br/>
-                            <b style={{color: "green"}}>
-                                {numberOfOperators} Non Profit Operators License<br/>
-                                Totaling {formatDollarAmount(organizationLicenseTotalCost / 2)} Annually
-                            </b>
-                            <Button color="primary" onClick={() => {
-                                window.open('mailto:richard@miles.systems?subject=Non Profit Request&body=Please include a link to your institution. We will respond within 24 hours.')
-                            }}/>
-                        </p>
-                    case ePricingInformation.ORGANIZATION:
-                        return <p>{0 !== organizationLicenseDiscount && <>
-                            You will save <b style={{color: "green"}}>{organizationLicenseDiscount * 100}%</b>,
-                            from <s>${organizationLicenseBaseCost.toFixed(2)}</s> down to <b
-                            style={{color: "green"}}>${organizationLicenseCost.toFixed(2)}</b>, when you buy
-                            the <b>{numberOfOperators} Operators License</b>!<br/>
-                        </>}
-                            <b style={{color: "green"}}>
-                                {numberOfOperators} Operators License<br/>
-                                Totaling {formatDollarAmount(organizationLicenseTotalCost)} Annually
-                            </b>
-                            <PayPalButtonComponent/>
-                        </p>
-                    case ePricingInformation.INDIVIDUAL:
-                        return <p>{0 !== individualLicenseDiscount && <>
-                            You will save <b style={{color: "green"}}>{individualLicenseDiscount * 100}%</b>,
-                            from <s>${individualLicenseBaseCost.toFixed(2)}</s> down to <b
-                            style={{color: "green"}}>${individualLicenseCost.toFixed(2)}</b>, when you buy
-                            the <b>{numberOfDomains} domain license</b>!<br/>
-                        </>}
-                            <b style={{color: "green"}}>
-                                {numberOfDomains} Domain License<br/>
-                                Totaling {formatDollarAmount(individualLicenseTotalCost)} Annually
-                            </b>
-                            <PayPalButtonComponent/>
-                        </p>
-
-                }
-
-
-    }
-
-    const WebSocketInfo = <>
-        <h3>WebSocket Features</h3>
-        <p>
-            Our WebSocket is a powerful tool that allows you to interact with your server in real time.
-            This means interactions like live chat, real time updates, and other features that require a
-            refresh or a page load can be done without refreshing the page. It avoids making XHR
-            (AJAX) requests by keeping a persistent connection open between your server and the browser. This reduces
-            the overall throughput of your server and allows for faster and more efficient communication.
-            It provides the backbone for powerful features like:
-        </p>
-        <ul>
-            <li>Real Time Messaging</li>
-            <li>Real Time Logging</li>
-            <li>Real Time File Watching</li>
-            <li>Real Time Database Watching</li>
-            <li>Real Time Notifications</li>
-            <li>Faster than XHR/AJAX timers</li>
-        </ul>
-        <p>
-            Less Total Server Upload and Download means less electricity and more money in your pocket.
-        </p>
-        <p>
-            "There is no better user expense than watching the notification bar change from one to ten in real time" -
-            Richard Miles
-        </p>
-        <p>
-            Not all servers can accommodate for WebSockets and currently requires port binding ability.
-            <i>
-                We are experimenting with a single threaded model which should allow for sockets on shared hosts,
-                so check back soon!
-            </i>
-            A good rule of thumb is if you are using a shared hosting provider, you will not be able to use WebSockets.
-            If you are using a VPS or dedicated server, or just have root(sudo) access, you will be able to use
-            WebSockets. Google Cloud, AWS, and Azure all support WebSockets.
-        </p>
-        <br/>
-        <a href={'https://caniuse.com/websockets'}>
-            All Major Browsers Support WebSockets
-        </a>
-        <br/>
-        <p>
-            CarbonWordPress WebSockets are currently in Beta and is currently only supported on <b>apache</b> web
-            servers.
-            Appropriate <b>mod_proxy</b> and <b>mod_proxy_wstunnel</b> modules must be enabled. We do plan on
-            supporting <b>nginx</b> in the future. Manual installation on <b>nginx</b> is possible.
-        </p>
-    </>
-
-    const PRICING = <div style={{
-        backgroundColor: 'lightblue',
-        padding: '1em',
-        borderRadius: '1em',
-    }}>
-        <h1>Carbon WordPress Pricing</h1>
-
-        <p>
-            Our free version comes with PHP's best error handling and logging system.
-            We've invested a LOT of time writing code to help you debug your WordPress installation and
-            want you to <b>have it for FREE</b>. Our migration tool offers basic database, theme, plugin, and upload
-            support.
-            The free version lacks the ability to customize the stock migration process.
-            The basic usage this is probably enough for many small sites. For larger businesses, organizations,
-            and/or super users, we offer a variety of licenses to fit your needs. It is important to download and
-            test the free version before purchasing a license. We offer a 30 day money back guarantee. Developers may
-            find cloning our <a href={'https://github.com/CarbonORM/CarbonWordPressExample/'}>example repository </a>
-            locally, installing the plugin on their existing wordpress instance, and running migration
-        </p>
-        <NavPills
-            color="info"
-            tabs={[
-                {
-                    tabButton: "Individual",
-                    tabIcon: Person,
-                    tabContent: <div style={{
-                        padding: "1em"
-                    }}>
-                        <h1>Individual licenses are priced per domain</h1>
-                        <h2>CarbonWordPress {numberOfDomains} Domain License</h2>
-                        <Slider min={1} max={20} defaultValue={numberOfDomains} onChange={(_event, value) => {
-                            setNumberOfDomains(value as number)
-                        }} aria-label="Default" valueLabelDisplay="auto"/>
-                        {pricingInformation(ePricingInformation.INDIVIDUAL)}
-                        <p>
-                            The Individual license is for a <u>single developer or operator</u> to use across single or
-                            multiple domains based on license.
-                        </p>
-                        <h3>Migration Features</h3>
-                        <ul>
-                            <li>One User</li>
-                            {premiumFeatures}
-                        </ul>
-                        {WebSocketInfo}
-                    </div>
-                },
-                {
-                    tabButton: "Organization",
-                    tabIcon: Group,
-                    tabContent: <div style={{
-                        padding: "1em"
-                    }}>
-                        <h1>Organization licenses are priced per operator</h1>
-                        <Slider min={2} max={99}
-                                step={1}
-                                value={numberOfOperators} onChange={(_event, value) => {
-                            setNumberOfOperators(value as number)
-                        }} aria-label="Default" valueLabelDisplay="auto"/>
-                        {pricingInformation(ePricingInformation.ORGANIZATION)}
-                        <h3>Migration Features</h3>
-                        <ul>
-                            <li>Unlimited Domains</li>
-                            {premiumFeatures}
-                        </ul>
-                        {WebSocketInfo}
-                    </div>
-
-                },
-                {
-                    tabButton: "Enterprise",
-                    tabIcon: Public,
-                    tabContent: <div style={{
-                        padding: "1em"
-                    }}>
-                        <h1>Enterprise License grants full unrestricted access</h1>
-                        <p>
-                            <b style={{color: "green"}}>
-                                Unlimited Migration Operators<br/>
-                                Unlimited Domains<br/>
-                                Priority Support<br/>
-                                Unparalleled Performance<br/>
-                                Real Time Communication<br/>
-                                Totaling $45,000 Annually
-                            </b>
-                        </p>
-                        <h3>Migration Features</h3>
-                        <ul>
-                            <li>Unlimited Migration Operators</li>
-                            <li>Unlimited Domains</li>
-                            <li>Operational Support</li>
-                            <li>Optional In Person or Online Training</li>
-                            <li>Optional Annual Security Review</li>
-                            {premiumFeatures}
-                        </ul>
-                        {WebSocketInfo}
-                    </div>
-                },
-                {
-                    tabButton: "Non Profit",
-                    tabIcon: Favorite,
-                    tabContent: <div style={{
-                        padding: "1em"
-                    }}>
-                        <h1>Non Profit licenses are priced per operator</h1>
-                        <Slider min={2} step={1} max={199} value={numberOfOperators} onChange={(_event, value) => {
-                            setNumberOfOperators(value as number)
-                        }} aria-label="Default" valueLabelDisplay="auto"/>
-                        {pricingInformation(ePricingInformation.NONPROFIT)}
-                        <h3>Migration Features</h3>
-                        <ul>
-                            <li>Unlimited Domains</li>
-                            {premiumFeatures}
-                        </ul>
-                        {WebSocketInfo}
-                    </div>
-                },
-                {
-                    tabButton: "Students & Teachers",
-                    tabIcon: School,
-                    tabContent: <div style={{
-                        padding: "1em"
-                    }}>
-                        <h1>Students & Teachers</h1>
-                        <p><b style={{color:"green"}}>Free for academic, non-commercial, projects!</b></p>
-                        <p>For academic access only. Education licenses may not be used on commercial products.</p>
-                        <ul>
-                            <li>Unlimited Domains</li>
-                            <li>Unlimited Operators</li>
-                            {premiumFeatures}
-                        </ul>
-                        {WebSocketInfo}
-                    </div>
-                },
-                {
-                    tabButton: "Videos",
-                    tabIcon: VideoLibrary,
-                    tabContent: <div style={{
-                        padding: "1em"
-                    }}>
-                        <h1>Online Tutorials</h1>
-                        <p>Arriving April 2024!</p>
-                    </div>
-                }
-            ]}
-        /></div>
 
     return <GridContainer>
         {C6WordPressVersion && <>
@@ -548,8 +243,6 @@ export default function CarbonWordPress() {
                 <h1>Welcome to CarbonWordPress!</h1>
                 <p>Please report any issues to <a href={'https://github.com/CarbonORM/CarbonWordPress/issues'}>our
                     GitHub Issues page</a>.</p>
-
-                {PRICING}
 
             </GridItem>
             <GridItem sm={0} md={2}/>
@@ -587,7 +280,7 @@ export default function CarbonWordPress() {
                                         This is by far the fastest and most reliable plugin that will migrate WordPress
                                         installations. It was built in response to the current tools costing $$$ but
                                         fail all to
-                                        often. You should never have to restart a migration due to a timeout or other
+                                        often. You should never have to restart a migration due to a timeout or other (500-599)
                                         small network error. Moreover, if I give you an honest review, I expect it not
                                         to get deleted. Censorship makes me angry so I built a tool that is 1000x better
                                         and free :)
@@ -699,6 +392,25 @@ export default function CarbonWordPress() {
                             )
                         },
                         {
+                            tabButton: "WebSocket Log",
+                            tabIcon: Power,
+                            tabContent: (
+                                <div>
+                                    <h1>WebSocket.txt</h1>
+                                    <div style={{
+                                        height: '50vh ',
+                                        overflow: 'auto',
+                                        display: 'flex',
+                                        flexDirection: 'column-reverse',
+                                        margin: '2em'
+                                    }}>
+                                        {websocketLog.split('\n').reverse().map((line, index) => <Ansi
+                                            key={index}>{line}</Ansi>)}
+                                    </div>
+                                </div>
+                            )
+                        },
+                        {
                             tabButton: "Update Composer",
                             tabIcon: SystemUpdate,
                             tabContent: (
@@ -721,21 +433,75 @@ export default function CarbonWordPress() {
                             )
                         },
                         {
-                            tabButton: "WebSocket Log",
-                            tabIcon: Power,
+                            tabButton: "License",
+                            tabIcon: '' === C6WordPressLicense ? Lock : LockOpen,
                             tabContent: (
                                 <div>
-                                    <h1>WebSocket.txt</h1>
-                                    <div style={{
-                                        height: '50vh ',
-                                        overflow: 'auto',
-                                        display: 'flex',
-                                        flexDirection: 'column-reverse',
-                                        margin: '2em'
+                                    <h1>CarbonWordPress License</h1>
+                                    {licesnseVerified || <Pricing/>}
+                                    <p>
+                                        CarbonWordPress is a project by Richard T. Miles and is a part of the CarbonORM
+                                        project. Licenses are distributed by email after a successful PayPal
+                                        Confirmation.
+                                    </p><br/>
+                                    <textarea onChange={(event) => setC6WPLicense(event.target.value)}>
+                                        {C6WordPressLicense}
+                                    </textarea><br/>
+                                    <Button onClick={() => {
+                                        console.log('send request to this servers C6WordPressLicense')
+                                        // systems.miles.systems/c6wordpress/migrate/addLicense/
+                                        // post data license; this is only an operation for the local server
+                                        fetch('/CarbonWordPress/migrate/addLicense/', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify({
+                                                email: C6WordPressUser,
+                                                domain: remoteURL,
+                                                license: c6WPLicense
+                                            })
+                                        }).then(response => response.text())
+                                            .then(text => {
+                                                console.log('CarbonWordPress license response', text);
+                                            });
                                     }}>
-                                        {websocketLog.split('\n').reverse().map((line, index) => <Ansi
-                                            key={index}>{line}</Ansi>)}
-                                    </div>
+                                        Update License
+                                    </Button><br/><br/>
+                                    <p>
+                                        A license file will be created/updated after you confirm <b>Updating the
+                                        License</b>.
+                                        This is a change that will affect everyone on this server and potentially even
+                                        domain. If
+                                        your domain utilizes multiple servers in a load balanced environment, it is best
+                                        to
+                                        add and track your license file locally with your version control system (git),
+                                        then
+                                        push it up to development and live servers. If you are a small business or
+                                        individual
+                                        developer, you most likely will not need to worry about this. Licenses will not
+                                        be verified when you submit this forum. This is by design so you can quickly
+                                        remove a valid license.
+                                    </p>
+                                    <p>
+                                        Metrics and license tracking is collected to discourage piracy and to help with
+                                        overall security. Information collected is limited to: email, domain, and
+                                        license key.
+                                        Other debugging information maybe collected for the purpose of improving the
+                                        software.
+                                        This information will not be shared directly with any third party and will not
+                                        include information other than server configuration, software versioning, and
+                                        migration
+                                        debugging logs. Migration sql or files will NEVER be sent to our servers.
+                                    </p>
+                                    <p>
+                                        If logging data is collected which reasonably could identify illegal activity
+                                        such as human or drug trafficking, our algorithms will automatically send a
+                                        report to the appropriate authorities. Generally, this is limited to what is
+                                        printed in your migration logging, but any metrics collected will be shared with
+                                        the appropriate legal authority. We are fully committed to making the world a
+                                        better place.
+                                    </p>
                                 </div>
                             )
                         },
@@ -750,9 +516,11 @@ export default function CarbonWordPress() {
                                     <p>PHP Version: {C6PHPVersion}</p>
                                     <p>Setup Complete: {C6SetupComplete ? 'Yes' : 'No'}</p>
                                     <p>Migrate Status: {C6MigrationRunning}</p>
+                                    <p>CarbonWordPress License: {C6WordPressLicense}</p>
                                     <p>Migrate API key: {C6MigrateLicense}</p>
                                     <p>Websocket Status: {C6WebsocketRunning}</p>
                                     <p>Websocket Running Command: {C6WebsocketRunningCommand}</p>
+                                    <p>WordPress User: {C6WordPressUser}</p>
                                     <p>User: {C6WhoAmI}</p>
                                     <p>Groups: {C6Groups?.join(', ')}</p>
                                     <p>Application Path (ABSPATH): {C6WordPressAbsPath}</p>
@@ -768,7 +536,6 @@ export default function CarbonWordPress() {
             <GridItem sm={0} md={2}/>
         </>}
 
-
         {
             C6WordPressVersion && <button onClick={() => setShowReadMe(!showReadMe)}>
                 {showReadMe ? 'Hide README' : 'Show README'}
@@ -779,7 +546,7 @@ export default function CarbonWordPress() {
             !C6WordPressVersion && <>
                 <GridItem sm={0} md={2}/>
                 <GridItem sm={12} md={8}>
-                    {PRICING}
+                    <Pricing/>
                 </GridItem>
                 <GridItem sm={0} md={2}/>
             </>

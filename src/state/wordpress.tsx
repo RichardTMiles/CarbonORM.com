@@ -20,6 +20,7 @@ declare global {
             C6PastMigrations: string,
             C6WebsocketRunning: boolean,
             C6WebsocketRunningCommand: string,
+            C6WordPressLicense: string,
             C6MigrateLicense: string,
             C6WordPressVersion: string,
             C6CarbonPHPVersion: string,
@@ -29,6 +30,7 @@ declare global {
             C6PHPVersion: string,
             C6WhoAmI: string,
             C6Groups: string[],
+            C6WordPressUser: string,
             C6SetupComplete: boolean,
         }
     }
