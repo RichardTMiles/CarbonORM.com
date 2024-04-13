@@ -66,7 +66,7 @@ export default function CarbonWordPress() {
     const [iStartedMigration, setIStartedMigration] = useState<boolean>(false);
     const [websocketLog, setWebsocketLog] = useState<string>('');
     const [migrationInProgress, setMigrationInProgress] = useState<boolean>(false);
-    const [licesnseVerified, setLicenseVerified] = useState<boolean>(false);
+    const [licenseVerified, setLicenseVerified] = useState<boolean>(false);
     const [showReadMe, setShowReadMe] = useState(!C6WordPressVersion);
     const [remoteURL, setRemoteURL] = useState<string>(DEFAULT_REMOTE_URL);
     const [c6WPLicense, setC6WPLicense] = useState<string>(C6WordPressLicense ?? '');
@@ -75,6 +75,7 @@ export default function CarbonWordPress() {
     const [composerUpdateOutput, setComposerUpdateOutput] = useState<undefined | null | string>(undefined);
     const [migrationCommandOutput, setMigrationCommandOutput] = useState<string>('');
     const [migrationOutput, setMigrationOutput] = useState<undefined | null | string>(undefined);
+    const [planInfo, setPlanInfo] = useState<any>(undefined);
     const C6WordpressFullyLoaded = C6SetupComplete && '' !== C6AutoLoadPath;
 
     let pastMigrations: {
@@ -97,8 +98,9 @@ export default function CarbonWordPress() {
             })
         }).then(response => response.json())
             .then(json => {
+                setPlanInfo(json)
                 // this rather than state because it will be harder for the user to change
-                if (json.success) {
+                if (json.plan_name) {
                     setLicenseVerified(true);
                 }
                 console.log('CarbonWordPress license response', json);
@@ -247,7 +249,7 @@ export default function CarbonWordPress() {
             </GridItem>
             <GridItem sm={0} md={2}/>
             <br/>
-            <SupportMe/>
+            {licenseVerified || <SupportMe/>}
             <br/>
             <GridItem sm={0} md={2}/>
             <GridItem xs={12} sm={12} md={8} lg={8}>
@@ -280,7 +282,8 @@ export default function CarbonWordPress() {
                                         This is by far the fastest and most reliable plugin that will migrate WordPress
                                         installations. It was built in response to the current tools costing $$$ but
                                         fail all to
-                                        often. You should never have to restart a migration due to a timeout or other (500-599)
+                                        often. You should never have to restart a migration due to a timeout or other
+                                        (500-599)
                                         small network error. Moreover, if I give you an honest review, I expect it not
                                         to get deleted. Censorship makes me angry so I built a tool that is 1000x better
                                         and free :)
@@ -357,8 +360,8 @@ export default function CarbonWordPress() {
 
                                     </>}
                                     <br/><br/>
-                                    <button
-                                        onClick={migrationInProgress ? () => setMigrationInProgress(false) : startMigrationPostRequest}>
+                                    <button disabled={verifiedUrlCache[remoteURL]}
+                                            onClick={migrationInProgress ? () => setMigrationInProgress(false) : startMigrationPostRequest}>
                                         {migrationInProgress ? 'Stop updating the log' : 'Migration Start'}
                                     </button>
                                     <br/>
@@ -376,18 +379,20 @@ export default function CarbonWordPress() {
                                         {migrationOutput?.split('\n').reverse().map((line, index) => <Ansi
                                             key={index}>{line}</Ansi>) ?? 'No output yet'}
                                     </div>
-                                    <h3>Start Command</h3>
-                                    <div style={{
-                                        height: '25vh ',
-                                        overflow: 'auto',
-                                        display: 'flex',
-                                        flexDirection: 'column-reverse',
-                                        margin: '2em',
-                                        border: '1px solid blue'
-                                    }}>
-                                        {migrationCommandOutput?.split('\n').reverse().map((line, index) => <Ansi
-                                            key={index}>{line}</Ansi>) ?? 'No migration command has been sent'}
-                                    </div>
+                                    {licenseVerified && <>
+                                        <h3>Start Command</h3>
+                                        <div style={{
+                                            height: '25vh ',
+                                            overflow: 'auto',
+                                            display: 'flex',
+                                            flexDirection: 'column-reverse',
+                                            margin: '2em',
+                                            border: '1px solid blue'
+                                        }}>
+                                            {migrationCommandOutput?.split('\n').reverse().map((line, index) => <Ansi
+                                                key={index}>{line}</Ansi>) ?? 'No migration command has been sent'}
+                                        </div>
+                                    </>}
                                 </div>
                             )
                         },
@@ -438,7 +443,7 @@ export default function CarbonWordPress() {
                             tabContent: (
                                 <div>
                                     <h1>CarbonWordPress License</h1>
-                                    {licesnseVerified || <Pricing/>}
+                                    {licenseVerified || <Pricing/>}
                                     <p>
                                         CarbonWordPress is a project by Richard T. Miles and is a part of the CarbonORM
                                         project. Licenses are distributed by email after a successful PayPal
@@ -447,11 +452,12 @@ export default function CarbonWordPress() {
                                     <textarea onChange={(event) => setC6WPLicense(event.target.value)}>
                                         {C6WordPressLicense}
                                     </textarea><br/>
+                                    {planInfo && planInfo.plan_name && <p>Plan Name: {planInfo.plan_name}</p>}
                                     <Button onClick={() => {
                                         console.log('send request to this servers C6WordPressLicense')
                                         // systems.miles.systems/c6wordpress/migrate/addLicense/
                                         // post data license; this is only an operation for the local server
-                                        fetch('/CarbonWordPress/migrate/addLicense/', {
+                                        fetch('/c6wordpress/migrate/addLicense/', {
                                             method: 'POST',
                                             headers: {
                                                 'Content-Type': 'application/json'

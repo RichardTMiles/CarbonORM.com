@@ -171,7 +171,8 @@ export default function Pricing() {
                     </b>
 
                 </p><PayPalButtonComponent
-                    subscription={PayPalSubscriptionPlans?.Organization?.[numberOfOrganizationOperators]}/></>
+                    subscription={PayPalSubscriptionPlans?.Organization?.[numberOfOrganizationOperators]}/>
+                </>
             case ePricingInformation.INDIVIDUAL:
                 return <><p>{0 !== individualLicenseDiscount && <>
                     You will save <b style={{color: "green"}}>{individualLicenseDiscount * 100}%</b>,
