@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@localhost">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.48">
-    <root id="1">
-      <DefaultCasing>mixed/mixed</DefaultCasing>
-      <ServerVersion>8.2.0</ServerVersion>
-    </root>
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.52">
+    <root id="1"/>
     <schema id="2" parent="1" name="CarbonPHP"/>
     <schema id="3" parent="1" name="CarbonPHPExamples"/>
     <schema id="4" parent="1" name="MilesSystems"/>
